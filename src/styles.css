@@ -6,6 +6,7 @@ body {
 }
 .btn{
   font-family: Nunito, "Helvetica Neue", Helvetica, Arial, sans-serif!important;
+  border: 3px;
 }
 
 .fixed-top {
@@ -16,3 +17,6 @@ body {
   height: 60px;
 }
 
+.border-3 {
+  border-width:3px !important;
+}

@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="icon" href="../../../../favicon.ico">
-
+  <base href="/">
   <title>Kendozone</title>
 </head>
 
@@ -30,14 +30,14 @@
       </li>
     </ul>
     <form class="form-inline mt-2 mt-md-0">
-      <button class="btn btn-outline-primary form-control mr-sm-2 text-uppercase" type="submit">Create Tournament</button>
+      <button class="btn btn-outline-primary form-control mr-sm-2 text-uppercase border-3" type="submit">Create Tournament</button>
       <div class="dropdown" >
         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Juliatzin del Toro
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="#">Profile</a>
-          <a class="dropdown-item" href="#">My Tournaments</a>
+          <a class="dropdown-item" routerLink="/tournaments" href="/tournaments">My Tournaments</a>
           <a class="dropdown-item" href="#">Participations</a>
           <a class="dropdown-item" href="#">Invitations</a>
           <div class="dropdown-divider"></div>
