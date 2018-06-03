@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TournamentsComponent } from './tournaments/tournaments.component';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+
 
 @NgModule({
   declarations: [
@@ -15,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     NgbModule.forRoot(),
     AppRoutingModule,
   ],
