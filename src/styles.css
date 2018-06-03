@@ -1,7 +1,7 @@
 /*!* You can add global styles to this file, and also import other style files *!*/
 body {
   min-height: 100%;
-  padding-top: 4.5rem;
+  padding-top: 6.5rem;
   font-size: 13px!important;
 }
 .btn{
@@ -19,4 +19,11 @@ body {
 
 .border-3 {
   border-width:3px !important;
+}
+.border-0 {
+  border-width:0 !important;
+}
+
+.icon-list{
+  font-size: 16px;
 }
