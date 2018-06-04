@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'tournaments', component: TournamentsComponent},
   {path: 'tournaments/create', component: TournamentCreateComponent},
-  {path: 'tournaments/:id', component: TournamentEditComponent}
+  {path: 'tournaments/:id/edit', component: TournamentEditComponent}
 ];
 
 @NgModule({

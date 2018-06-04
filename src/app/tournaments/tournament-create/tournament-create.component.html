@@ -4,56 +4,71 @@
       <h4 class="card-title text-uppercase">New Tournament</h4>
       <hr>
       <div class="row">
-        <div class="col-xs-2 col-md-1">
+        <div class="col-2 col-md-1">
           <span class="numeros">1</span>
         </div>
-        <div class="col-xs-10"><strong>General Data</strong><br>
+        <div class="col-10 "><span class="text-uppercase font-weight-bold">General Data</span><br>
           Enter the name and the date of your tournament
         </div>
       </div>
       <br>
       <div class="row">
-        <div class="col-md-3 col-md-offset-1">
-          <div class=" form-group">
-            <label for="name" class="text-bold ">Name</label>
-            <input class="form-control" name="name" type="text" id="name">
+        <div class="col-md-4 offset-md-1">
+          <label for="name" class="font-weight-bold">Name</label>
+          <input class="form-control input-lg" name="name" type="text" id="name">
+        </div>
+        <div class="col-md-3">
+          <label for="name" class="font-weight-bold">Date Ini</label>
+          <div class="form-group">
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                     name="dateIni" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                  <i class="fas fa-calendar-alt calendar"></i>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class=" form-group">
-            <label for="name" class="text-bold ">Name</label>
-            <input class="form-control" name="name" type="text" id="name">
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class=" form-group">
-            <label for="name" class="text-bold ">Name</label>
-            <input class="form-control" name="name" type="text" id="name">
+        <div class="col-md-3">
+          <label for="name" class="font-weight-bold">Date Fin</label>
+          <div class="form-group">
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                     name="dateFin" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                  <i class="fas fa-calendar-alt calendar"></i>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <hr>
       <div class="row">
-        <div class="col-xs-2 col-md-1">
+        <div class="col-2 col-md-1">
           <span class="numeros">2</span>
         </div>
-        <div class="col-xs-10"><span class="text-bold">CONFIGURE CATEGORIES</span><br>
+        <div class="col-10"><span class="font-weight-bold text-uppercase">CONFIGURE CATEGORIES</span><br>
           Select 1 option to configure tournament's championships
           <br>
         </div>
       </div>
       <br><br>
       <div class="row">
-        <div class="col-xs-1 col-md-offset-1"><input id="c1" checked="checked" name="config" type="radio" value="0">
+        <div class="col-1 offset-md-1">
+          <input id="c1" checked="checked" name="config" type="radio" value="0">
         </div>
-        <div class="col-md-10"><span class="text-bold">PRESETS</span><br>
+        <div class="col-md-10"><span class="font-weight-bold">PRESETS</span><br>
           Choose rules to create tournament's championships. Categories will be created and configured automatically
           <br><br>
         </div>
       </div>
-      <div class="row md-10">
-        <div class="col-md-3 col-md-offset-2">
-          <select class="form-control" id="rules" name="rule_id">
+      <div class="row md-12">
+        <div class="col-md-3 offset-md-1">
+          <select class="form-control select-lg" id="rules" name="rule_id">
             <option value="0" selected="selected">-</option>
             <option value="1">Internation Kendo Federation (IKF)</option>
             <option value="2">European Kendo Federation (EKF)</option>
@@ -71,8 +86,8 @@
       </div>
 
       <div class="row">
-        <div class="col-xs-1 col-md-offset-1"><input id="c2" name="config" type="radio" value="1"></div>
-        <div class="col-md-10"><span class="text-bold">MANUAL</span><br>
+        <div class="col-1 offset-md-1"><input id="c2" name="config" type="radio" value="1"></div>
+        <div class="col-md-10"><span class="font-weight-bold">MANUAL</span><br>
           Select categories to register<br>
         </div>
       </div>

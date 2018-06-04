@@ -1,0 +1,34 @@
+#sticky-sidebar{
+  width: 260px!important;
+}
+
+
+//padding: 10px 0;
+#sticky-sidebar>.card-body>ul{
+  list-style-type: none;
+  margin:0;
+  padding:0;
+}
+
+
+
+#sticky-sidebar>.card-body>ul>li>a{
+  color: #000!important;
+  font-family: Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-size: 13px;
+  padding: 12px   0px;
+  min-height: 44px!important;
+  font-weight: 600;
+  display: block;
+  text-decoration: none;
+}
+
+#sticky-sidebar>.card-body>ul>li>a>i{
+  margin-right: 15px;
+}
+
+.badge, .label {
+  float: right;
+}
+
+

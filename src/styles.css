@@ -1,17 +1,14 @@
 /*!* You can add global styles to this file, and also import other style files *!*/
 body {
   min-height: 100%;
-  padding-top: 6.5rem;
+  padding-top: 4.5rem;
   font-size: 13px!important;
-}
-.btn{
-  font-family: Nunito, "Helvetica Neue", Helvetica, Arial, sans-serif!important;
-  border: 3px;
 }
 
 .fixed-top {
   background-color: #FFF;
 }
+
 .navbar-brand>img {
   width: 56px;
   height: 60px;
@@ -28,6 +25,17 @@ body {
   font-size: 16px;
 }
 
-a{
-  color: #ff5663!important;
+.nav-pills .nav-link {
+  border-radius: 0!important;
+}
+
+#sticky-sidebar {
+  position:fixed;
+}
+
+.badge{
+  padding: 5px 6px 5px!important;
+  font-size: 10px!important;
+  letter-spacing: .1px!important;
+  border-radius: 100px!important;
 }
