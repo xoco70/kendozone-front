@@ -10,8 +10,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {FormsModule} from '@angular/forms';
 import {MessagesComponent} from './messages/messages.component';
 import {NavComponent} from './nav/nav.component';
+import { TournamentCreateComponent } from './tournaments/tournament-create/tournament-create.component';
 import { TournamentEditComponent } from './tournaments/tournament-edit-component/tournament-edit.component';
-import { TournamentCreateComponent } from './tournaments/tournament-create/tournament-create.component'; // <-- NgModel lives here
 
 
 @NgModule({
@@ -21,8 +21,8 @@ import { TournamentCreateComponent } from './tournaments/tournament-create/tourn
     TournamentsComponent,
     MessagesComponent,
     NavComponent,
-    TournamentEditComponent,
-    TournamentCreateComponent
+    TournamentCreateComponent,
+    TournamentEditComponent
   ],
   imports: [
     BrowserModule,
