@@ -7,7 +7,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TournamentsComponent } from './tournaments/tournaments.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
-import { MessagesComponent } from './messages/messages.component'; // <-- NgModel lives here
+import { MessagesComponent } from './messages/messages.component';
+import { NavComponent } from './nav/nav.component'; // <-- NgModel lives here
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { MessagesComponent } from './messages/messages.component'; // <-- NgMode
     AppComponent,
     DashboardComponent,
     TournamentsComponent,
-    MessagesComponent
+    MessagesComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
