@@ -9,15 +9,6 @@ import {TournamentService} from '../tournament.service';
 })
 export class TournamentsComponent implements OnInit {
   tournaments: Tournament[];
-
-  // tournament: Tournament = {
-  //   id: 1,
-  //   name: 'Windstorm',
-  //   date: 'www',
-  //   competitors: 10,
-  //   owner: 'yo'
-  // };
-
   constructor(private tournamentService: TournamentService) {
   }
 
