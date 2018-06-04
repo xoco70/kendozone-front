@@ -1,7 +1,7 @@
 export class Tournament {
   id: number;
-  name: string;
+  user: string;
   date: string;
-  competitors: number;
-  owner: string;
+  name: string;
+  numCompetitors: number;
 }
