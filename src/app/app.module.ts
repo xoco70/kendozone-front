@@ -5,12 +5,13 @@ import {HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {TournamentsComponent} from './tournaments/tournaments.component';
+import {TournamentsComponent} from './tournaments/tournaments-index/tournaments.component';
 import {AppRoutingModule} from './app-routing.module';
 import {FormsModule} from '@angular/forms';
 import {MessagesComponent} from './messages/messages.component';
 import {NavComponent} from './nav/nav.component';
-import { TournamentEditComponent } from './tournament-edit-component/tournament-edit.component'; // <-- NgModel lives here
+import { TournamentEditComponent } from './tournaments/tournament-edit-component/tournament-edit.component';
+import { TournamentCreateComponent } from './tournaments/tournament-create/tournament-create.component'; // <-- NgModel lives here
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { TournamentEditComponent } from './tournament-edit-component/tournament-
     TournamentsComponent,
     MessagesComponent,
     NavComponent,
-    TournamentEditComponent
+    TournamentEditComponent,
+    TournamentCreateComponent
   ],
   imports: [
     BrowserModule,

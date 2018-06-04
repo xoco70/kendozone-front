@@ -2,8 +2,8 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {TournamentsComponent} from './tournaments/tournaments.component';
-import {TournamentEditComponent} from './tournament-edit-component/tournament-edit.component';
+import {TournamentsComponent} from './tournaments/tournaments-index/tournaments.component';
+import {TournamentEditComponent} from './tournaments/tournament-edit-component/tournament-edit.component';
 
 
 const routes: Routes = [
