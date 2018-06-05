@@ -20,6 +20,7 @@ import { TournamentEditRightMenuComponent } from './tournaments/tournament-edit/
 import {AgmCoreModule} from '@agm/core';
 import { CompetitorsComponent } from './competitors/competitors.component';
 import { CompetitorsRightMenuComponent } from './competitors/competitors-right-menu/competitors-right-menu.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { CompetitorsRightMenuComponent } from './competitors/competitors-right-m
     TournamentEditRightMenuComponent,
     CompetitorsComponent,
     CompetitorsRightMenuComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
