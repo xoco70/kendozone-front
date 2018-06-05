@@ -1,0 +1,133 @@
+<br/><br/><div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="name" class="font-weight-bold">Name</label>
+      <br>
+      <input class="form-control input-lg" name="name" type="text" value="testtest" id="name">
+    </div>
+  </div>
+  <div class="col-md-3 col-md-offset-1">
+    <div class="checkbox-switch">
+      <label>
+
+        <label for="type" class="font-weight-bold">Tournament Type</label>
+        <br>
+        <input name="type" type="hidden" value="0" id="type">
+        <div
+          class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-type bootstrap-switch-animate bootstrap-switch-off"
+          style="width: 156px;">
+          <!--<div class="bootstrap-switch-container" style="width: 231px; margin-left: -77px;"><span-->
+            <!--class="bootstrap-switch-handle-on bootstrap-switch-primary" style="width: 77px;">Open</span><span-->
+            <!--class="bootstrap-switch-label" style="width: 77px;">&nbsp;</span><span-->
+            <!--class="bootstrap-switch-handle-off bootstrap-switch-default" style="width: 77px;">Invitation</span><input-->
+            <!--class="switch" data-on-text="Open" data-off-text="Invitation" checked="checked" name="type" type="checkbox"-->
+            <!--value="1" id="type"></div>-->
+        </div>
+
+      </label>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="level_id" class="font-weight-bold">Level</label>
+      <br>
+      <select class="form-control select-lg" id="level_id" name="level_id">
+        <option value="1" selected="selected">ND</option>
+        <option value="2">Local</option>
+        <option value="3">Distrital</option>
+        <option value="4">Municipal</option>
+        <option value="5">Estatal</option>
+        <option value="6">Regional</option>
+        <option value="7">Nacional</option>
+        <option value="8">Internacional</option>
+      </select>
+    </div>
+  </div>
+</div>
+<hr/>
+
+
+<!--Second row-->
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-1">
+    <label for="dateIni" class="font-weight-bold">Initial Date</label>
+    <div class="form-group">
+      <div class="input-group">
+        <input class="form-control" placeholder="yyyy-mm-dd"
+               name="dateIni" id="dateIni" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+            <i class="fas fa-calendar-alt calendar"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-4">
+
+    <label for="dateFin" class="font-weight-bold">Final Date</label>
+    <div class="form-group">
+      <div class="input-group">
+        <input class="form-control" placeholder="yyyy-mm-dd"
+               name="dateFin" id="dateFin" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+            <i class="fas fa-calendar-alt calendar"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <label for="registerDateLimit" class="font-weight-bold">Deadline Registration Date</label>
+    <div class="form-group">
+      <div class="input-group">
+        <input class="form-control" placeholder="yyyy-mm-dd"
+               name="dateFin" id="registerDateLimit" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+            <i class="fas fa-calendar-alt calendar"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr/>
+
+<!--Third row-->
+<div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="promoter" class="font-weight-bold">Promoter</label>
+      <br>
+      <input class="form-control input-lg" name="promoter" type="text" id="promoter">
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="host_organization" class="font-weight-bold">Host Organization</label>
+      <br>
+      <input class="form-control input-lg" name="host_organization" type="text" id="host_organization">
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="technical_assistance" class="font-weight-bold">Technical Assistance</label>
+      <br>
+      <input class="form-control input-lg" name="technical_assistance" type="text" id="technical_assistance">
+    </div>
+  </div>
+</div>
+
+<div align="right">
+  <button type="submit" class="btn btn-success" id="saveTournament">
+    Save
+  </button>
+</div>
+
+
+

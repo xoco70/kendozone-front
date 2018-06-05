@@ -24,7 +24,23 @@ $theme-colors: (
 );
 
 .btn-success {
-  color: #fff!important;
+  color: #fff !important;
+}
+
+.calendar {
+  font-size: 16px;
+}
+
+.input-lg {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.select-lg {
+  height: 40px !important;
+  width: 260px;
 }
 
 // Bootstrap and its default variables

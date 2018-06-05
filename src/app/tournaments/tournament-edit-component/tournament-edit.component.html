@@ -7,7 +7,7 @@
           <ng-template ngbTabContent>
             <div class="card mt-3">
               <div class="card-body">
-                <h4 class="card-title text-uppercase">GENERAL DATA</h4>
+                <app-tournament-edit-general></app-tournament-edit-general>
               </div>
             </div>
           </ng-template>
@@ -17,7 +17,7 @@
           <ng-template ngbTabContent>
             <div class="card mt-3">
               <div class="card-body">
-                <h4 class="card-title text-uppercase">VENUE</h4>
+                <app-tournament-edit-venue></app-tournament-edit-venue>
               </div>
             </div>
           </ng-template>
@@ -27,7 +27,7 @@
           <ng-template ngbTabContent>
             <div class="card mt-3">
               <div class="card-body">
-                <h4 class="card-title text-uppercase">CATEGORIES</h4>
+                <app-tournament-edit-categories></app-tournament-edit-categories>
               </div>
             </div>
           </ng-template>
@@ -37,7 +37,7 @@
           <ng-template ngbTabContent>
             <div class="card mt-3">
               <div class="card-body">
-                <h4 class="card-title text-uppercase">SETTINGS</h4>
+                <app-tournament-edit-category-settings></app-tournament-edit-category-settings>
               </div>
             </div>
           </ng-template>
@@ -45,44 +45,7 @@
       </ngb-tabset>
     </div>
     <div class="col-3">
-
-      <div class="card w-auto" id="sticky-sidebar">
-        <div class="card-header bg-dark"><span class="text-white">TEST</span></div>
-        <div class="card-body align-items-lg-start">
-          <ul>
-            <li><a href="#"><i class="fas fa-trophy"></i> General
-            </a></li>
-            <li><a href="#"><i class="fas fa-map-marker"></i> Venue
-            </a></li>
-            <li><a href="#">
-              <i class="fas fa-cog"></i>Categories
-              <div class="badge badge-success" id="categories-status">
-                <span class="category-size text-white">4 / 4</span>
-              </div>
-            </a></li>
-            <li><a href="#">
-              <i class="fas fa-user-friends"></i>
-              Competitors
-              <span class="badge badge-success text-white">10</span>
-
-            </a>
-            </li>
-            <li><a href="#">
-              <i class="fas fa-sitemap"></i>
-              Trees
-              <span class="badge badge-primary ">1
-                                / 4</span>
-
-
-            </a>
-            </li>
-            <li><a href="#">
-              <i class="fas fa-users"></i>Teams
-              <span class="badge badge-primary">0</span>
-            </a></li>
-          </ul>
-        </div>
-      </div>
+      <app-tournament-edit-right-menu></app-tournament-edit-right-menu>
     </div>
   </div>
 </div>
