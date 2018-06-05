@@ -1,3 +1,64 @@
-<p>
-  competitors works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-9" id="main">
+      <div class="card">
+        <div class="card-body">
+
+          <!--<a href="https://my.kendozone.com/tournaments/testtest/trees" data-toggle="modal"-->
+          <!--class="btn bg-success btn-xs pull-right mr-10">-->
+          <!--<b> <i class="icon-tree7 mr-5"></i></b>-->
+          <!--Trees-->
+          <!--</a>-->
+          <a name="varonil-individual">
+            <div class="row">
+              <div class="col-md-9">
+                <span class="text-semibold text-uppercase font-weight-bold">Varonil Individual</span>
+              </div>
+              <div class="col-md-3">
+                <div class="badge btnAction">
+                  <a href="#" data-toggle="modal" class="btn btn-primary btnStyle">
+                    <b> <i class="fas fa-plus mr-1"></i></b>
+                    Add Competitors
+                  </a>&nbsp;
+                  <a href="#" data-toggle="modal" class="btn btn-success btnStyle">
+                    <b> <i class="fas fa-sitemap ml-1"></i></b>
+                    Generate Trees
+                  </a>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <div class="text-center">
+            <div class=".table-responsive col-xs-12 col-lg-8 offset-lg-2 border-top-0">
+              <table class="table .table-hover .table-responsive-xs">
+                <tr>
+                  <th scope="col">User</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Category</th>
+                  <!--<th scope="col">Paid</th>-->
+                  <th scope="col">Country</th>
+                  <th scope="col">Action</th>
+                </tr>
+                <tr><!-- *ngFor="let competitor of competitors"-->
+                  <td>{{competitor.avatar}}{{competitor.name}}</td>
+                  <td>{{competitor.email}}</td>
+                  <td>{{competitor.category}}</td>
+                  <!--<td>{{competitor.paid}}</td>-->
+                  <td>{{competitor.country}}</td>
+                  <td><i class="fas fa-times text-primary"></i></td>
+                </tr>
+              </table>
+              <ngb-pagination [collectionSize]="70" [(page)]="page" aria-label="Default pagination"
+                              class="d-flex justify-content-center"></ngb-pagination>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br/>
+    </div>
+    <div class="col-md-3 col-12">
+      <app-competitors-right-menu></app-competitors-right-menu>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {TournamentsComponent} from './tournaments/tournaments-index/tournaments.component';
 import {TournamentEditComponent} from './tournaments/tournament-edit-component/tournament-edit.component';
 import {TournamentCreateComponent} from './tournaments/tournament-create/tournament-create.component';
+import {CompetitorsComponent} from './competitors/competitors.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'tournaments', component: TournamentsComponent},
   {path: 'tournaments/create', component: TournamentCreateComponent},
-  {path: 'tournaments/:id/edit', component: TournamentEditComponent}
+  {path: 'tournaments/:id/edit', component: TournamentEditComponent},
+  {path: 'tournaments/:id/competitors', component: CompetitorsComponent},
 ];
 
 @NgModule({
