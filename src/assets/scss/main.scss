@@ -32,10 +32,7 @@ $theme-colors: (
 }
 
 .input-lg {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 6px;
-  padding-right: 6px;
+  padding: 12px 6px !important;
 }
 
 .select-lg {

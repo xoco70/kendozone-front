@@ -1,31 +1,51 @@
-#sticky-sidebar {
+.tournament-right-sidebar {
   width: 260px !important;
+  border: #ddd 1px solid;
+}
+
+.tournament-right-sidebar > .card-body {
+  background-color: #fcfcfc;
+  color: #333;
 }
 
 //padding: 10px 0;
-#sticky-sidebar > .card-body > ul {
+.tournament-right-sidebar > .card-body > ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-#sticky-sidebar > .card-body > ul > li > a {
+.tournament-right-sidebar > .card-body > ul > li > a {
   color: #000 !important;
   font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 13px;
-  padding: 12px 0px;
+  padding: 12px 0;
   min-height: 44px !important;
   font-weight: 600;
   display: block;
   text-decoration: none;
 }
 
-#sticky-sidebar > .card-body > ul > li > a > i {
+.tournament-right-sidebar > .card-body > ul > li > a > i {
   margin-right: 15px;
 }
 
 .badge, .label {
   float: right;
+}
+
+.img-circle{
+  border-radius: 50%;
+}
+
+.img-xs{
+  width: 32px;
+  height: 32px;
+}
+
+
+.full-width {
+  width: 100%;
 }
 
 

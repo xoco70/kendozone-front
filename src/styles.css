@@ -29,9 +29,6 @@ body {
   border-radius: 0!important;
 }
 
-#sticky-sidebar {
-  position:fixed;
-}
 
 .badge{
   padding: 5px 6px 5px!important;
