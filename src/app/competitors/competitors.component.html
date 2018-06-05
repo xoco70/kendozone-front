@@ -3,12 +3,6 @@
     <div class="col-md-9" id="main">
       <div class="card">
         <div class="card-body">
-
-          <!--<a href="https://my.kendozone.com/tournaments/testtest/trees" data-toggle="modal"-->
-          <!--class="btn bg-success btn-xs pull-right mr-10">-->
-          <!--<b> <i class="icon-tree7 mr-5"></i></b>-->
-          <!--Trees-->
-          <!--</a>-->
           <a name="varonil-individual">
             <div class="row">
               <div class="col-md-9">
@@ -16,11 +10,12 @@
               </div>
               <div class="col-md-3">
                 <div class="badge btnAction">
-                  <a href="#" data-toggle="modal" class="btn btn-primary btnStyle">
+                  <a href="#" data-toggle="modal" class="btn btn-primary p-2"
+                     data-target="#addCompetitors">
                     <b> <i class="fas fa-plus mr-1"></i></b>
                     Add Competitors
                   </a>&nbsp;
-                  <a href="#" data-toggle="modal" class="btn btn-success btnStyle">
+                  <a href="#" data-toggle="modal" class="btn btn-success p-2">
                     <b> <i class="fas fa-sitemap ml-1"></i></b>
                     Generate Trees
                   </a>
@@ -62,3 +57,102 @@
     </div>
   </div>
 </div>
+
+<!--Modal-->
+<!--<div id="addCompetitors" class="modal fade">-->
+<!--<div class="modal-dialog">-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header bg-primary">-->
+<!--<div class="modal-title text-white text-uppercase">add_competitor_to_category</div>-->
+<!--<button type="button" class="close text-white" data-dismiss="modal">&times;</button>-->
+<!--</div>-->
+<!--<div class="modal-body">-->
+<!--<small class="text-muted">add_competitor_text1</small>-->
+<!--<br/>-->
+<!--<small class="text-muted">add_competitor_text2</small>-->
+<!--<br/>-->
+<!--<small class="text-muted">add_competitor_text3 <a href="#">invite_competitors_with_email</a></small>-->
+<!--<br/><br/>-->
+
+<!--<div align="right"><a class="add_field_button btn-primary btn text-white">-->
+<!--<i class="fas fa-user-plus mr-2 "></i>add_more_competitors-->
+<!--</a></div>-->
+
+<!--<div class="form-group">-->
+<!--<div class="col-sm-3">-->
+<!--xxx-->
+<!--</div>-->
+<!--<div class="col-sm-3">-->
+<!--xxx-->
+<!--</div>-->
+<!--<div class="col-sm-3">-->
+<!--xxx-->
+<!--</div>-->
+<!--<div class="col-sm-3">xxx</div>-->
+<!--</div>-->
+<!--<br/>-->
+<!--</div>-->
+
+<!--<div class="modal-footer">-->
+<!--<button type="submit" class="btn btn-primary">add_and_close</button>-->
+<!--</div>-->
+
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="addCompetitors" tabindex="-1" role="dialog"
+     aria-labelledby="addCompetitorsLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white text-uppercase">
+        <h5 class="modal-title text-uppercase" id="creteCategoryLabel">Add new Competitor to Category</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+
+
+
+      <div class="modal-body pb2">
+        <small class="text-muted">If you don't provide an email, Kendozone will generate a unique user automatically.</small><br>
+        <small class="text-muted">Notice that in this case, competitor will have a different ID for each championship in the tournament</small><br>
+        <small class="text-muted">To get Unique IDs, write the user email, or Invite by Email<a href="#">invite_competitors_with_email</a></small>
+
+        <div align="right" class="mt-3 mb-3">
+          <a class="add_field_button btn-primary btn text-white p-2">
+          <i class="fas fa-user-plus mr-2"></i>add_more_competitors
+        </a></div>
+
+        <div class="row">
+          <div class="col-md-3">
+            <div class=" form-group">
+              <label class="font-weight-bold">firstname</label>
+              <input type="text" name="firstnames[]" class="form-control mt-20" required="" placeholder="First name">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class=" form-group">
+              <label class="font-weight-bold">lastname</label>
+              <input type="text" name="lastnames[]" class="form-control mt-20" required="" placeholder="Last name">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class=" form-group">
+              <label class="font-weight-bold">Email</label>
+              <input type="text" name="emails[]" class="form-control mt-20" placeholder="Email ( optional )">
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary p-2">Add Category</button>
+      </div>
+    </div>
+  </div>
+</div>
+
