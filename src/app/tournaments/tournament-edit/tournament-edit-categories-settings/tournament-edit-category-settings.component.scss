@@ -1,0 +1,14 @@
+.cat-status>.panel-heading {
+  text-align: right;
+  letter-spacing: 2px;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+
+.cat-status>.panel-heading>span>i {
+  font-size: 30px;
+  margin-left: 10px;
+}
+.cat-state:hover{
+  text-decoration: none!important;
+}

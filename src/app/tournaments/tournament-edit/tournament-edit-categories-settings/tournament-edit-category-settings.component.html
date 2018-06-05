@@ -1,3 +1,140 @@
-<p>
-  tournament-edit-category-settings works!
-</p>
+<ngb-accordion [closeOthers]="true" activeIds="static-1">
+  <ngb-panel id="static-2">
+    <ng-template ngbPanelTitle>
+      <div class="row">
+        <div class="col-lg-7 col-xs-9">
+          <input type="text" id="alias" name="alias" class="form-control select-lg">
+        </div>
+        <div class="col-lg-5 col-xs-3 cat-status">
+          <div class="panel-heading">
+            <span class="text-success"><a class="cat-state">configured</a>
+                <i class="fas fa-check status-icon"></i>
+              </span>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template ngbPanelContent>
+      <div class="panel-body">
+        <div id="category">
+          <div class="row">
+            <div class="col-lg-2">
+              <label for="fightDuration">Duration</label>
+              <i data-popup="tooltip" title="" data-placement="right"
+                 data-original-title="How long fights will last"
+                 class="icon-help"></i>
+              <div class="input-group">
+                <input id="fightDuration" name="fightDuration" type="text" autocomplete="off"
+                       class="form-control fightDuration ui-timepicker-input">
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-time"></span>
+                </span>
+              </div>
+            </div>
+            <div class="col-lg-2">
+              <div class="form-group">
+                <label for="cost"> Cost ( EUR )</label>
+                <i data-popup="tooltip"
+                   data-original-title="How much does it cost to register the category"
+                   data-placement="right"
+                   class="icon-help"></i>
+                <input name="cost" type="number" id="cost" class="form-control"></div>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-lg-2">
+              <div class="checkbox-switch "><label>Preliminary</label>
+                <i data-popup="tooltip" title=""
+                   data-placement="right"
+                   data-original-title="Round Robin use for first phase?"
+                   class="icon-help"></i> <br>
+                <!--<div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-off bootstrap-switch-animate"-->
+                <!--style="width: 92px;">-->
+                <!--<div class="bootstrap-switch-container" style="width: 135px; margin-left: -45px;">-->
+                <!--<span class="bootstrap-switch-handle-on bootstrap-switch-primary" style="width: 45px;">Yes</span>-->
+                <!--<span class="bootstrap-switch-label" style="width: 45px;">&nbsp;</span><span-->
+                <!--class="bootstrap-switch-handle-off bootstrap-switch-default" style="width: 45px;">No</span><input-->
+                <!--name="hasPreliminary" type="checkbox" data-on-text="Yes" data-off-text="No" class="switch"></div>-->
+                <!--</div>-->
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div class="form-group">
+                <label for="preliminaryGroupSize">Group size</label>
+                <i data-popup="tooltip" title=""
+                   data-placement="right"
+                   data-original-title="How much competitor should a Round Robin Group have?"
+                   class="icon-help"></i>
+                <select id="preliminaryGroupSize" name="preliminaryGroupSize" disabled="disabled"
+                        class="form-control select-lg">
+                  <option value="3"> 3</option>
+                  <option value="4"> 4</option>
+                  <option value="5"> 5</option>
+                </select></div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-group"><label for="preliminaryWinner">Winners x Group</label>
+                <i data-popup="tooltip"
+                   title=""
+                   data-placement="right"
+                   data-original-title="How much competitors will win a Round Robin"
+                   class="icon-help"></i>
+                <select id="preliminaryWinner" name="preliminaryWinner" disabled="disabled"
+                        class="form-control select-lg">
+                  <option value="1" selected="selected">1</option>
+                </select></div>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-lg-3"><label for="treeType">Tree Type</label>
+              <select id="treeType" name="treeType"
+                      class="form-control select-lg">
+                <option value="0">Play Off</option>
+                <option value="1">Direct Elimination
+                </option>
+              </select></div>
+            <div class="col-lg-3"><label for="fightingAreas">Fighting Areas</label>
+              <i data-popup="tooltip" title=""
+                 data-placement="right"
+                 data-original-title="How much areas will you use for this category"
+                 class="icon-help"></i>
+              <select
+                id="fightingAreas" name="fightingAreas" class=" form-control select-lg">
+                <option value="1"> 1</option>
+                <option value="2"> 2</option>
+                <option value="4"> 4</option>
+                <option value="8"> 8</option>
+              </select></div>
+            <div class="col-lg-3">
+              <div class="form-group"><label for="limitByEntity">Expected Competitors</label>
+                <i data-popup="tooltip"
+                   title=""
+                   data-placement="right"
+                   data-original-title="Expected number of the competitors who will be registered for each Championship"
+                   class="icon-help"></i>
+                <select disabled="disabled" id="limitByEntity" name="limitByEntity" class="form-control select-lg">
+                  <option value="0">-</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select></div>
+            </div>
+          </div>
+          <br>
+          <div align="right">
+            <button class="btn btn-success">Save</button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>

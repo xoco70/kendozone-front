@@ -23,7 +23,6 @@
     "@angular/router": "^6.0.3",
     "@ng-bootstrap/ng-bootstrap": "^2.0.0",
     "bootstrap": "^4.1.1",
-    "bootstrap-switch": "^4.0.0-alpha.1",
     "core-js": "^2.5.4",
     "jquery": "^3.3.1",
     "node-sass": "^4.9.0",

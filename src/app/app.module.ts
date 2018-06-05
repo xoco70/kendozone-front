@@ -16,7 +16,7 @@ import { TournamentEditGeneralComponent } from './tournaments/tournament-edit/to
 import { TournamentEditVenueComponent } from './tournaments/tournament-edit/tournament-edit-venue/tournament-edit-venue.component';
 import { TournamentEditCategoriesComponent } from './tournaments/tournament-edit/tournament-edit-categories/tournament-edit-categories.component';
 import { TournamentEditCategorySettingsComponent } from './tournaments/tournament-edit/tournament-edit-categories-settings/tournament-edit-category-settings.component';
-import { TournamentEditRightMenuComponent } from './tournaments/tournament-edit-component/tournament-edit-right-menu/tournament-edit-right-menu.component';
+import { TournamentEditRightMenuComponent } from './tournaments/tournament-edit/tournament-edit-right-menu/tournament-edit-right-menu.component';
 import {AgmCoreModule} from '@agm/core';
 
 
