@@ -19,36 +19,42 @@
         <div id="category">
           <div class="row">
             <div class="col-lg-2">
-              <label for="fightDuration">Duration</label>
-              <i data-popup="tooltip" title="" data-placement="right"
-                 data-original-title="How long fights will last"
-                 class="icon-help"></i>
+              <label>Duration</label>
+              <i class="fas fa-question-circle" ngbPopover="You see, I show up on hover!"
+                 triggers="mouseenter:mouseleave"></i>
               <div class="input-group">
-                <input id="fightDuration" name="fightDuration" type="text" autocomplete="off"
-                       class="form-control fightDuration ui-timepicker-input">
-                <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-time"></span>
-                </span>
+                <select id="duration" name="duration" class="form-control select-lg">
+                  <option value="3"> 1:00</option>
+                  <option value="4"> 1:15</option>
+                  <option value="5"> 1:30</option>
+                  <option value="5"> 1:45</option>
+                  <option value="5"> 2:00</option>
+                </select>
               </div>
             </div>
-            <div class="col-lg-2">
-              <div class="form-group">
-                <label for="cost"> Cost ( EUR )</label>
-                <i data-popup="tooltip"
-                   data-original-title="How much does it cost to register the category"
-                   data-placement="right"
-                   class="icon-help"></i>
-                <input name="cost" type="number" id="cost" class="form-control"></div>
+            <div class="col-lg-2 cost">
+              <label for="cost">Cost ( EUR )</label>
+              <i class="fas fa-question-circle" ngbPopover="You see, I show up on hover!"
+                 triggers="mouseenter:mouseleave"></i>
+              <div class="input-group ">
+                <input id="cost" name="cost" type="text" autocomplete="off" class="form-control input-md">
+              </div>
             </div>
           </div>
           <hr>
           <div class="row">
             <div class="col-lg-2">
-              <div class="checkbox-switch "><label>Preliminary</label>
+              <div class="checkbox-switch ">
+                <label>Preliminary</label>
                 <i data-popup="tooltip" title=""
                    data-placement="right"
                    data-original-title="Round Robin use for first phase?"
                    class="icon-help"></i> <br>
+                <select id="hasPreliminary" name="preliminary" class="form-control select-lg">
+                  <option value="0"> No</option>
+                  <option value="1" selected> Si </option>
+                </select>
+
                 <!--<div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-off bootstrap-switch-animate"-->
                 <!--style="width: 92px;">-->
                 <!--<div class="bootstrap-switch-container" style="width: 135px; margin-left: -45px;">-->
@@ -62,10 +68,8 @@
             <div class="col-lg-3">
               <div class="form-group">
                 <label for="preliminaryGroupSize">Group size</label>
-                <i data-popup="tooltip" title=""
-                   data-placement="right"
-                   data-original-title="How much competitor should a Round Robin Group have?"
-                   class="icon-help"></i>
+                <i class="fas fa-question-circle" ngbPopover="You see, I show up on hover!"
+                   triggers="mouseenter:mouseleave"></i>
                 <select id="preliminaryGroupSize" name="preliminaryGroupSize" disabled="disabled"
                         class="form-control select-lg">
                   <option value="3"> 3</option>
@@ -75,11 +79,8 @@
             </div>
             <div class="col-lg-4">
               <div class="form-group"><label for="preliminaryWinner">Winners x Group</label>
-                <i data-popup="tooltip"
-                   title=""
-                   data-placement="right"
-                   data-original-title="How much competitors will win a Round Robin"
-                   class="icon-help"></i>
+                <i class="fas fa-question-circle" ngbPopover="You see, I show up on hover!"
+                   triggers="mouseenter:mouseleave"></i>
                 <select id="preliminaryWinner" name="preliminaryWinner" disabled="disabled"
                         class="form-control select-lg">
                   <option value="1" selected="selected">1</option>
@@ -96,10 +97,8 @@
                 </option>
               </select></div>
             <div class="col-lg-3"><label for="fightingAreas">Fighting Areas</label>
-              <i data-popup="tooltip" title=""
-                 data-placement="right"
-                 data-original-title="How much areas will you use for this category"
-                 class="icon-help"></i>
+              <i class="fas fa-question-circle" ngbPopover="You see, I show up on hover!"
+                 triggers="mouseenter:mouseleave"></i>
               <select
                 id="fightingAreas" name="fightingAreas" class=" form-control select-lg">
                 <option value="1"> 1</option>
@@ -109,11 +108,8 @@
               </select></div>
             <div class="col-lg-3">
               <div class="form-group"><label for="limitByEntity">Expected Competitors</label>
-                <i data-popup="tooltip"
-                   title=""
-                   data-placement="right"
-                   data-original-title="Expected number of the competitors who will be registered for each Championship"
-                   class="icon-help"></i>
+                <i class="fas fa-question-circle" ngbPopover="You see, I show up on hover!"
+                   triggers="mouseenter:mouseleave"></i>
                 <select disabled="disabled" id="limitByEntity" name="limitByEntity" class="form-control select-lg">
                   <option value="0">-</option>
                   <option value="1">1</option>

@@ -27,7 +27,6 @@
     "jquery": "^3.3.1",
     "node-sass": "^4.9.0",
     "rxjs": "^6.0.0",
-    "tether": "^1.4.4",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

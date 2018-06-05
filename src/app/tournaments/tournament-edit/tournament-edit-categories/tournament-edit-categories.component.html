@@ -1,3 +1,68 @@
-<p>
-  tournament-edit-categories works!
-</p>
+<div class="custom-control form-control-lg custom-checkbox">
+  <input type="checkbox" class="custom-control-input" id="customCheck1">
+  <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+</div>
+<div class="custom-control form-control-lg custom-checkbox">
+  <input type="checkbox" class="custom-control-input" id="customCheck2">
+  <label class="custom-control-label" for="customCheck2">Check this custom checkbox</label>
+</div>
+<div class="custom-control form-control-lg custom-checkbox">
+  <input type="checkbox" class="custom-control-input" id="customCheck3">
+  <label class="custom-control-label" for="customCheck3">Check this custom checkbox</label>
+</div>
+<div class="custom-control form-control-lg custom-checkbox">
+  <input type="checkbox" class="custom-control-input" id="customCheck4">
+  <label class="custom-control-label" for="customCheck4">Check this custom checkbox</label>
+</div>
+<div class="custom-control form-control-lg custom-checkbox">
+  <input type="checkbox" class="custom-control-input" id="customCheck5">
+  <label class="custom-control-label" for="customCheck5">Check this custom checkbox</label>
+</div>
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Modal title</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>One fine body&hellip;</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+<div align="right">
+  <button type="submit" class="btn btn-success" id="saveTournament">
+    Save
+  </button>
+</div>
+<hr>
+
+
+<!--<pre>{{closeResult}}</pre>-->
+<!-- Button trigger modal -->
+<div align="center" class="mt-2">
+<span class="mr-1">Want to create a new custom category ?</span>
+<button class="btn btn-lg btn-outline-primary" data-toggle="modal" data-target="#exampleModal">Add a custom category</button>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MapsAPILoader} from '@agm/core';
+import {} from '@types/googlemaps';
 
 @Component({
   selector: 'app-tournament-edit-venue',
