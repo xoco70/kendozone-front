@@ -18,6 +18,7 @@ import { TournamentEditCategoriesComponent } from './tournaments/tournament-edit
 import { TournamentEditCategorySettingsComponent } from './tournaments/tournament-edit/tournament-edit-categories-settings/tournament-edit-category-settings.component';
 import { TournamentEditRightMenuComponent } from './tournaments/tournament-edit/tournament-edit-right-menu/tournament-edit-right-menu.component';
 import {AgmCoreModule} from '@agm/core';
+import { CompetitorsComponent } from './competitors/competitors.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import {AgmCoreModule} from '@agm/core';
     TournamentEditCategoriesComponent,
     TournamentEditCategorySettingsComponent,
     TournamentEditRightMenuComponent,
+    CompetitorsComponent,
   ],
   imports: [
     BrowserModule,
