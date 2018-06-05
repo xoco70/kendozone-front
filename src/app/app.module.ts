@@ -7,7 +7,7 @@ import {AppComponent} from './app.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {TournamentsComponent} from './tournaments/tournaments-index/tournaments.component';
 import {AppRoutingModule} from './app-routing.module';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MessagesComponent} from './messages/messages.component';
 import {NavComponent} from './nav/nav.component';
 import { TournamentCreateComponent } from './tournaments/tournament-create/tournament-create.component';
@@ -17,6 +17,7 @@ import { TournamentEditVenueComponent } from './tournaments/tournament-edit/tour
 import { TournamentEditCategoriesComponent } from './tournaments/tournament-edit/tournament-edit-categories/tournament-edit-categories.component';
 import { TournamentEditCategorySettingsComponent } from './tournaments/tournament-edit/tournament-edit-categories-settings/tournament-edit-category-settings.component';
 import { TournamentEditRightMenuComponent } from './tournaments/tournament-edit-component/tournament-edit-right-menu/tournament-edit-right-menu.component';
+import {AgmCoreModule} from '@agm/core';
 
 
 @NgModule({
@@ -32,14 +33,19 @@ import { TournamentEditRightMenuComponent } from './tournaments/tournament-edit-
     TournamentEditVenueComponent,
     TournamentEditCategoriesComponent,
     TournamentEditCategorySettingsComponent,
-    TournamentEditRightMenuComponent
+    TournamentEditRightMenuComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     NgbModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDMbCISDkoc5G1AP1mw8K76MsaN0pyF64k',
+      libraries: ['places']
+    }),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
