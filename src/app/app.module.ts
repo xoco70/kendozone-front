@@ -12,10 +12,10 @@ import {MessagesComponent} from './messages/messages.component';
 import {NavComponent} from './nav/nav.component';
 import { TournamentCreateComponent } from './tournaments/tournament-create/tournament-create.component';
 import { TournamentEditComponent } from './tournaments/tournament-edit-component/tournament-edit.component';
-import { TournamentEditGeneralComponent } from './tournaments/tournament-edit-component/tournament-edit-component-general/tournament-edit-general.component';
-import { TournamentEditVenueComponent } from './tournaments/tournament-edit-component/tournament-edit-component-venue/tournament-edit-venue.component';
-import { TournamentEditCategoriesComponent } from './tournaments/tournament-edit-component/tournament-edit-component-categories/tournament-edit-categories.component';
-import { TournamentEditCategorySettingsComponent } from './tournaments/tournament-edit-component/tournament-edit-component-categories-settings/tournament-edit-category-settings.component';
+import { TournamentEditGeneralComponent } from './tournaments/tournament-edit/tournament-edit-general/tournament-edit-general.component';
+import { TournamentEditVenueComponent } from './tournaments/tournament-edit/tournament-edit-venue/tournament-edit-venue.component';
+import { TournamentEditCategoriesComponent } from './tournaments/tournament-edit/tournament-edit-categories/tournament-edit-categories.component';
+import { TournamentEditCategorySettingsComponent } from './tournaments/tournament-edit/tournament-edit-categories-settings/tournament-edit-category-settings.component';
 import { TournamentEditRightMenuComponent } from './tournaments/tournament-edit-component/tournament-edit-right-menu/tournament-edit-right-menu.component';
 
 
