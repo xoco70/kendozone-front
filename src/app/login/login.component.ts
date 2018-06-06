@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {first} from 'rxjs/operators';
 
-import {AuthenticationService} from '../_services/AuthenticationService';
+import {AuthenticationService} from '../_services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -55,9 +55,11 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          console.log('ok');
           this.router.navigate([this.returnUrl]);
         },
         error => {
+          console.log(error.error);
           this.error = error;
           this.loading = false;
         });

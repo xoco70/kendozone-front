@@ -7,9 +7,12 @@ import {Observable, of} from 'rxjs';
 import {Tournament} from '../tournament';
 import {MessageService} from '../message.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
+
+@Injectable({providedIn: 'root'})
+
 export class TournamentService {
   private tournamentsUrl = 'https://api.kz-api.test/tournaments';
 
@@ -24,6 +27,10 @@ export class TournamentService {
   }
 
   getTournaments(): Observable<Tournament[]> {
+
+    const user = localStorage.getItem('currentUser');
+    console.log(user);
+
     this.messageService.add('TournamentService: fetched tournaments');
     return this.http.get<Tournament[]>(this.tournamentsUrl)
       .pipe(

@@ -25,10 +25,10 @@ import {DROPZONE_CONFIG, DropzoneConfigInterface, DropzoneModule} from 'ngx-drop
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 // used to create fake backend
-import {fakeBackendProvider} from './_helpers/fake-backend';
+// import {fakeBackendProvider} from './_helpers/fake-backend';
 import {JwtInterceptor} from './_helpers/JwtInterceptor';
 import {AuthGuard} from './_guards/auth.guard';
-import {AuthenticationService } from './_services/AuthenticationService';
+import {AuthenticationService } from './_services/authentication.service';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -84,7 +84,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
       useValue: DEFAULT_DROPZONE_CONFIG
     },
     // provider used to create fake backend
-    fakeBackendProvider
+    // fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })
