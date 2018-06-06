@@ -13,19 +13,20 @@
                     <label for="name" class="font-weight-bold">Username</label>
                     <input
                       name="name" type="text" value="flordcactus@gmail.com"
-                      id="name" class="form-control valid"
+                      id="name" class="form-control valid input-lg"
                       aria-invalid="false"
                       aria-describedby="name-error">
                     <span id="name-error" class="help-block error-help-block"></span>
-                    <input name="avatar" type="hidden"
+                    <input name="avatar" type="hidden" class="input-lg"
                            value="https://lh3.googleusercontent.com/-1IZ2nbY2o40/AAAAAAAAAAI/AAAAAAAAHEY/KrhjLc7m66g/photo.jpg?sz=200">
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
-                  <div class="form-group"><label for="firstname" class="font-weight-bold">First name</label> <input
-                    name="firstname" type="text" value="Juliatzin Del torro" id="firstname" class="form-control"></div>
+                  <div class="form-group"><label for="firstname" class="font-weight-bold">First name</label>
+                    <input name="firstname" type="text" value="Juliatzin Del torro" id="firstname"
+                           class="form-control input-lg"></div>
                 </div>
               </div>
               <div class="row">
@@ -35,7 +36,7 @@
                            type="text"
                            value="Del torro"
                            id="lastname"
-                           class="form-control valid"
+                           class="form-control valid input-lg"
                            aria-invalid="false">
                   </div>
                 </div>
@@ -68,8 +69,19 @@
             </div>
             <div class="col-xs-12 col-md-6  ">
               <div class="form-group">
-                <label for="avatar">Avatar</label>
-                UPLOAD
+
+
+                <div class="font-weight-bold">Avatar</div>
+                <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="60%">
+                  <dropzone class="dropzone-container"
+                            [useDropzoneClass]="true"
+                            [config]="config"
+                            [disabled]="disabled" fxLayout="row"
+                            fxLayoutAlign="start strech" fxFlex="auto"
+                            [message]="'Click or drag images here to upload'" (error)="onUploadError($event)"
+                            (success)="onUploadSuccess($event)"></dropzone>
+
+                </div>
               </div>
             </div>
           </div>
@@ -287,15 +299,19 @@
             <div class="col-12 col-md-6">
               <div class="row">
                 <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
-                  <div class="form-group"><label for="email" class="font-weight-bold">Email</label>
+                  <div class="form-group">
+                    <label for="email" class="font-weight-bold">Email</label>
                     <label for="email"
                            disabled="disabled"
-                           class="form-control">flordcactus@gmail.com</label>
+                           class="form-control input-lg m-0">flordcactus@gmail.com
+                    </label>
                     <input name="email" type="hidden" value="flordcactus@gmail.com" id="email">
-                    <p class="help-block">Email linked to your account</p></div>
+                    <p>Email linked to your account</p>
+                  </div>
                 </div>
                 <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
-                  <div class="form-group"><label for="role_id" class="font-weight-bold">Role</label>
+                  <div class="form-group">
+                    <label for="role_id" class="font-weight-bold">Role</label>
                     <select id="role_id"
                             name="role_id"
                             class="form-control">
@@ -311,8 +327,9 @@
             <div class="col-md-6">
               <div class="row">
                 <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0 ">
-                  <div class="form-group"><label for="password" class="font-weight-bold">Password</label> <input
-                    name="password" type="password" value="" id="password" class="form-control">
+                  <div class="form-group">
+                    <label for="password" class="font-weight-bold">Password</label>
+                    <input name="password" type="password" value="" id="password" class="form-control input-lg">
                     <p class="help-block">If you don't want to change password... please leave them empty</p></div>
                 </div>
               </div>
@@ -321,7 +338,7 @@
                   <div class="form-group">
                     <label for="password_confirmation" class="font-weight-bold">Password ( Confirmation )</label>
                     <input name="password_confirmation" type="password" value="" id="password_confirmation"
-                           class="form-control">
+                           class="form-control input-lg">
                     <p class="help-block">If you don't want to change password... please leave them empty</p></div>
                 </div>
               </div>

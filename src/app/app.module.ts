@@ -21,6 +21,16 @@ import {AgmCoreModule} from '@agm/core';
 import { CompetitorsComponent } from './competitors/competitors.component';
 import { CompetitorsRightMenuComponent } from './competitors/competitors-right-menu/competitors-right-menu.component';
 import { ProfileComponent } from './profile/profile.component';
+import { DropzoneModule } from 'ngx-dropzone-wrapper';
+import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
+import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+
+const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
+  // Change this to your upload POST address:
+  url: 'https://httpbin.org/post',
+  createImageThumbnails: true,
+  acceptedFiles: 'image/*'
+};
 
 
 @NgModule({
@@ -47,13 +57,19 @@ import { ProfileComponent } from './profile/profile.component';
     NgbModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
+    DropzoneModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDMbCISDkoc5G1AP1mw8K76MsaN0pyF64k',
       libraries: ['places']
     }),
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: DROPZONE_CONFIG,
+      useValue: DEFAULT_DROPZONE_CONFIG
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

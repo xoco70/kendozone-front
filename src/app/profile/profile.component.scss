@@ -1,0 +1,43 @@
+.action-container,
+.content-container {
+  position: relative;
+
+  overflow: auto;
+  height: 300px;
+  min-height: 0;
+  padding: 16px;
+  margin: 8px 16px;
+  border-radius: 4px;
+
+  background-color: #fff;
+}
+
+.vertical-container,
+.horizontal-container {
+  height: 250px !important;
+}
+
+.action-button {
+  box-sizing: border-box;
+  width: calc(100% - 16px);
+  min-height: 35px;
+  padding: 4px 16px;
+  margin: 8px;
+  border: 1px solid #555;
+  border-radius: 4px;
+
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 14px;
+  text-align: center;
+}
+
+.action-button:hover {
+  color: #fff;
+  background-color: #555;
+}
+
+.dropzone-container {
+  height: 100%;
+}
