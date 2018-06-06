@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
@@ -10,21 +10,25 @@ import {AppRoutingModule} from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MessagesComponent} from './messages/messages.component';
 import {NavComponent} from './nav/nav.component';
-import { TournamentCreateComponent } from './tournaments/tournament-create/tournament-create.component';
-import { TournamentEditComponent } from './tournaments/tournament-edit-component/tournament-edit.component';
-import { TournamentEditGeneralComponent } from './tournaments/tournament-edit/tournament-edit-general/tournament-edit-general.component';
-import { TournamentEditVenueComponent } from './tournaments/tournament-edit/tournament-edit-venue/tournament-edit-venue.component';
-import { TournamentEditCategoriesComponent } from './tournaments/tournament-edit/tournament-edit-categories/tournament-edit-categories.component';
-import { TournamentEditCategorySettingsComponent } from './tournaments/tournament-edit/tournament-edit-categories-settings/tournament-edit-category-settings.component';
-import { TournamentEditRightMenuComponent } from './tournaments/tournament-edit/tournament-edit-right-menu/tournament-edit-right-menu.component';
+import {TournamentCreateComponent} from './tournaments/tournament-create/tournament-create.component';
+import {TournamentEditComponent} from './tournaments/tournament-edit-component/tournament-edit.component';
+import {TournamentEditGeneralComponent} from './tournaments/tournament-edit/tournament-edit-general/tournament-edit-general.component';
+import {TournamentEditVenueComponent} from './tournaments/tournament-edit/tournament-edit-venue/tournament-edit-venue.component';
+import {TournamentEditCategoriesComponent} from './tournaments/tournament-edit/tournament-edit-categories/tournament-edit-categories.component';
+import {TournamentEditCategorySettingsComponent} from './tournaments/tournament-edit/tournament-edit-categories-settings/tournament-edit-category-settings.component';
+import {TournamentEditRightMenuComponent} from './tournaments/tournament-edit/tournament-edit-right-menu/tournament-edit-right-menu.component';
 import {AgmCoreModule} from '@agm/core';
-import { CompetitorsComponent } from './competitors/competitors.component';
-import { CompetitorsRightMenuComponent } from './competitors/competitors-right-menu/competitors-right-menu.component';
-import { ProfileComponent } from './profile/profile.component';
-import { DropzoneModule } from 'ngx-dropzone-wrapper';
-import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
-import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
-import { HomeComponent } from './home/home.component';
+import {CompetitorsComponent} from './competitors/competitors.component';
+import {CompetitorsRightMenuComponent} from './competitors/competitors-right-menu/competitors-right-menu.component';
+import {ProfileComponent} from './profile/profile.component';
+import {DROPZONE_CONFIG, DropzoneConfigInterface, DropzoneModule} from 'ngx-dropzone-wrapper';
+import {HomeComponent} from './home/home.component';
+import {LoginComponent} from './login/login.component';
+// used to create fake backend
+import {fakeBackendProvider} from './_helpers/fake-backend';
+import {JwtInterceptor} from './_helpers/JwtInterceptor';
+import {AuthGuard} from './_guards/auth.guard';
+import {AuthenticationService } from './_services/AuthenticationService';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -52,6 +56,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     CompetitorsRightMenuComponent,
     ProfileComponent,
     HomeComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,10 +72,19 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ReactiveFormsModule
   ],
   providers: [
+    AuthGuard,
+    AuthenticationService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    },
     {
       provide: DROPZONE_CONFIG,
       useValue: DEFAULT_DROPZONE_CONFIG
-    }
+    },
+    // provider used to create fake backend
+    fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })

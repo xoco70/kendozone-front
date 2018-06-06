@@ -1,16 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {catchError, map, tap} from 'rxjs/operators';
+import {catchError, tap} from 'rxjs/operators';
 
 import {Observable, of} from 'rxjs';
 
 import {Tournament} from '../tournament';
-import {TOURNAMENTS} from '../mock/mock-tournaments';
 import {MessageService} from '../message.service';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
 
 @Injectable({
   providedIn: 'root',

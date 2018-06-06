@@ -7,18 +7,20 @@ import {TournamentEditComponent} from './tournaments/tournament-edit-component/t
 import {TournamentCreateComponent} from './tournaments/tournament-create/tournament-create.component';
 import {CompetitorsComponent} from './competitors/competitors.component';
 import {ProfileComponent} from './profile/profile.component';
-import {HomeComponent} from './home/home.component';
+import {LoginComponent} from './login/login.component';
 
+import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: '/auth/login', pathMatch: 'full'},
-  {path: 'dashboard', component: DashboardComponent},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'tournaments', component: TournamentsComponent},
   {path: 'tournaments/create', component: TournamentCreateComponent},
   {path: 'tournaments/:id/edit', component: TournamentEditComponent},
   {path: 'tournaments/:id/competitors', component: CompetitorsComponent},
   {path: 'profile/:id/edit', component: ProfileComponent},
-  {path: 'auth/login', component: HomeComponent},
+  {path: 'auth/login', component: LoginComponent},
+  { path: '**', redirectTo: '' } // otherwise redirect to dashboard
 ];
 
 @NgModule({
