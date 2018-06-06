@@ -24,6 +24,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { HomeComponent } from './home/home.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -50,6 +51,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     CompetitorsComponent,
     CompetitorsRightMenuComponent,
     ProfileComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,31 @@
+.login-container .login-form {
+  width: 320px
+}
+
+.content-divider {
+  text-align: center;
+  position: relative;
+  z-index: 1
+}
+
+.content-divider>span {
+  background-color: #fcfcfc; // $card-bg
+  display: inline-block;
+  padding-left: 12px;
+  padding-right: 12px
+}
+
+.content-divider>span:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 1px;
+  background-color: #ddd;
+  width: 100%;
+  z-index: -1
+}
+
+.tab-content-bordered .content-divider>span {
+  background-color: #fff
+}
