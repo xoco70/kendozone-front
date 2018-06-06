@@ -1,15 +1,15 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {TournamentsComponent} from './tournaments/tournaments-index/tournaments.component';
-import {TournamentEditComponent} from './tournaments/tournament-edit-component/tournament-edit.component';
-import {TournamentCreateComponent} from './tournaments/tournament-create/tournament-create.component';
-import {CompetitorsComponent} from './competitors/competitors.component';
-import {ProfileComponent} from './profile/profile.component';
-import {LoginComponent} from './login/login.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {TournamentsComponent} from './components/tournaments/tournaments-index/tournaments.component';
+import {TournamentEditComponent} from './components/tournaments/tournament-edit-component/tournament-edit.component';
+import {TournamentCreateComponent} from './components/tournaments/tournament-create/tournament-create.component';
+import {CompetitorsComponent} from './components/competitors/competitors.component';
+import {ProfileComponent} from './components/profile/profile.component';
+import {LoginComponent} from './components/login/login.component';
 
-import { AuthGuard } from './_guards/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},

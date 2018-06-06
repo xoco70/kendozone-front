@@ -1,4 +1,4 @@
-import {Tournament} from '../tournament';
+import {Tournament} from '../models/tournament';
 
 export const TOURNAMENTS: Tournament[] = [
   {id: 11, name: 'Mr. Nice', date: 'date', numCompetitors: 1, user: 'bill'},

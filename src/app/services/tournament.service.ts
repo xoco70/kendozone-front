@@ -4,8 +4,8 @@ import {catchError, tap} from 'rxjs/operators';
 
 import {Observable, of} from 'rxjs';
 
-import {Tournament} from '../tournament';
-import {MessageService} from '../message.service';
+import {Tournament} from '../models/tournament';
+import {MessageService} from './message.service';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
