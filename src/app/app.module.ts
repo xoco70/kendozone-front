@@ -23,12 +23,14 @@ import {CompetitorsRightMenuComponent} from './components/competitors/competitor
 import {ProfileComponent} from './components/profile/profile.component';
 import {DROPZONE_CONFIG, DropzoneConfigInterface, DropzoneModule} from 'ngx-dropzone-wrapper';
 import {HomeComponent} from './components/home/home.component';
-import {LoginComponent} from './components/login/login.component';
+import {LoginComponent} from './components/auth/login/login.component';
 // used to create fake backend
 // import {fakeBackendProvider} from './helpers/fake-backend';
 import {JwtInterceptor} from './helpers/JwtInterceptor';
 import {AuthGuard} from './guards/auth.guard';
 import {AuthenticationService} from './services/authentication.service';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { ForgotPasswordComponent } from './components/auth/forgot-password/forgot-password.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -57,6 +59,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ProfileComponent,
     HomeComponent,
     LoginComponent,
+    RegisterComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,

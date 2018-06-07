@@ -2,41 +2,63 @@
 body {
   min-height: 100%;
   padding-top: 4.5rem;
-  font-size: 13px!important;
+  font-size: 13px !important;
 }
 
 .fixed-top {
   background-color: #FFF;
 }
 
-.navbar-brand>img {
+.navbar-brand > img {
   width: 56px;
   height: 60px;
 }
 
 .border-3 {
-  border-width:3px !important;
-}
-.border-0 {
-  border-width:0 !important;
+  border-width: 3px !important;
 }
 
-.icon-list{
+.border-0 {
+  border-width: 0 !important;
+}
+
+.icon-list {
   font-size: 16px;
 }
 
 .nav-pills .nav-link {
-  border-radius: 0!important;
+  border-radius: 0 !important;
 }
 
-
-.badge{
-  padding: 5px 6px 5px!important;
-  font-size: 10px!important;
-  letter-spacing: .1px!important;
-  border-radius: 100px!important;
+.badge {
+  padding: 5px 6px 5px !important;
+  font-size: 10px !important;
+  letter-spacing: .1px !important;
+  border-radius: 100px !important;
 }
 
 .full-width {
   width: 100%;
+}
+
+.f-large {
+  font-size: large;
+}
+
+.f-larger {
+  font-size: larger;
+}
+
+.f-xlarge{
+  font-size: x-large;
+}
+.f-xlarge{
+  font-size: x-large;
+}
+.f-xxlarge{
+  font-size: xx-large;
+}
+
+.f-70{
+  font-size: 70px;
 }

@@ -1,15 +1,20 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
+export const TOKEN = 'jwt_token';
 
 @Injectable()
 export class AuthenticationService {
-  constructor(private http: HttpClient) {
+
+  constructor(
+    private http: HttpClient,
+    private router: Router) {
   }
 
   login(email: string, password: string) {
@@ -19,13 +24,66 @@ export class AuthenticationService {
           // login successful if there's a jwt token in the response
           if (res && res.token) {
             // store email and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify({email, token: res.token}));
+            this.setToken(TOKEN);
+            // const user = this.getTokenUser(TOKEN);
           }
         }));
   }
 
   logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem(TOKEN);
+    this.router.navigate(['/login']);
+  }
+
+  // getTokenExpirationDate(token: string): Date {
+  //   const decoded = jwtDecode.jwt_decode(token);
+  //
+  //   if (decoded.exp === undefined) {
+  //     return null;
+  //   }
+  //
+  //   const date = new Date(0);
+  //   date.setUTCSeconds(decoded.exp);
+  //   return date;
+  // }
+
+  // isTokenExpired(token?: string): boolean {
+  //   if (!token) {
+  //     token = this.getToken();
+  //   }
+  //   if (!token) {
+  //     return true;
+  //   }
+  //
+  //   const date = this.getTokenExpirationDate(token);
+  //   if (date === undefined) {
+  //     return false;
+  //   }
+  //   return !(date.valueOf() > new Date().valueOf());
+  // }
+  //
+  // getTokenUser(token: string): Date {
+  //   const decoded = this.jwtDecode.jwt_decode(token);
+  //
+  //   if (decoded.exp === undefined) {
+  //     return null;
+  //   }
+  //   token = decoded.exp;
+  //   // const user = new User();
+  //   // user.setUTCSeconds(decoded.exp);
+  //   // return user;
+  // }
+  //
+
+  getToken(): string {
+    return localStorage.getItem(TOKEN);
+  }
+
+  setToken(token: string): void {
+    localStorage.setItem(TOKEN, token);
+  }
+
+  removeToken(): void {
+    localStorage.removeItem(TOKEN);
   }
 }

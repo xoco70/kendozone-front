@@ -1,3 +1,5 @@
+<!--if user is logged there is 2 cases-->
+
 <nav class="navbar navbar-expand-md navbar fixed-top">
   <a class="navbar-brand" href="#"><img src="assets/images/logo_kendozone_beta.png"/></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -27,7 +29,7 @@
           <a class="dropdown-item" href="#">Participations</a>
           <a class="dropdown-item" href="#">Invitations</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Logout</a>
+          <a class="dropdown-item" href="#" (click)="logout()">Logout</a>
         </div>
       </div>
     </div>

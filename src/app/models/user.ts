@@ -1,0 +1,29 @@
+export class User {
+  id: number;
+  name: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  password: string;
+  remember_token: string;
+  created_at: string;
+  updated_at: string;
+  slug: string;
+  role_id: number;
+  federation_id: number;
+  association_id: number;
+  club_id: number;
+  grade_id: number;
+  city: string;
+  latitude: number;
+  longitude: number;
+  country_id: number;
+  gender: number;
+  avatar: string;
+  verified: string;
+  token: string;
+  provider: string;
+  provider_id: string;
+  locale: string;
+  deleted_at: string;
+}

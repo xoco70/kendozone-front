@@ -9,16 +9,21 @@ import {TournamentService} from '../../../services/tournament.service';
 })
 export class TournamentsComponent implements OnInit {
   tournaments: Tournament[];
+  itemsPerPage: number;
+  totalItems: any;
+  page: any;
+  previousPage: any;
   constructor(private tournamentService: TournamentService) {
   }
 
   getTournaments(): void {
     this.tournamentService.getTournaments()
-      .subscribe(tournaments => this.tournaments = tournaments['data']);
+      .subscribe(tournaments => this.tournaments = tournaments);
   }
 
   ngOnInit() {
     this.getTournaments();
+    // this.totalItems = this.tournaments['meta'].total;
   }
 
 }

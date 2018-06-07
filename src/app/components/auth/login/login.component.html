@@ -1,0 +1,97 @@
+<!-- Page container -->
+<div class="page-container">
+  <!-- Page content -->
+  <div class="page-content">
+    <!-- Main content -->
+    <div class="content-wrapper">
+      <!-- Content area -->
+      <div class="content">
+        <!-- Advanced login -->
+        <div class="col-md-4 offset-md-4 col-sm-6 offset-sm-3 col-12">
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="pb-5 text-center">
+                  <img src="assets/images/logo_kendozone_guest_beta.png" width="200"/>
+                </div>
+
+                <div class="form-group">
+                  <input type="text" formControlName="email" class="form-control input-lg" placeholder="Email"
+                         [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <input type="password" formControlName="password" name="password"
+                         id="password" class="form-control input-lg" placeholder="Password" required
+                         [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-6">
+                      <label class="checkbox-inline">
+                        <input type="checkbox" value="remember-me" class="styled" checked="checked">
+                        Remember
+                      </label>
+                    </div>
+                    <div class="col-6 text-right">
+                      <a routerLink="/password/reset">Lost password?</a>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <button type="submit" id="login" [disabled]="loading"
+                          class="btn bg-success btn-block p-3 mb-4 text-white text-uppercase">
+                    <img *ngIf="loading"
+                         src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+                    Sign in
+                  </button>
+                </div>
+                <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
+
+                <!--<div class="content-divider text-muted form-group"><span>Or signin with</span></div>-->
+                <!--<ul class="list-inline form-group text-center">-->
+                <!--<li>-->
+                <!--<a href="https://laravel.test/login/facebook"-->
+                <!--class="btn border-indigo text-indigo btn-flat btn-icon btn-rounded" id="fb">-->
+                <!--<i class="icon-facebook"></i></a></li>-->
+                <!--<li><a href="https://laravel.test/login/google"-->
+                <!--class="btn border-danger text-danger btn-flat btn-icon btn-rounded" id="google"><i-->
+                <!--class="icon-google"></i></a></li>-->
+                <!--</ul>-->
+
+                <div class="content-divider text-muted form-group mt-2 mb-2"><span>Still no account?</span>
+                </div>
+
+                <div class="mt-5">
+                  <a class="btn full-width text-primary border-primary border-4 text-uppercase "
+                     routerLink="/register">Sign up</a>
+                </div>
+              </div>
+            </div>
+
+
+          </form>
+        </div>
+        <!-- Footer -->
+        <div class="footer text-muted text-primary ml-3">
+          &copy; 2018. <a href="mailto:contact@kendozone.com" class="text-primary font-weight-bold font-weight-bold">Kendozone</a>
+        </div>
+        <!-- /footer -->
+      </div>
+      <!-- /content area -->
+    </div>
+    <!-- /main content -->
+  </div>
+  <!-- /page content -->
+</div>
