@@ -6,6 +6,7 @@ import {Observable, of} from 'rxjs';
 
 import {Tournament} from '../models/tournament';
 import {MessageService} from './message.service';
+import {TOKEN} from './registration.service';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -28,7 +29,7 @@ export class TournamentService {
 
   getTournaments(): Observable<Tournament[]> {
 
-    const user = localStorage.getItem('currentUser');
+    const user = localStorage.getItem(TOKEN);
     console.log(user);
 
     this.messageService.add('TournamentService: fetched tournaments');

@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {map} from 'rxjs/operators';
+import {catchError, map, tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {Observable, of} from 'rxjs';
+import {MessageService} from './message.service';
 
 
 const httpOptions = {
@@ -14,7 +16,8 @@ export class AuthenticationService {
 
   constructor(
     private http: HttpClient,
-    private router: Router) {
+    private router: Router,
+    private messageService: MessageService) {
   }
 
   login(email: string, password: string) {
@@ -27,8 +30,37 @@ export class AuthenticationService {
             this.setToken(TOKEN);
             // const user = this.getTokenUser(TOKEN);
           }
-        }));
+        }),
+        tap(tournaments => this.log(`posted login`)),
+        catchError(this.handleError('login', []))
+      );
   }
+
+  // TODO method log is duplicated
+  private log(message: string) {
+    this.messageService.add(message);
+  }
+
+  /**
+   * Handle Http operation that failed.
+   * Let the app continue.
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error);
+
+      // TODO: better job of transforming error for user consumption
+      this.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
+
 
   logout() {
     localStorage.removeItem(TOKEN);
