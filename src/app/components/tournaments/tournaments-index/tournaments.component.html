@@ -15,7 +15,10 @@
           <td>{{tournament.date}}</td>
           <td>{{tournament.numCompetitors}}</td>
           <td>{{tournament.user}}</td>
-          <td><a class="btn p-0 m-0 border-0 icon-list"><i class="far fa-trash-alt text-primary"></i></a></td>
+          <td>
+            <a class="btn p-0 m-0 border-0 icon-list " (click)="delete(tournament)">
+              <i class="far fa-trash-alt text-primary"></i>
+            </a></td>
         </tr>
       </table>
       <!--{{ totalItems }}-->
