@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.logout();
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
   }
 
   // convenience getter for easy access to form fields
@@ -55,12 +55,15 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          console.log('ok');
+          this.loading = false;
+          console.log('go to dashboard');
+          console.log(this.returnUrl);
+          console.log('data:' + data);
           this.router.navigate([this.returnUrl]);
         },
         error => {
-          console.log(error.error);
-          this.error = error;
+          console.log('bad');
+          console.log('error:' + error);
           this.loading = false;
         });
   }

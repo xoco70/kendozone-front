@@ -13,7 +13,9 @@ export class TournamentsComponent implements OnInit {
   totalItems: any;
   page: any;
   previousPage: any;
-  constructor(private tournamentService: TournamentService) {
+
+  constructor(private tournamentService: TournamentService,
+              ) {
   }
 
   getTournaments(): void {
@@ -22,6 +24,7 @@ export class TournamentsComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.getTournaments();
     // this.totalItems = this.tournaments['meta'].total;
   }

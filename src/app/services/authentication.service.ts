@@ -1,44 +1,51 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {catchError, map, tap} from 'rxjs/operators';
+import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
+import {catchError, map} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {Observable, of} from 'rxjs';
-import {MessageService} from './message.service';
-
+import {ToastrService} from 'ngx-toastr';
+import {User} from '../models/user';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
+
 export const TOKEN = 'jwt_token';
+
+// const helper = new JwtHelperService();
+// const decodedToken = helper.decodeToken(TOKEN);
+// const expirationDate = helper.getTokenExpirationDate(TOKEN);
+// const isExpired = helper.isTokenExpired(TOKEN);
 
 @Injectable()
 export class AuthenticationService {
 
+  cachedRequests: Array<HttpRequest<any>> = [];
+
   constructor(
     private http: HttpClient,
     private router: Router,
-    private messageService: MessageService) {
+    private toastr: ToastrService,
+    public jwtHelper: JwtHelperService
+  ) {
   }
 
-  login(email: string, password: string) {
+  static tokenGetter(): string {
+    return localStorage.getItem(TOKEN);
+  }
+
+  login(email: string, password: string): Observable<any> {
     return this.http.post<any>('https://api.kz-api.test/auth/login', {email: email, password: password}, httpOptions)
       .pipe(
         map((res: any) => {
-          // login successful if there's a jwt token in the response
           if (res && res.token) {
-            // store email and jwt token in local storage to keep user logged in between page refreshes
-            this.setToken(TOKEN);
-            // const user = this.getTokenUser(TOKEN);
+            this.setToken(res.token);
+            this.toastr.success('Welcome');
           }
         }),
-        tap(tournaments => this.log(`posted login`)),
         catchError(this.handleError('login', []))
       );
-  }
-
-  // TODO method log is duplicated
-  private log(message: string) {
-    this.messageService.add(message);
   }
 
   /**
@@ -48,64 +55,20 @@ export class AuthenticationService {
    * @param result - optional value to return as the observable result
    */
   private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
+    return (data: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
-      console.error(error);
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
+      this.toastr.error('error');
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
 
-
   logout() {
     localStorage.removeItem(TOKEN);
     this.router.navigate(['/login']);
   }
-
-  // getTokenExpirationDate(token: string): Date {
-  //   const decoded = jwtDecode.jwt_decode(token);
-  //
-  //   if (decoded.exp === undefined) {
-  //     return null;
-  //   }
-  //
-  //   const date = new Date(0);
-  //   date.setUTCSeconds(decoded.exp);
-  //   return date;
-  // }
-
-  // isTokenExpired(token?: string): boolean {
-  //   if (!token) {
-  //     token = this.getToken();
-  //   }
-  //   if (!token) {
-  //     return true;
-  //   }
-  //
-  //   const date = this.getTokenExpirationDate(token);
-  //   if (date === undefined) {
-  //     return false;
-  //   }
-  //   return !(date.valueOf() > new Date().valueOf());
-  // }
-  //
-  // getTokenUser(token: string): Date {
-  //   const decoded = this.jwtDecode.jwt_decode(token);
-  //
-  //   if (decoded.exp === undefined) {
-  //     return null;
-  //   }
-  //   token = decoded.exp;
-  //   // const user = new User();
-  //   // user.setUTCSeconds(decoded.exp);
-  //   // return user;
-  // }
-  //
 
   getToken(): string {
     return localStorage.getItem(TOKEN);
@@ -118,4 +81,19 @@ export class AuthenticationService {
   removeToken(): void {
     localStorage.removeItem(TOKEN);
   }
+
+  public collectFailedRequest(request): void {
+    this.cachedRequests.push(request);
+  }
+
+  public retryFailedRequests(): void {
+    // retry the requests. this method can
+    // be called after the token is refreshed
+  }
+
+  public currentUser(): User {
+    const json = localStorage.getItem(TOKEN);
+    return this.jwtHelper.decodeToken(json).sub;
+  }
+
 }

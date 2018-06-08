@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RegistrationService} from '../../../services/registration.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +19,7 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private toastr: ToastrService,
     private registrationService: RegistrationService) {
   }
 
@@ -49,13 +51,14 @@ export class RegisterComponent implements OnInit {
         data => {
           this.submitted = true;
           this.loading = false;
-
+          this.toastr.success('check your mail');
         },
         error => {
           console.log(error.error);
           this.error = error;
           this.submitted = true;
           this.loading = false;
+          this.toastr.error('error 500');
         });
   }
 

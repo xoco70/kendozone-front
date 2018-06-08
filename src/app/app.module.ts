@@ -8,7 +8,6 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {TournamentsComponent} from './components/tournaments/tournaments-index/tournaments.component';
 import {AppRoutingModule} from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MessagesComponent} from './components/messages/messages.component';
 import {NavComponent} from './components/nav/nav.component';
 import {TournamentCreateComponent} from './components/tournaments/tournament-create/tournament-create.component';
 import {TournamentEditComponent} from './components/tournaments/tournament-edit-component/tournament-edit.component';
@@ -26,11 +25,14 @@ import {HomeComponent} from './components/home/home.component';
 import {LoginComponent} from './components/auth/login/login.component';
 // used to create fake backend
 // import {fakeBackendProvider} from './helpers/fake-backend';
-import {JwtInterceptor} from './helpers/JwtInterceptor';
+import {TokenInterceptor} from './helpers/TokenInterceptor';
 import {AuthGuard} from './guards/auth.guard';
-import {AuthenticationService} from './services/authentication.service';
+import {AuthenticationService, TOKEN} from './services/authentication.service';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { ForgotPasswordComponent } from './components/auth/forgot-password/forgot-password.component';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {JwtModule} from '@auth0/angular-jwt';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -39,13 +41,11 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   acceptedFiles: 'image/*'
 };
 
-
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     TournamentsComponent,
-    MessagesComponent,
     NavComponent,
     TournamentCreateComponent,
     TournamentEditComponent,
@@ -64,14 +64,27 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     NgbModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-left',
+      tapToDismiss: true
+    }), // ToastrModule added
     AppRoutingModule,
     HttpClientModule,
     DropzoneModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDMbCISDkoc5G1AP1mw8K76MsaN0pyF64k',
       libraries: ['places']
+    }),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: AuthenticationService.tokenGetter,
+        whitelistedDomains: ['localhost:4200'],
+        blacklistedRoutes: ['localhost:4200/auth/login']
+      }
     }),
     ReactiveFormsModule
   ],
@@ -80,13 +93,14 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
+      useClass: TokenInterceptor,
       multi: true
     },
     {
       provide: DROPZONE_CONFIG,
       useValue: DEFAULT_DROPZONE_CONFIG
     },
+
     // provider used to create fake backend
     // fakeBackendProvider
   ],
