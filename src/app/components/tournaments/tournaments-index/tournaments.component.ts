@@ -24,7 +24,7 @@ export class TournamentsComponent implements OnInit {
   }
 
   delete(tournament: Tournament): void {
-    this.tournaments = this.tournaments['data'].filter(h => h !== tournament);
+    this.tournaments['data'] = this.tournaments['data'].filter(h => h !== tournament);
     this.tournamentService.delete(tournament).subscribe();
   }
 

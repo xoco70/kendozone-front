@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, tap} from 'rxjs/operators';
 
 import {Observable, of} from 'rxjs';
+import {environment} from '../../environments/environment';
 
 import {Tournament} from '../models/tournament';
 import {AuthenticationService} from './authentication.service';
@@ -14,8 +15,7 @@ const httpOptions = {
 @Injectable({providedIn: 'root'})
 
 export class TournamentService {
-  private listUrl = 'https://api.kz-api.test/tournaments';
-  private deleteUrl = 'https://api.kz-api.test/tournaments/:slug/';
+  private tournamentsUrl = environment.apiUrl + 'tournaments';
 
 
   constructor(
@@ -25,7 +25,7 @@ export class TournamentService {
   }
 
   all(page?: number): Observable<Tournament[]> {
-    let listUrl = this.listUrl;
+    let listUrl = this.tournamentsUrl;
     if (page) {
       listUrl += '?page=' + page;
     }
@@ -37,16 +37,14 @@ export class TournamentService {
       );
   }
 
-  delete(tournament: Tournament | string): Observable<Tournament> {
-    return null;
-    // const slug = typeof tournament === 'string' ? tournament : tournament.slug;
-    // const url = `${this.listUrl}/${slug}`;
-    // console.log('url:' + url);
-    // return this.http.delete<Tournament>(url, httpOptions)
-    //   .pipe(
-    //     tap(tournaments => console.log(`deleted hero slug=${slug}`)),
-    //     catchError(this.handleError('all', []))
-    //   );
+  delete(tournament: Tournament): Observable<Tournament> {
+    const slug = tournament.slug;
+    const url = `${this.tournamentsUrl}/${slug}`;
+    return this.http.delete<Tournament>(url, httpOptions)
+      .pipe(
+        tap(tournaments => console.log(`deleted tournament slug=${slug}`)),
+        catchError(this.handleError('all', []))
+      );
   }
 
   /**
