@@ -1,29 +1,37 @@
 <div class="container">
   <div class="text-center">
     <div class=".table-responsive col-xs-12 col-lg-8 offset-lg-2 border-top-0">
-      <table class="table .table-hover .table-responsive-xs">
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Date</th>
-          <th scope="col">Competitors</th>
-          <th scope="col">Owner</th>
-          <th scope="col">Action</th>
-        </tr>
+      <ng-container *ngIf="tournaments">
+        <table class="table .table-hover .table-responsive-xs">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Competitors</th>
+            <th scope="col">Owner</th>
+            <th scope="col">Action</th>
+          </tr>
 
-        <tr *ngFor="let tournament of tournaments['data']">
-          <td><a routerLink="/tournaments/tounament-test/edit">{{tournament.name}}</a></td>
-          <td>{{tournament.date}}</td>
-          <td>{{tournament.numCompetitors}}</td>
-          <td>{{tournament.user}}</td>
-          <td>
-            <a class="btn p-0 m-0 border-0 icon-list " (click)="delete(tournament)">
-              <i class="far fa-trash-alt text-primary"></i>
-            </a></td>
-        </tr>
-      </table>
-      <!--{{ totalItems }}-->
-      <!--<ngb-pagination [collectionSize]="totalItems" [(page)]="page" aria-label="Default pagination"-->
-      <!--class="d-flex justify-content-center"></ngb-pagination>-->
+          <tr *ngFor="let tournament of tournaments.data">
+            <td><a routerLink="/tournaments/tounament-test/edit">{{tournament.name}}</a></td>
+            <td>{{tournament.date}}</td>
+            <td>{{tournament.numCompetitors}}</td>
+            <td>{{tournament.user}}</td>
+            <td>
+              <a class="btn p-0 m-0 border-0 icon-list " (click)="delete(tournament)">
+                <i class="far fa-trash-alt text-primary"></i>
+              </a></td>
+          </tr>
+        </table>
+
+        <ngb-pagination [collectionSize]="tournaments?.meta?.total"
+                        [(page)]="page" aria-label="Default pagination"
+                        [pageSize]="tournaments?.meta?.per_page"
+                        [maxSize]="5"
+                        [rotate]="true"
+                        (pageChange)="pageChanged($event)"
+                        size="lg"
+                        class="d-flex justify-content-center"></ngb-pagination>
+      </ng-container>
     </div>
   </div>
 </div>

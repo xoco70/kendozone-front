@@ -14,7 +14,9 @@ const httpOptions = {
 @Injectable({providedIn: 'root'})
 
 export class TournamentService {
-  private tournamentsUrl = 'https://api.kz-api.test/tournaments';
+  private listUrl = 'https://api.kz-api.test/tournaments';
+  private deleteUrl = 'https://api.kz-api.test/tournaments/:slug/';
+
 
   constructor(
     private http: HttpClient,
@@ -22,22 +24,30 @@ export class TournamentService {
   ) {
   }
 
-  getTournaments(): Observable<Tournament[]> {
-    return this.http.get<Tournament[]>(this.tournamentsUrl)
+  all(page?: number): Observable<Tournament[]> {
+    let listUrl = this.listUrl;
+    if (page) {
+      listUrl += '?page=' + page;
+    }
+    console.log(listUrl);
+    return this.http.get<Tournament[]>(listUrl)
       .pipe(
         tap(tournaments => console.log(`fetched tournaments`)),
-        catchError(this.handleError('getTournaments', []))
+        catchError(this.handleError('all', []))
       );
   }
 
-  // /** GET hero by id. Will 404 if id not found */
-  // getTournament(id: number): Observable<Tournament> {
-  //   const url = `${this.tournamentsUrl}/${id}`;
-  //   return this.http.get<Tournament>(url).pipe(
-  //     // tap(_ => this.log(`fetched hero id=${id}`)),
-  //     catchError(this.handleError<Tournament>(`getHero id=${id}`))
-  //   );
-  // }
+  delete(tournament: Tournament | string): Observable<Tournament> {
+    return null;
+    // const slug = typeof tournament === 'string' ? tournament : tournament.slug;
+    // const url = `${this.listUrl}/${slug}`;
+    // console.log('url:' + url);
+    // return this.http.delete<Tournament>(url, httpOptions)
+    //   .pipe(
+    //     tap(tournaments => console.log(`deleted hero slug=${slug}`)),
+    //     catchError(this.handleError('all', []))
+    //   );
+  }
 
   /**
    * Handle Http operation that failed.
@@ -58,4 +68,6 @@ export class TournamentService {
       return of(result as T);
     };
   }
+
+
 }
