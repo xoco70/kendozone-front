@@ -3,7 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {TournamentsComponent} from './components/tournaments/tournaments-index/tournaments.component';
-import {TournamentEditComponent} from './components/tournaments/tournament-edit-component/tournament-edit.component';
+import {TournamentEditComponent} from './components/tournaments/tournament-edit/tournament-edit.component';
 import {TournamentCreateComponent} from './components/tournaments/tournament-create/tournament-create.component';
 import {CompetitorsComponent} from './components/competitors/competitors.component';
 import {ProfileComponent} from './components/profile/profile.component';

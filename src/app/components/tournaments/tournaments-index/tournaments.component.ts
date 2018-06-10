@@ -11,6 +11,7 @@ import {ActivatedRoute} from '@angular/router';
 export class TournamentsComponent implements OnInit {
   tournaments: Tournament[];
   page = 1;
+  public loading = false;
 
   constructor(private tournamentService: TournamentService,
               private route: ActivatedRoute
@@ -18,9 +19,14 @@ export class TournamentsComponent implements OnInit {
   }
 
   all(page?: number): void {
+    this.loading = true;
     this.tournamentService.all(page)
-      .subscribe(tournaments => this.tournaments = tournaments);
-    console.log(this.tournaments);
+      .subscribe(tournaments => {
+        this.tournaments = tournaments;
+        this.loading = false;
+      }, err => {
+        this.loading = false;
+      });
   }
 
   delete(tournament: Tournament): void {
@@ -39,5 +45,4 @@ export class TournamentsComponent implements OnInit {
     this.page = page;
     this.all(page);
   }
-
 }

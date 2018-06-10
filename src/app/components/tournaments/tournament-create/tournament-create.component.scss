@@ -6,3 +6,17 @@
   border: 2px solid #444;
   padding: 7px 12px;
 }
+
+.custom-control-label::before,
+.custom-control-label::after {
+  top: .8rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.custom-control-label {
+  padding-left: 20px;
+  padding-top: 20px;
+  font-size: 16px;
+}
+

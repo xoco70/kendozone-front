@@ -10,7 +10,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NavComponent} from './components/nav/nav.component';
 import {TournamentCreateComponent} from './components/tournaments/tournament-create/tournament-create.component';
-import {TournamentEditComponent} from './components/tournaments/tournament-edit-component/tournament-edit.component';
+import {TournamentEditComponent} from './components/tournaments/tournament-edit/tournament-edit.component';
 import {TournamentEditGeneralComponent} from './components/tournaments/tournament-edit/tournament-edit-general/tournament-edit-general.component';
 import {TournamentEditVenueComponent} from './components/tournaments/tournament-edit/tournament-edit-venue/tournament-edit-venue.component';
 import {TournamentEditCategoriesComponent} from './components/tournaments/tournament-edit/tournament-edit-categories/tournament-edit-categories.component';
@@ -33,6 +33,9 @@ import { ForgotPasswordComponent } from './components/auth/forgot-password/forgo
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {JwtModule} from '@auth0/angular-jwt';
+import {LoadingModule} from 'ngx-loading';
+import {NgbdDatepickerRange} from './components/form/datepicker-range';
+import { NewCategoryModalComponent } from './components/modals/new-category-modal/new-category-modal.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -61,6 +64,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
+    NgbdDatepickerRange,
+    NewCategoryModalComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +80,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     AppRoutingModule,
     HttpClientModule,
     DropzoneModule,
+    LoadingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDMbCISDkoc5G1AP1mw8K76MsaN0pyF64k',
       libraries: ['places']

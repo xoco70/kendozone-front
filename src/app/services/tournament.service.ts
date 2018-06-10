@@ -15,7 +15,8 @@ const httpOptions = {
 @Injectable({providedIn: 'root'})
 
 export class TournamentService {
-  private tournamentsUrl = environment.apiUrl + 'tournaments';
+  private tournamentsUrl = environment.apiUrl + 'tournaments/';
+  private tournamentPresetsUrl = this.tournamentsUrl + 'presets';
 
 
   constructor(
@@ -47,6 +48,16 @@ export class TournamentService {
       );
   }
 
+  tournamentPresets(): Observable<any[]> {
+    const listUrl = this.tournamentPresetsUrl;
+    console.log(listUrl);
+    return this.http.get<any[]>(listUrl)
+      .pipe(
+        catchError(this.handleError('getTournamentPreets', []))
+      );
+  }
+
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
@@ -68,4 +79,11 @@ export class TournamentService {
   }
 
 
+  getTournament(slug: string): Observable<Tournament> {
+    const tournamentUrl = this.tournamentsUrl + slug + '/edit';
+    console.log(tournamentUrl);
+    return this.http.get<any>(tournamentUrl)
+      .pipe(
+        catchError(this.handleError('getTournament', []))
+      );  }
 }

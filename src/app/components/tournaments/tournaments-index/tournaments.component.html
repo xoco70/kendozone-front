@@ -1,3 +1,4 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 <div class="container">
   <div class="text-center">
     <div class=".table-responsive col-xs-12 col-lg-8 offset-lg-2 border-top-0">
@@ -12,14 +13,15 @@
           </tr>
 
           <tr *ngFor="let tournament of tournaments.data">
-            <td><a routerLink="/tournaments/tounament-test/edit">{{tournament.name}}</a></td>
+            <td><a [routerLink]="['/tournaments', tournament.slug, 'edit']">{{tournament.name}}</a></td>
             <td>{{tournament.date}}</td>
             <td>{{tournament.numCompetitors}}</td>
             <td>{{tournament.user}}</td>
             <td>
-              <a class="btn p-0 m-0 border-0 icon-list " (click)="delete(tournament)">
+              <button class="btn p-0 m-0 border-0 icon-list " (click)="delete(tournament)">
                 <i class="far fa-trash-alt text-primary"></i>
-              </a></td>
+              </button>
+            </td>
           </tr>
         </table>
 
@@ -28,6 +30,7 @@
                         [pageSize]="tournaments?.meta?.per_page"
                         [maxSize]="5"
                         [rotate]="true"
+                        (clic)="loading=true"
                         (pageChange)="pageChanged($event)"
                         size="lg"
                         class="d-flex justify-content-center"></ngb-pagination>

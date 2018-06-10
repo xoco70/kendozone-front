@@ -58,7 +58,7 @@ export class AuthenticationService {
     return (data: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
-      this.toastr.error('error');
+      this.toastr.error(data.error.error);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
