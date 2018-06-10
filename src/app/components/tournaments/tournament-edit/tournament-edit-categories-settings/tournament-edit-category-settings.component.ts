@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Championship} from '../../../../models/championship';
 
 @Component({
   selector: 'app-tournament-edit-category-settings',
@@ -6,6 +7,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./tournament-edit-category-settings.component.scss']
 })
 export class TournamentEditCategorySettingsComponent implements OnInit {
+  @Input() championships: Championship[];
 
   constructor() {
   }

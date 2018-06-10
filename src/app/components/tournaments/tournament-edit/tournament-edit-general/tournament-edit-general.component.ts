@@ -14,9 +14,6 @@ export class TournamentEditGeneralComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('rrr');
-    // console.log(this.data);
-    console.log(this.tournament);
   }
 
 }

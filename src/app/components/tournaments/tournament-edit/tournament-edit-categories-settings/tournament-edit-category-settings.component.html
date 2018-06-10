@@ -1,14 +1,20 @@
-<ngb-accordion [closeOthers]="true" activeIds="static-1">
+<ngb-accordion *ngFor="let championship of championships" [closeOthers]="true" activeIds="static-1">
   <ngb-panel id="static-2">
     <ng-template ngbPanelTitle>
       <div class="row">
         <div class="col-lg-7 col-xs-9">
-          <input type="text" id="alias" name="alias" class="form-control select-lg">
+          <input type="text" id="alias" name="alias" class="form-control select-lg"
+                 [value]="championship.settings?.alias">
         </div>
         <div class="col-lg-5 col-xs-3 cat-status">
-          <div class="panel-heading">
+          <div class="panel-heading" *ngIf="championship.settings != null">
             <span class="text-success"><a class="cat-state">configured</a>
                 <i class="fas fa-check status-icon"></i>
+              </span>
+          </div>
+          <div class="panel-heading" *ngIf="championship.settings == null">
+            <span class="text-warning"><a class="cat-state">not configured</a>
+                <i class="fas fa-exclamation-circle"></i>
               </span>
           </div>
         </div>
@@ -20,6 +26,7 @@
           <div class="row">
             <div class="col-lg-2">
               <label>Duration</label>
+
               <i class="fas fa-question-circle" ngbPopover="You see, I show up on hover!"
                  triggers="mouseenter:mouseleave"></i>
               <div class="input-group">
@@ -37,7 +44,8 @@
               <i class="fas fa-question-circle" ngbPopover="You see, I show up on hover!"
                  triggers="mouseenter:mouseleave"></i>
               <div class="input-group ">
-                <input id="cost" name="cost" type="text" autocomplete="off" class="form-control input-md">
+                <input id="cost" name="cost" type="text" autocomplete="off" class="form-control input-md"
+                       [value]="championship.settings?.cost">
               </div>
             </div>
           </div>
@@ -51,18 +59,9 @@
                    data-original-title="Round Robin use for first phase?"
                    class="icon-help"></i> <br>
                 <select id="hasPreliminary" name="preliminary" class="form-control select-lg">
-                  <option value="0"> No</option>
-                  <option value="1" selected> Si </option>
+                  <option value="0" [selected]="championship.settings?.hasPreliminary">No</option>
+                  <option value="1" [selected]="championship.settings?.hasPreliminary">Si</option>
                 </select>
-
-                <!--<div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-off bootstrap-switch-animate"-->
-                <!--style="width: 92px;">-->
-                <!--<div class="bootstrap-switch-container" style="width: 135px; margin-left: -45px;">-->
-                <!--<span class="bootstrap-switch-handle-on bootstrap-switch-primary" style="width: 45px;">Yes</span>-->
-                <!--<span class="bootstrap-switch-label" style="width: 45px;">&nbsp;</span><span-->
-                <!--class="bootstrap-switch-handle-off bootstrap-switch-default" style="width: 45px;">No</span><input-->
-                <!--name="hasPreliminary" type="checkbox" data-on-text="Yes" data-off-text="No" class="switch"></div>-->
-                <!--</div>-->
               </div>
             </div>
             <div class="col-lg-3">
@@ -72,9 +71,9 @@
                    triggers="mouseenter:mouseleave"></i>
                 <select id="preliminaryGroupSize" name="preliminaryGroupSize" disabled="disabled"
                         class="form-control select-lg">
-                  <option value="3"> 3</option>
-                  <option value="4"> 4</option>
-                  <option value="5"> 5</option>
+                  <option value="3" [selected]="championship.settings?.preliminaryGroupSize===3"> 3</option>
+                  <option value="4" [selected]="championship.settings?.preliminaryGroupSize===4"> 4</option>
+                  <option value="5" [selected]="championship.settings?.preliminaryGroupSize===5"> 5</option>
                 </select></div>
             </div>
             <div class="col-lg-4">
@@ -83,8 +82,10 @@
                    triggers="mouseenter:mouseleave"></i>
                 <select id="preliminaryWinner" name="preliminaryWinner" disabled="disabled"
                         class="form-control select-lg">
-                  <option value="1" selected="selected">1</option>
-                </select></div>
+                  <option value="1" [selected]="championship.settings?.preliminaryWinner==1">1</option>
+                  <option value="1" [selected]="championship.settings?.preliminaryWinner==2">2</option>
+                </select>
+              </div>
             </div>
           </div>
           <hr>
@@ -92,36 +93,35 @@
             <div class="col-lg-3"><label for="treeType">Tree Type</label>
               <select id="treeType" name="treeType"
                       class="form-control select-lg">
-                <option value="0">Play Off</option>
-                <option value="1">Direct Elimination
-                </option>
+                <option value="0" [selected]="championship.settings?.treeType===0">Play Off</option>
+                <option value="1" [selected]="championship.settings?.treeType===1">Direct Elimination</option>
               </select></div>
             <div class="col-lg-3"><label for="fightingAreas">Fighting Areas</label>
               <i class="fas fa-question-circle" ngbPopover="You see, I show up on hover!"
                  triggers="mouseenter:mouseleave"></i>
               <select
                 id="fightingAreas" name="fightingAreas" class=" form-control select-lg">
-                <option value="1"> 1</option>
-                <option value="2"> 2</option>
-                <option value="4"> 4</option>
-                <option value="8"> 8</option>
+                <option value="1" [selected]="championship.settings?.fightingAreas===1"> 1</option>
+                <option value="2" [selected]="championship.settings?.fightingAreas===2"> 2</option>
+                <option value="4" [selected]="championship.settings?.fightingAreas===4"> 4</option>
+                <option value="8" [selected]="championship.settings?.fightingAreas===8"> 8</option>
               </select></div>
-            <div class="col-lg-3">
-              <div class="form-group"><label for="limitByEntity">Expected Competitors</label>
+            <div class="col-lg-4">
+              <div class="form-group"><label for="limitByEntity">Max Competitors x entity</label>
                 <i class="fas fa-question-circle" ngbPopover="You see, I show up on hover!"
                    triggers="mouseenter:mouseleave"></i>
                 <select disabled="disabled" id="limitByEntity" name="limitByEntity" class="form-control select-lg">
-                  <option value="0">-</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
+                  <option value="0" [selected]="championship.settings?.limitByEntity===0">-</option>
+                  <option value="1" [selected]="championship.settings?.limitByEntity===1">1</option>
+                  <option value="2" [selected]="championship.settings?.limitByEntity===2">2</option>
+                  <option value="3" [selected]="championship.settings?.limitByEntity===3">3</option>
+                  <option value="4" [selected]="championship.settings?.limitByEntity===4">4</option>
+                  <option value="5" [selected]="championship.settings?.limitByEntity===5">5</option>
+                  <option value="6" [selected]="championship.settings?.limitByEntity===6">6</option>
+                  <option value="7" [selected]="championship.settings?.limitByEntity===7">7</option>
+                  <option value="8" [selected]="championship.settings?.limitByEntity===8">8</option>
+                  <option value="9" [selected]="championship.settings?.limitByEntity===9">9</option>
+                  <option value="10" [selected]="championship.settings?.limitByEntity===10">10</option>
                 </select></div>
             </div>
           </div>

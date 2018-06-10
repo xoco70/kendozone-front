@@ -3,12 +3,12 @@
     <div class="form-group">
       <label for="name" class="font-weight-bold">Name</label>
       <br>
-      <input class="form-control input-lg" name="name" type="text" [value]="tournament.name" id="name">
+      <input class="form-control input-lg" name="name" [value]="tournament.name" type="text"
+             id="name">
     </div>
   </div>
 </div>
 <hr/>
-
 
 <!--Second row-->
 
@@ -18,9 +18,10 @@
     <div class="form-group">
       <div class="input-group">
         <input class="form-control" placeholder="yyyy-mm-dd"
-               name="dateIni" id="dateIni" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+               name="dateIni" id="dateIni" [(ngModel)]="tournament.dateIni" ngbDatepicker
+               #a="ngbDatepicker">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+          <button class="btn btn-outline-secondary" (click)="a.toggle()" type="button">
             <i class="fas fa-calendar-alt calendar"></i>
           </button>
         </div>
@@ -34,9 +35,10 @@
     <div class="form-group">
       <div class="input-group">
         <input class="form-control" placeholder="yyyy-mm-dd"
-               name="dateFin" id="dateFin" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+               name="dateFin" id="dateFin" [(ngModel)]="tournament.dateFin" ngbDatepicker
+               #b="ngbDatepicker">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+          <button class="btn btn-outline-secondary" (click)="b.toggle()" type="button">
             <i class="fas fa-calendar-alt calendar"></i>
           </button>
         </div>
@@ -48,7 +50,8 @@
     <div class="form-group">
       <div class="input-group">
         <input class="form-control" placeholder="yyyy-mm-dd"
-               name="dateFin" id="registerDateLimit" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+               name="dateFin" id="registerDateLimit" [(ngModel)]="tournament.registerDateLimit"
+               ngbDatepicker #d="ngbDatepicker">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
             <i class="fas fa-calendar-alt calendar"></i>
@@ -67,21 +70,24 @@
     <div class="form-group">
       <label for="promoter" class="font-weight-bold">Promoter</label>
       <br>
-      <input class="form-control input-lg" name="promoter" type="text" id="promoter">
+      <input class="form-control input-lg" name="promoter" [value]="tournament.promoter"
+             type="text" id="promoter">
     </div>
   </div>
   <div class="col-md-4">
     <div class="form-group">
       <label for="host_organization" class="font-weight-bold">Host Organization</label>
       <br>
-      <input class="form-control input-lg" name="host_organization" type="text" id="host_organization">
+      <input class="form-control input-lg" name="host_organization"
+             [value]="tournament.host_organization" type="text" id="host_organization">
     </div>
   </div>
   <div class="col-md-4">
     <div class="form-group">
       <label for="technical_assistance" class="font-weight-bold">Technical Assistance</label>
       <br>
-      <input class="form-control input-lg" name="technical_assistance" type="text" id="technical_assistance">
+      <input class="form-control input-lg" name="technical_assistance"
+             [value]="tournament.technical_assistance" type="text" id="technical_assistance">
     </div>
   </div>
 </div>
@@ -91,6 +97,3 @@
     Save
   </button>
 </div>
-
-
-
