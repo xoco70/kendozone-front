@@ -9,28 +9,28 @@
       <li><a href="#">
         <i class="fas fa-cog"></i>Categories
         <div class="badge badge-success" id="categories-status">
-          <span class="category-size text-white">4 / 4</span>
+          <span class="category-size text-white">{{ championship_settings_count }} / {{ tournament.championships.length }}</span>
         </div>
       </a></li>
-      <li><a href="/tournaments/1/competitors">
+      <li><a routerLink="/tournaments/{{ slug }}/competitors">
         <i class="fas fa-user-friends"></i>
         Competitors
-        <span class="badge badge-success text-white">10</span>
-
+        <span class="badge badge-primary text-white" *ngIf="competitors_count<4">{{ competitors_count }}</span>
+        <span class="badge badge-success text-white" *ngIf="competitors_count>=4">{{ competitors_count }}</span>
       </a>
       </li>
-      <li><a href="#">
+      <li><a routerLink="/tournaments/{{ slug }}/trees">
         <i class="fas fa-sitemap"></i>
         Trees
-        <span class="badge badge-primary ">1
-                                / 4</span>
+        <span class="badge badge-primary ">x / {{ tournament.championships.length }}</span>
 
 
       </a>
       </li>
-      <li><a href="#">
+      <li><a routerLink="/tournaments/{{ slug }}/teams">
         <i class="fas fa-users"></i>Teams
-        <span class="badge badge-primary">0</span>
+        <span class="badge badge-primary" *ngIf="teams_count<=2">{{ teams_count }}</span>
+        <span class="badge badge-success" *ngIf="teams_count>2">{{ teams_count }}</span>
       </a></li>
     </ul>
   </div>

@@ -25,9 +25,8 @@ export class Tournament {
   deleted_at: string;
   competitors_count: number;
   teams_count: number;
-  championships_count: number;
+  trees_count: number;
   championship_settings_count: number;
   competitors: Competitor[];
-  championship_settings: ChampionshipSettings[];
   venue: Venue;
 }
