@@ -22,8 +22,8 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'tournaments', component: TournamentsComponent, canActivate: [AuthGuard]},
   {path: 'tournaments/create', component: TournamentCreateComponent, canActivate: [AuthGuard]},
-  {path: 'tournaments/:id/edit', component: TournamentEditComponent, canActivate: [AuthGuard]},
-  {path: 'tournaments/:id/competitors', component: CompetitorsComponent, canActivate: [AuthGuard]},
+  {path: 'tournaments/:slug/edit', component: TournamentEditComponent, canActivate: [AuthGuard]},
+  {path: 'tournaments/:slug/competitors', component: CompetitorsComponent, canActivate: [AuthGuard]},
   {path: 'profile/:id/edit', component: ProfileComponent, canActivate: [AuthGuard]},
   // { path: '**', redirectTo: '' } // otherwise redirect to dashboard
 ];

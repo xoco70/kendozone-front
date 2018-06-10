@@ -12,5 +12,5 @@ export class Venue {
   longitude: string;
   created_at: string;
   updated_at: string;
-  country: Country;
+  country_id: number;
 }

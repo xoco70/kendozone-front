@@ -81,7 +81,6 @@ export class TournamentService {
 
   getTournament(slug: string): Observable<Tournament> {
     const tournamentUrl = this.tournamentsUrl + slug + '/edit';
-    console.log(tournamentUrl);
     return this.http.get<any>(tournamentUrl)
       .pipe(
         catchError(this.handleError('getTournament', []))

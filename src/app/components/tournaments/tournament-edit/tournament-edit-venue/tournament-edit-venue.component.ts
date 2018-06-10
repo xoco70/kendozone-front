@@ -1,7 +1,9 @@
-import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, NgZone, OnInit, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MapsAPILoader} from '@agm/core';
 import {} from '@types/googlemaps';
+import {Venue} from '../../../../models/venue';
+import {Country} from '../../../../models/country';
 
 @Component({
   selector: 'app-tournament-edit-venue',
@@ -14,6 +16,8 @@ export class TournamentEditVenueComponent implements OnInit {
   public searchControl: FormControl;
   public zoom: number;
 
+  @Input() venue: Venue;
+  @Input() countries: Country[];
   @ViewChild('search')
   public searchElementRef: ElementRef;
 
