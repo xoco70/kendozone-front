@@ -131,7 +131,9 @@
           <ng-template ngbTabContent>
             <div class="card mt-3">
               <div class="card-body">
-                <app-tournament-edit-categories></app-tournament-edit-categories>
+                <app-tournament-edit-categories
+                  [categories]="data.categories"
+                ></app-tournament-edit-categories>
               </div>
             </div>
           </ng-template>

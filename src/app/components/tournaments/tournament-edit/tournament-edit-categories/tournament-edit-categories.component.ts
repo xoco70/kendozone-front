@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-tournament-edit-categories',
@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tournament-edit-categories.component.scss']
 })
 export class TournamentEditCategoriesComponent implements OnInit {
+  @Input() categories: any[];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
