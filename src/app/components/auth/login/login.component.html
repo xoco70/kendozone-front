@@ -20,7 +20,9 @@
                   <input type="text" formControlName="email" class="form-control input-lg" placeholder="Email"
                          [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
                   <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.required" translate [translateParams]="{attribute: 'email'}">
+                      validation.required
+                    </div>
                   </div>
                 </div>
 
@@ -30,7 +32,9 @@
                          id="password" class="form-control input-lg" placeholder="Password" required
                          [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
                   <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.required" translate [translateParams]="{attribute: 'password'}">
+                      validation.required
+                    </div>
                   </div>
                 </div>
 
@@ -38,20 +42,21 @@
                   <div class="row">
                     <div class="col-6">
                       <label class="checkbox-inline">
-                        <input type="checkbox" value="remember-me" class="styled" checked="checked">
-                        Remember
+                        <input type="checkbox" value="remember-me" class="mr-2" checked="checked">
+                        <span translate> auth.remember</span>
                       </label>
                     </div>
                     <div class="col-6 text-right">
-                      <a routerLink="/password/reset">Lost password?</a>
+                      <a translate routerLink="/password/reset">auth.lost_password</a>
                     </div>
                   </div>
                 </div>
 
 
                 <div class="form-group">
-                  <button type="submit" id="login" class="btn bg-success btn-block p-3 mb-4 text-white text-uppercase">
-                    Sign in
+                  <button type="submit" id="login" translate
+                          class="btn bg-success btn-block p-3 mb-4 text-white text-uppercase">
+                    auth.signin
                   </button>
                 </div>
                 <!--<div *ngIf="error" class="alert alert-danger">{{error}}</div>-->
@@ -68,12 +73,12 @@
                 <!--class="icon-google"></i></a></li>-->
                 <!--</ul>-->
 
-                <div class="content-divider text-muted form-group mt-2 mb-2"><span>Still no account?</span>
+                <div class="content-divider text-muted form-group mt-2 mb-2"><span translate>auth.no_account</span>
                 </div>
 
                 <div class="mt-5">
-                  <a class="btn full-width text-primary border-primary border-4 text-uppercase "
-                     routerLink="/register">Sign up</a>
+                  <a class="btn full-width text-primary border-primary border-4 text-uppercase " translate
+                     routerLink="/register">auth.signup</a>
                 </div>
               </div>
             </div>

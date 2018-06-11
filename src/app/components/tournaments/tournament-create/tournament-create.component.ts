@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TournamentService} from '../../../services/tournament.service';
 import {CategoryService} from '../../../services/category.service';
+import {Category} from '../../../models/category';
 
 @Component({
   selector: 'app-tournament-create',
@@ -12,7 +13,7 @@ export class TournamentCreateComponent implements OnInit {
   private presets: any;
   selectedEntry;
   mode: boolean;
-  categories: string[];
+  categories: Category[];
 
 
   constructor(
@@ -23,7 +24,7 @@ export class TournamentCreateComponent implements OnInit {
 
   tournamentPresets(): void {
     this.loading = true;
-    this.tournamentService.tournamentPresets()
+    this.tournamentService. tournamentPresets()
       .subscribe(presets => {
         this.presets = presets;
         console.log(presets);

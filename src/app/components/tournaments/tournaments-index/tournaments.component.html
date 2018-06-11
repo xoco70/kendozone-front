@@ -1,5 +1,5 @@
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-<div class="container">
+<div class="container" *ngIf="!loading">
   <div class="text-center">
     <div class=".table-responsive col-xs-12 col-lg-8 offset-lg-2 border-top-0">
       <ng-container *ngIf="tournaments">
@@ -24,13 +24,13 @@
             </td>
           </tr>
         </table>
-
-        <ngb-pagination [collectionSize]="tournaments?.meta?.total"
+        {{ loading }}
+        <ngb-pagination [collectionSize]="tournaments.meta.total"
                         [(page)]="page" aria-label="Default pagination"
-                        [pageSize]="tournaments?.meta?.per_page"
+                        [pageSize]="tournaments.meta.per_page"
                         [maxSize]="5"
                         [rotate]="true"
-                        (clic)="loading=true"
+                        (click)="loading=true"
                         (pageChange)="pageChanged($event)"
                         size="lg"
                         class="d-flex justify-content-center"></ngb-pagination>

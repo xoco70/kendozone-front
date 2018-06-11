@@ -1,7 +1,7 @@
 import {User} from './user';
 import {Venue} from './venue';
-import {ChampionshipSettings} from './championship-settings';
 import {Competitor} from './competitor';
+import {Championship} from './championship';
 
 export class Tournament {
   id: number;
@@ -23,6 +23,7 @@ export class Tournament {
   created_at: string;
   updated_at: string;
   deleted_at: string;
+  championships: Championship[];
   competitors_count: number;
   teams_count: number;
   trees_count: number;

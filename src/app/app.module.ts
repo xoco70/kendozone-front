@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
@@ -23,19 +23,26 @@ import {ProfileComponent} from './components/profile/profile.component';
 import {DROPZONE_CONFIG, DropzoneConfigInterface, DropzoneModule} from 'ngx-dropzone-wrapper';
 import {HomeComponent} from './components/home/home.component';
 import {LoginComponent} from './components/auth/login/login.component';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 // used to create fake backend
 // import {fakeBackendProvider} from './helpers/fake-backend';
 import {TokenInterceptor} from './helpers/TokenInterceptor';
 import {AuthGuard} from './guards/auth.guard';
-import {AuthenticationService, TOKEN} from './services/authentication.service';
-import { RegisterComponent } from './components/auth/register/register.component';
-import { ForgotPasswordComponent } from './components/auth/forgot-password/forgot-password.component';
+import {AuthenticationService} from './services/authentication.service';
+import {RegisterComponent} from './components/auth/register/register.component';
+import {ForgotPasswordComponent} from './components/auth/forgot-password/forgot-password.component';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {JwtModule} from '@auth0/angular-jwt';
 import {LoadingModule} from 'ngx-loading';
 import {NgbdDatepickerRange} from './components/form/datepicker-range';
-import { NewCategoryModalComponent } from './components/modals/new-category-modal/new-category-modal.component';
+import {NewCategoryModalComponent} from './components/modals/new-category-modal/new-category-modal.component';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -90,6 +97,13 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         tokenGetter: AuthenticationService.tokenGetter,
         whitelistedDomains: ['localhost:4200'],
         blacklistedRoutes: ['localhost:4200/auth/login']
+      }
+    }),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
       }
     }),
     ReactiveFormsModule

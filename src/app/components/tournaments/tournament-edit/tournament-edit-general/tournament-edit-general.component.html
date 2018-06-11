@@ -1,99 +1,112 @@
-<div class="row">
-  <div class="col-md-4">
-    <div class="form-group">
-      <label for="name" class="font-weight-bold">Name</label>
-      <br>
-      <input class="form-control input-lg" name="name" [value]="tournament.name" type="text"
-             id="name">
-    </div>
-  </div>
-</div>
-<hr/>
-
-<!--Second row-->
-
-<div class="row">
-  <div class="col-md-4 col-md-offset-1">
-    <label for="dateIni" class="font-weight-bold">Initial Date</label>
-    <div class="form-group">
-      <div class="input-group">
-        <input class="form-control" placeholder="yyyy-mm-dd"
-               name="dateIni" id="dateIni" [(ngModel)]="tournament.dateIni" ngbDatepicker
-               #a="ngbDatepicker">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" (click)="a.toggle()" type="button">
-            <i class="fas fa-calendar-alt calendar"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-
-  </div>
-  <div class="col-md-4">
-
-    <label for="dateFin" class="font-weight-bold">Final Date</label>
-    <div class="form-group">
-      <div class="input-group">
-        <input class="form-control" placeholder="yyyy-mm-dd"
-               name="dateFin" id="dateFin" [(ngModel)]="tournament.dateFin" ngbDatepicker
-               #b="ngbDatepicker">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" (click)="b.toggle()" type="button">
-            <i class="fas fa-calendar-alt calendar"></i>
-          </button>
+<form [formGroup]="generalForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="name" class="font-weight-bold">{{ 'core.name' | translate }}</label>
+        <br>
+        <input class="form-control input-lg" formControlName="name" [value]="tournament.name" type="text" id="name">
+        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+          <div *ngIf="f.name.errors.required" translate [translateParams]="{attribute: 'name'}">
+            validation.required
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-md-4">
-    <label for="registerDateLimit" class="font-weight-bold">Deadline Registration Date</label>
-    <div class="form-group">
-      <div class="input-group">
-        <input class="form-control" placeholder="yyyy-mm-dd"
-               name="dateFin" id="registerDateLimit" [(ngModel)]="tournament.registerDateLimit"
-               ngbDatepicker #d="ngbDatepicker">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
-            <i class="fas fa-calendar-alt calendar"></i>
-          </button>
+  <hr/>
+
+  <!--Second row-->
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-1">
+      <label for="dateIni" class="font-weight-bold">{{ 'core.eventDateIni' | translate }}</label>
+      <div class="form-group">
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd"
+                 id="dateIni" formControlName="dateIni" ngbDatepicker #a="ngbDatepicker">
+          <div *ngIf="submitted && f.dateIni.errors" class="invalid-feedback">
+            <div *ngIf="f.dateIni.errors.required" translate [translateParams]="{attribute: 'dateIni'}">
+              validation.required
+            </div>
+          </div>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" (click)="a.toggle()" type="button">
+              <i class="fas fa-calendar-alt calendar"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-4">
+
+      <label for="dateFin" class="font-weight-bold">{{ 'core.eventDateFin' | translate }}</label>
+      <div class="form-group">
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd"
+                 id="dateFin" formControlName="dateFin" ngbDatepicker #b="ngbDatepicker">
+          <div *ngIf="submitted && f.dateFin.errors" class="invalid-feedback">
+            <div *ngIf="f.dateFin.errors.required" translate [translateParams]="{attribute: 'dateFin'}">
+              validation.required
+            </div>
+          </div>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" (click)="b.toggle()" type="button">
+              <i class="fas fa-calendar-alt calendar"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="registerDateLimit" class="font-weight-bold">{{ 'core.registerDateLimit' | translate }}</label>
+      <div class="form-group">
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd"
+                 id="registerDateLimit" formControlName="registerDateLimit" ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+              <i class="fas fa-calendar-alt calendar"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<hr/>
+  <hr/>
 
-<!--Third row-->
-<div class="row">
-  <div class="col-md-4">
-    <div class="form-group">
-      <label for="promoter" class="font-weight-bold">Promoter</label>
-      <br>
-      <input class="form-control input-lg" name="promoter" [value]="tournament.promoter"
-             type="text" id="promoter">
+  <!--Third row-->
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="promoter" class="font-weight-bold">{{ 'core.promoter' | translate }}</label>
+        <br>
+        <input class="form-control input-lg" name="promoter" [value]="tournament.promoter"
+               type="text" id="promoter">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="host_organization" class="font-weight-bold">{{ 'core.host_organization' | translate }}</label>
+        <br>
+        <input class="form-control input-lg" name="host_organization"
+               [value]="tournament.host_organization" type="text" id="host_organization">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="technical_assistance" class="font-weight-bold">{{ 'core.technical_assistance' | translate }}</label>
+        <br>
+        <input class="form-control input-lg" name="technical_assistance"
+               [value]="tournament.technical_assistance" type="text" id="technical_assistance">
+      </div>
     </div>
   </div>
-  <div class="col-md-4">
-    <div class="form-group">
-      <label for="host_organization" class="font-weight-bold">Host Organization</label>
-      <br>
-      <input class="form-control input-lg" name="host_organization"
-             [value]="tournament.host_organization" type="text" id="host_organization">
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="form-group">
-      <label for="technical_assistance" class="font-weight-bold">Technical Assistance</label>
-      <br>
-      <input class="form-control input-lg" name="technical_assistance"
-             [value]="tournament.technical_assistance" type="text" id="technical_assistance">
-    </div>
-  </div>
-</div>
 
-<div align="right">
-  <button type="submit" class="btn btn-success" id="saveTournament">
-    Save
-  </button>
-</div>
+  <div align="right">
+    <button type="submit" class="btn btn-success" id="saveTournament">
+      {{ 'core.save' | translate }}
+    </button>
+  </div>
+  <!--</form>-->

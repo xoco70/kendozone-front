@@ -11,7 +11,7 @@ import {ActivatedRoute} from '@angular/router';
 export class TournamentsComponent implements OnInit {
   tournaments: Tournament[];
   page = 1;
-  public loading = false;
+  public loading = true;
 
   constructor(private tournamentService: TournamentService,
               private route: ActivatedRoute
@@ -30,8 +30,10 @@ export class TournamentsComponent implements OnInit {
   }
 
   delete(tournament: Tournament): void {
+    this.loading = true;
     this.tournaments['data'] = this.tournaments['data'].filter(h => h !== tournament);
     this.tournamentService.delete(tournament).subscribe();
+    this.loading = false;
   }
 
 

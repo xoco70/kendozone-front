@@ -7,6 +7,8 @@ import {environment} from '../../environments/environment';
 
 import {Tournament} from '../models/tournament';
 import {AuthenticationService} from './authentication.service';
+import {Championship} from '../models/championship';
+import {ChampionshipSettings} from '../models/championship-settings';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -41,17 +43,17 @@ export class TournamentService {
   delete(tournament: Tournament): Observable<Tournament> {
     const slug = tournament.slug;
     const url = `${this.tournamentsUrl}/${slug}`;
-    return this.http.delete<Tournament>(url, httpOptions)
+    return this.http.delete<any>(url, httpOptions)
       .pipe(
         tap(tournaments => console.log(`deleted tournament slug=${slug}`)),
         catchError(this.handleError('all', []))
       );
   }
 
-  tournamentPresets(): Observable<any[]> {
+  tournamentPresets(): Observable<ChampionshipSettings[]> {
     const listUrl = this.tournamentPresetsUrl;
     console.log(listUrl);
-    return this.http.get<any[]>(listUrl)
+    return this.http.get<ChampionshipSettings[]>(listUrl)
       .pipe(
         catchError(this.handleError('getTournamentPreets', []))
       );

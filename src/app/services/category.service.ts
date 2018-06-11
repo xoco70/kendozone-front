@@ -6,6 +6,7 @@ import {Observable, of} from 'rxjs';
 import {environment} from '../../environments/environment';
 
 import {AuthenticationService} from './authentication.service';
+import {Category} from '../models/category';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -23,10 +24,10 @@ export class CategoryService {
   ) {
   }
 
-  all(): Observable<any[]> {
+  all(): Observable<Category[]> {
     const listUrl = this.categoriesUrl;
     console.log(listUrl);
-    return this.http.get<any[]>(listUrl)
+    return this.http.get<Category[]>(listUrl)
       .pipe(
         catchError(this.handleError('allCategories', []))
       );
