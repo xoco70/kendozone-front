@@ -87,4 +87,8 @@ export class TournamentService {
       .pipe(
         catchError(this.handleError('getTournament', []))
       );  }
+
+  update(tournament: Tournament) {
+    return null;
+  }
 }
