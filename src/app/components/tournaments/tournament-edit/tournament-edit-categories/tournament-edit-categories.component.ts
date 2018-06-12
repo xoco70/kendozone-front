@@ -10,11 +10,14 @@ import {Category} from '../../../../models/category';
 export class TournamentEditCategoriesComponent implements OnInit {
   @Input() categories: Category[];
   @Input() championships: Championship[];
+  categoriesSelected = [];
 
   constructor() {
   }
 
+
   ngOnInit() {
+    this.categoriesSelected = this.championships.map(championship => championship.category.id);
   }
 
 }

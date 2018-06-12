@@ -1,9 +1,10 @@
-{{ championships[0].category | json }}
 <div class="row">
   <div *ngFor="let category of categories" class="col-md-6">
     <div class="custom-control form-control-lg custom-checkbox">
-      <input type="checkbox" class="custom-control-input" [id]="category.id" >
-      <!--TODO Must check [checked]="item.checked"-->
+
+      <input type="checkbox" class="custom-control-input" [id]="category.id"
+             [checked]="categoriesSelected?.includes(category.id)"
+      >
       <label class="custom-control-label" [for]="category.id">{{ category.name }}</label>
     </div>
   </div>
