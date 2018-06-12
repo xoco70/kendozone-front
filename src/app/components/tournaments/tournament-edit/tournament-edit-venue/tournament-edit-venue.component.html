@@ -1,46 +1,45 @@
-<div class="container">
-  <h4>Venue</h4>
-  <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-    <agm-marker [latitude]="venue.latitude" [longitude]="venue.longitude"></agm-marker>
-  </agm-map>
-  <br/>
-  <div class="form-group">
-    <label for="venue_name" class="font-weight-bold">Name</label>
-    <input class="form-control input-lg" id="venue_name" name="venue_name" type="text" [value]="venue.venue_name">
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <h4>Venue</h4>
+    <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+      <agm-marker [latitude]="tournament.venue.latitude" [longitude]="tournament.venue.longitude"></agm-marker>
+    </agm-map>
+    <br/>
+    <div class="form-group">
+      <label for="venue_name" class="font-weight-bold">Name</label>
+      <input class="form-control input-lg" id="venue_name" name="venue_name" type="text" formControlName="name">
+    </div>
+
+
+    <div class="form-group">
+      <label for="address" class="font-weight-bold">Address</label>
+      <input id="address" name="address" placeholder="search for location" autocorrect="off" autocapitalize="off"
+             spellcheck="off" type="text" class="form-control input-lg" [value]="tournament.venue.address"
+             #search [formControl]="searchControl" formControlName="address">
+    </div>
+
+    <div class="form-group">
+      <label for="details" class="font-weight-bold">Complementary Data</label>
+      <input class="form-control input-lg" id="details" name="details" type="text" formControlName="details">
+    </div>
+
+    <input id="city" name="city" type="hidden" value="" formControlName="city">
+    <input id="CP" name="CP" type="hidden" value="" formControlName="CP">
+    <input id="state" name="state" type="hidden" value="" formControlName="state">
+
+    <label for="country_id" class="font-weight-bold">Country</label>
+    <select class="form-control select-lg" id="country_id" name="country_id">
+      <option *ngFor="let country of countries"
+              [selected]="country.id === tournament.venue.country_id">
+        {{ country.name }}
+      </option>
+    </select>
+    <br>
+    <div align="right">
+
+      <button type="submit" class="btn btn-success btn-update-tour mr-20 mt-20 " id="update_venue"><i></i>Save
+      </button>
+
+    </div>
   </div>
-
-
-  <div class="form-group">
-    <label for="address" class="font-weight-bold">Address</label>
-    <input id="address" name="address" placeholder="search for location" autocorrect="off" autocapitalize="off"
-           spellcheck="off" type="text" class="form-control input-lg"
-           #search [formControl]="searchControl" [value]="venue.address">
-  </div>
-
-  <div class="form-group">
-    <label for="details" class="font-weight-bold">Complementary Data</label>
-    <input class="form-control input-lg" id="details" name="details" type="text" [value]="venue.details">
-  </div>
-
-  <input id="city" name="city" type="hidden" value="">
-  <input id="CP" name="CP" type="hidden" value="">
-  <input id="state" name="state" type="hidden" value="">
-
-  <label for="country_id" class="font-weight-bold">Country</label>
-  <select class="form-control select-lg" id="country_id" name="country_id">
-    <option *ngFor="let country of countries"
-            [value]="country.id"
-            [attr.selected]="country.id === venue.country_id">
-      <!--TODO Should work attr.-->
-      {{ country.name }}
-    </option>
-    <!--[attr.selected]="passenger.Title==title.Text ? true : null">-->
-  </select>
-  <br>
-  <div align="right">
-
-    <button type="submit" class="btn btn-success btn-update-tour mr-20 mt-20 " id="update_venue"><i></i>Save
-    </button>
-
-  </div>
-</div>
+</form>

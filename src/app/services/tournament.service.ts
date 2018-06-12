@@ -51,10 +51,9 @@ export class TournamentService {
 
   update(tournament: Tournament, tab: string): Observable<any> {
     const tournamentUrl = this.tournamentsUrl + tournament.slug + '?tab=' + tab;
-    console.log(tournamentUrl);
     return this.http.put(tournamentUrl, tournament, httpOptions).pipe(
       tap(data => this.toastr.success('success')),
-      catchError(this.handleError<any>('updateTournamentGeneral'))
+      catchError(this.handleError<any>('updateTournament'))
     );
   }
 
@@ -71,7 +70,6 @@ export class TournamentService {
 
   tournamentPresets(): Observable<ChampionshipSettings[]> {
     const listUrl = this.tournamentPresetsUrl;
-    console.log(listUrl);
     return this.http.get<ChampionshipSettings[]>(listUrl)
       .pipe(
         catchError(this.handleError([]))
