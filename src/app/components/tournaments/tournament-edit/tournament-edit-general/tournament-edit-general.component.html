@@ -81,24 +81,22 @@
     <div class="col-md-4">
       <div class="form-group">
         <label for="promoter" class="font-weight-bold">{{ 'core.promoter' | translate }}</label>
-        <br>
-        <input class="form-control input-lg" name="promoter" [value]="tournament.promoter"
-               type="text" id="promoter">
+        <input class="form-control input-lg mt-2" formControlName="promoter" [value]="tournament.promoter" type="text"
+               id="promoter">
+
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group">
         <label for="host_organization" class="font-weight-bold">{{ 'core.host_organization' | translate }}</label>
-        <br>
-        <input class="form-control input-lg" name="host_organization"
+        <input class="form-control input-lg mt-2" formControlName="host_organization"
                [value]="tournament.host_organization" type="text" id="host_organization">
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group">
         <label for="technical_assistance" class="font-weight-bold">{{ 'core.technical_assistance' | translate }}</label>
-        <br>
-        <input class="form-control input-lg" name="technical_assistance"
+        <input class="form-control input-lg mt-2" formControlName="technical_assistance"
                [value]="tournament.technical_assistance" type="text" id="technical_assistance">
       </div>
     </div>

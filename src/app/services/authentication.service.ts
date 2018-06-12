@@ -41,7 +41,7 @@ export class AuthenticationService {
         map((res: any) => {
           if (res && res.token) {
             this.setToken(res.token);
-            this.toastr.success('Welcome');
+            this.toastr.success('Welcome'); // user->name
           }
         }),
         catchError(this.handleError('login', []))

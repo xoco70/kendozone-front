@@ -7,12 +7,13 @@ import {environment} from '../../environments/environment';
 
 import {Tournament} from '../models/tournament';
 import {AuthenticationService} from './authentication.service';
-import {Championship} from '../models/championship';
 import {ChampionshipSettings} from '../models/championship-settings';
+import {ToastrService} from 'ngx-toastr';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
+
 
 @Injectable({providedIn: 'root'})
 
@@ -24,6 +25,7 @@ export class TournamentService {
   constructor(
     private http: HttpClient,
     private auth: AuthenticationService,
+    private toastr: ToastrService,
   ) {
   }
 
@@ -35,27 +37,44 @@ export class TournamentService {
     console.log(listUrl);
     return this.http.get<Tournament[]>(listUrl)
       .pipe(
-        tap(tournaments => console.log(`fetched tournaments`)),
-        catchError(this.handleError('all', []))
+        catchError(this.handleError([]))
       );
+  }
+
+  getTournament(slug: string): Observable<Tournament> {
+    const tournamentUrl = this.tournamentsUrl + slug + '/edit';
+    return this.http.get<any>(tournamentUrl)
+      .pipe(
+        catchError(this.handleError([]))
+      );
+  }
+
+  update(tournament: Tournament, tab: string): Observable<any> {
+    const tournamentUrl = this.tournamentsUrl + tournament.slug + '?tab=' + tab;
+    console.log(tournamentUrl);
+    return this.http.put(tournamentUrl, tournament, httpOptions).pipe(
+      tap(data => this.toastr.success('success')),
+      catchError(this.handleError<any>('updateTournamentGeneral'))
+    );
   }
 
   delete(tournament: Tournament): Observable<Tournament> {
     const slug = tournament.slug;
-    const url = `${this.tournamentsUrl}/${slug}`;
+    const url = `${this.tournamentsUrl}${slug}`;
     return this.http.delete<any>(url, httpOptions)
       .pipe(
-        tap(tournaments => console.log(`deleted tournament slug=${slug}`)),
-        catchError(this.handleError('all', []))
+        tap(data => this.toastr.success('success')),
+        catchError(this.handleError([]))
       );
   }
+
 
   tournamentPresets(): Observable<ChampionshipSettings[]> {
     const listUrl = this.tournamentPresetsUrl;
     console.log(listUrl);
     return this.http.get<ChampionshipSettings[]>(listUrl)
       .pipe(
-        catchError(this.handleError('getTournamentPreets', []))
+        catchError(this.handleError([]))
       );
   }
 
@@ -66,29 +85,19 @@ export class TournamentService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
+  /**
+   * Handle Http operation that failed.
+   * Let the app continue.
+   * @param result - optional value to return as the observable result
+   */
+  private handleError<T>(result?: T) {
+    return (data: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      // this.log(`${operation} failed: ${error.message}`);
+      this.toastr.error(data.error.error);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
-  }
-
-
-  getTournament(slug: string): Observable<Tournament> {
-    const tournamentUrl = this.tournamentsUrl + slug + '/edit';
-    return this.http.get<any>(tournamentUrl)
-      .pipe(
-        catchError(this.handleError('getTournament', []))
-      );  }
-
-  update(tournament: Tournament) {
-    return null;
   }
 }

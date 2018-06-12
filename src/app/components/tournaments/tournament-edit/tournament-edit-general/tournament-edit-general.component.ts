@@ -11,6 +11,7 @@ import {TournamentService} from '../../../../services/tournament.service';
 })
 export class TournamentEditGeneralComponent implements OnInit {
   @Input() tournament: Tournament;
+  public localTournament: Tournament = <Tournament>{};
   public dateIni: { year: 2017, month: 8, day: 8 };
   @Input() registerDateLimit: { year: 2017, month: 8, day: 8 };
   generalForm: FormGroup;
@@ -38,14 +39,19 @@ export class TournamentEditGeneralComponent implements OnInit {
     }
 
     this.loading = true;
-    this.tournament.dateIni = this.f.dateIni.value;
-    this.tournament.dateFin = this.f.dateFin.value;
-    this.tournament.registerDateLimit = this.f.registerDateLimit.value;
-    this.tournament.promoter = this.f.promoter.value;
-    this.tournament.host_organization = this.f.host_organization.value;
-    this.tournament.technical_assistance = this.f.technical_assistance.value;
+    // I use localTournament not to send the whole object
+    // I still don't know if I have a Eloquent like in Angular
 
-    this.tournamentService.update(this.tournament)
+    this.localTournament.name = this.f.name.value;
+    this.localTournament.slug = this.tournament.slug;
+    this.localTournament.dateIni = this.f.dateIni.value;
+    this.localTournament.dateFin = this.f.dateFin.value;
+    this.localTournament.registerDateLimit = this.f.registerDateLimit.value;
+    this.localTournament.promoter = this.f.promoter.value;
+    this.localTournament.host_organization = this.f.host_organization.value;
+    this.localTournament.technical_assistance = this.f.technical_assistance.value;
+
+    this.tournamentService.update(this.localTournament, 'general')
       .pipe(first())
       .subscribe(
         data => {

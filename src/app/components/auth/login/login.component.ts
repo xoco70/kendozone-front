@@ -56,9 +56,6 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           this.loading = false;
-          console.log('go to dashboard');
-          console.log(this.returnUrl);
-          console.log('data:' + data);
           this.router.navigate([this.returnUrl]);
         },
         error => {
