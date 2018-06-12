@@ -1,28 +1,28 @@
-<div class="row">
-  <div *ngFor="let category of categories" class="col-md-6">
-    <div class="custom-control form-control-lg custom-checkbox">
-
-      <input type="checkbox" class="custom-control-input" [id]="category.id"
-             [checked]="categoriesSelected?.includes(category.id)"
-      >
-      <label class="custom-control-label" [for]="category.id">{{ category.name }}</label>
+<form (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div *ngFor="let category of categories; let i=index" class="col-md-6">
+      <div class="custom-control form-control-lg custom-checkbox">
+        <input type="checkbox" class="custom-control-input" [id]="category.id" (change)="changeCategory($event)"
+               [checked]="tournament.categoriesSelected?.includes(category.id)">
+        <label class="custom-control-label" [for]="category.id">{{ category.name | translate }}</label>
+      </div>
     </div>
   </div>
-</div>
-<div align="right">
-  <button type="submit" class="btn btn-success" id="saveTournament">
-    Save
-  </button>
-</div>
-<hr>
-<!-- Button trigger modal -->
-<div align="center" class="mt-2">
-  <span class="mr-1">Want to create a new custom category ?</span>
-  <button class="btn btn-lg btn-outline-primary" data-toggle="modal" data-target="#creteCategory">Add a custom
-    category
-  </button>
-</div>
 
+  <div align="right">
+    <button type="submit" class="btn btn-success" id="saveTournament">
+      Save
+    </button>
+  </div>
+  <hr>
+  <!-- Button trigger modal -->
+  <div align="center" class="mt-2">
+    <span class="mr-1">{{ 'core.want_to_create_custom_category' | translate }}</span>
+    <button class="btn btn-lg btn-outline-primary" data-toggle="modal" data-target="#creteCategory">
+      {{ 'core.add_custom_category' | translate }}
+    </button>
+  </div>
+</form>
 
 <!-- Modal -->
 <app-new-category-modal></app-new-category-modal>

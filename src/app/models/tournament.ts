@@ -29,5 +29,6 @@ export class Tournament {
   trees_count: number;
   championship_settings_count: number;
   competitors: Competitor[];
+  categoriesSelected: number[];
   venue: Venue;
 }
