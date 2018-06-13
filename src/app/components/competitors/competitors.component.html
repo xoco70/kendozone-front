@@ -2,12 +2,14 @@
 <div class="container" *ngIf="!loading">
   <div class="row">
     <div class="col-md-9" id="main">
-      <div class="card">
+      <div *ngFor="let championship of tournament.championships" class="card mb-4">
         <div class="card-body">
           <a name="varonil-individual">
             <div class="row">
               <div class="col-md-9">
-                <span class="text-semibold text-uppercase font-weight-bold">Varonil Individual</span>
+                <!-- TODO alias if exists-->
+                <span
+                  class="text-semibold text-uppercase font-weight-bold">{{ championship.category.name | translate }}</span>
               </div>
               <div class="col-md-3">
                 <div class="badge btnAction">
@@ -26,27 +28,29 @@
           </a>
 
           <div class="text-center">
-            <div class=".table-responsive col-xs-12 col-lg-8 offset-lg-2 border-top-0">
+            <div class=".table-responsive border-top-0">
               <table class="table .table-hover .table-responsive-xs">
                 <tr>
+                  <th scope="col">{{ 'core.avatar' | translate }}</th>
                   <th scope="col">{{ 'core.user' | translate }}</th>
                   <th scope="col">{{ 'core.email' | translate }}</th>
-                  <th scope="col">{{ 'categories.category' | translate }}</th>
+                  <!--<th scope="col">{{ 'categories.category' | translate }}</th>-->
                   <!--<th scope="col">{{ 'core.paid' | translate }}Paid</th>-->
                   <th scope="col">{{ 'core.country' | translate }}</th>
                   <th scope="col">{{ 'core.action' | translate }}</th>
                 </tr>
-                <tr *ngFor="let competitor of competitors">
-                  <td>{{competitor.avatar}}{{competitor.name}}</td>
+                <tr *ngFor="let competitor of championship.users">
+                  <!--TODO get Avatar-->
+                  <td align="left">{{competitor.avatar}}</td>
+                  <td align="left">{{competitor.name}}</td>
+                  <!--TODO get first / lastname -->
                   <td>{{competitor.email}}</td>
-                  <td>{{competitor.category}}</td>
+                  <!--<td>{{championship.category.name}}</td>-->
                   <!--<td>{{competitor.paid}}</td>-->
-                  <td>{{competitor.country}}</td>
+                  <td>{{competitor.user?.country}}</td>
                   <td><i class="fas fa-times text-primary"></i></td>
                 </tr>
               </table>
-              <ngb-pagination [collectionSize]="70" [(page)]="page" aria-label="Default pagination"
-                              class="d-flex justify-content-center"></ngb-pagination>
             </div>
           </div>
         </div>
@@ -54,7 +58,9 @@
       <br/>
     </div>
     <div class="col-md-3 col-12">
-      <app-competitors-right-menu></app-competitors-right-menu>
+      <app-competitors-right-menu
+        [championships]="tournament.championships"
+      ></app-competitors-right-menu>
     </div>
   </div>
 </div>
