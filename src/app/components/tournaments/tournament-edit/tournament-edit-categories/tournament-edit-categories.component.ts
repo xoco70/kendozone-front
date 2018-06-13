@@ -4,6 +4,8 @@ import {TournamentService} from '../../../../services/tournament.service';
 import {Tournament} from '../../../../models/tournament';
 import {ToastrService} from 'ngx-toastr';
 import {Category} from '../../../../models/category';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NewCategoryModalComponent} from '../../../modals/new-category-modal/new-category-modal.component';
 
 @Component({
   selector: 'app-tournament-edit-categories',
@@ -21,7 +23,12 @@ export class TournamentEditCategoriesComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private toastr: ToastrService,
-              private tournamentService: TournamentService) {
+              private tournamentService: TournamentService,
+              private modalService: NgbModal) {
+  }
+
+  open() {
+    this.modalService.open(NewCategoryModalComponent, {size: 'lg', centered: true});
   }
 
   onSubmit() {

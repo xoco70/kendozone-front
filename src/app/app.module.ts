@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
@@ -74,6 +74,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     NgbdDatepickerRange,
     NewCategoryModalComponent
   ],
+  entryComponents: [NewCategoryModalComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -115,6 +116,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   providers: [
     AuthGuard,
     AuthenticationService,
+    NgbActiveModal,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

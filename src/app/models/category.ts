@@ -9,6 +9,4 @@ export class Category {
   gradeCategory: number;
   gradeMin: number;
   gradeMax: number;
-  created_at: string;
-  updated_at: string;
 }

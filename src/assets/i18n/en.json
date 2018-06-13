@@ -55,7 +55,8 @@
     "men_team": "Men's Team",
     "ladies_team": "Women's Team",
     "master": "Master (> 50 years)",
-    "category": "Category|Categories",
+    "category": "Category",
+    "categories": "Categories",
     "enchoQty": "How much Encho?",
     "encho_infinite": "0 for infinite",
     "enchoDuration": "Encho Duration",
@@ -307,7 +308,8 @@
     "new_value": "New Value",
     "impersonate": "Impersonate User",
     "leave_impersonation": "Leave impersonation",
-    "team": "Team|Teams",
+    "team": "Team",
+    "teams": "Teams",
     "still_no_team": "Still no team registered in this tournament",
     "add_new_team": "Add team",
     "registered_team": "Teams registered",
@@ -363,7 +365,8 @@
     "no_scoresheet_for_playoff": "There is no scoresheet for playoff championships",
     "my_tournaments": "My Tournaments",
     "want_to_create_custom_category": "Want to create a new custom category ?",
-    "add_custom_category": "Add a custom category "
+    "add_custom_category": "Add a custom category ",
+    "create_a_new_category": "Create a new Category"
   },
   "help": {
     "create_competitor": "To add a competitor, enter the name of the competitor and his email,\n                            And then select the categories in which you are going to participate",

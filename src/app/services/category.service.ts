@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {catchError} from 'rxjs/operators';
+import {catchError, tap} from 'rxjs/operators';
 
 import {Observable, of} from 'rxjs';
 import {environment} from '../../environments/environment';
 
 import {AuthenticationService} from './authentication.service';
 import {Category} from '../models/category';
+import {ToastrService} from 'ngx-toastr';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -21,14 +22,15 @@ export class CategoryService {
   constructor(
     private http: HttpClient,
     private auth: AuthenticationService,
+    private toastr: ToastrService,
   ) {
   }
 
   all(): Observable<Category[]> {
     const listUrl = this.categoriesUrl;
-    console.log(listUrl);
     return this.http.get<Category[]>(listUrl)
       .pipe(
+        tap(data => this.toastr.success('success')),
         catchError(this.handleError('allCategories', []))
       );
   }
@@ -40,18 +42,18 @@ export class CategoryService {
    * @param result - optional value to return as the observable result
    */
   private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
+    return (data: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      // this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
+      this.toastr.error(data.error.error);
       return of(result as T);
     };
   }
 
-
+  store(category: Category): Observable<Category> {
+    return this.http.post<Category>(this.categoriesUrl, category, httpOptions).pipe(
+      tap(data => this.toastr.success('success')),
+      catchError(this.handleError<Category>('addCategory'))
+    );
+  }
 }
