@@ -38,6 +38,10 @@ body {
   border-radius: 100px !important;
 }
 
+.btn-success {
+  min-width: 200px;
+}
+
 .full-width {
   width: 100%;
 }
@@ -50,16 +54,18 @@ body {
   font-size: larger;
 }
 
-.f-xlarge{
+.f-xlarge {
   font-size: x-large;
 }
-.f-xlarge{
+
+.f-xlarge {
   font-size: x-large;
 }
-.f-xxlarge{
+
+.f-xxlarge {
   font-size: xx-large;
 }
 
-.f-70{
+.f-70 {
   font-size: 70px;
 }

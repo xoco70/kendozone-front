@@ -5,11 +5,11 @@
       <ng-container *ngIf="tournaments">
         <table class="table .table-hover .table-responsive-xs">
           <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Date</th>
-            <th scope="col">Competitors</th>
-            <th scope="col">Owner</th>
-            <th scope="col">Action</th>
+            <th scope="col">{{ 'core.name' | translate }}</th>
+            <th scope="col">{{ 'core.date' | translate }}Date</th>
+            <th scope="col">{{ 'core.competitors' | translate }}</th>
+            <th scope="col">{{ 'core.owner' | translate }}</th>
+            <th scope="col">{{ 'core.action' | translate }}</th>
           </tr>
 
           <tr *ngFor="let tournament of tournaments.data">

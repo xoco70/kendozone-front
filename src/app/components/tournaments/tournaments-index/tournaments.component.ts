@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Tournament} from '../../../models/tournament';
 import {TournamentService} from '../../../services/tournament.service';
-import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-tournaments',
@@ -14,7 +13,6 @@ export class TournamentsComponent implements OnInit {
   public loading = true;
 
   constructor(private tournamentService: TournamentService,
-              private route: ActivatedRoute
   ) {
   }
 

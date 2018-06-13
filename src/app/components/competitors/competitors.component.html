@@ -1,4 +1,5 @@
-<div class="container">
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<div class="container" *ngIf="!loading">
   <div class="row">
     <div class="col-md-9" id="main">
       <div class="card">
@@ -13,11 +14,11 @@
                   <a href="#" data-toggle="modal" class="btn btn-primary p-2"
                      data-target="#addCompetitors">
                     <b> <i class="fas fa-plus mr-1"></i></b>
-                    Add Competitors
+                    {{ 'core.add_competitor' | translate }}
                   </a>&nbsp;
                   <a href="#" data-toggle="modal" class="btn btn-success p-2">
                     <b> <i class="fas fa-sitemap ml-1"></i></b>
-                    Generate Trees
+                    {{ 'core.generate_tree' | translate }}
                   </a>
                 </div>
               </div>
@@ -28,14 +29,14 @@
             <div class=".table-responsive col-xs-12 col-lg-8 offset-lg-2 border-top-0">
               <table class="table .table-hover .table-responsive-xs">
                 <tr>
-                  <th scope="col">User</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Category</th>
-                  <!--<th scope="col">Paid</th>-->
-                  <th scope="col">Country</th>
-                  <th scope="col">Action</th>
+                  <th scope="col">{{ 'core.user' | translate }}</th>
+                  <th scope="col">{{ 'core.email' | translate }}</th>
+                  <th scope="col">{{ 'categories.category' | translate }}</th>
+                  <!--<th scope="col">{{ 'core.paid' | translate }}Paid</th>-->
+                  <th scope="col">{{ 'core.country' | translate }}</th>
+                  <th scope="col">{{ 'core.action' | translate }}</th>
                 </tr>
-                <tr><!-- *ngFor="let competitor of competitors"-->
+                <tr *ngFor="let competitor of competitors">
                   <td>{{competitor.avatar}}{{competitor.name}}</td>
                   <td>{{competitor.email}}</td>
                   <td>{{competitor.category}}</td>

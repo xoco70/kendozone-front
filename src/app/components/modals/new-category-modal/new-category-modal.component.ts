@@ -68,22 +68,22 @@ export class NewCategoryModalComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    this.modal.close('Submit');
     this.loading = true;
 
     this.categoryService.store(this.category)
       .pipe(first())
       .subscribe(
         data => {
-          // TODO Parent screen updated
           this.loading = false;
+          this.modal.close(data);
         },
         error => {
           this.loading = false;
+          this.modal.close('error');
         });
   }
 
-  setCategoryTitle() {
+  setCategoryName() {
     const isTeam = this.category.isTeam === 1 ? this.team : this.single;
     this.category.name = isTeam + ' ' +
       this.getSelectText(this.genders, this.category.gender) + ' ' +

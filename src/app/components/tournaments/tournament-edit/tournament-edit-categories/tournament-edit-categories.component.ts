@@ -3,7 +3,6 @@ import {FormBuilder} from '@angular/forms';
 import {TournamentService} from '../../../../services/tournament.service';
 import {Tournament} from '../../../../models/tournament';
 import {ToastrService} from 'ngx-toastr';
-import {Category} from '../../../../models/category';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {NewCategoryModalComponent} from '../../../modals/new-category-modal/new-category-modal.component';
 
@@ -14,11 +13,12 @@ import {NewCategoryModalComponent} from '../../../modals/new-category-modal/new-
 })
 export class TournamentEditCategoriesComponent implements OnInit {
   @Input() tournament: Tournament;
-  @Input() categories: Category[];
+  @Input() categories;
 
   loading: boolean;
   categoriesSelected = [];
   submitted: boolean;
+  category;
   hasPreliminary: boolean;
 
   constructor(private formBuilder: FormBuilder,
@@ -28,7 +28,23 @@ export class TournamentEditCategoriesComponent implements OnInit {
   }
 
   open() {
-    this.modalService.open(NewCategoryModalComponent, {size: 'lg', centered: true});
+    const modalRef = this.modalService.open(NewCategoryModalComponent, {size: 'lg', centered: true});
+    modalRef.result.then((category) => {
+      const newCategory = {
+        id: category.id,
+        name: category.name
+      };
+
+
+      // if not present into categories, insert it
+      if (!this.categories.some((item) => item.id == newCategory.id)) {
+        this.categories.push(newCategory);
+      } else {
+        this.toastr.error('Category has already been added');
+      }
+    }, (reason) => {
+      console.log('dismissed');
+    });
   }
 
   onSubmit() {
