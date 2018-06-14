@@ -1,25 +1,24 @@
 <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
   <div class="container">
-    <h4>Venue</h4>
     <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
       <agm-marker [latitude]="tournament.venue.latitude" [longitude]="tournament.venue.longitude"></agm-marker>
     </agm-map>
     <br/>
     <div class="form-group">
-      <label for="venue_name" class="font-weight-bold">Name</label>
+      <label for="venue_name" class="font-weight-bold">{{ 'common.name' | translate }}</label>
       <input class="form-control input-lg" id="venue_name" name="venue_name" type="text" formControlName="name">
     </div>
 
 
     <div class="form-group">
-      <label for="address" class="font-weight-bold">Address</label>
+      <label for="address" class="font-weight-bold">{{ 'tour_edit.address' | translate }}</label>
       <input id="address" name="address" placeholder="search for location" autocorrect="off" autocapitalize="off"
              spellcheck="off" type="text" class="form-control input-lg" [value]="tournament.venue.address"
              #search [formControl]="searchControl" formControlName="address">
     </div>
 
     <div class="form-group">
-      <label for="details" class="font-weight-bold">Complementary Data</label>
+      <label for="details" class="font-weight-bold">{{ 'tour_edit.details' | translate }}</label>
       <input class="form-control input-lg" id="details" name="details" type="text" formControlName="details">
     </div>
 
@@ -27,7 +26,7 @@
     <input id="CP" name="CP" type="hidden" value="" formControlName="CP">
     <input id="state" name="state" type="hidden" value="" formControlName="state">
 
-    <label for="country_id" class="font-weight-bold">Country</label>
+    <label for="country_id" class="font-weight-bold">{{ 'tour_edit.country' | translate }}</label>
     <select class="form-control select-lg" id="country_id" name="country_id">
       <option *ngFor="let country of countries"
               [selected]="country.id === tournament.venue.country_id">
@@ -37,7 +36,8 @@
     <br>
     <div align="right">
 
-      <button type="submit" class="btn btn-success btn-update-tour mr-20 mt-20 " id="update_venue"><i></i>Save
+      <button type="submit" class="btn btn-success btn-update-tour mr-20 mt-20 " id="update_venue"><i></i>
+        {{ 'common.save' | translate }}
       </button>
 
     </div>

@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-4">
       <div class="form-group">
-        <label for="name" class="font-weight-bold">{{ 'core.name' | translate }}</label>
+        <label for="name" class="font-weight-bold">{{ 'common.name' | translate }}</label>
         <br>
         <input class="form-control input-lg" formControlName="name" [value]="tournament.name" type="text" id="name">
         <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
@@ -19,7 +19,7 @@
 
   <div class="row">
     <div class="col-md-4 col-md-offset-1">
-      <label for="dateIni" class="font-weight-bold">{{ 'core.eventDateIni' | translate }}</label>
+      <label for="dateIni" class="font-weight-bold">{{ 'tour_edit.eventDateIni' | translate }}</label>
       <div class="form-group">
         <div class="input-group">
           <input class="form-control" placeholder="yyyy-mm-dd"
@@ -40,7 +40,7 @@
     </div>
     <div class="col-md-4">
 
-      <label for="dateFin" class="font-weight-bold">{{ 'core.eventDateFin' | translate }}</label>
+      <label for="dateFin" class="font-weight-bold">{{ 'tour_edit.eventDateFin' | translate }}</label>
       <div class="form-group">
         <div class="input-group">
           <input class="form-control" placeholder="yyyy-mm-dd"
@@ -59,7 +59,7 @@
       </div>
     </div>
     <div class="col-md-4">
-      <label for="registerDateLimit" class="font-weight-bold">{{ 'core.registerDateLimit' | translate }}</label>
+      <label for="registerDateLimit" class="font-weight-bold">{{ 'tour_edit.registerDateLimit' | translate }}</label>
       <div class="form-group">
         <div class="input-group">
           <input class="form-control" placeholder="yyyy-mm-dd"
@@ -80,7 +80,7 @@
   <div class="row">
     <div class="col-md-4">
       <div class="form-group">
-        <label for="promoter" class="font-weight-bold">{{ 'core.promoter' | translate }}</label>
+        <label for="promoter" class="font-weight-bold">{{ 'tour_edit.promoter' | translate }}</label>
         <input class="form-control input-lg mt-2" formControlName="promoter" [value]="tournament.promoter" type="text"
                id="promoter">
 
@@ -88,14 +88,14 @@
     </div>
     <div class="col-md-4">
       <div class="form-group">
-        <label for="host_organization" class="font-weight-bold">{{ 'core.host_organization' | translate }}</label>
+        <label for="host_organization" class="font-weight-bold">{{ 'tour_edit.host_organization' | translate }}</label>
         <input class="form-control input-lg mt-2" formControlName="host_organization"
                [value]="tournament.host_organization" type="text" id="host_organization">
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group">
-        <label for="technical_assistance" class="font-weight-bold">{{ 'core.technical_assistance' | translate }}</label>
+        <label for="technical_assistance" class="font-weight-bold">{{ 'tour_edit.technical_assistance' | translate }}</label>
         <input class="form-control input-lg mt-2" formControlName="technical_assistance"
                [value]="tournament.technical_assistance" type="text" id="technical_assistance">
       </div>
@@ -103,8 +103,8 @@
   </div>
 
   <div align="right">
-    <button type="submit" class="btn btn-success">
-      {{ 'core.save' | translate }}
+    <button type="submit" class="btn btn-success mt-2">
+      {{ 'common.save' | translate }}
     </button>
   </div>
 </form>

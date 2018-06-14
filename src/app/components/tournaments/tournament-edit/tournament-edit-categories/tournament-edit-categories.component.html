@@ -1,27 +1,24 @@
-<form (ngSubmit)="onSubmit()">
-  <div class="row">
-    <div *ngFor="let category of categories; let i=index" class="col-md-6">
-      <div class="custom-control form-control-lg custom-checkbox">
-        <input type="checkbox" class="custom-control-input"
-               [id]="category.id"
-               (change)="changeCategory($event)"
-               [checked]="tournament.categoriesSelected?.includes(category.id)">
-        <label class="custom-control-label" [for]="category.id">{{ category.name | translate }}</label>
-      </div>
+<div class="row">
+  <div *ngFor="let category of categories; let i=index" class="col-md-6">
+    <div class="custom-control form-control-lg custom-checkbox">
+      <input type="checkbox" class="custom-control-input"
+             [id]="category.id"
+             (change)="changeCategory($event)"
+             [checked]="tournament.categoriesSelected?.includes(category.id)">
+      <label class="custom-control-label" [for]="category.id">{{ category.name | translate }}</label>
     </div>
   </div>
-
-  <div align="right">
-    <button type="submit" class="btn btn-success">
-      {{ 'core.save' | translate }}
-    </button>
-  </div>
-  <hr>
-</form>
+</div>
+<div align="right" *ngIf="componentName==='TournamentEditComponent'">
+  <button type="submit" class="btn btn-success">
+    {{ 'common.save' | translate }}
+  </button>
+</div>
+<hr>
 <!-- Button trigger modal -->
 <div align="center" class="mt-2">
-  <span class="mr-1">{{ 'core.want_to_create_custom_category' | translate }}</span>
+  <span class="mr-1">{{ 'add_cat.want_to_create_custom_category' | translate }}</span>
   <button class="btn btn-lg btn-outline-primary" (click)="open()">
-    {{ 'core.add_custom_category' | translate }}
+    {{ 'add_cat.add_custom_category' | translate }}
   </button>
 </div>

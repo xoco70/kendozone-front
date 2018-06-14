@@ -1,13 +1,13 @@
 <div class="card w-auto tournament-right-sidebar">
-  <div class="card-header bg-dark"><span class="text-white">TEST</span></div>
+  <div class="card-header bg-dark"><span class="text-white">{{ 'tournament.name' | uppercase }}</span></div>
   <div class="card-body align-items-lg-start">
     <ul>
-      <li><a href="#"><i class="fas fa-trophy"></i> General
+      <li><a href="#"><i class="fas fa-trophy"></i> {{ 'tour_edit.general_data' | translate }}
       </a></li>
-      <li><a href="#"><i class="fas fa-map-marker"></i> Venue
+      <li><a href="#"><i class="fas fa-map-marker"></i> {{ 'model.venue' | translate }}
       </a></li>
       <li><a href="#">
-        <i class="fas fa-cog"></i>Categories
+        <i class="fas fa-cog"></i>{{ 'model.categories' | translate }}
         <div class="badge badge-success" id="categories-status">
           <span class="category-size text-white">{{ championship_settings_count }} / {{ tournament.championships.length }}</span>
         </div>
@@ -28,7 +28,7 @@
       </a>
       </li>
       <li><a routerLink="/tournaments/{{ slug }}/teams">
-        <i class="fas fa-users"></i>Teams
+        <i class="fas fa-users"></i>{{ 'model.teams' | translate }}
         <span class="badge badge-primary" *ngIf="teams_count<=2">{{ teams_count }}</span>
         <span class="badge badge-success" *ngIf="teams_count>2">{{ teams_count }}</span>
       </a></li>

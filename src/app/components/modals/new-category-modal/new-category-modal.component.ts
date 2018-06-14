@@ -31,16 +31,16 @@ export class NewCategoryModalComponent implements OnInit {
   ];
 
   ageCategories = [
-    {id: 0, text: 'categories.no_age_restriction'},
-    {id: 1, text: 'Childs'},
-    {id: 2, text: 'Students'},
-    {id: 3, text: 'Adults'},
-    {id: 4, text: 'Master'},
-    {id: 5, text: 'categories.custom'}
+    {id: 0, text: 'add_cat.no_age_restriction'},
+    {id: 1, text: 'add_cat.children'},
+    {id: 2, text: 'add_cat.students'},
+    {id: 3, text: 'add_cat.adults'},
+    {id: 4, text: 'add_cat.mMaster'},
+    {id: 5, text: 'add_cat.custom'}
   ];
   ages = Array(85).fill(0).map((x, i) => i);
   grades = [
-    {id: 0, text: 'categories.no_grade_restriction'},
+    {id: 0, text: 'add_cat.no_grade_restriction'},
     {id: 2, text: '7 Kyu'},
     {id: 3, text: '6 Kyu'},
     {id: 4, text: '5 Kyu'},
@@ -92,40 +92,40 @@ export class NewCategoryModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.translateService.get('categories.years').subscribe(value => {
+    this.translateService.get('add_cat.years').subscribe(value => {
       this.years = value;
     });
-    this.translateService.get('core.grade').subscribe(value => {
+    this.translateService.get('model.grade').subscribe(value => {
       this.grade = value;
     });
-    this.translateService.get('categories.age').subscribe(value => {
+    this.translateService.get('add_cat.age').subscribe(value => {
       this.age = value;
     });
-    this.translateService.get('categories.single').subscribe(value => {
+    this.translateService.get('add_cat.single').subscribe(value => {
       this.single = value;
     });
-    this.translateService.get('core.team').subscribe(value => {
+    this.translateService.get('model.team').subscribe(value => {
       this.team = value;
     });
-    this.translateService.get('categories.male').subscribe(value => {
+    this.translateService.get('add_cat.male').subscribe(value => {
       this.genders[0].text = value;
     });
-    this.translateService.get('categories.female').subscribe(value => {
+    this.translateService.get('add_cat.female').subscribe(value => {
       this.genders[1].text = value;
     });
-    this.translateService.get('categories.mixt').subscribe(value => {
+    this.translateService.get('add_cat.mixt').subscribe(value => {
       this.genders[2].text = value;
     });
-    this.translateService.get('categories.children').subscribe(value => {
+    this.translateService.get('add_cat.children').subscribe(value => {
       this.ageCategories[1].text = value;
     });
-    this.translateService.get('categories.students').subscribe(value => {
+    this.translateService.get('add_cat.students').subscribe(value => {
       this.ageCategories[2].text = value;
     });
-    this.translateService.get('categories.adults').subscribe(value => {
+    this.translateService.get('add_cat.adults').subscribe(value => {
       this.ageCategories[3].text = value;
     });
-    this.translateService.get('categories.masters').subscribe(value => {
+    this.translateService.get('add_cat.masters').subscribe(value => {
       this.ageCategories[4].text = value;
     });
 

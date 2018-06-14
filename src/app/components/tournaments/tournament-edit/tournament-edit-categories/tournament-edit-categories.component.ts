@@ -14,6 +14,7 @@ import {NewCategoryModalComponent} from '../../../modals/new-category-modal/new-
 export class TournamentEditCategoriesComponent implements OnInit {
   @Input() tournament: Tournament;
   @Input() categories;
+  @Input() componentName;
 
   loading: boolean;
   categoriesSelected = [];
@@ -77,6 +78,8 @@ export class TournamentEditCategoriesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tournament.categoriesSelected = this.tournament.championships.map(championship => championship.category.id);
+    if (this.tournament.id) {
+      this.tournament.categoriesSelected = this.tournament.championships.map(championship => championship.category.id);
+    }
   }
 }

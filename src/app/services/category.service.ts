@@ -30,7 +30,6 @@ export class CategoryService {
     const listUrl = this.categoriesUrl;
     return this.http.get<Category[]>(listUrl)
       .pipe(
-        tap(data => this.toastr.success('success')),
         catchError(this.handleError('allCategories', []))
       );
   }

@@ -10,8 +10,10 @@ export class CompetitorsRightMenuComponent implements OnInit {
   @Input() championships;
 
   private fragment: string;
+  private slug: string;
 
   constructor(private route: ActivatedRoute) {
+    this.slug = this.route.snapshot.params.slug;
   }
 
   static onAnchorClick() {

@@ -4,7 +4,7 @@
     <div class="col-md-9" id="main">
       <ngb-tabset type="pills" class="nav-fill">
         <ngb-tab>
-          <ng-template ngbTabTitle>{{ 'core.general_data' | translate | uppercase }}</ng-template>
+          <ng-template ngbTabTitle>{{ 'tour_edit.general_data' | translate | uppercase }}</ng-template>
           <ng-template ngbTabContent>
             <div class="card mt-3">
               <div class="card-body">
@@ -15,7 +15,7 @@
           </ng-template>
         </ngb-tab>
         <ngb-tab>
-          <ng-template ngbTabTitle>{{ 'core.venue' | translate | uppercase }}</ng-template>
+          <ng-template ngbTabTitle>{{ 'model.venue' | translate | uppercase }}</ng-template>
           <ng-template ngbTabContent>
             <div class="card mt-3">
               <div class="card-body">
@@ -28,20 +28,23 @@
           </ng-template>
         </ngb-tab>
         <ngb-tab>
-          <ng-template ngbTabTitle>{{ 'categories.categories' | translate | uppercase }}</ng-template>
+          <ng-template ngbTabTitle>{{ 'model.categories' | translate | uppercase }}</ng-template>
           <ng-template ngbTabContent>
             <div class="card mt-3">
               <div class="card-body">
-                <app-tournament-edit-categories
-                  [tournament]="data.tournament"
-                  [categories]="data.categories"
-                ></app-tournament-edit-categories>
+                <form (ngSubmit)="onSubmit()">
+                  <app-tournament-edit-categories
+                    [tournament]="data.tournament"
+                    [categories]="data.categories"
+                    [componentName]="componentName"
+                  ></app-tournament-edit-categories>
+                </form>
               </div>
             </div>
           </ng-template>
         </ngb-tab>
         <ngb-tab>
-          <ng-template ngbTabTitle>{{ 'core.settings' | translate | uppercase }}</ng-template>
+          <ng-template ngbTabTitle>{{ 'model.categorySettings' | translate | uppercase }}</ng-template>
           <ng-template ngbTabContent>
             <div class="card mt-3">
               <div class="card-body">

@@ -24,7 +24,7 @@
           {{auth.currentUser().name }}
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="/profile/123/edit">{{ 'model.profile' | translate }}</a>
+          <a class="dropdown-item" href="/profile/{{auth.currentUser().slug}}/edit">{{ 'model.profile' | translate }}</a>
           <a class="dropdown-item" routerLink="/tournaments">{{ 'nav.my_tournaments' | translate }}</a>
           <!--<a class="dropdown-item" href="#">{{ 'nav.participations' | translate }}</a>-->
           <!--<a class="dropdown-item" href="#">{{ 'core.invitations' | translate }}</a>-->

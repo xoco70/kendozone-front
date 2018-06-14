@@ -1,15 +1,29 @@
 <div class="card w-auto competitors-right-sidebar">
-  <div class="card-header bg-dark"><span class="text-white">{{ 'categories.categories' | translate }}</span></div>
+  <div class="card-header bg-dark"><span class="text-white">{{ 'model.categories' | translate | uppercase }}</span>
+  </div>
   <div class="card-body align-items-lg-start">
     <ul>
       <li *ngFor="let championship of championships">
         <a routerLink="./" fragment="{{ championship.category.name | translate | slug }}" (click)="onAnchorClick()">
           {{ championship.category.name | translate }}
           <div class="badge badge-grey">
-            <span class="category-size">{{ championship.users.length }}</span>
+            <span class="category-size">{{ championship.competitors.length }}</span>
           </div>
         </a>
       </li>
     </ul>
   </div>
 </div>
+
+<div class="card w-auto competitors-right-sidebar mt-4">
+  <div class="card-header bg-secondary">
+    <span class="text-white">{{ 'competitors.quick_links' | translate | uppercase }}</span></div>
+  <div class="card-body align-items-lg-start">
+    <ul>
+      <li><a routerLink="/tournaments/{{ slug }}/edit"> {{ 'model.tournament' | translate }} </a></li>
+      <li><a routerLink="/tournaments/{{ slug }}/trees"> {{ 'model.trees' | translate }} </a></li>
+      <li><a routerLink="/tournaments/{{ slug }}/fights"> {{ 'model.fights' | translate }} </a></li>
+    </ul>
+  </div>
+</div>
+

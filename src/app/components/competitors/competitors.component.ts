@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {CompetitorService} from '../../services/competitor.service';
 import {ActivatedRoute} from '@angular/router';
-import {Competitor} from '../../models/competitor';
 import {Tournament} from '../../models/tournament';
+import {Competitor} from '../../models/competitor';
 
 @Component({
   selector: 'app-competitors',
@@ -33,12 +33,14 @@ export class CompetitorsComponent implements OnInit {
       });
   }
 
-  // delete(competitor: Competitor): void {
-  //   this.loading = true;
-  //   this.tournament['data'] = this.tournament['data'].filter(h => h !== competitor);
-  //   this.competitorService.delete(this.tournamentSlug, competitor).subscribe();
-  //   this.loading = false;
-  // }
+  delete(competitor: Competitor, championshipIndex: number): void {
+    this.loading = true;
+    // tournament.championships[x].user
+    // this.tournament.competitors = this.tournament.competitors.filter(h => h !== competitor);
+    this.tournament.championships[championshipIndex].competitors = this.tournament.championships[championshipIndex].competitors.filter(h => h !== competitor);
+    this.competitorService.delete(this.tournamentSlug, competitor).subscribe();
+    this.loading = false;
+  }
 
 
   ngOnInit() {

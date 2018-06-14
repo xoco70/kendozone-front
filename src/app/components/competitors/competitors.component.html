@@ -2,7 +2,7 @@
 <div class="container" *ngIf="!loading">
   <div class="row">
     <div class="col-md-9" id="main">
-      <div *ngFor="let championship of tournament.championships" class="card mb-4">
+      <div *ngFor="let championship of tournament.championships; let i = index" class="card mb-4">
         <div class="card-body">
           <a name="{{ championship.category.name | translate | slug }}">
             <div class="row">
@@ -16,11 +16,11 @@
                   <a href="{{ championship.category.name | slug }}" data-toggle="modal" class="btn btn-primary p-2"
                      data-target="#addCompetitors">
                     <b> <i class="fas fa-plus mr-1"></i></b>
-                    {{ 'core.add_competitor' | translate }}
+                    {{ 'competitors.add_competitor' | translate }}
                   </a>&nbsp;
                   <a href="#" data-toggle="modal" class="btn btn-success p-2">
                     <b> <i class="fas fa-sitemap ml-1"></i></b>
-                    {{ 'core.generate_tree' | translate }}
+                    {{ 'competitors.generate_tree' | translate }}
                   </a>
                 </div>
               </div>
@@ -31,24 +31,29 @@
             <div class=".table-responsive border-top-0">
               <table class="table .table-hover .table-responsive-xs">
                 <tr>
-                  <th scope="col">{{ 'core.avatar' | translate }}</th>
-                  <th scope="col">{{ 'core.user' | translate }}</th>
-                  <th scope="col">{{ 'core.email' | translate }}</th>
+                  <th scope="col">{{ 'competitors.avatar' | translate }}</th>
+                  <th scope="col">{{ 'model.user' | translate }}</th>
+                  <th scope="col">{{ 'profile.email' | translate }}</th>
                   <!--<th scope="col">{{ 'categories.category' | translate }}</th>-->
-                  <!--<th scope="col">{{ 'core.paid' | translate }}Paid</th>-->
-                  <th scope="col">{{ 'core.country' | translate }}</th>
-                  <th scope="col">{{ 'core.action' | translate }}</th>
+                  <!--<th scope="col">{{ 'competitors.paid' | translate }}Paid</th>-->
+                  <th scope="col">{{ 'profile.country' | translate }}</th>
+                  <th scope="col">{{ 'common.action' | translate }}</th>
                 </tr>
-                <tr *ngFor="let competitor of championship.users">
+                <tr *ngFor="let competitor of championship.competitors">
                   <!--TODO get Avatar-->
-                  <td align="left">{{competitor.avatar}}</td>
-                  <td align="left">{{competitor.name}}</td>
+                  <td align="left">{{competitor.user.avatar}}</td>
+                  <td align="left">{{competitor.user.name}}</td>
                   <!--TODO get first / lastname -->
-                  <td>{{competitor.email}}</td>
+                  <td>{{competitor.user.email}}</td>
                   <!--<td>{{championship.category.name}}</td>-->
-                  <!--<td>{{competitor.paid}}</td>-->
-                  <td>{{competitor.user?.country}}</td>
-                  <td><i class="fas fa-times text-primary"></i></td>
+                  <!--<td>{{user.paid}}</td>-->
+                  <td>{{competitor.user.country}} {{ i }}</td>
+                  <td>
+
+                    <button class="btn p-0 m-0 border-0 icon-list " (click)="delete(competitor, i)">
+                      <i class="far fa-trash-alt text-primary"></i>
+                    </button>
+                  </td>
                 </tr>
               </table>
             </div>
