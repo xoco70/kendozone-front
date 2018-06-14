@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../../services/authentication.service';
-import {Router} from '@angular/router';
+import {User} from '../../models/user';
 
 @Component({
   selector: 'app-nav',
@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
+  user: User;
 
   constructor(
     private auth: AuthenticationService,

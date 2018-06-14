@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-competitors-right-menu',
@@ -8,10 +9,26 @@ import {Component, Input, OnInit} from '@angular/core';
 export class CompetitorsRightMenuComponent implements OnInit {
   @Input() championships;
 
-  constructor() {
+  private fragment: string;
+
+  constructor(private route: ActivatedRoute) {
+  }
+
+  static onAnchorClick() {
+    return true;
   }
 
   ngOnInit() {
+    this.route.fragment.subscribe(fragment => {
+      this.fragment = fragment;
+    });
+  }
+
+  ngAfterViewInit(): void {
+    try {
+      document.querySelector('#' + this.fragment).scrollIntoView();
+    } catch (e) {
+    }
   }
 
 }

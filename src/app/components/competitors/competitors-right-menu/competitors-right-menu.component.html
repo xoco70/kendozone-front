@@ -2,12 +2,14 @@
   <div class="card-header bg-dark"><span class="text-white">{{ 'categories.categories' | translate }}</span></div>
   <div class="card-body align-items-lg-start">
     <ul>
-      <li *ngFor="let championship of championships"><a href="#">
-        {{ championship.category.name | translate }}
-        <div class="badge badge-grey">
-          <span class="category-size">{{ championship.users.length }}</span>
-        </div>
-      </a></li>
+      <li *ngFor="let championship of championships">
+        <a routerLink="./" fragment="{{ championship.category.name | translate | slug }}" (click)="onAnchorClick()">
+          {{ championship.category.name | translate }}
+          <div class="badge badge-grey">
+            <span class="category-size">{{ championship.users.length }}</span>
+          </div>
+        </a>
+      </li>
     </ul>
   </div>
 </div>

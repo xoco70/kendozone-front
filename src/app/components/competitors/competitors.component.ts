@@ -22,7 +22,7 @@ export class CompetitorsComponent implements OnInit {
 
   }
 
-  all(page?: number): void {
+  all(): void {
     this.loading = true;
     this.competitorService.all(this.tournamentSlug)
       .subscribe(tournament => {

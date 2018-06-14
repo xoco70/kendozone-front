@@ -38,6 +38,7 @@ import {ANIMATION_TYPES, LoadingModule} from 'ngx-loading';
 import {NgbdDatepickerRange} from './components/form/datepicker-range';
 import {NewCategoryModalComponent} from './components/modals/new-category-modal/new-category-modal.component';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {SlugPipe} from './pipes/slug.pipe';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -72,7 +73,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     RegisterComponent,
     ForgotPasswordComponent,
     NgbdDatepickerRange,
-    NewCategoryModalComponent
+    NewCategoryModalComponent,
+    SlugPipe
   ],
   entryComponents: [NewCategoryModalComponent],
   imports: [

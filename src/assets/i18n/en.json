@@ -1,5 +1,23 @@
 {
-  "auth": {
+  "model": {
+    "competitor": "Competitor",
+    "competitors": "Competitors",
+    "profile": "Profile"
+  },
+  "common": {
+    "name": "Name",
+    "date": "Date",
+    "action": "Action"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "createTournament": "Create Tournament",
+    "my_tournaments": "My Tournaments",
+    "participations": "Participations",
+    "invitations": "Invitations",
+    "logout": "Logout"
+  },
+  "login": {
     "failed": "These credentials do not match our records.",
     "throttle": "Too many login attempts. Please try again in {{ seconds }} seconds.",
     "signin": "Sign in",
@@ -8,7 +26,27 @@
     "lost_password": "Lost password?",
     "create_account": "Create account",
     "title_login": "Login to Kendozone",
-    "title_register": "Register to Kendozone",
+    "signin_with": "Or signin with",
+    "no_account": "Still no account?",
+    "welcome": "Welcome {{name}}"
+  },
+  "register": {
+    "title_register": "Register to Kendozone"
+  },
+  "reset_pass": {
+  },
+  "dashboard": {
+  },
+  "tournaments": {
+    "owner": "Owner"
+  },
+  "tournament_edit": {
+  },
+  "competitors": {
+  },
+  "trees": {
+  },
+  "auth": {
     "register": "Register",
     "registered": "Registered",
     "username_tip": "Username must only contains letters and numbers without spaces",
@@ -30,8 +68,6 @@
     "account_already_exists": "We already have a strong user registered with this email",
     "account_not_activated": "Account is not activated. Please check your email",
     "credentials": "Please fill the fields",
-    "signin_with": "Or signin with",
-    "no_account": "Still no account?",
     "tx_for_confirm": "Thanks for activating your account",
     "registration_completed": "Registration completed",
     "user_dont_exist": "Hansoku nikkai! There is no user registered with this email",
@@ -145,7 +181,6 @@
     "optional": "optional",
     "tournament": "Tournament|Tournaments",
     "newTournament": "New Tournament",
-    "createTournament": "Create Tournament",
     "date": "Date",
     "eventDate": "Event date",
     "account": "Account",
@@ -197,17 +232,13 @@
     "international": "International",
     "user": "User",
     "users": "Users",
-    "name": "Name",
     "username": "Username",
-    "profile": "Profile",
     "grade": "Grade",
     "avatar": "Avatar",
-    "email": "Email",
     "email_desc": "Email linked to your account",
     "role": "Role",
     "firstname": "First name",
     "lastname": "Last name",
-    "password": "Password",
     "newpassword": "New password",
     "conewpassword": "Confirm new password",
     "without_grade": "No grade",
@@ -250,8 +281,6 @@
     "share": "Share",
     "share_link": "Share link",
     "logs": "Logs",
-    "dashboard": "Dashboard",
-    "logout": "Logout",
     "home": "Home",
     "changepassword": "Change my password",
     "savechanges": "Save changes",
@@ -364,7 +393,6 @@
     "personalinfo": "Personal informations",
     "statistics": "Statistics",
     "no_scoresheet_for_playoff": "There is no scoresheet for playoff championships",
-    "my_tournaments": "My Tournaments",
     "want_to_create_custom_category": "Want to create a new custom category ?",
     "add_custom_category": "Add a custom category ",
     "create_a_new_category": "Create a new Category"

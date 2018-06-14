@@ -5,7 +5,6 @@ import {catchError, tap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 import {environment} from '../../environments/environment';
 
-import {Competitor} from '../models/competitor';
 import {AuthenticationService} from './authentication.service';
 import {ToastrService} from 'ngx-toastr';
 import {Tournament} from '../models/tournament';

@@ -10,26 +10,26 @@
 
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <span class="ml-4"><strong>{{ 'core.dashboard' | translate }}</strong></span>
+        <span class="ml-4"><strong>{{ 'nav.dashboard' | translate | uppercase }}</strong></span>
       </li>
     </ul>
     <div class="form-inline mt-2 mt-md-0">
       <a routerLink="/tournaments/create"
          class="btn btn-outline-primary form-control mr-sm-2 text-uppercase border-3">
-        {{ 'core.createTournament' | translate }}
+        {{ 'nav.createTournament' | translate }}
       </a>
       <div class="dropdown">
         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-          Juliatzin del Toro
+          {{auth.currentUser().name }}
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="/profile/123/edit">{{ 'core.profile' | translate }}</a>
-          <a class="dropdown-item" routerLink="/tournaments">{{ 'core.my_tournaments' | translate }}</a>
-          <a class="dropdown-item" href="#">{{ 'core.participations' | translate }}</a>
-          <a class="dropdown-item" href="#">{{ 'core.invitations' | translate }}</a>
+          <a class="dropdown-item" href="/profile/123/edit">{{ 'model.profile' | translate }}</a>
+          <a class="dropdown-item" routerLink="/tournaments">{{ 'nav.my_tournaments' | translate }}</a>
+          <!--<a class="dropdown-item" href="#">{{ 'nav.participations' | translate }}</a>-->
+          <!--<a class="dropdown-item" href="#">{{ 'core.invitations' | translate }}</a>-->
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#" (click)="logout()">{{ 'core.logout' | translate }}</a>
+          <a class="dropdown-item" href="#" (click)="logout()">{{ 'nav.logout' | translate }}</a>
         </div>
       </div>
     </div>

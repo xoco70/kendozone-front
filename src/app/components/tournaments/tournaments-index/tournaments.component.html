@@ -5,11 +5,11 @@
       <ng-container *ngIf="tournaments">
         <table class="table .table-hover .table-responsive-xs">
           <tr>
-            <th scope="col">{{ 'core.name' | translate }}</th>
-            <th scope="col">{{ 'core.date' | translate }}Date</th>
-            <th scope="col">{{ 'core.competitors' | translate }}</th>
-            <th scope="col">{{ 'core.owner' | translate }}</th>
-            <th scope="col">{{ 'core.action' | translate }}</th>
+            <th scope="col">{{ 'common.name' | translate }}</th>
+            <th scope="col">{{ 'common.date' | translate }}Date</th>
+            <th scope="col">{{ 'model.competitors' | translate }}</th>
+            <th scope="col">{{ 'tournaments.owner' | translate }}</th>
+            <th scope="col">{{ 'common.action' | translate }}</th>
           </tr>
 
           <tr *ngFor="let tournament of tournaments.data">
@@ -24,7 +24,6 @@
             </td>
           </tr>
         </table>
-        {{ loading }}
         <ngb-pagination [collectionSize]="tournaments.meta.total"
                         [(page)]="page" aria-label="Default pagination"
                         [pageSize]="tournaments.meta.per_page"

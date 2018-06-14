@@ -43,11 +43,11 @@
                     <div class="col-6">
                       <label class="checkbox-inline">
                         <input type="checkbox" value="remember-me" class="mr-2" checked="checked">
-                        <span translate> auth.remember</span>
+                        <span> {{ 'login.remember' | translate }}</span>
                       </label>
                     </div>
                     <div class="col-6 text-right">
-                      <a translate routerLink="/password/reset">auth.lost_password</a>
+                      <a translate routerLink="/password/reset">{{ 'login.lost_password' | translate }} </a>
                     </div>
                   </div>
                 </div>
@@ -56,7 +56,7 @@
                 <div class="form-group">
                   <button type="submit" id="login" translate
                           class="btn bg-success btn-block p-3 mb-4 text-white text-uppercase">
-                    auth.signin
+                    {{ 'login.signin' | translate }}
                   </button>
                 </div>
                 <!--<div *ngIf="error" class="alert alert-danger">{{error}}</div>-->
@@ -73,12 +73,12 @@
                 <!--class="icon-google"></i></a></li>-->
                 <!--</ul>-->
 
-                <div class="content-divider text-muted form-group mt-2 mb-2"><span translate>auth.no_account</span>
+                <div class="content-divider text-muted form-group mt-2 mb-2"><span translate>{{ 'login.no_account' | translate }}</span>
                 </div>
 
                 <div class="mt-5">
                   <a class="btn full-width text-primary border-primary border-4 text-uppercase " translate
-                     routerLink="/register">auth.signup</a>
+                     routerLink="/register">{{ 'login.signup' | translate }}</a>
                 </div>
               </div>
             </div>
