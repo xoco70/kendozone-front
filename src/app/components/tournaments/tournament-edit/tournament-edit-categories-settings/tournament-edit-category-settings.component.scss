@@ -15,3 +15,20 @@
 .fa-question-circle{
   margin-left: 0.5rem;
 }
+
+.h47{
+  height: 47px;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #CCC;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #CCC;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #CCC;
+}

@@ -129,7 +129,6 @@ export class NewCategoryModalComponent implements OnInit {
       this.ageCategories[4].text = value;
     });
 
-
     this.category = new Category();
     this.category.name = 'Single Male';
     this.category.gender = 'M';

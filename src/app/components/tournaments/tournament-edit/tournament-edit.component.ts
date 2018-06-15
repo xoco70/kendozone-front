@@ -33,7 +33,7 @@ export class TournamentEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.componentName = this.route.snapshot.component.name;
+    this.componentName = this.route.snapshot.component['name'];
     this.getTournament();
   }
 

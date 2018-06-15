@@ -15,6 +15,7 @@ export class TournamentEditCategoriesComponent implements OnInit {
   @Input() tournament: Tournament;
   @Input() categories;
   @Input() componentName;
+  @Input() disabled: boolean;
 
   loading: boolean;
   categoriesSelected = [];
@@ -52,7 +53,7 @@ export class TournamentEditCategoriesComponent implements OnInit {
     this.submitted = true;
 
     if (this.tournament.categoriesSelected.length === 0) {
-      this.toastr.error('You must select at least 1 category');
+      this.toastr.error('You must select at least 1 category'); // TODO translate
       return;
     }
 

@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
+import {AuthenticationService} from './services/authentication.service';
+import {User} from './models/user';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +9,15 @@ import {TranslateService} from '@ngx-translate/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
   public loading = false;
+  public currentUser: User;
 
-  constructor(public translate: TranslateService) {
+  constructor(public translate: TranslateService,
+              public auth: AuthenticationService) {
+
     translate.addLangs(['en']);
     translate.setDefaultLang('en');
+    this.currentUser = auth.currentUser();
 
     const browserLang = translate.getBrowserLang();
     translate.use(browserLang.match(/en/) ? browserLang : 'en');

@@ -67,7 +67,6 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem(TOKEN);
-    this.router.navigate(['/login']);
   }
 
   getToken(): string {
@@ -93,7 +92,10 @@ export class AuthenticationService {
 
   public currentUser(): User {
     const json = localStorage.getItem(TOKEN);
-    return this.jwtHelper.decodeToken(json).sub;
+    const decoded = this.jwtHelper.decodeToken(json);
+    if (decoded) {
+      return decoded.sub;
+    }
+    return null;
   }
-
 }

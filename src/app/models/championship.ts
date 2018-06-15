@@ -1,10 +1,11 @@
 import {Category} from './category';
+import {Competitor} from './competitor';
+import {ChampionshipSettings} from './championship-settings';
 
 export class Championship {
   id: number;
   tournament_id: number;
   category: Category;
-  created_at: string;
-  updated_at: string;
-  deleted_at: string;
+  competitors: Competitor[];
+  settings: ChampionshipSettings;
 }

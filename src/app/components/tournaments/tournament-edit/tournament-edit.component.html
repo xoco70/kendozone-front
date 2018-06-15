@@ -48,8 +48,12 @@
           <ng-template ngbTabContent>
             <div class="card mt-3">
               <div class="card-body">
+
                 <app-tournament-edit-category-settings
-                  [championships]="data.tournament.championships">
+                  *ngFor="let championship of data.tournament.championships; index as i"
+                  [championship]="championship"
+                  [i]="i"
+                >
                 </app-tournament-edit-category-settings>
               </div>
             </div>

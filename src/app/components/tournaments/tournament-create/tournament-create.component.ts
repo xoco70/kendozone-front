@@ -11,11 +11,41 @@ import {Tournament} from '../../../models/tournament';
 })
 export class TournamentCreateComponent implements OnInit {
   private loading = false;
-  private presets: any;
-  selectedEntry;
-  mode: boolean;
+  // private presets: any;
+  // selectedEntry;
+  // mode: boolean;
   categories: Category[];
   tournament: Tournament = <Tournament>{};
+  creationMethod = 0;
+  rule = 0;
+  presets = [
+    {id: 0, name: '-'},
+    {
+      id: 1, name: 'Internation Kendo Federation (IKF)',
+      categories: [
+        {id: 3, name: 'categories.men_single'},
+        {id: 4, name: 'categories.men_team'},
+        {id: 5, name: 'categories.ladies_single'},
+        {id: 6, name: 'categories.ladies_team'}]
+    },
+    {
+      id: 2, name: 'European Kendo Federation (EKF)',
+      categories: [
+        {id: 1, name: 'categories.junior'},
+        {id: 2, name: 'categories.junior_team'},
+        {id: 3, name: 'categories.men_single'},
+        {id: 4, name: 'categories.men_team'},
+        {id: 5, name: 'categories.ladies_single'},
+        {id: 6, name: 'categories.ladies_team'}]
+    },
+    {
+      id: 3, name: 'Latin American Kendo Federation (LAKC)',
+      categories: [
+        {id: 1, name: 'categories.junior'},
+        {id: 2, name: 'categories.junior_team'}
+      ]
+    },
+  ];
 
   constructor(
     private tournamentService: TournamentService,
@@ -23,16 +53,16 @@ export class TournamentCreateComponent implements OnInit {
   ) {
   }
 
-  tournamentPresets(): void {
-    this.loading = true;
-    this.tournamentService.tournamentPresets()
-      .subscribe(presets => {
-        this.presets = presets;
-        this.loading = false;
-      }, err => {
-        this.loading = false;
-      });
-  }
+  // tournamentPresets(): void {
+  //   this.loading = true;
+  //   this.tournamentService.tournamentPresets()
+  //     .subscribe(presets => {
+  //       this.presets = presets;
+  //       this.loading = false;
+  //     }, err => {
+  //       this.loading = false;
+  //     });
+  // }
 
   getCategories(): void {
     this.loading = true;
@@ -40,7 +70,7 @@ export class TournamentCreateComponent implements OnInit {
       .subscribe(categories => {
         this.categories = categories;
         this.loading = false;
-      }, err => {
+      }, () => {
         this.loading = false;
       });
   }
@@ -56,7 +86,7 @@ export class TournamentCreateComponent implements OnInit {
   // }
 
   ngOnInit() {
-    this.tournamentPresets();
+    // this.tournamentPresets();
     this.getCategories();
   }
 

@@ -61,7 +61,7 @@
       <br><br>
       <div class="row">
         <div class="col-1 offset-md-1">
-          <input checked="checked" name="" #config type="radio" value="0">
+          <input name="numMethod" [value]="0" type="radio" checked class="mt-3 mr-2" [(ngModel)]="creationMethod">
         </div>
         <div class="col-md-10"><span
           class="font-weight-bold">{{ 'tour_create.presettings' | translate | uppercase}}</span><br>
@@ -70,22 +70,19 @@
         </div>
       </div>
       <div class="row md-12">
-        <div class="col-md-4 offset-md-1">
-          <!--{{ presets | json }}-->
-          <!--<select class="form-control select-lg" (change)="onSelect($event.target.value)">-->
-          <!--<option *ngFor="#preset of presets" [value]="preset.id">{{preset.name}}</option>-->
-          <!--</select>-->
-          <!--<div>selection={{preset | json }}</div>-->
-
-          <!--<select class="form-control select-lg" id="rules" name="rule_id">-->
-          <!--<option value="0" selected="selected">-</option>-->
-          <!--<option value="1">Internation Kendo Federation (IKF)</option>-->
-          <!--<option value="2">European Kendo Federation (EKF)</option>-->
-          <!--<option value="3">Latin American Kendo Federation (LAKC)</option>-->
-          <!--</select>-->
+        <div class="col-md-4 offset-md-2">
+          <select class="form-control select-lg" id="presets" name="presets" [(ngModel)]="rule">
+            <option *ngFor="let preset of presets" [ngValue]="preset.id" [disabled]="creationMethod==1">{{
+              preset.name}}
+            </option>
+          </select>
         </div>
-        <div class="col-md-7">
-          <small id="categories_desc"></small>
+        <div class="col-md-6">
+          <small id="categories_desc" *ngIf="rule!==0"><strong>{{ 'model.categories' | translate }}:</strong>
+            <span *ngFor="let category of presets[rule].categories; let isLast=last">
+              {{ category.name | translate }} {{isLast ? '' : ', '}}
+            </span>
+          </small>
         </div>
       </div>
       <div class="row">
@@ -95,19 +92,26 @@
       </div>
       <hr>
       <div class="row">
-        <div class="col-1 offset-md-1"><input id="c2" name="config" type="radio" value="1"></div>
-        <div class="col-md-10"><span
-          class="font-weight-bold">{{ 'tour_create.manual' | translate | uppercase }}</span><br>
+        <div class="col-1 offset-md-1">
+          <input name="numMethod" [value]="1" type="radio" class="mt-3 mr-2" [(ngModel)]="creationMethod">
+
+        </div>
+        <div class="col-md-10">
+          <span class="font-weight-bold">{{ 'tour_create.manual' | translate | uppercase }}</span><br>
           {{ 'tour_create.select_categories_to_register' | translate }}<br>
         </div>
       </div>
-
-      <app-tournament-edit-categories
-        [tournament]="tournament"
-        [categories]="categories"></app-tournament-edit-categories>
+      <div class="row">
+        <div class="col-10 offset-md-1">
+          <app-tournament-edit-categories
+            [tournament]="tournament"
+            [disabled]="!creationMethod"
+            [categories]="categories"></app-tournament-edit-categories>
+        </div>
+      </div>
       <br/><br/>
       <div class=" text-right mt-15">
-        <input [disabled]="true" class="btn btn-success" type="submit" value="Add Tournament">
+        <input class="btn btn-success" type="submit" value="Add Tournament">
       </div>
     </div>
   </div>

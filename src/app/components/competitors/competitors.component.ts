@@ -51,6 +51,6 @@ export class CompetitorsComponent implements OnInit {
 
   pageChanged(page: number) {
     this.page = page;
-    this.all(page);
+    this.all();
   }
 }
