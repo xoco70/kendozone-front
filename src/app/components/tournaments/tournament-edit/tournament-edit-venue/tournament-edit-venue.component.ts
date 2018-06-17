@@ -6,6 +6,8 @@ import {Tournament} from '../../../../models/tournament';
 import {TournamentService} from '../../../../services/tournament.service';
 import {first} from 'rxjs/operators';
 import {Venue} from '../../../../models/venue';
+import {} from '@types/googlemaps';
+
 
 @Component({
   selector: 'app-tournament-edit-venue',

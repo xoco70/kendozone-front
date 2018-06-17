@@ -1,0 +1,71 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<div class="container" *ngIf="!loading">
+  <div class="row">
+    <div class="col-12" id="main">
+      <ngb-tabset type="pills" class="nav-fill">
+        <ngb-tab *ngFor="let championship of tournament.championships">
+          <ng-template ngbTabTitle>{{ championship.category.name | translate | uppercase }}</ng-template>
+          <ng-template ngbTabContent>
+            <div class="card mt-3">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-8">
+                    <!-- TODO alias if exists-->
+                    <span class="text-semibold text-uppercase font-weight-bold">
+                      {{ championship.category.name | translate }}
+                    </span>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="badge btnAction">
+                      <a href="#" data-toggle="modal" class="btn btn-success p-2 mr-2">
+                        <b> <i class="fas fa-sitemap ml-1"></i></b>
+                        {{ 'competitors.generate_tree' | translate }}
+                      </a>
+                      <a href="#print" class="btn btn-secondary p-2">
+                        <b> <i class="fas fa-print mr-1"></i></b>
+                        {{ 'common.print' | translate }}
+                      </a>&nbsp;
+
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="championship.hasPreliminary()">
+                  has Prelim
+                </div>
+                <div *ngIf="championship.isPlayOffType()">
+                  PlayOff Type
+                </div>
+                <div *ngIf="championship.isSingleEliminationType()">
+                  Single Elim
+                </div>
+
+                <!--<app-tournament-edit-general-->
+                <!--[tournament]="tournament">-->
+                <!--</app-tournament-edit-general>-->
+              </div>
+            </div>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </div>
+  </div>
+</div>
+
+
+<!--@if ($championship->fightersGroups != null && $championship->fightersGroups->count() != 0)-->
+<!--@if ($championship->hasPreliminary())-->
+<!--@include('laravel-tournaments::partials.tree.preliminary', ['show_tree' => true])-->
+<!--@elseif ($championship->isSingleEliminationType())-->
+<!--@include('laravel-tournaments::partials.tree.singleElimination', ['hasPreliminary' => 0])-->
+<!--@elseif ($championship->isPlayOffType())-->
+<!--@include('layouts.tree.playOff')-->
+<!--@else-->
+<!--<div>{{trans('core.no_generated_tree')}}</div>-->
+<!--@endif-->
+<!--@endif-->
+<!--</div>-->
+<!--<br/>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--@endforeach-->

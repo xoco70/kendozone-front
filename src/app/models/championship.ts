@@ -8,4 +8,19 @@ export class Championship {
   category: Category;
   competitors: Competitor[];
   settings: ChampionshipSettings;
+
+
+  hasPreliminary() {
+    return this.settings == null || this.settings.hasPreliminary;
+  }
+
+  isPlayOffType() {
+    return this.settings != null && this.settings.treeType === 0;
+  }
+
+  isSingleEliminationType() {
+    return this.settings != null && this.settings.treeType === 1;
+  }
 }
+
+

@@ -2,10 +2,11 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators';
 import {Router} from '@angular/router';
-import {Observable, of} from 'rxjs';
+import {Observable, of, Subject} from 'rxjs';
 import {ToastrService} from 'ngx-toastr';
 import {User} from '../models/user';
 import {JwtHelperService} from '@auth0/angular-jwt';
+
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -13,14 +14,9 @@ const httpOptions = {
 
 export const TOKEN = 'jwt_token';
 
-// const helper = new JwtHelperService();
-// const decodedToken = helper.decodeToken(TOKEN);
-// const expirationDate = helper.getTokenExpirationDate(TOKEN);
-// const isExpired = helper.isTokenExpired(TOKEN);
-
 @Injectable()
 export class AuthenticationService {
-
+  currentUser$: Subject<User> = new Subject<User>();
   cachedRequests: Array<HttpRequest<any>> = [];
 
   constructor(
@@ -41,6 +37,7 @@ export class AuthenticationService {
         map((res: any) => {
           if (res && res.token) {
             this.setToken(res.token);
+            this.currentUser();
             this.toastr.success('Welcome'); // user->name
           }
         }),
@@ -67,6 +64,7 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem(TOKEN);
+    this.currentUser$.next(undefined);
   }
 
   getToken(): string {
@@ -94,6 +92,7 @@ export class AuthenticationService {
     const json = localStorage.getItem(TOKEN);
     const decoded = this.jwtHelper.decodeToken(json);
     if (decoded) {
+      this.currentUser$.next(decoded.sub);
       return decoded.sub;
     }
     return null;

@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {TournamentsComponent} from './components/tournaments/tournaments-index/tournaments.component';
@@ -10,8 +10,9 @@ import {ProfileComponent} from './components/profile/profile.component';
 import {LoginComponent} from './components/auth/login/login.component';
 import {RegisterComponent} from './components/auth/register/register.component';
 
-import { AuthGuard } from './guards/auth.guard';
+import {AuthGuard} from './guards/auth.guard';
 import {ForgotPasswordComponent} from './components/auth/forgot-password/forgot-password.component';
+import {TreesComponent} from './components/trees/trees.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'tournaments/:slug/competitors', component: CompetitorsComponent, canActivate: [AuthGuard]},
   {path: 'profile/:id/edit', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'tournaments', component: TournamentsComponent, canActivate: [AuthGuard]},
+  {path: 'tournaments/:slug/trees', component: TreesComponent, canActivate: [AuthGuard]},
   // { path: '**', redirectTo: '' } // otherwise redirect to dashboard
 ];
 

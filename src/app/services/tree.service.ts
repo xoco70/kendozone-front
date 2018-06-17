@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {catchError, tap} from 'rxjs/operators';
+import {catchError} from 'rxjs/operators';
 
 import {Observable, of} from 'rxjs';
 import {environment} from '../../environments/environment';
@@ -8,7 +8,6 @@ import {environment} from '../../environments/environment';
 import {AuthenticationService} from './authentication.service';
 import {ToastrService} from 'ngx-toastr';
 import {Tournament} from '../models/tournament';
-import {Competitor} from '../models/competitor';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -17,7 +16,7 @@ const httpOptions = {
 
 @Injectable({providedIn: 'root'})
 
-export class CompetitorService {
+export class TreeService {
 
 
   constructor(
@@ -27,23 +26,13 @@ export class CompetitorService {
   ) {
   }
 
-  all(tournamentSlug: string): Observable<Tournament> {
-    const listUrl = `${environment.apiUrl}/tournaments/${tournamentSlug}/competitors/`;
+  getTournamentWithTrees(tournamentSlug: string): Observable<Tournament> {
+    const listUrl = `${environment.apiUrl}/tournaments/${tournamentSlug}/trees/`;
     return this.http.get<Tournament>(listUrl)
       .pipe(
         catchError(this.handleError(['']))
       );
   }
-
-  delete(tournamentSlug: string, competitor: Competitor): Observable<Competitor> {
-    const url = `${environment.apiUrl}/tournaments/${tournamentSlug}/competitors/${competitor.id}`;
-    return this.http.delete<any>(url, httpOptions)
-      .pipe(
-        tap(data => this.toastr.success('success')),
-        catchError(this.handleError([]))
-      );
-  }
-
 
   /**
    * Handle Http operation that failed.

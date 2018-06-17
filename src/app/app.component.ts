@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {AuthenticationService} from './services/authentication.service';
 import {User} from './models/user';
@@ -6,9 +6,9 @@ import {User} from './models/user';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public loading = false;
   public currentUser: User;
 
@@ -17,10 +17,14 @@ export class AppComponent {
 
     translate.addLangs(['en']);
     translate.setDefaultLang('en');
-    this.currentUser = auth.currentUser();
 
     const browserLang = translate.getBrowserLang();
     translate.use(browserLang.match(/en/) ? browserLang : 'en');
   }
 
+  ngOnInit() {
+    this.auth.currentUser$.subscribe((user: User) => {
+      this.currentUser = user;
+    });
+  }
 }

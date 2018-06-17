@@ -29,7 +29,8 @@
     "to": "To",
     "yes": "Yes",
     "no": "No",
-    "custom": "Custom"
+    "custom": "Custom",
+    "print": "Print"
   },
   "nav": {
     "dashboard": "Dashboard",
@@ -56,6 +57,13 @@
     "title_register": "Register to Kendozone"
   },
   "reset_pass": {
+    "we_will_send_instructions": "We will send you instructions in an email",
+    "password_recovery": "Password Recovery",
+    "send_password": "Send Password",
+    "reset_password": "Reset Password",
+    "check_your_email": "We sent you an email with an activation link",
+    "account_already_exists": "We already have a strong user registered with this email",
+    "account_not_activated": "Account is not activated. Please check your email"
   },
   "dashboard": {
   },
@@ -188,13 +196,6 @@
     "your_email": "Your Email",
     "repeat_email": "Repeat the email",
     "back_to_login_form": "Login",
-    "we_will_send_instructions": "We will send you instructions in an email",
-    "password_recovery": "Password Recovery",
-    "send_password": "Send Password",
-    "reset_password": "Reset Password",
-    "check_your_email": "We sent you an email with an activation link",
-    "account_already_exists": "We already have a strong user registered with this email",
-    "account_not_activated": "Account is not activated. Please check your email",
     "credentials": "Please fill the fields",
     "tx_for_confirm": "Thanks for activating your account",
     "registration_completed": "Registration completed",
@@ -256,7 +257,6 @@
     "invite_competitors_with_fb": "Invite with Facebook",
     "competitors_register": "Competitors registration",
     "configure": "Configure",
-
     "rules": "Rules",
     "venue": "Venue",
     "coords": "Coordinates",

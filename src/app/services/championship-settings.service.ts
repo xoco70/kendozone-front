@@ -29,7 +29,7 @@ export class ChampionshipSettingsService {
     const url = environment.apiUrl + 'championships/' + championshipId + '/settings/';
     return this.http.post<ChampionshipSettings>(url, settings, httpOptions).pipe(
       tap(data => {
-        this.toastr.success(data.msg);
+        this.toastr.success(data['msg']);
       }),
       catchError(this.handleError<ChampionshipSettings>('addChampionshipSettings'))
     );

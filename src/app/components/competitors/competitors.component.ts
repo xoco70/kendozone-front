@@ -3,6 +3,7 @@ import {CompetitorService} from '../../services/competitor.service';
 import {ActivatedRoute} from '@angular/router';
 import {Tournament} from '../../models/tournament';
 import {Competitor} from '../../models/competitor';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-competitors',
@@ -25,6 +26,7 @@ export class CompetitorsComponent implements OnInit {
   all(): void {
     this.loading = true;
     this.competitorService.all(this.tournamentSlug)
+      .pipe(first())
       .subscribe(tournament => {
         this.tournament = tournament;
         this.loading = false;

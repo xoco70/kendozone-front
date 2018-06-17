@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService) {
+    private auth: AuthenticationService) {
   }
 
   ngOnInit() {
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     });
 
     // reset login status
-    this.authenticationService.logout();
+    this.auth.logout();
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.login(this.f.email.value, this.f.password.value)
+    this.auth.login(this.f.email.value, this.f.password.value)
       .pipe(first())
       .subscribe(
         data => {

@@ -34,7 +34,6 @@ export class TournamentService {
     if (page) {
       listUrl += '?page=' + page;
     }
-    console.log(listUrl);
     return this.http.get<Tournament[]>(listUrl)
       .pipe(
         catchError(this.handleError([]))
