@@ -10,9 +10,13 @@ export class Tournament {
   user: User;
   name: string;
   slug: string;
+  @Type(() => Date)
   date: string;
+  @Type(() => Date)
   dateIni: string;
+  @Type(() => Date)
   dateFin: string;
+  @Type(() => Date)
   registerDateLimit: string;
   sport: number;
   promoter: string;

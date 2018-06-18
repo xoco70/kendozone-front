@@ -45,6 +45,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PreliminaryComponent } from './components/trees/preliminary/preliminary.component';
 import { PlayoffComponent } from './components/trees/playoff/playoff.component';
 import { SingleEliminationComponent } from './components/trees/single-elimination/single-elimination.component';
+import {JwtInterceptor} from './helpers/jwt.interceptor';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -134,6 +135,11 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
       multi: true
     },
     {
