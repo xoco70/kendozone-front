@@ -42,6 +42,9 @@ import {SlugPipe} from './pipes/slug.pipe';
 import { TreesComponent } from './components/trees/trees.component';
 import { ResetPassword1Component } from './components/auth/reset-password1/reset-password1.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { PreliminaryComponent } from './components/trees/preliminary/preliminary.component';
+import { PlayoffComponent } from './components/trees/playoff/playoff.component';
+import { SingleEliminationComponent } from './components/trees/single-elimination/single-elimination.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -80,7 +83,10 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     SlugPipe,
     TreesComponent,
     ResetPassword1Component,
-    FooterComponent
+    FooterComponent,
+    PreliminaryComponent,
+    PlayoffComponent,
+    SingleEliminationComponent
   ],
   entryComponents: [NewCategoryModalComponent],
   imports: [
