@@ -31,4 +31,8 @@ export class Tournament {
   competitors: Competitor[];
   categoriesSelected: number[];
   venue: Venue;
+
+  isTest() {
+    return true;
+  }
 }

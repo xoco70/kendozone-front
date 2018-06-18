@@ -23,8 +23,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.auth.currentUser$.subscribe((user: User) => {
-      this.currentUser = user;
-    });
+    this.currentUser = this.auth.currentUser();
+    // this.auth.currentUser$.subscribe((user: User) => {
+    //   console.log(user);
+    // });
   }
 }

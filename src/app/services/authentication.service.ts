@@ -92,7 +92,7 @@ export class AuthenticationService {
     const json = localStorage.getItem(TOKEN);
     const decoded = this.jwtHelper.decodeToken(json);
     if (decoded) {
-      this.currentUser$.next(decoded.sub);
+      // this.currentUser$.next(decoded.sub);
       return decoded.sub;
     }
     return null;

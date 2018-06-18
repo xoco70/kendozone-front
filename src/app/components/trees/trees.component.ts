@@ -3,6 +3,7 @@ import {Tournament} from '../../models/tournament';
 import {ActivatedRoute} from '@angular/router';
 import {TreeService} from '../../services/tree.service';
 import {first} from 'rxjs/operators';
+import {Championship} from '../../models/championship';
 
 @Component({
   selector: 'app-trees',
@@ -11,13 +12,17 @@ import {first} from 'rxjs/operators';
 })
 export class TreesComponent implements OnInit {
 
+  myTournament = {};
   tournament: Tournament;
+  championships: Championship[];
   loading: boolean;
   slug: string;
 
   constructor(private treeService: TreeService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+  ) {
     this.slug = this.route.snapshot.params.slug;
+
   }
 
 
@@ -39,6 +44,7 @@ export class TreesComponent implements OnInit {
 
 
   ngOnInit() {
+    this.myTournament = new Tournament();
     this.getTournamentWithTrees();
   }
 

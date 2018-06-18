@@ -41,7 +41,6 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {SlugPipe} from './pipes/slug.pipe';
 import { TreesComponent } from './components/trees/trees.component';
 import { ResetPassword1Component } from './components/auth/reset-password1/reset-password1.component';
-import { ResetPassword2Component } from './components/auth/reset-password2/reset-password2.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 // AoT requires an exported function for factories
@@ -81,7 +80,6 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     SlugPipe,
     TreesComponent,
     ResetPassword1Component,
-    ResetPassword2Component,
     FooterComponent
   ],
   entryComponents: [NewCategoryModalComponent],
