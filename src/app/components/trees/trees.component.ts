@@ -33,6 +33,7 @@ export class TreesComponent implements OnInit {
       .pipe(first())
       .subscribe(tournament => {
         this.tournament = tournament;
+        console.log(this.tournament);
         this.loading = false;
       }, err => {
         this.loading = false;

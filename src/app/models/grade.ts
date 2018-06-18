@@ -1,5 +1,5 @@
 export class Grade {
   id: number;
-  name: string;
+  text: string;
   order: number;
 }

@@ -5,9 +5,10 @@ import {Championship} from './championship';
 
 export class Tournament {
   id: number;
+  user_id: number;
+  user: User;
   name: string;
   slug: string;
-  user: User;
   date: string;
   dateIni: string;
   dateFin: string;
@@ -19,6 +20,7 @@ export class Tournament {
   rule_id: number;
   type: number;
   venue_id: number;
+  venue: Venue;
   level_id: number;
   created_at: string;
   updated_at: string;
@@ -30,7 +32,7 @@ export class Tournament {
   championship_settings_count: number;
   competitors: Competitor[];
   categoriesSelected: number[];
-  venue: Venue;
+
 
   isTest() {
     return true;

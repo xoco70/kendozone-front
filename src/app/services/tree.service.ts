@@ -28,7 +28,7 @@ export class TreeService {
 
   getTournamentWithTrees(tournamentSlug: string): Observable<Tournament> {
     const listUrl = `${environment.apiUrl}/tournaments/${tournamentSlug}/trees/`;
-    return this.http.get<Tournament>(listUrl)
+    return this.http.get<any>(listUrl)
       .pipe(
         catchError(this.handleError(['']))
       );

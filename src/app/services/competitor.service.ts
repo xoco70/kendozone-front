@@ -29,7 +29,7 @@ export class CompetitorService {
 
   all(tournamentSlug: string): Observable<Tournament> {
     const listUrl = `${environment.apiUrl}/tournaments/${tournamentSlug}/competitors/`;
-    return this.http.get<Tournament>(listUrl)
+    return this.http.get<any>(listUrl)
       .pipe(
         catchError(this.handleError(['']))
       );
