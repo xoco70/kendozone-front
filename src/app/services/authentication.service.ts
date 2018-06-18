@@ -16,7 +16,6 @@ export const TOKEN = 'jwt_token';
 
 @Injectable()
 export class AuthenticationService {
-  currentUser$: Subject<User> = new Subject<User>();
   cachedRequests: Array<HttpRequest<any>> = [];
 
   constructor(
@@ -64,7 +63,6 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem(TOKEN);
-    this.currentUser$.next(undefined);
   }
 
   getToken(): string {
@@ -92,7 +90,6 @@ export class AuthenticationService {
     const json = localStorage.getItem(TOKEN);
     const decoded = this.jwtHelper.decodeToken(json);
     if (decoded) {
-      // this.currentUser$.next(decoded.sub);
       return decoded.sub;
     }
     return null;

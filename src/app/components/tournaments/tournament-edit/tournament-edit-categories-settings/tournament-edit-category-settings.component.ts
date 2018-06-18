@@ -66,7 +66,6 @@ export class TournamentEditCategorySettingsComponent implements OnInit {
 
     if (this.championship.settings == null) {
       this.championship.settings = settingsDefault;
-      console.log(this.championship.settings);
     }
     this.durations = [
       '01:15',

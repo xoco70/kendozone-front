@@ -4,6 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import {TreeService} from '../../services/tree.service';
 import {first} from 'rxjs/operators';
 import {Championship} from '../../models/championship';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-trees',
@@ -26,15 +27,12 @@ export class TreesComponent implements OnInit {
   }
 
 
-  getTournamentWithTrees(): Tournament {
+  getTournamentWithTrees(): Observable<Tournament> {
     this.loading = true;
     this.treeService.getTournamentWithTrees(this.slug)
       .pipe(first())
       .subscribe(tournament => {
         this.tournament = tournament;
-        console.log(this.tournament);
-        console.log(this.tournament instanceof Tournament);
-        console.log(this.tournament.championships);
         this.loading = false;
       }, err => {
         this.loading = false;
