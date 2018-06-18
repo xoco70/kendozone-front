@@ -5,6 +5,7 @@ import {TreeService} from '../../services/tree.service';
 import {first} from 'rxjs/operators';
 import {Championship} from '../../models/championship';
 import {Observable} from 'rxjs';
+import {plainToClass} from 'class-transformer';
 
 @Component({
   selector: 'app-trees',
@@ -32,8 +33,7 @@ export class TreesComponent implements OnInit {
     this.treeService.getTournamentWithTrees(this.slug)
       .pipe(first())
       .subscribe(tournament => {
-        this.tournament = tournament;
-        console.log(this.tournament);
+        this.tournament = plainToClass(Tournament, tournament);
         this.loading = false;
       }, err => {
         this.loading = false;

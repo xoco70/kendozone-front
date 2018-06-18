@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {AuthenticationService} from './services/authentication.service';
 import {User} from './models/user';
+import 'reflect-metadata';
 
 @Component({
   selector: 'app-root',
