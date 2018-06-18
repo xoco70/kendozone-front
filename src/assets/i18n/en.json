@@ -69,7 +69,13 @@
   },
   "profile": {
     "email": "Mail",
-    "country": "Country"
+    "country": "Country",
+    "firstname": "First name",
+    "lastname": "Last name",
+    "newpassword": "New password",
+    "conewpassword": "Confirm new password",
+    "without_grade": "No grade",
+    "left_password_blank": "If you don't want to change password... please leave them empty"
   },
   "tournaments": {
     "owner": "Owner"
@@ -178,7 +184,12 @@
     "generate_tree": "Generate Tree",
     "add_competitor": "Add Competitor",
     "avatar": "Avatar",
-    "quick_links": "Quick Links"
+    "quick_links": "Quick Links",
+    "add_competitor_to_category": "Add competitor to category",
+    "add_competitor_text1": "If you don't provide an email, Kendozone will generate a unique user automatically.",
+    "add_competitor_text2": "Notice that in this case, competitor will have a different ID for each championship in the tournament",
+    "add_competitor_text3": "To get Unique IDs, write the user email",
+    "add_more_competitors": "Add more competitors"
   },
   "trees": {
   },
@@ -273,12 +284,6 @@
     "grade": "Grade",
     "email_desc": "Email linked to your account",
     "role": "Role",
-    "firstname": "First name",
-    "lastname": "Last name",
-    "newpassword": "New password",
-    "conewpassword": "Confirm new password",
-    "without_grade": "No grade",
-    "left_password_blank": "If you don't want to change password... please leave them empty",
     "remove": "Remove",
     "competitor": "Competitor",
     "competitors": "Competitors",

@@ -76,7 +76,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header bg-primary text-white text-uppercase">
-        <h5 class="modal-title text-uppercase" id="creteCategoryLabel">Add new Competitor to Category</h5>
+        <h5 class="modal-title text-uppercase" id="creteCategoryLabel">{{ 'competitors.add_competitor_to_category' | translate }}</h5>
         <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -84,45 +84,42 @@
 
 
       <div class="modal-body pb2">
-        <small class="text-muted">If you don't provide an email, Kendozone will generate a unique user automatically.
+        <small class="text-muted">{{ 'competitors.add_competitor_text1' | translate }}
         </small>
         <br>
-        <small class="text-muted">Notice that in this case, competitor will have a different ID for each championship in
-          the tournament
-        </small>
+        <small class="text-muted">{{ 'competitors.add_competitor_text2' | translate }} </small>
         <br>
-        <small class="text-muted">To get Unique IDs, write the user email, or Invite by Email<a href="#">invite_competitors_with_email</a>
+        <small class="text-muted">{{ 'competitors.add_competitor_text3' | translate }} <!--, or Invite by Email<a href="#">invite_competitors_with_email</a>-->
         </small>
 
         <div align="right" class="mt-3 mb-3">
           <a class="add_field_button btn-primary btn text-white p-2">
-            <i class="fas fa-user-plus mr-2"></i>add_more_competitors
+            <i class="fas fa-user-plus mr-2"></i>{{ 'competitors.add_more_competitors' | translate }}
           </a></div>
 
         <div class="row">
           <div class="col-md-3">
             <div class=" form-group">
-              <label class="font-weight-bold">firstname</label>
+              <label class="font-weight-bold">{{ 'profile.firstname' | translate }}</label>
               <input type="text" name="firstnames[]" class="form-control mt-20" required="" placeholder="First name">
             </div>
           </div>
           <div class="col-md-3">
             <div class=" form-group">
-              <label class="font-weight-bold">lastname</label>
+              <label class="font-weight-bold">{{ 'profile.lastname' | translate }}</label>
               <input type="text" name="lastnames[]" class="form-control mt-20" required="" placeholder="Last name">
             </div>
           </div>
           <div class="col-md-3">
             <div class=" form-group">
-              <label class="font-weight-bold">Email</label>
-              <input type="text" name="emails[]" class="form-control mt-20" placeholder="Email ( optional )">
+              <label class="font-weight-bold">{{ 'profile.email' | translate }}</label>
+              <input type="text" name="emails[]" class="form-control mt-20" placeholder="{{ 'profile.email' | translate }} ( optional )">
             </div>
           </div>
         </div>
-
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary p-2">Add Category</button>
+        <button type="button" class="btn btn-success p-2">{{ 'common.save' | translate }}</button>
       </div>
     </div>
   </div>
