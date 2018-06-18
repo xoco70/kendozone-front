@@ -2,8 +2,8 @@ import {Grade} from '../models/grade';
 
 export const GRADES: Grade[] = [
   {
-    'id': 1,
-    'name': 'No grade',
+    'id': 0,
+    'name': 'add_cat.no_grade_restriction',
     'order': 0,
   },
   {

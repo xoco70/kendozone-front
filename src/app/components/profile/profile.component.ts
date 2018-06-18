@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {DropzoneComponent, DropzoneConfigInterface, DropzoneDirective} from 'ngx-dropzone-wrapper';
+import {GRADES} from '../../mock/mock-grades';
 
 @Component({
   selector: 'app-profile',
@@ -8,7 +9,7 @@ import {DropzoneComponent, DropzoneConfigInterface, DropzoneDirective} from 'ngx
 })
 export class ProfileComponent implements OnInit {
   public type = 'component';
-
+  grades = GRADES;
   public disabled = false;
 
   public config: DropzoneConfigInterface = {

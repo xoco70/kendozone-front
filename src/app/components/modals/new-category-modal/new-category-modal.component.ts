@@ -5,6 +5,7 @@ import {first} from 'rxjs/operators';
 import {Category} from '../../../models/category';
 import {TranslateService} from '@ngx-translate/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {GRADES} from '../../../mock/mock-grades';
 
 @Component({
   selector: 'app-new-category-modal',
@@ -39,24 +40,7 @@ export class NewCategoryModalComponent implements OnInit {
     {id: 5, text: 'add_cat.custom'}
   ];
   ages = Array(85).fill(0).map((x, i) => i);
-  grades = [
-    {id: 0, text: 'add_cat.no_grade_restriction'},
-    {id: 2, text: '7 Kyu'},
-    {id: 3, text: '6 Kyu'},
-    {id: 4, text: '5 Kyu'},
-    {id: 5, text: '4 Kyu'},
-    {id: 6, text: '3 Kyu'},
-    {id: 7, text: '2 Kyu'},
-    {id: 8, text: '1 Kyu'},
-    {id: 9, text: '1 Dan'},
-    {id: 10, text: '2 Dan'},
-    {id: 11, text: '3 Dan'},
-    {id: 12, text: '4 Dan'},
-    {id: 13, text: '5 Dan'},
-    {id: 14, text: '6 Dan'},
-    {id: 15, text: '7 Dan'},
-    {id: 16, text: '8 Dan'}
-  ];
+  grades = GRADES;
 
   constructor(
     private formBuilder: FormBuilder,

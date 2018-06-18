@@ -1,12 +1,11 @@
 import {Component, ElementRef, Input, NgZone, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MapsAPILoader} from '@agm/core';
-import {Country} from '../../../../models/country';
 import {Tournament} from '../../../../models/tournament';
 import {TournamentService} from '../../../../services/tournament.service';
 import {first} from 'rxjs/operators';
 import {Venue} from '../../../../models/venue';
-import {} from '@types/googlemaps';
+import {COUNTRIES} from '../../../../mock/mock-countries';
 
 
 @Component({
@@ -21,13 +20,12 @@ export class TournamentEditVenueComponent implements OnInit {
   loading = false;
   submitted = false;
   error = '';
+  countries = COUNTRIES;
 
   public latitude: number;
   public longitude: number;
   public searchControl: FormControl;
   public zoom: number;
-
-  @Input() countries: Country[];
   @ViewChild('search')
   public searchElementRef: ElementRef;
 

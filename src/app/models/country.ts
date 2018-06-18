@@ -13,7 +13,7 @@ export class Country {
   name: string;
   region_code: string;
   sub_region_code: string;
-  eea: string;
+  eea: number;
   calling_code: string;
   flag: string;
 }

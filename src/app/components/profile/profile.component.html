@@ -43,27 +43,16 @@
               </div>
               <div class="row">
                 <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
-                  <div class="form-group"><label for="grade_id" class="font-weight-bold">Grade</label>
-                    <select id="grade_id"
-                            name="grade_id"
-                            class="form-control select-lg">
-                      <option value="1">No grade</option>
-                      <option value="2">7 Kyu</option>
-                      <option value="3">6 Kyu</option>
-                      <option value="4">5 Kyu</option>
-                      <option value="5">4 Kyu</option>
-                      <option value="6">3 Kyu</option>
-                      <option value="7">2 Kyu</option>
-                      <option value="8">1 Kyu</option>
-                      <option value="9">1 Dan</option>
-                      <option value="10">2 Dan</option>
-                      <option value="11" selected="selected">3 Dan</option>
-                      <option value="12">4 Dan</option>
-                      <option value="13">5 Dan</option>
-                      <option value="14">6 Dan</option>
-                      <option value="15">7 Dan</option>
-                      <option value="16">8 Dan</option>
-                    </select></div>
+                  <div class="form-group">
+                    <label for="grade" class="font-weight-bold">Grade</label>
+                    <select name="grade" id="grade" class="form-control"
+                            [(ngModel)]="category.grade">
+                      <option *ngFor="let grade of grades" [ngValue]="grade.id">
+                        {{ grade.text | translate }}
+                      </option>
+                    </select>
+
+                  </div>
                 </div>
               </div>
             </div>
