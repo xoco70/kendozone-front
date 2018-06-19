@@ -68,5 +68,10 @@ export class AddCompetitorsModalComponent implements OnInit {
     );
   }
 
+  removeCompetitor(index: number) {
+    const control = <FormArray>this.competitorForm.controls['competitors'];
+    control.removeAt(index);
+  }
+
 
 }
