@@ -4,6 +4,10 @@ import {ActivatedRoute} from '@angular/router';
 import {Tournament} from '../../models/tournament';
 import {Competitor} from '../../models/competitor';
 import {first} from 'rxjs/operators';
+import {NewCategoryModalComponent} from '../modals/new-category-modal/new-category-modal.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {FormBuilder} from '@angular/forms';
+import {AddCompetitorsModalComponent} from '../modals/add-competitors-modal/add-competitors-modal.component';
 
 @Component({
   selector: 'app-competitors',
@@ -17,10 +21,35 @@ export class CompetitorsComponent implements OnInit {
   tournamentSlug: string;
 
   constructor(private competitorService: CompetitorService,
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
+              private modalService: NgbModal,
+              private formBuilder: FormBuilder
   ) {
     this.tournamentSlug = this.route.snapshot.params.slug;
 
+  }
+
+  open(championshipId) {
+    const modalRef = this.modalService.open(AddCompetitorsModalComponent, {size: 'lg', centered: true});
+    modalRef.componentInstance.championshipId = championshipId;
+    // modalRef.componentInstance.categoryName = 'my Category';
+
+    modalRef.result.then((competitor) => {
+      console.log('fullfilled');
+      console.log(competitor);
+      // const newCategory = {
+      //   id: category.id,
+      //   name: category.name
+      // };
+      // // if not present into categories, insert it
+      // if (!this.categories.some((item) => item.id == newCategory.id)) {
+      //   this.categories.push(newCategory);
+      // } else {
+      //   this.toastr.error('Category has already been added');
+      // }
+    }, (reason) => {
+      console.log('dismissed');
+    });
   }
 
   all(): void {

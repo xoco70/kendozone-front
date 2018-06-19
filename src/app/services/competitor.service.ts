@@ -9,6 +9,7 @@ import {AuthenticationService} from './authentication.service';
 import {ToastrService} from 'ngx-toastr';
 import {Tournament} from '../models/tournament';
 import {Competitor} from '../models/competitor';
+import {Category} from '../models/category';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -64,5 +65,13 @@ export class CompetitorService {
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
+  }
+
+  store(competitors: Competitor[], championshipId: number): Observable<Competitor[]> {
+    const competitorsUrl = `${environment.apiUrl}championships/${championshipId}/competitors/`;
+    return this.http.post<any>(competitorsUrl, competitors, httpOptions).pipe(
+      tap(data => this.toastr.success('success')),
+      catchError(this.handleError<any>(''))
+    );
   }
 }

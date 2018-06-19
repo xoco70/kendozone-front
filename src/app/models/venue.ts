@@ -1,5 +1,3 @@
-import {Country} from './country';
-
 export class Venue {
   id: number;
   venue_name: string;

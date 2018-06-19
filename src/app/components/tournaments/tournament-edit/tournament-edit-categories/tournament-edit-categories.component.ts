@@ -23,8 +23,7 @@ export class TournamentEditCategoriesComponent implements OnInit {
   category;
   hasPreliminary: boolean;
 
-  constructor(private formBuilder: FormBuilder,
-              private toastr: ToastrService,
+  constructor(private toastr: ToastrService,
               private tournamentService: TournamentService,
               private modalService: NgbModal) {
   }

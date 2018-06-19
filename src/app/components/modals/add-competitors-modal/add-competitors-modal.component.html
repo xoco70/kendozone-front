@@ -1,0 +1,62 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="competitorForm">
+  <div formArrayName="competitors">
+    <!--Modal-->
+    <div class="modal-header bg-primary text-white text-uppercase">
+      <h4 class="modal-title">{{ 'competitors.add_competitors' | translate | uppercase }}: {{
+        championship?.category?.name}}</h4>
+      <button type="button" class="close text-white" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-8 mb-4">
+          <small class="text-muted">{{ 'competitors.add_competitor_text1' | translate }} </small>
+          <br>
+          <small class="text-muted">{{ 'competitors.add_competitor_text2' | translate }} </small>
+          <br>
+          <small class="text-muted">{{ 'competitors.add_competitor_text3' | translate }} </small><!--, or Invite by Email<a href="#">invite_competitors_with_email</a>-->
+        </div>
+        <div class="col-md-4">
+          <div align="right" class="mb-3">
+            <button type="button" class="btn btn-primary" (click)="addCompetitor()">
+              <i class="fas fa-user-plus mr-2"></i>{{ 'competitors.add_more_competitors' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngFor="let competitor of competitorForm.controls['competitors'].controls; let i = index"
+           formGroupName="{{i}}">
+        <div class="col-md-3">
+          <div class=" form-group">
+            <input type="text" class="input-lg" formControlName="firstname" placeholder="First name">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class=" form-group">
+            <input type="text" class="input-lg" formControlName="lastname" placeholder="last name">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class=" form-group">
+            <input type="text" class="input-lg" formControlName="email"
+                   placeholder="{{ 'profile.email' | translate }} ( optional )">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class=" form-group">
+            <button class="btn">
+              <i class="fas fa-times text-primary f-25"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success">
+        {{ 'common.save' | translate }}
+      </button>
+    </div>
+  </div>
+</form>

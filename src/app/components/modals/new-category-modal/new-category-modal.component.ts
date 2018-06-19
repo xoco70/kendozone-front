@@ -43,7 +43,6 @@ export class NewCategoryModalComponent implements OnInit {
   grades = GRADES;
 
   constructor(
-    private formBuilder: FormBuilder,
     private categoryService: CategoryService,
     private translateService: TranslateService,
     public modal: NgbActiveModal
