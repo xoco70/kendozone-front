@@ -1,118 +1,121 @@
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-<div class="col-md-12 col-lg-8 offset-lg-2 ">
-  <div class="card">
-    <div class="card-body">
-      <h4 class="card-title text-uppercase">{{ 'tour_create.newTournament' | translate }}</h4>
-      <hr>
-      <div class="row">
-        <div class="col-2 col-md-1">
-          <span class="numeros">1</span>
+<form (ngSubmit)="onSubmit()">
+  <div class="col-md-12 col-lg-8 offset-lg-2 ">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title text-uppercase">{{ 'tour_create.newTournament' | translate }}</h4>
+        <hr>
+        <div class="row">
+          <div class="col-2 col-md-1">
+            <span class="numeros">1</span>
+          </div>
+          <div class="col-10 "><span class="text-uppercase font-weight-bold">{{ 'tour_create.general_data' | translate | uppercase}}</span><br>
+            {{ 'tour_create.general_data_step1' | translate }}
+          </div>
         </div>
-        <div class="col-10 "><span class="text-uppercase font-weight-bold">{{ 'tour_create.general_data' | translate | uppercase}}</span><br>
-          {{ 'tour_create.general_data_step1' | translate }}
-        </div>
-      </div>
-      <br>
-      <div class="row">
-        <div class="col-md-4 offset-md-1">
-          <label for="name" class="font-weight-bold">{{ 'common.name' | translate }}</label>
-          <input class="form-control input-lg" name="name" type="text" id="name">
-        </div>
-        <div class="col-md-3">
-          <label for="name" class="font-weight-bold">{{ 'tour_edit.eventDateIni' | translate }}</label>
-          <div class="form-group">
-            <div class="input-group">
-              <input class="form-control" placeholder="yyyy-mm-dd"
-                     name="dateIni" [(ngModel)]="tournament.dateIni" ngbDatepicker #a="ngbDatepicker">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary" (click)="a.toggle()" type="button">
-                  <i class="fas fa-calendar-alt calendar"></i>
-                </button>
+        <br>
+        <div class="row">
+          <div class="col-md-4 offset-md-1">
+            <label for="name" class="font-weight-bold">{{ 'common.name' | translate }}</label>
+            <input class="form-control input-lg" name="name" [(ngModel)]="tournament.name" type="text" id="name">
+          </div>
+          <div class="col-md-3">
+            <label for="name" class="font-weight-bold">{{ 'tour_edit.eventDateIni' | translate }}</label>
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd"
+                       name="dateIni" [(ngModel)]="tournament.dateIni" ngbDatepicker #a="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" (click)="a.toggle()" type="button">
+                    <i class="fas fa-calendar-alt calendar"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <label for="name" class="font-weight-bold">{{ 'tour_edit.eventDateFin' | translate }}</label>
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd"
+                       name="dateFin" [(ngModel)]="tournament.dateFin" ngbDatepicker #b="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" (click)="b.toggle()" type="button">
+                    <i class="fas fa-calendar-alt calendar"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-3">
-          <label for="name" class="font-weight-bold">{{ 'tour_edit.eventDateFin' | translate }}</label>
-          <div class="form-group">
-            <div class="input-group">
-              <input class="form-control" placeholder="yyyy-mm-dd"
-                     name="dateFin" [(ngModel)]="tournament.dateFin" ngbDatepicker #b="ngbDatepicker">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary" (click)="b.toggle()" type="button">
-                  <i class="fas fa-calendar-alt calendar"></i>
-                </button>
-              </div>
-            </div>
+        <hr>
+        <div class="row">
+          <div class="col-2 col-md-1">
+            <span class="numeros">2</span>
+          </div>
+          <div class="col-10"><span
+            class="font-weight-bold text-uppercase">{{ 'tour_create.configure_categories' | translate }}</span><br>
+            {{ 'tour_create.configure_categories_text' | translate }}
+            <br>
           </div>
         </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-2 col-md-1">
-          <span class="numeros">2</span>
+        <br><br>
+        <div class="row">
+          <div class="col-1 offset-md-1">
+            <input name="numMethod" [value]="0" type="radio" checked class="mt-3 mr-2" [(ngModel)]="tournament.rule_id">
+          </div>
+          <div class="col-md-10"><span
+            class="font-weight-bold">{{ 'tour_create.presettings' | translate | uppercase}}</span><br>
+            {{ 'tour_create.presettings_text' | translate }}
+            <br><br>
+          </div>
         </div>
-        <div class="col-10"><span
-          class="font-weight-bold text-uppercase">{{ 'tour_create.configure_categories' | translate }}</span><br>
-          {{ 'tour_create.configure_categories_text' | translate }}
-          <br>
-        </div>
-      </div>
-      <br><br>
-      <div class="row">
-        <div class="col-1 offset-md-1">
-          <input name="numMethod" [value]="0" type="radio" checked class="mt-3 mr-2" [(ngModel)]="creationMethod">
-        </div>
-        <div class="col-md-10"><span
-          class="font-weight-bold">{{ 'tour_create.presettings' | translate | uppercase}}</span><br>
-          {{ 'tour_create.presettings_text' | translate }}
-          <br><br>
-        </div>
-      </div>
-      <div class="row md-12">
-        <div class="col-md-4 offset-md-2">
-          <select class="form-control select-lg" id="presets" name="presets" [(ngModel)]="rule">
-            <option *ngFor="let preset of presets" [ngValue]="preset.id" [disabled]="creationMethod==1">{{
-              preset.name}}
-            </option>
-          </select>
-        </div>
-        <div class="col-md-6">
-          <small id="categories_desc" *ngIf="rule!==0"><strong>{{ 'model.categories' | translate }}:</strong>
-            <span *ngFor="let category of presets[rule].categories; let isLast=last">
+        <div class="row md-12">
+          <div class="col-md-4 offset-md-2">
+            <select class="form-control select-lg" id="presets" name="presets" [(ngModel)]="rule">
+              <option *ngFor="let preset of presets" [ngValue]="preset.id" [disabled]="tournament.rule_id==1">{{
+                preset.name}}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <small id="categories_desc" *ngIf="rule!==0"><strong>{{ 'model.categories' | translate }}:</strong>
+              <span *ngFor="let category of presets[rule].categories; let isLast=last">
               {{ category.name | translate }} {{isLast ? '' : ', '}}
             </span>
-          </small>
+            </small>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-11 col-md-offset-1">
+        <div class="row">
+          <div class="col-md-11 col-md-offset-1">
 
+          </div>
         </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-1 offset-md-1">
-          <input name="numMethod" [value]="1" type="radio" class="mt-3 mr-2" [(ngModel)]="creationMethod">
+        <hr>
+        <div class="row">
+          <div class="col-1 offset-md-1">
+            <input name="numMethod" [value]="1" type="radio" class="mt-3 mr-2" [(ngModel)]="tournament.rule_id">
 
+          </div>
+          <div class="col-md-10">
+            <span class="font-weight-bold">{{ 'tour_create.manual' | translate | uppercase }}</span><br>
+            {{ 'tour_create.select_categories_to_register' | translate }}<br>
+          </div>
         </div>
-        <div class="col-md-10">
-          <span class="font-weight-bold">{{ 'tour_create.manual' | translate | uppercase }}</span><br>
-          {{ 'tour_create.select_categories_to_register' | translate }}<br>
+        <div class="row">
+          <div class="col-10 offset-md-1">
+            <app-tournament-edit-categories
+              [(ngModel)]="tournament" name="tournament"
+              [tournament]="tournament"
+              [disabled]="!tournament.rule_id"
+              [categories]="categories"></app-tournament-edit-categories>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-10 offset-md-1">
-          <app-tournament-edit-categories
-            [tournament]="tournament"
-            [disabled]="!creationMethod"
-            [categories]="categories"></app-tournament-edit-categories>
+        <br/><br/>
+        <div class=" text-right mt-15">
+          <input class="btn btn-success" type="submit" value="Add Tournament">
         </div>
-      </div>
-      <br/><br/>
-      <div class=" text-right mt-15">
-        <input class="btn btn-success" type="submit" value="Add Tournament">
       </div>
     </div>
   </div>
-</div>
+</form>

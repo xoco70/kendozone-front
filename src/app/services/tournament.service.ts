@@ -48,6 +48,13 @@ export class TournamentService {
       );
   }
 
+  store(tournament: Tournament): Observable<Tournament> {
+    return this.http.post(this.tournamentsUrl, tournament, httpOptions).pipe(
+      tap(data => this.toastr.success('success')),
+      catchError(this.handleError<any>('createTournament'))
+    );
+  }
+
   update(tournament: Tournament, tab: string): Observable<any> {
     const tournamentUrl = this.tournamentsUrl + tournament.slug + '?tab=' + tab;
     return this.http.put(tournamentUrl, tournament, httpOptions).pipe(
@@ -97,4 +104,6 @@ export class TournamentService {
       return of(result as T);
     };
   }
+
+
 }

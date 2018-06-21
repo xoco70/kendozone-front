@@ -3,6 +3,8 @@ import {TournamentService} from '../../../services/tournament.service';
 import {CategoryService} from '../../../services/category.service';
 import {Category} from '../../../models/category';
 import {Tournament} from '../../../models/tournament';
+import {ToastrService} from 'ngx-toastr';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-tournament-create',
@@ -13,7 +15,7 @@ export class TournamentCreateComponent implements OnInit {
   private loading = false;
   categories: Category[];
   tournament: Tournament = <Tournament>{};
-  creationMethod = 0;
+  rule_id = 0;
   rule = 0;
   presets = [
     {id: 0, name: '-'},
@@ -43,12 +45,39 @@ export class TournamentCreateComponent implements OnInit {
       ]
     },
   ];
+  private submitted = false;
 
   constructor(
+    private toastr: ToastrService,
     private tournamentService: TournamentService,
     private categoryService: CategoryService,
+    private router: Router
   ) {
   }
+
+  onSubmit() {
+    this.submitted = true;
+
+    if (this.tournament.categoriesSelected.length === 0) {
+      this.toastr.error('You must select at least 1 category'); // TODO translate
+      return;
+    }
+
+    this.loading = true;
+    // this.tournament.
+    this.tournamentService.store(this.tournament)
+      .subscribe(
+        data => {
+          this.loading = false;
+          console.log(data);
+          // this.router.navigate(['/tournaments', this.tournament.slug]);
+        },
+        error => {
+          this.loading = false;
+        });
+
+  }
+
 
   // tournamentPresets(): void {
   //   this.loading = true;
@@ -85,6 +114,7 @@ export class TournamentCreateComponent implements OnInit {
   ngOnInit() {
     // this.tournamentPresets();
     this.getCategories();
+    this.tournament.categoriesSelected = [];
   }
 
 }
