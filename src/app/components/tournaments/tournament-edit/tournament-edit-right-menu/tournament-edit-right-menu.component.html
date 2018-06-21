@@ -2,11 +2,16 @@
   <div class="card-header bg-dark"><span class="text-white">{{ tournament.name | uppercase }}</span></div>
   <div class="card-body align-items-lg-start">
     <ul>
-      <li><a href="#"><i class="fas fa-trophy"></i> {{ 'tour_edit.general_data' | translate }}
-      </a></li>
-      <li><a href="#"><i class="fas fa-map-marker"></i> {{ 'model.venue' | translate }}
-      </a></li>
-      <li><a href="#">
+      <li>
+        <a href="#" (click)="t.select('general-data')"><i class="fas fa-trophy"></i> {{ 'tour_edit.general_data' |
+          translate }}
+        </a>
+      </li>
+      <li>
+        <a href="#" (click)="t.select('venue')"><i class="fas fa-map-marker"></i> {{ 'model.venue' | translate }}</a>
+      </li>
+      <li>
+        <a routerLink="./" (click)="t.select('categories-settings')">
         <i class="fas fa-cog"></i>{{ 'model.categories' | translate }}
         <div class="badge badge-success" id="categories-status">
           <span class="category-size text-white">{{ championship_settings_count }} / {{ tournament.championships.length }}</span>

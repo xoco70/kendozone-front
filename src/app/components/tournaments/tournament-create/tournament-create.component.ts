@@ -11,9 +11,6 @@ import {Tournament} from '../../../models/tournament';
 })
 export class TournamentCreateComponent implements OnInit {
   private loading = false;
-  // private presets: any;
-  // selectedEntry;
-  // mode: boolean;
   categories: Category[];
   tournament: Tournament = <Tournament>{};
   creationMethod = 0;

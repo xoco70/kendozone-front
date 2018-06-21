@@ -1,17 +1,23 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {AfterViewInit, Component, forwardRef, Input, OnInit} from '@angular/core';
 import {TournamentService} from '../../../../services/tournament.service';
 import {Tournament} from '../../../../models/tournament';
 import {ToastrService} from 'ngx-toastr';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {NewCategoryModalComponent} from '../../../modals/new-category-modal/new-category-modal.component';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
   selector: 'app-tournament-edit-categories',
   templateUrl: './tournament-edit-categories.component.html',
-  styleUrls: ['./tournament-edit-categories.component.scss']
+  styleUrls: ['./tournament-edit-categories.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => TournamentEditCategoriesComponent),
+      multi: true
+    }]
 })
-export class TournamentEditCategoriesComponent implements OnInit {
+export class TournamentEditCategoriesComponent implements OnInit, ControlValueAccessor, AfterViewInit {
   @Input() tournament: Tournament;
   @Input() categories;
   @Input() componentName;
@@ -48,27 +54,6 @@ export class TournamentEditCategoriesComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    this.submitted = true;
-
-    if (this.tournament.categoriesSelected.length === 0) {
-      this.toastr.error('You must select at least 1 category'); // TODO translate
-      return;
-    }
-
-    this.loading = true;
-
-    // this.tournament.
-    this.tournamentService.update(this.tournament, 'categories')
-      .subscribe(
-        data => {
-          this.loading = false;
-        },
-        error => {
-          this.loading = false;
-        });
-  }
-
   changeCategory(e) {
     if (e.target.checked) {
       this.tournament.categoriesSelected.push(parseInt(e.target.id, 10));
@@ -81,5 +66,44 @@ export class TournamentEditCategoriesComponent implements OnInit {
     if (this.tournament.id) {
       this.tournament.categoriesSelected = this.tournament.championships.map(championship => championship.category.id);
     }
+  }
+
+  ngAfterViewInit() {
+    if (this.tournament.id) {
+      console.log(this.tournament.championships.map(championship => championship.category.id));
+      this.tournament.categoriesSelected = this.tournament.championships.map(championship => championship.category.id);
+    }
+  }
+
+  // the method set in registerOnChange, it is just
+  // a placeholder for a method that takes one parameter,
+  // we use it to emit changes back to the form
+  private propagateChange = (_: any) => {
+  };
+
+  // this is the initial value set to the component
+  public writeValue(obj: any) {
+    // if (obj) {
+    //   this.tournament.categoriesSelected = obj;
+    //   // // this will format it with 4 character spacing
+    //   // this.jsonString =
+    //   //   JSON.stringify(this.data, undefined, 4);
+    // }
+  }
+
+  // registers 'fn' that will be fired when changes are made
+  // this is how we emit the changes back to the form
+  public registerOnChange(fn: any) {
+    this.propagateChange = fn;
+  }
+
+  // not used, used for touch input
+  public registerOnTouched() {
+  }
+
+  // change events from the textarea
+  private onChange(event) {
+    // update the form
+    this.propagateChange(this.tournament.categoriesSelected);
   }
 }

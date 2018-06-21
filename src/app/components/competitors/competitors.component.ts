@@ -4,7 +4,6 @@ import {ActivatedRoute} from '@angular/router';
 import {Tournament} from '../../models/tournament';
 import {Competitor} from '../../models/competitor';
 import {first} from 'rxjs/operators';
-import {NewCategoryModalComponent} from '../modals/new-category-modal/new-category-modal.component';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder} from '@angular/forms';
 import {AddCompetitorsModalComponent} from '../modals/add-competitors-modal/add-competitors-modal.component';
@@ -48,7 +47,6 @@ export class CompetitorsComponent implements OnInit {
       //   this.toastr.error('Category has already been added');
       // }
     }, (reason) => {
-      console.log('dismissed');
     });
   }
 
@@ -78,10 +76,5 @@ export class CompetitorsComponent implements OnInit {
 
     this.all();
 
-  }
-
-  pageChanged(page: number) {
-    this.page = page;
-    this.all();
   }
 }

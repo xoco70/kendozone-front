@@ -9,16 +9,11 @@
     </div>
   </div>
 </div>
-<div align="right" *ngIf="componentName==='TournamentEditComponent'">
-  <button type="submit" class="btn btn-success">
-    {{ 'common.save' | translate }}
-  </button>
-</div>
 <hr>
 <!-- Button trigger modal -->
-<div align="center" class="mt-2">
+<div align="center" class="mt-2 mb-4">
   <span class="mr-1">{{ 'add_cat.want_to_create_custom_category' | translate }}</span>
-  <button class="btn btn-lg btn-outline-primary" (click)="open()" [disabled]="disabled">
+  <button type="button" class="btn btn-lg btn-outline-primary" (click)="open()" [disabled]="disabled">
     {{ 'add_cat.add_custom_category' | translate }}
   </button>
 </div>

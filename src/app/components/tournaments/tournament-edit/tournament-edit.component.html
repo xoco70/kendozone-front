@@ -2,8 +2,8 @@
 <div class="container" *ngIf="!loading">
   <div class="row">
     <div class="col-md-9" id="main">
-      <ngb-tabset type="pills" class="nav-fill">
-        <ngb-tab>
+      <ngb-tabset type="pills" class="nav-fill" #tabs [activeId]="selectedTab" >
+        <ngb-tab id="general-data">
           <ng-template ngbTabTitle>{{ 'tour_edit.general_data' | translate | uppercase }}</ng-template>
           <ng-template ngbTabContent>
             <div class="card mt-3">
@@ -14,7 +14,7 @@
             </div>
           </ng-template>
         </ngb-tab>
-        <ngb-tab>
+        <ngb-tab id="venue">
           <ng-template ngbTabTitle>{{ 'model.venue' | translate | uppercase }}</ng-template>
           <ng-template ngbTabContent>
             <div class="card mt-3">
@@ -26,23 +26,30 @@
             </div>
           </ng-template>
         </ngb-tab>
-        <ngb-tab>
+        <ngb-tab id="categories">
           <ng-template ngbTabTitle>{{ 'model.categories' | translate | uppercase }}</ng-template>
           <ng-template ngbTabContent>
             <div class="card mt-3">
               <div class="card-body">
-                <form (ngSubmit)="onSubmit()">
+                <form (ngSubmit)="onSubmitCategories()">
                   <app-tournament-edit-categories
+                    [(ngModel)]="data.tournament" name="tournament"
                     [tournament]="data.tournament"
                     [categories]="data.categories"
-                    [componentName]="componentName"
-                  ></app-tournament-edit-categories>
+                    [componentName]="componentName" >
+                  </app-tournament-edit-categories>
+                  <div align="right">
+                    <button type="submit" class="btn btn-success">
+                      {{ 'common.save' | translate }}
+                    </button>
+                  </div>
+
                 </form>
               </div>
             </div>
           </ng-template>
         </ngb-tab>
-        <ngb-tab>
+        <ngb-tab id="category-settings">
           <ng-template ngbTabTitle>{{ 'model.categorySettings' | translate | uppercase }}</ng-template>
           <ng-template ngbTabContent>
             <div class="card mt-3">

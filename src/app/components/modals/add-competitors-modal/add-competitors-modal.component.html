@@ -1,3 +1,4 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
 <form (ngSubmit)="onSubmit()" [formGroup]="competitorForm">
   <div formArrayName="competitors">
     <!--Modal-->
@@ -11,11 +12,12 @@
     <div class="modal-body">
       <div class="row">
         <div class="col-md-8 mb-4">
-          <small class="text-muted">{{ 'competitors.add_competitor_text1' | translate }} </small>
+          <small class="text-muted">{{ 'competitors.add_competitor_text1' | translate }}</small>
           <br>
-          <small class="text-muted">{{ 'competitors.add_competitor_text2' | translate }} </small>
+          <small class="text-muted">{{ 'competitors.add_competitor_text2' | translate }}</small>
           <br>
-          <small class="text-muted">{{ 'competitors.add_competitor_text3' | translate }} </small><!--, or Invite by Email<a href="#">invite_competitors_with_email</a>-->
+          <small class="text-muted">{{ 'competitors.add_competitor_text3' | translate }}</small>
+          <!--, or Invite by Email<a href="#">invite_competitors_with_email</a>-->
         </div>
         <div class="col-md-4">
           <div align="right" class="mb-3">
@@ -28,20 +30,42 @@
 
       <div class="row" *ngFor="let competitor of competitorForm.controls['competitors'].controls; let i = index"
            formGroupName="{{i}}">
+        <!--{{ submitted && competitor.controls.firstname.errors!=null }}-->
+        <!--{{ competitor.controls.firstname.errors.required}}-->
         <div class="col-md-3">
           <div class=" form-group">
-            <input type="text" class="input-lg" formControlName="firstname" placeholder="First name">
+            <input type="text" class="input-lg" formControlName="firstname" placeholder="First name"
+                   [ngClass]="{ 'is-invalid': submitted && competitor.controls.firstname.errors }">
+            <div *ngIf="(submitted && competitor.controls.firstname.errors)" class="invalid-feedback">
+              <div *ngIf="competitor.controls.firstname.errors.required" translate
+                   [translateParams]="{attribute: 'firstname'}">
+                validation.required
+              </div>
+            </div>
           </div>
         </div>
         <div class="col-md-3">
           <div class=" form-group">
-            <input type="text" class="input-lg" formControlName="lastname" placeholder="last name">
+            <input type="text" class="input-lg" formControlName="lastname" placeholder="last name"
+                   [ngClass]="{ 'is-invalid': submitted && competitor.controls.lastname.errors }">
+            <div *ngIf="submitted && competitor.controls.lastname.errors" class="invalid-feedback">
+              <div *ngIf="competitor.controls.lastname.errors.required" translate
+                   [translateParams]="{attribute: 'lastname'}">
+                validation.required
+              </div>
+            </div>
           </div>
         </div>
         <div class="col-md-3">
           <div class=" form-group">
             <input type="text" class="input-lg" formControlName="email"
+                   [ngClass]="{ 'is-invalid': submitted && competitor.controls.email.errors }"
                    placeholder="{{ 'profile.email' | translate }} ( optional )">
+            <div *ngIf="submitted && competitor.controls.email.errors" class="invalid-feedback">
+              <div *ngIf="competitor.controls.email.errors.required" translate [translateParams]="{attribute: 'email'}">
+                validation.required
+              </div>
+            </div>
           </div>
         </div>
         <div class="col-md-3">

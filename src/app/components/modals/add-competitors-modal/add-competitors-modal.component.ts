@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {first} from 'rxjs/operators';
 import {CompetitorService} from '../../../services/competitor.service';
-import {Competitor} from '../../../models/competitor';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -11,9 +10,8 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angul
   styleUrls: ['./add-competitors-modal.component.scss']
 })
 export class AddCompetitorsModalComponent implements OnInit {
-  private submitted: boolean;
-  private loading: boolean;
-  competitors: Competitor[];
+  public submitted = false;
+  private loading = false;
   private championshipId: number;
   competitorForm: FormGroup;
 
@@ -37,9 +35,13 @@ export class AddCompetitorsModalComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    this.loading = true;
-    console.log('championship:' + this.championshipId);
-    this.competitorService.store(this.competitors, this.championshipId)
+    // this.loading = true;
+    // console.log('championship:' + this.championshipId);
+    if (this.competitorForm.invalid) {
+      console.log('invalid');
+      return;
+    }
+    this.competitorService.store(this.competitorForm.value, this.championshipId)
       .pipe(first())
       .subscribe(
         data => {

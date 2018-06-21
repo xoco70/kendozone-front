@@ -39,14 +39,14 @@ import {NgbdDatepickerRange} from './components/form/datepicker-range';
 import {NewCategoryModalComponent} from './components/modals/new-category-modal/new-category-modal.component';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {SlugPipe} from './pipes/slug.pipe';
-import { TreesComponent } from './components/trees/trees.component';
-import { ResetPassword1Component } from './components/auth/reset-password1/reset-password1.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { PreliminaryComponent } from './components/trees/preliminary/preliminary.component';
-import { PlayoffComponent } from './components/trees/playoff/playoff.component';
-import { SingleEliminationComponent } from './components/trees/single-elimination/single-elimination.component';
+import {TreesComponent} from './components/trees/trees.component';
+import {ResetPassword1Component} from './components/auth/reset-password1/reset-password1.component';
+import {FooterComponent} from './components/footer/footer.component';
+import {PreliminaryComponent} from './components/trees/preliminary/preliminary.component';
+import {PlayoffComponent} from './components/trees/playoff/playoff.component';
+import {SingleEliminationComponent} from './components/trees/single-elimination/single-elimination.component';
 import {JwtInterceptor} from './helpers/jwt.interceptor';
-import { AddCompetitorsModalComponent } from './components/modals/add-competitors-modal/add-competitors-modal.component';
+import {AddCompetitorsModalComponent} from './components/modals/add-competitors-modal/add-competitors-modal.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -100,7 +100,10 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: 'toast-bottom-left',
-      tapToDismiss: true
+      tapToDismiss: true,
+      preventDuplicates: true,
+      maxOpened: 1,
+      autoDismiss: true
     }), // ToastrModule added
     AppRoutingModule,
     HttpClientModule,
