@@ -15,10 +15,9 @@ export class TournamentCreateComponent implements OnInit {
   private loading = false;
   categories: Category[];
   tournament: Tournament = <Tournament>{};
-  rule_id = 0;
+  usePresets = 1;
   rule = 0;
   presets = [
-    {id: 0, name: '-'},
     {
       id: 1, name: 'Internation Kendo Federation (IKF)',
       categories: [
@@ -58,7 +57,7 @@ export class TournamentCreateComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    if (this.tournament.categoriesSelected.length === 0) {
+    if (this.tournament.rule_id === 0 && this.tournament.categoriesSelected.length === 0) {
       this.toastr.error('You must select at least 1 category'); // TODO translate
       return;
     }
@@ -69,26 +68,14 @@ export class TournamentCreateComponent implements OnInit {
       .subscribe(
         data => {
           this.loading = false;
-          console.log(data);
-          // this.router.navigate(['/tournaments', this.tournament.slug]);
+          console.log(data.slug);
+          this.router.navigate(['tournaments', data.slug, 'edit']);
         },
         error => {
           this.loading = false;
         });
 
   }
-
-
-  // tournamentPresets(): void {
-  //   this.loading = true;
-  //   this.tournamentService.tournamentPresets()
-  //     .subscribe(presets => {
-  //       this.presets = presets;
-  //       this.loading = false;
-  //     }, err => {
-  //       this.loading = false;
-  //     });
-  // }
 
   getCategories(): void {
     this.loading = true;
@@ -101,20 +88,11 @@ export class TournamentCreateComponent implements OnInit {
       });
   }
 
-  // displayPresetsLabels(presetId: number): string {
-  //   let labels = this.presets[presetId];
-  //   console.log(labels);
-  //   return labels;
-  // }
-
-  // onSelectionChange(entry) {
-  //   this.selectedEntry = entry;
-  // }
 
   ngOnInit() {
-    // this.tournamentPresets();
     this.getCategories();
     this.tournament.categoriesSelected = [];
+    this.tournament.rule_id = 1;
   }
 
 }

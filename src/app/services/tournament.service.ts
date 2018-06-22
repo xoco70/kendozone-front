@@ -50,7 +50,7 @@ export class TournamentService {
 
   store(tournament: Tournament): Observable<Tournament> {
     return this.http.post(this.tournamentsUrl, tournament, httpOptions).pipe(
-      tap(data => this.toastr.success('success')),
+      tap(data => this.toastr.success('Tournament Created Successfully')),
       catchError(this.handleError<any>('createTournament'))
     );
   }
@@ -58,7 +58,7 @@ export class TournamentService {
   update(tournament: Tournament, tab: string): Observable<any> {
     const tournamentUrl = this.tournamentsUrl + tournament.slug + '?tab=' + tab;
     return this.http.put(tournamentUrl, tournament, httpOptions).pipe(
-      tap(data => this.toastr.success('success')),
+      tap(data => this.toastr.success('Tournament Updated Successfully')),
       catchError(this.handleError<any>('updateTournament'))
     );
   }
