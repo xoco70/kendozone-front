@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {catchError} from 'rxjs/operators';
+import {catchError, tap} from 'rxjs/operators';
 
 import {Observable, of} from 'rxjs';
 import {environment} from '../../environments/environment';
@@ -8,6 +8,7 @@ import {environment} from '../../environments/environment';
 import {AuthenticationService} from './authentication.service';
 import {ToastrService} from 'ngx-toastr';
 import {Tournament} from '../models/tournament';
+import {Championship} from '../models/championship';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -24,6 +25,14 @@ export class TreeService {
     private auth: AuthenticationService,
     private toastr: ToastrService,
   ) {
+  }
+
+  store(championship: Championship): Observable<any> {
+    const generateTreeUrl = `${environment.apiUrl}championships/${championship.id}/trees/`;
+    return this.http.post<any>(generateTreeUrl, championship, httpOptions).pipe(
+      tap(data => this.toastr.success(data.msg)),
+      catchError(this.handleError<any>(''))
+    );
   }
 
   getTournamentWithTrees(tournamentSlug: string): Observable<Tournament> {
@@ -47,9 +56,9 @@ export class TreeService {
    */
   private handleError<T>(result?: T) {
     return (data: any): Observable<T> => {
-
+      console.log(data);
       // TODO: send the error to remote logging infrastructure
-      this.toastr.error(data.error.error);
+      this.toastr.error(data.error.msg);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

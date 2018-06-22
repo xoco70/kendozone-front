@@ -27,7 +27,19 @@ export class TreesComponent implements OnInit {
 
   }
 
+  generateTree(championship) {
+    this.treeService.store(championship)
+      .pipe(first())
+      .subscribe(
+        data => {
+          console.log(data);
+          this.loading = false;
+        },
+        error => {
+          this.loading = false;
+        });
 
+  }
   getTournamentWithTrees(): Observable<Tournament> {
     this.loading = true;
     this.treeService.getTournamentWithTrees(this.slug)

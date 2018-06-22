@@ -6,6 +6,8 @@ import {Competitor} from '../../models/competitor';
 import {first} from 'rxjs/operators';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AddCompetitorsModalComponent} from '../modals/add-competitors-modal/add-competitors-modal.component';
+import {TreeService} from '../../services/tree.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-competitors',
@@ -18,8 +20,10 @@ export class CompetitorsComponent implements OnInit {
   tournamentSlug: string;
 
   constructor(private competitorService: CompetitorService,
+              public treeService: TreeService,
               private route: ActivatedRoute,
               private modalService: NgbModal,
+              private toastr: ToastrService,
   ) {
     this.tournamentSlug = this.route.snapshot.params.slug;
 
@@ -44,6 +48,19 @@ export class CompetitorsComponent implements OnInit {
       }, err => {
         this.loading = false;
       });
+  }
+
+  generateTree(championship) {
+    this.treeService.store(championship)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.loading = false;
+        },
+        error => {
+          this.loading = false;
+        });
+
   }
 
   delete(competitor: Competitor, championshipIndex: number): void {

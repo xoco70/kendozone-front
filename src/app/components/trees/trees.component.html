@@ -17,10 +17,10 @@
                   </div>
                   <div class="col-md-4">
                     <div class="badge btnAction">
-                      <a href="#" data-toggle="modal" class="btn btn-success p-2 mr-2">
+                      <button class="btn btn-success p-2 mr-2" (click)="generateTree(championship)">
                         <b> <i class="fas fa-sitemap ml-1"></i></b>
                         {{ 'competitors.generate_tree' | translate }}
-                      </a>
+                      </button>
                       <a href="#print" class="btn btn-secondary p-2">
                         <b> <i class="fas fa-print mr-1"></i></b>
                         {{ 'common.print' | translate }}
