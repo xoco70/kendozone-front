@@ -1,9 +1,6 @@
 import {Country} from '../models/country';
 
-export const COUNTRIES: Country[] =
-
-
-  [
+export const COUNTRIES: Country[] = [
     {
       id: 4,
       capital: 'Kabul',

@@ -28,21 +28,8 @@ export class CompetitorsComponent implements OnInit {
   open(championshipId) {
     const modalRef = this.modalService.open(AddCompetitorsModalComponent, {size: 'lg', centered: true});
     modalRef.componentInstance.championshipId = championshipId;
-    // modalRef.componentInstance.categoryName = 'my Category';
-
-    modalRef.result.then((competitor) => {
-      console.log('fullfilled');
-      console.log(competitor);
-      // const newCategory = {
-      //   id: category.id,
-      //   name: category.name
-      // };
-      // // if not present into categories, insert it
-      // if (!this.categories.some((item) => item.id == newCategory.id)) {
-      //   this.categories.push(newCategory);
-      // } else {
-      //   this.toastr.error('Category has already been added');
-      // }
+    modalRef.result.then((data) => {
+      this.tournament.championships.find((championship) => championship.id === championshipId).competitors = data.competitors;
     }, (reason) => {
     });
   }

@@ -45,6 +45,7 @@ export class AddCompetitorsModalComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          console.log(data);
           this.loading = false;
           this.modal.close(data);
         },
