@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PlayoffComponent } from './playoff.component';
+import {PlayoffComponent} from './playoff.component';
 
 describe('PlayoffComponent', () => {
   let component: PlayoffComponent;

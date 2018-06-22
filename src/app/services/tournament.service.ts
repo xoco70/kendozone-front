@@ -7,7 +7,6 @@ import {environment} from '../../environments/environment';
 
 import {Tournament} from '../models/tournament';
 import {AuthenticationService} from './authentication.service';
-import {ChampionshipSettings} from '../models/championship-settings';
 import {ToastrService} from 'ngx-toastr';
 
 const httpOptions = {
@@ -50,7 +49,7 @@ export class TournamentService {
 
   store(tournament: Tournament): Observable<Tournament> {
     return this.http.post(this.tournamentsUrl, tournament, httpOptions).pipe(
-      tap(data => this.toastr.success('Tournament Created Successfully')),
+      tap(data => this.toastr.success('model.tournament' + ' ' + 'action.created_successfully')),
       catchError(this.handleError<any>('createTournament'))
     );
   }
@@ -58,7 +57,7 @@ export class TournamentService {
   update(tournament: Tournament, tab: string): Observable<any> {
     const tournamentUrl = this.tournamentsUrl + tournament.slug + '?tab=' + tab;
     return this.http.put(tournamentUrl, tournament, httpOptions).pipe(
-      tap(data => this.toastr.success('Tournament Updated Successfully')),
+      tap(data => this.toastr.success('model.tournament' + ' ' + 'action.updated_successfully')),
       catchError(this.handleError<any>('updateTournament'))
     );
   }
@@ -68,16 +67,7 @@ export class TournamentService {
     const url = `${this.tournamentsUrl}${slug}`;
     return this.http.delete<any>(url, httpOptions)
       .pipe(
-        tap(data => this.toastr.success('success')),
-        catchError(this.handleError([]))
-      );
-  }
-
-
-  tournamentPresets(): Observable<ChampionshipSettings[]> {
-    const listUrl = this.tournamentPresetsUrl;
-    return this.http.get<ChampionshipSettings[]>(listUrl)
-      .pipe(
+        tap(data => this.toastr.success('model.tournament' + ' ' + 'action.deleted_successfully')),
         catchError(this.handleError([]))
       );
   }
@@ -104,6 +94,4 @@ export class TournamentService {
       return of(result as T);
     };
   }
-
-
 }

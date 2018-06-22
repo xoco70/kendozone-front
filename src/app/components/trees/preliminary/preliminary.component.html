@@ -1,3 +1,10 @@
-<p>
-  preliminary works!
-</p>
+{{ championship.settings.preliminaryGroupSize | json }}
+<!-- TODO I will also need to group it by area-->
+<table>
+  <tr *ngFor="let group of roundOneGroups">
+    <td>{{ group | json }}</td>
+    <td>Group</td>
+    <td>Group</td>
+  </tr>
+</table>
+

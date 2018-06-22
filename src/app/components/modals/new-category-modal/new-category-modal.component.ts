@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
 import {CategoryService} from '../../../services/category.service';
 import {first} from 'rxjs/operators';
 import {Category} from '../../../models/category';

@@ -32,6 +32,11 @@
     "custom": "Custom",
     "print": "Print"
   },
+  "action": {
+    "created_successfully": "created successfully",
+    "updated_successfully": "updated successfully",
+    "deleted_successfully": "deleted successfully"
+  },
   "nav": {
     "dashboard": "Dashboard",
     "createTournament": "Create Tournament",
@@ -51,7 +56,9 @@
     "title_login": "Login to Kendozone",
     "signin_with": "Or signin with",
     "no_account": "Still no account?",
-    "welcome": "Welcome {{name}}"
+    "welcome": "Welcome {{name}}",
+    "wrong_email": "Email does not exist",
+    "wrong_password": "The password is incorrect, please try again"
   },
   "register": {
     "title_register": "Register to Kendozone"
@@ -70,6 +77,7 @@
   "profile": {
     "email": "Mail",
     "country": "Country",
+    "username": "Username",
     "firstname": "First name",
     "lastname": "Last name",
     "newpassword": "New password",
@@ -78,7 +86,8 @@
     "left_password_blank": "If you don't want to change password... please leave them empty"
   },
   "tournaments": {
-    "owner": "Owner"
+    "owner": "Owner",
+    "wrong_tournament": "The tournament is incorrect"
   },
   "tour_create": {
     "newTournament": "New Tournament",

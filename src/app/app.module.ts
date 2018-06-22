@@ -121,7 +121,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
       config: {
         tokenGetter: AuthenticationService.tokenGetter,
         whitelistedDomains: ['localhost:4200'],
-        blacklistedRoutes: ['localhost:4200/auth/login']
+        blacklistedRoutes: ['localhost:4200/login']
       }
     }),
     TranslateModule.forRoot({

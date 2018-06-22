@@ -38,7 +38,7 @@ export class CompetitorService {
   store(competitors: Competitor[], championshipId: number): Observable<Competitor[]> {
     const competitorsUrl = `${environment.apiUrl}championships/${championshipId}/competitors/`;
     return this.http.post<any>(competitorsUrl, competitors, httpOptions).pipe(
-      tap(data => this.toastr.success('success')),
+      tap(data => this.toastr.success(data.msg)),
       catchError(this.handleError<any>(''))
     );
   }
@@ -47,7 +47,7 @@ export class CompetitorService {
     const url = `${environment.apiUrl}/tournaments/${tournamentSlug}/competitors/${competitor.id}`;
     return this.http.delete<any>(url, httpOptions)
       .pipe(
-        tap(data => this.toastr.success('success')),
+        tap(data => this.toastr.success(data)),
         catchError(this.handleError([]))
       );
   }
@@ -68,7 +68,7 @@ export class CompetitorService {
     return (data: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
-      this.toastr.error(data.error.error);
+      this.toastr.error(data.error);
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };

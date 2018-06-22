@@ -12,8 +12,8 @@ import {TournamentService} from '../../../../services/tournament.service';
 export class TournamentEditGeneralComponent implements OnInit {
   @Input() tournament: Tournament;
   public localTournament: Tournament = <Tournament>{};
-  public dateIni: { year: 2017, month: 8, day: 8 };
-  @Input() registerDateLimit: { year: 2017, month: 8, day: 8 };
+  public dateIni: { year: 2017, month: 8, day: 8 }; // TODO should not have a default value
+  @Input() registerDateLimit: { year: 2017, month: 8, day: 8 }; // TODO should not have a default value
   generalForm: FormGroup;
   loading = false;
   submitted = false;

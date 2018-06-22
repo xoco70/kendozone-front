@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators';
 import {Router} from '@angular/router';
-import {Observable, of, Subject} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {ToastrService} from 'ngx-toastr';
 import {User} from '../models/user';
 import {JwtHelperService} from '@auth0/angular-jwt';
@@ -36,8 +36,8 @@ export class AuthenticationService {
         map((res: any) => {
           if (res && res.token) {
             this.setToken(res.token);
-            this.currentUser();
-            this.toastr.success('Welcome'); // user->name
+            // this.currentUser();
+            this.toastr.success('login.welcome'); // user->name
           }
         }),
         catchError(this.handleError('login', []))
@@ -54,7 +54,7 @@ export class AuthenticationService {
     return (data: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
-      this.toastr.error(data.error.error);
+      this.toastr.error(data.error);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

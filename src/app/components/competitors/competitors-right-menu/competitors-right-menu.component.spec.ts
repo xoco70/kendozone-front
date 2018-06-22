@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CompetitorsRightMenuComponent } from './competitors-right-menu.component';
+import {CompetitorsRightMenuComponent} from './competitors-right-menu.component';
 
 describe('CompetitorsRightMenuComponent', () => {
   let component: CompetitorsRightMenuComponent;

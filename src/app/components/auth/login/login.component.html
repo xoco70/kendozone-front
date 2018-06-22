@@ -19,7 +19,7 @@
                 <div class="form-group">
                   <input type="text" formControlName="email" class="form-control input-lg" placeholder="Email"
                          [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
-                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="submitted && f.email.errors" class="text-primary">
                     <div *ngIf="f.email.errors.required" translate [translateParams]="{attribute: 'email'}">
                       validation.required
                     </div>
@@ -31,7 +31,7 @@
                   <input type="password" formControlName="password" name="password"
                          id="password" class="form-control input-lg" placeholder="Password" required
                          [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
-                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="submitted && f.password.errors" class="text-primary">
                     <div *ngIf="f.password.errors.required" translate [translateParams]="{attribute: 'password'}">
                       validation.required
                     </div>

@@ -12,11 +12,12 @@
       </li>
       <li>
         <a routerLink="./" (click)="t.select('categories-settings')">
-        <i class="fas fa-cog"></i>{{ 'model.categories' | translate }}
-        <div class="badge badge-success" id="categories-status">
-          <span class="category-size text-white">{{ championship_settings_count }} / {{ tournament.championships.length }}</span>
-        </div>
-      </a></li>
+          <i class="fas fa-cog"></i>{{ 'model.categories' | translate }}
+          <div id="categories-status"
+               class="badge {{ championship_settings_count === tournament.championships.length ? 'badge-success' : 'badge-primary' }}">
+            <span class="category-size text-white">{{ championship_settings_count }} / {{ tournament.championships.length }}</span>
+          </div>
+        </a></li>
       <li><a routerLink="/tournaments/{{ slug }}/competitors">
         <i class="fas fa-user-friends"></i>
         Competitors
@@ -27,7 +28,7 @@
       <li><a routerLink="/tournaments/{{ slug }}/trees">
         <i class="fas fa-sitemap"></i>
         Trees
-        <span class="badge badge-primary ">x / {{ tournament.championships.length }}</span>
+        <span class="badge badge-primary ">{{ tournament.trees_count }} / {{ tournament.championships.length }}</span>
 
 
       </a>

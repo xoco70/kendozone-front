@@ -53,7 +53,7 @@
           <ng-template ngbTabContent>
             <div class="card mt-3">
               <div class="card-body">
-
+                <!--TODO When clicked, must refresh the page, as it could be changed with edit categories page-->
                 <app-tournament-edit-category-settings
                   *ngFor="let championship of data.tournament.championships; index as i"
                   [championship]="championship"

@@ -30,13 +30,19 @@
                   </div>
                 </div>
                 <div *ngIf="championship.hasPreliminary()">
-                  <app-preliminary></app-preliminary>
+                  <app-preliminary
+                    [championship]="championship"
+                  ></app-preliminary>
                 </div>
                 <div *ngIf="championship.isPlayOffType()">
-                  <app-playoff></app-playoff>
+                  <app-playoff
+                    [championship]="championship"
+                  ></app-playoff>
                 </div>
                 <div *ngIf="championship.isSingleEliminationType()">
-                  <app-single-elimination></app-single-elimination>
+                  <app-single-elimination
+                    [championship]="championship"
+                  ></app-single-elimination>
                 </div>
 
                 <!--<app-tournament-edit-general-->

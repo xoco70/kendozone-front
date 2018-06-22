@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Championship} from '../../../models/championship';
 
 @Component({
   selector: 'app-single-elimination',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./single-elimination.component.scss']
 })
 export class SingleEliminationComponent implements OnInit {
-
+  @Input() championship: Championship;
   constructor() { }
 
   ngOnInit() {

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SingleEliminationComponent } from './single-elimination.component';
+import {SingleEliminationComponent} from './single-elimination.component';
 
 describe('SingleEliminationComponent', () => {
   let component: SingleEliminationComponent;

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TournamentEditRightMenuComponent } from './tournament-edit-right-menu.component';
+import {TournamentEditRightMenuComponent} from './tournament-edit-right-menu.component';
 
 describe('TournamentEditRightMenuComponent', () => {
   let component: TournamentEditRightMenuComponent;

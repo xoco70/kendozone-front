@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TournamentEditCategorySettingsComponent } from './tournament-edit-category-settings.component';
+import {TournamentEditCategorySettingsComponent} from './tournament-edit-category-settings.component';
 
 describe('TournamentEditCategorySettingsComponent', () => {
   let component: TournamentEditCategorySettingsComponent;

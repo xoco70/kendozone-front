@@ -1,5 +1,4 @@
 import {Tournament} from '../models/tournament';
-import {User} from '../models/user';
 
 export const TOURNAMENTS: Tournament[] = [
 

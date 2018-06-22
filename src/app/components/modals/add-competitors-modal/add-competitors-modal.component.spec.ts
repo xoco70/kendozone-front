@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AddCompetitorsModalComponent } from './add-competitors-modal.component';
+import {AddCompetitorsModalComponent} from './add-competitors-modal.component';
 
 describe('AddCompetitorsModalComponent', () => {
   let component: AddCompetitorsModalComponent;

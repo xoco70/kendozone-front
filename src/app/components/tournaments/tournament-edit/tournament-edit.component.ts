@@ -35,6 +35,7 @@ export class TournamentEditComponent implements OnInit, AfterViewChecked {
     this.tournamentService.getTournament(this.slug)
       .subscribe(tournament => {
         this.data = tournament;
+        console.log(tournament);
         this.loading = false;
       }, err => {
         this.loading = false;
