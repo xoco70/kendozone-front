@@ -81,3 +81,11 @@ body {
 .ng-invalid:not(form) {
   border-left: 5px solid #ff5663; /* red */
 }
+
+.avatar_icon {
+  height: 40px;
+}
+
+.valign-middle{
+  vertical-align: middle!important;
+}

@@ -18,7 +18,7 @@
                     {{ 'competitors.add_competitor' | translate }}
                   </button>
 
-                  <button class="btn btn-success">
+                  <button class="btn btn-success" (click)="generateTree(championship)">
                     <b> <i class="fas fa-sitemap mr-2"></i></b>
                     {{ 'competitors.generate_tree' | translate }}
                   </button>
@@ -41,16 +41,18 @@
                 </tr>
                 <tr *ngFor="let competitor of championship.competitors">
                   <!--TODO get Avatar-->
-                  <td align="left">{{competitor.user.avatar}}</td>
-                  <td align="left">{{competitor.user.name}}</td>
+                  <td  align="center">
+                    <img class="avatar_icon" [src]="competitor.user.avatar ? competitor.user.avatar : 'assets/images/avatar/avatar.png'">
+                  </td>
+                  <td align="center" class="valign-middle">{{competitor.user.name}}</td>
                   <!--TODO get first / lastname -->
-                  <td>{{competitor.user.email}}</td>
+                  <td align="center" class="valign-middle">{{competitor.user.email.endsWith('@kendozone.com') ? '-' : competitor.user.email }}</td>
                   <!--<td>{{championship.category.name}}</td>-->
                   <!--<td>{{user.paid}}</td>-->
                   <!--<td>{{competitor.user.country}} {{ i }}</td>-->
                   <td>
 
-                    <button class="btn p-0 m-0 border-0 icon-list " (click)="delete(competitor, i)">
+                    <button class="btn icon-list valign-middle" (click)="delete(competitor, i)" >
                       <i class="far fa-trash-alt text-primary"></i>
                     </button>
                   </td>
