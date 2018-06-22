@@ -73,3 +73,11 @@ body {
 .f-70 {
   font-size: 70px;
 }
+
+.ng-valid[required], .ng-valid.required {
+  border-left: 5px solid #7cd69c; /* green */
+}
+
+.ng-invalid:not(form) {
+  border-left: 5px solid #ff5663; /* red */
+}

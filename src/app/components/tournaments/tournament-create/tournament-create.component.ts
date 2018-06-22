@@ -68,7 +68,6 @@ export class TournamentCreateComponent implements OnInit {
       .subscribe(
         data => {
           this.loading = false;
-          console.log(data.slug);
           this.router.navigate(['tournaments', data.slug, 'edit']);
         },
         error => {

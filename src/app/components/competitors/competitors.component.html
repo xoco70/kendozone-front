@@ -36,7 +36,7 @@
                   <th scope="col">{{ 'profile.email' | translate }}</th>
                   <!--<th scope="col">{{ 'categories.category' | translate }}</th>-->
                   <!--<th scope="col">{{ 'competitors.paid' | translate }}Paid</th>-->
-                  <th scope="col">{{ 'profile.country' | translate }}</th>
+                  <!--<th scope="col">{{ 'profile.country' | translate }}</th>-->
                   <th scope="col">{{ 'common.action' | translate }}</th>
                 </tr>
                 <tr *ngFor="let competitor of championship.competitors">
@@ -47,7 +47,7 @@
                   <td>{{competitor.user.email}}</td>
                   <!--<td>{{championship.category.name}}</td>-->
                   <!--<td>{{user.paid}}</td>-->
-                  <td>{{competitor.user.country}} {{ i }}</td>
+                  <!--<td>{{competitor.user.country}} {{ i }}</td>-->
                   <td>
 
                     <button class="btn p-0 m-0 border-0 icon-list " (click)="delete(competitor, i)">

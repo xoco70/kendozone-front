@@ -1,5 +1,5 @@
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-<form (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()" #form="ngForm">
   <div class="col-md-12 col-lg-8 offset-lg-2 ">
     <div class="card">
       <div class="card-body">
@@ -17,16 +17,21 @@
         <div class="row">
           <div class="col-md-4 offset-md-1">
             <label for="name" class="font-weight-bold">{{ 'common.name' | translate }}</label>
-            <input class="form-control input-lg" name="name" [(ngModel)]="tournament.name" type="text" id="name">
+            <input type="text" class="form-control input-lg" name="name" id="name" required
+                   [(ngModel)]="tournament.name" #name="ngModel">
+            <div [hidden]="name.valid || name.pristine" class="text-primary mt-2"
+                 translate [translateParams]="{attribute: 'name'}">
+              validation.required
+            </div>
           </div>
           <div class="col-md-3">
             <label for="name" class="font-weight-bold">{{ 'tour_edit.eventDateIni' | translate }}</label>
             <div class="form-group">
               <div class="input-group">
-                <input class="form-control" placeholder="yyyy-mm-dd"
-                       name="dateIni" [(ngModel)]="tournament.dateIni" ngbDatepicker #a="ngbDatepicker">
+                <input class="form-control" placeholder="yyyy-mm-dd" (click)="dateIni.toggle()"
+                       name="dateIni" [(ngModel)]="tournament.dateIni" ngbDatepicker #dateIni="ngbDatepicker">
                 <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" (click)="a.toggle()" type="button">
+                  <button class="btn btn-outline-secondary" (click)="dateIni.toggle()" type="button">
                     <i class="fas fa-calendar-alt calendar"></i>
                   </button>
                 </div>
@@ -37,10 +42,10 @@
             <label for="name" class="font-weight-bold">{{ 'tour_edit.eventDateFin' | translate }}</label>
             <div class="form-group">
               <div class="input-group">
-                <input class="form-control" placeholder="yyyy-mm-dd"
-                       name="dateFin" [(ngModel)]="tournament.dateFin" ngbDatepicker #b="ngbDatepicker">
+                <input class="form-control" placeholder="yyyy-mm-dd" (click)="dateFin.toggle()"
+                       name="dateFin" [(ngModel)]="tournament.dateFin" ngbDatepicker #dateFin="ngbDatepicker">
                 <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" (click)="b.toggle()" type="button">
+                  <button class="btn btn-outline-secondary" (click)="dateFin.toggle()" type="button">
                     <i class="fas fa-calendar-alt calendar"></i>
                   </button>
                 </div>

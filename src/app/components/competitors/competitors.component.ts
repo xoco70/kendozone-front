@@ -5,7 +5,6 @@ import {Tournament} from '../../models/tournament';
 import {Competitor} from '../../models/competitor';
 import {first} from 'rxjs/operators';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {FormBuilder} from '@angular/forms';
 import {AddCompetitorsModalComponent} from '../modals/add-competitors-modal/add-competitors-modal.component';
 
 @Component({
@@ -15,14 +14,12 @@ import {AddCompetitorsModalComponent} from '../modals/add-competitors-modal/add-
 })
 export class CompetitorsComponent implements OnInit {
   tournament: Tournament;
-  page = 1;
   public loading = true;
   tournamentSlug: string;
 
   constructor(private competitorService: CompetitorService,
               private route: ActivatedRoute,
               private modalService: NgbModal,
-              private formBuilder: FormBuilder
   ) {
     this.tournamentSlug = this.route.snapshot.params.slug;
 
