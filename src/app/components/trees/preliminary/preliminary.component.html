@@ -1,10 +1,40 @@
-{{ championship.settings.preliminaryGroupSize | json }}
 <!-- TODO I will also need to group it by area-->
-<table>
-  <tr *ngFor="let group of roundOneGroups">
-    <td>{{ group | json }}</td>
-    <td>Group</td>
-    <td>Group</td>
-  </tr>
-</table>
+<div *ngIf="championship.category.isTeam == false">
+  <table class="table-bordered m-2 p-2" cellpadding="5" cellspacing="0">
 
+    <tr>
+      <td>{{ 'tour_settings.fightingArea' | translate }}</td>
+      <td *ngFor="let numFighter of numFighters">
+        <span *ngIf="numFighter%2==0">{{ 'model.competitor' | translate }} {{ numFighter / 2}}</span>
+      </td>
+    </tr>
+    <tr *ngFor="let group of roundOneGroups">
+      <td class="p-10 text-center">{{ group.area}}</td>
+      <td *ngFor="let numFighter of numFighters; let letter='a'">
+        <span *ngIf="numFighter%2==0">{{ group.competitors[numFighter]?.user.firstname }} {{ group.competitors[numFighter]?.user.lastname }}</span>
+        <span *ngIf="numFighter%2==1">{{ letter }}</span>
+      </td>
+    </tr>
+  </table>
+
+
+  <!--<table class="table-bordered m-2 p-2" cellpadding="5" cellspacing="0">-->
+  <!--<tr *ngFor="let group of roundOneGroups">-->
+    <!--<td class="p-10 text-center">{{ group.area}}</td>-->
+    <!--<td *ngFor="let numFighter of numFighters ">-->
+      <!--{{ group.competitors[numFighter]?.user.firstname }} {{ group.competitors[numFighter]?.user.lastname }}-->
+    <!--</td>-->
+  <!--</tr>-->
+  <!--</table>-->
+</div>
+
+
+<!--<div *ngIf="championship.category.isTeam == true">-->
+  <!--<table class="table-bordered m-2 p-2" cellpadding="5" cellspacing="0">-->
+    <!--<tr *ngFor="let group of roundOneGroups">-->
+      <!--<td *ngFor="let numFighter of numFighters">-->
+        <!--{{ group.teams[numFighter]?.name }}-->
+      <!--</td>-->
+    <!--</tr>-->
+  <!--</table>-->
+<!--</div>-->

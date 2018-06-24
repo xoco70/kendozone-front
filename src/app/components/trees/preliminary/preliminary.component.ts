@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Championship} from '../../../models/championship';
+import {ChampionshipSettings} from '../../../models/championship-settings';
 
 class FighterGroup {
 }
@@ -11,13 +12,18 @@ class FighterGroup {
 })
 export class PreliminaryComponent implements OnInit {
   @Input() championship: Championship;
+  numFighters: number[];
+  letter = 'a';
+  settings: ChampionshipSettings;
   roundOneGroups: FighterGroup[];
 
   constructor() {
   }
 
   ngOnInit() {
+    this.settings = this.championship.settings ? this.championship.settings : new ChampionshipSettings() ;
     this.roundOneGroups = this.championship.fighters_groups.filter(h => h.round === 1);
+    this.numFighters = Array(this.settings.preliminaryGroupSize * 2).fill(0).map((x, i) => i + 1); // [0,1,2,3,4]
   }
 
 }
