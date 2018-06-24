@@ -8,7 +8,10 @@ import {Championship} from '../../../models/championship';
 })
 export class PlayoffComponent implements OnInit {
   @Input() championship: Championship;
-  constructor() { }
+  loading = false;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

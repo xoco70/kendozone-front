@@ -1,3 +1,28 @@
-<p>
-  playoff works!
-</p>
+<!-- TODO I will also need to group it by area-->
+<!---->
+<div *ngIf="championship.category.isTeam == false" align="center">
+  <table class="table-bordered m-2 p-2" cellpadding="5" cellspacing="0">
+    <tr>
+      <th class="p-3"></th>
+      <th class="p-3"></th>
+      <th class="p-3" *ngFor="let competitor of championship.fighters_groups[0].competitors; let i=index"> {{ i+1 }}
+      </th>
+      <th class="p-3">W</th>
+      <th class="p-3">L</th>
+      <th class="p-3">P</th>
+    </tr>
+
+    <tr *ngFor="let competitor of championship.fighters_groups[0].competitors; let i=index">
+      <td class="p-3">{{ (i +1) }}</td>
+      <td class="p-3">{{ competitor.user.firstname}} {{ competitor.user.lastname}}</td>
+      <td *ngFor="let competitor2 of championship.fighters_groups[0].competitors"
+          [class]="competitor === competitor2 ? 'bg-light' : ''"
+      ></td>
+      <td></td>
+      <td></td>
+      <td></td>
+  </table>
+</div>
+<div *ngIf="championship.category.isTeam == true">
+  team
+</div>
