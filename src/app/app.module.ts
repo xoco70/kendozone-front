@@ -47,6 +47,7 @@ import {PlayoffComponent} from './components/trees/playoff/playoff.component';
 import {SingleEliminationComponent} from './components/trees/single-elimination/single-elimination.component';
 import {JwtInterceptor} from './helpers/jwt.interceptor';
 import {AddCompetitorsModalComponent} from './components/modals/add-competitors-modal/add-competitors-modal.component';
+import { FightsComponent } from './components/fights/fights.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -89,7 +90,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     PreliminaryComponent,
     PlayoffComponent,
     SingleEliminationComponent,
-    AddCompetitorsModalComponent
+    AddCompetitorsModalComponent,
+    FightsComponent
   ],
   entryComponents: [NewCategoryModalComponent, AddCompetitorsModalComponent],
   imports: [

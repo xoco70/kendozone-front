@@ -13,8 +13,6 @@ import {plainToClass} from 'class-transformer';
   styleUrls: ['./trees.component.scss']
 })
 export class TreesComponent implements OnInit {
-
-  myTournament = {};
   tournament: Tournament;
   championships: Championship[];
   loading: boolean;
@@ -55,7 +53,6 @@ export class TreesComponent implements OnInit {
 
 
   ngOnInit() {
-    this.myTournament = new Tournament();
     this.getTournamentWithTrees();
   }
 

@@ -13,6 +13,7 @@ import {RegisterComponent} from './components/auth/register/register.component';
 import {AuthGuard} from './guards/auth.guard';
 import {ForgotPasswordComponent} from './components/auth/forgot-password/forgot-password.component';
 import {TreesComponent} from './components/trees/trees.component';
+import {FightsComponent} from './components/fights/fights.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'profile/:id/edit', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'tournaments', component: TournamentsComponent, canActivate: [AuthGuard]},
   {path: 'tournaments/:slug/trees', component: TreesComponent, canActivate: [AuthGuard]},
+  {path: 'tournaments/:slug/fights', component: FightsComponent, canActivate: [AuthGuard]},
   // { path: '**', redirectTo: '' } // otherwise redirect to dashboard
 ];
 
