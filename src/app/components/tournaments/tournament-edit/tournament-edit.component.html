@@ -1,7 +1,7 @@
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-<div class="container" *ngIf="!loading">
+<div class="container-fluid" *ngIf="!loading">
   <div class="row">
-    <div class="col-md-9" id="main">
+    <div class="col-md-10" id="main">
       <ngb-tabset type="pills" class="nav-fill" #tabs [activeId]="selectedTab" >
         <ngb-tab id="general-data">
           <ng-template ngbTabTitle>{{ 'tour_edit.general_data' | translate | uppercase }}</ng-template>
@@ -67,15 +67,8 @@
       </ngb-tabset>
       <br/>
     </div>
-    <div class="col-md-3 col-12">
-      <app-tournament-edit-right-menu
-        [tournament]="data.tournament"
-        [slug]="data.tournament.slug"
-        [competitors_count]="data.tournament.competitors_count"
-        [championship_settings_count]="data.tournament.championship_settings_count"
-        [teams_count]="data.tournament.teams_count"
-        [trees_count]="data.tournament.trees_count"
-      ></app-tournament-edit-right-menu>
+    <div class="col-md-2 col-12 ml-0 pl-0">
+      <app-tournament-edit-right-menu [tournament]="data.tournament"></app-tournament-edit-right-menu>
     </div>
   </div>
 </div>

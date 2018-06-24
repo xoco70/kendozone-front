@@ -1,7 +1,7 @@
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-<div class="container" *ngIf="!loading">
+<div class="container-fluid" *ngIf="!loading">
   <div class="row">
-    <div class="col-md-9" id="main">
+    <div class="col-md-10" id="main">
       <div *ngFor="let championship of tournament.championships; let i = index" class="card mb-4">
         <div class="card-body">
           <a name="{{ championship.category.name | translate | slug }}">
@@ -64,7 +64,10 @@
       </div>
       <br/>
     </div>
-    <div class="col-md-3 col-12">
+    <div class="col-md-2 col-12 ml-0 pl-0">
+      <app-tournament-edit-right-menu
+        [tournament]="tournament"
+      ></app-tournament-edit-right-menu>
       <app-competitors-right-menu
         [championships]="tournament.championships"
       ></app-competitors-right-menu>

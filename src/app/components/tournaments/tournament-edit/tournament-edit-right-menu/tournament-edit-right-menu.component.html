@@ -3,29 +3,27 @@
   <div class="card-body align-items-lg-start">
     <ul>
       <li>
-        <a href="#" (click)="t.select('general-data')"><i class="fas fa-trophy"></i> {{ 'tour_edit.general_data' |
-          translate }}
+        <a routerLink="/tournaments/{{ tournament.slug }}/edit">
+          <i class="fas fa-trophy"></i> {{ 'tour_edit.general_data' | translate }}
         </a>
       </li>
-      <li>
-        <a href="#" (click)="t.select('venue')"><i class="fas fa-map-marker"></i> {{ 'model.venue' | translate }}</a>
-      </li>
-      <li>
-        <a routerLink="./" (click)="t.select('categories-settings')">
-          <i class="fas fa-cog"></i>{{ 'model.categories' | translate }}
-          <div id="categories-status"
-               class="badge {{ championship_settings_count === tournament.championships.length ? 'badge-success' : 'badge-primary' }}">
-            <span class="category-size text-white">{{ championship_settings_count }} / {{ tournament.championships.length }}</span>
-          </div>
-        </a></li>
-      <li><a routerLink="/tournaments/{{ slug }}/competitors">
+      <li><a routerLink="/tournaments/{{ tournament.slug }}/competitors">
         <i class="fas fa-user-friends"></i>
-        Competitors
-        <span class="badge badge-primary text-white" *ngIf="competitors_count<4">{{ competitors_count }}</span>
-        <span class="badge badge-success text-white" *ngIf="competitors_count>=4">{{ competitors_count }}</span>
+        {{ 'model.competitors' | translate }}
+        <span class="badge badge-primary text-white" *ngIf="tournament.competitors?.length<4">
+          {{ tournament.competitors?.length }}
+        </span>
+        <span class="badge badge-success text-white" *ngIf="tournament.competitors?.length>=4">
+          {{tournament.competitors?.length}}
+        </span>
       </a>
       </li>
-      <li><a routerLink="/tournaments/{{ slug }}/trees">
+      <li><a routerLink="/tournaments/{{ tournament.slug }}/teams">
+        <i class="fas fa-users"></i>{{ 'model.teams' | translate }}
+        <span class="badge badge-primary" *ngIf="tournament.teams_count<=2">{{ tournament.teams_count }}</span>
+        <span class="badge badge-success" *ngIf="tournament.teams_count>2">{{ tournament.teams_count }}</span>
+      </a></li>
+      <li><a routerLink="/tournaments/{{ tournament.slug }}/trees">
         <i class="fas fa-sitemap"></i>
         Trees
         <span class="badge badge-primary ">{{ tournament.trees_count }} / {{ tournament.championships.length }}</span>
@@ -33,11 +31,19 @@
 
       </a>
       </li>
-      <li><a routerLink="/tournaments/{{ slug }}/teams">
-        <i class="fas fa-users"></i>{{ 'model.teams' | translate }}
-        <span class="badge badge-primary" *ngIf="teams_count<=2">{{ teams_count }}</span>
-        <span class="badge badge-success" *ngIf="teams_count>2">{{ teams_count }}</span>
-      </a></li>
+      <li>
+        <a routerLink="/tournaments/{{ tournament.slug }}/fights">
+          <i class="fas fa-sitemap"></i> {{ 'model.fights' | translate }}
+        </a>
+      </li>
+      <li><a routerLink="/tournaments/{{ tournament.slug }}/score">
+        <i class="fas fa-sitemap"></i>
+        Score Sheets
+
+
+      </a>
+      </li>
+
     </ul>
   </div>
 
@@ -45,7 +51,7 @@
 
 <br>
 
-<div class="card w-auto" class="tournament-right-sidebar">
+<div class="card w-auto tournament-right-sidebar">
   <div class="card-header bg-dark"><span class="text-white">SHARE TOURNAMENT</span></div>
   <div class="card-body align-items-lg-start">
 
