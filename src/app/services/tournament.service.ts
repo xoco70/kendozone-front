@@ -88,7 +88,7 @@ export class TournamentService {
     return (data: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
-      this.toastr.error(data.error.error);
+      this.toastr.error(data.error);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

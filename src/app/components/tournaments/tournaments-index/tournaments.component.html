@@ -24,7 +24,8 @@
             </td>
           </tr>
         </table>
-        <ngb-pagination [collectionSize]="tournaments.meta.total"
+        <ngb-pagination *ngIf="tournaments.length > tournaments.meta.per_page"
+                        [collectionSize]="tournaments.meta.total"
                         [(page)]="page" aria-label="Default pagination"
                         [pageSize]="tournaments.meta.per_page"
                         [maxSize]="5"
