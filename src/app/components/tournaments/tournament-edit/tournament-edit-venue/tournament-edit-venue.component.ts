@@ -65,6 +65,7 @@ export class TournamentEditVenueComponent implements OnInit {
     this.localTournament.venue.longitude = this.f.longitude.value;
     this.localTournament.venue.country_id = this.f.country_id.value;
 
+    console.log(this.localTournament.venue);
     this.tournamentService.update(this.localTournament, 'venue')
       .pipe(first())
       .subscribe(
@@ -111,10 +112,10 @@ export class TournamentEditVenueComponent implements OnInit {
 
     this.formGroup = this.formBuilder.group({
       name: [this.tournament.venue.venue_name, Validators.required],
-      address: [this.tournament.venue.address],
+      address: [this.tournament.venue.address, Validators.required],
       details: [this.tournament.venue.details],
-      latitude: [this.latitude],
-      longitude: [this.longitude],
+      latitude: [this.latitude, Validators.required],
+      longitude: [this.longitude, Validators.required],
       city: [this.tournament.venue.city],
       state: [this.tournament.venue.state],
       CP: [this.tournament.venue.CP],
