@@ -22,27 +22,29 @@
       <label for="dateIni" class="font-weight-bold">{{ 'tour_edit.eventDateIni' | translate }}</label>
       <div class="form-group">
         <div class="input-group">
-          <input class="form-control" placeholder="yyyy-mm-dd"
+          <input class="form-control" placeholder="yyyy-mm-dd" (click)="a.toggle()"
                  id="dateIni" formControlName="dateIni" ngbDatepicker #a="ngbDatepicker">
-          <div class="text-primary mt-1" *ngIf="f.dateIni?.errors?.required" translate [translateParams]="{attribute: 'dateIni'}">
-            validation.required
-          </div>
-          <div class="mt-1" *ngIf="!f.dateIni?.errors?.required">&nbsp;</div>
           <div class="input-group-append">
             <button class="btn btn-outline-secondary" (click)="a.toggle()" type="button">
               <i class="fas fa-calendar-alt calendar"></i>
             </button>
           </div>
         </div>
+        <div class="text-primary mt-1" *ngIf="f.dateIni?.errors?.required" translate [translateParams]="{attribute: 'dateIni'}">
+          validation.required
+        </div>
+        <div class="text-primary mt-1" *ngIf="f.dateIni?.invalid && !f.dateIni?.errors?.required"
+             translate [translateParams]="{attribute: 'dateIni'}"> validation.invalid
+        </div>
+        <div class="mt-1" *ngIf="!f.dateIni?.errors?.required">&nbsp;</div>
       </div>
-
     </div>
     <div class="col-md-4">
 
       <label for="dateFin" class="font-weight-bold">{{ 'tour_edit.eventDateFin' | translate }}</label>
       <div class="form-group">
         <div class="input-group">
-          <input class="form-control" placeholder="yyyy-mm-dd"
+          <input class="form-control" placeholder="yyyy-mm-dd" (click)="b.toggle()"
                  id="dateFin" formControlName="dateFin" ngbDatepicker #b="ngbDatepicker">
           <div *ngIf="submitted && f.dateFin.errors" class="text-primary">
             <div *ngIf="f.dateFin.errors.required" translate [translateParams]="{attribute: 'dateFin'}">
@@ -55,6 +57,13 @@
             </button>
           </div>
         </div>
+        <div class="text-primary mt-1" *ngIf="f.dateFin?.errors?.required" translate [translateParams]="{attribute: 'dateFin'}">
+          validation.required
+        </div>
+        <div class="text-primary mt-1" *ngIf="f.dateFin?.invalid && !f.dateFin?.errors?.required"
+             translate [translateParams]="{attribute: 'dateFin'}"> validation.invalid
+        </div>
+        <div class="mt-1" *ngIf="!f.dateFin?.errors?.required">&nbsp;</div>
       </div>
     </div>
     <div class="col-md-4">
@@ -69,6 +78,13 @@
             </button>
           </div>
         </div>
+        <div class="text-primary mt-1" *ngIf="f.registerDateLimit?.errors?.required" translate [translateParams]="{attribute: 'registerDateLimit'}">
+          validation.required
+        </div>
+        <div class="text-primary mt-1" *ngIf="f.registerDateLimit?.invalid && !f.registerDateLimit?.errors?.required"
+             translate [translateParams]="{attribute: 'registerDateLimit'}"> validation.invalid
+        </div>
+        <div class="mt-1" *ngIf="!f.registerDateLimit?.errors?.required">&nbsp;</div>
       </div>
     </div>
   </div>
