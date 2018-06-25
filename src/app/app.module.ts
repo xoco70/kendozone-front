@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 
@@ -47,9 +47,21 @@ import {PlayoffComponent} from './components/trees/playoff/playoff.component';
 import {SingleEliminationComponent} from './components/trees/single-elimination/single-elimination.component';
 import {JwtInterceptor} from './helpers/jwt.interceptor';
 import {AddCompetitorsModalComponent} from './components/modals/add-competitors-modal/add-competitors-modal.component';
-import { FightsComponent } from './components/fights/fights.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import {FightsComponent} from './components/fights/fights.component';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
+import * as Raven from 'raven-js';
+
+
+Raven
+  .config('https://1a27df946e9742edaa7a4e9a2b41b280@sentry.io/1232263')
+  .install();
+
+export class RavenErrorHandler implements ErrorHandler {
+  handleError(err: any): void {
+    Raven.captureException(err);
+  }
+}
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -136,7 +148,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
       }
     }),
     ReactiveFormsModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [
     AuthGuard,
@@ -156,6 +168,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
       provide: DROPZONE_CONFIG,
       useValue: DEFAULT_DROPZONE_CONFIG
     },
+    {provide: ErrorHandler, useClass: RavenErrorHandler}
 
     // provider used to create fake backend
     // fakeBackendProvider
