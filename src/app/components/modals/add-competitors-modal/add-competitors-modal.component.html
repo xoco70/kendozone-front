@@ -3,8 +3,7 @@
   <div formArrayName="competitors">
     <!--Modal-->
     <div class="modal-header bg-primary text-white text-uppercase">
-      <h4 class="modal-title">{{ 'competitors.add_competitors' | translate | uppercase }}: {{
-        championship?.category?.name}}</h4>
+      <h4 class="modal-title">{{ 'competitors.add_competitors' | translate | uppercase }}</h4>
       <button type="button" class="close text-white" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -28,7 +27,7 @@
         </div>
       </div>
 
-      <div class="row" *ngFor="let competitor of competitorForm.controls['competitors'].controls; let i = index"
+      <div class="row" *ngFor="let competitor of competitorForm.controls['competitors']; let i = index"
            formGroupName="{{i}}">
         <div class="col-md-3">
           <div class=" form-group">

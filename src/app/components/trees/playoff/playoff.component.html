@@ -1,6 +1,6 @@
 <!-- TODO I will also need to group it by area-->
 <!---->
-<div *ngIf="championship.category.isTeam == false" align="center">
+<div *ngIf="championship.category.isTeam === 0" align="center">
   <table class="table-bordered m-2 p-2" cellpadding="5" cellspacing="0">
     <tr>
       <th class="p-3"></th>
@@ -23,6 +23,6 @@
       <td></td>
   </table>
 </div>
-<div *ngIf="championship.category.isTeam == true">
+<div *ngIf="championship.category.isTeam === 0">
   team
 </div>

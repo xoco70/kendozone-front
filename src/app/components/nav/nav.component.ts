@@ -11,7 +11,7 @@ export class NavComponent implements OnInit {
   user: User;
 
   constructor(
-    private auth: AuthenticationService,
+    public auth: AuthenticationService,
   ) {
   }
 

@@ -12,7 +12,7 @@ import {FightService} from '../../services/fight.service';
   styleUrls: ['./fights.component.scss']
 })
 export class FightsComponent implements OnInit {
-  private loading = false;
+  public loading = false;
   private slug: string;
   private tournament: Tournament;
 

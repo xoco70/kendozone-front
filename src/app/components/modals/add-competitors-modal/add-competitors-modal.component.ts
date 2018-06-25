@@ -11,7 +11,7 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angul
 })
 export class AddCompetitorsModalComponent implements OnInit {
   public submitted = false;
-  private loading = false;
+  public loading = false;
   private championshipId: number;
   competitorForm: FormGroup;
 

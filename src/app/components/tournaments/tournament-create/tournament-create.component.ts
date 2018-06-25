@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./tournament-create.component.scss']
 })
 export class TournamentCreateComponent implements OnInit {
-  private loading = false;
+  public loading = false;
   categories: Category[];
   tournament: Tournament = <Tournament>{};
   usePresets = 1;
