@@ -23,7 +23,7 @@ export class PreliminaryComponent implements OnInit {
   ngOnInit() {
     this.settings = this.championship.settings ? this.championship.settings : new ChampionshipSettings() ;
     this.roundOneGroups = this.championship.fighters_groups.filter(h => h.round === 1);
-    this.numFighters = Array(this.settings.preliminaryGroupSize * 2).fill(0).map((x, i) => i + 1); // [0,1,2,3,4]
+    this.numFighters = Array(this.settings.preliminaryGroupSize).fill(0).map((x, i) => i); // [0,1,2,3,4]
   }
 
 }
