@@ -8,7 +8,5 @@ export class Venue {
   state: string;
   latitude: string;
   longitude: string;
-  created_at: string;
-  updated_at: string;
   country_id: number;
 }
