@@ -78,7 +78,7 @@ body {
   border-left: 5px solid #7cd69c; /* green */
 }
 
-.ng-invalid:not(form) {
+input.ng-dirty.ng-invalid:not(form) {
   border-left: 5px solid #ff5663; /* red */
 }
 
@@ -86,6 +86,6 @@ body {
   height: 40px;
 }
 
-.valign-middle{
-  vertical-align: middle!important;
+.valign-middle {
+  vertical-align: middle !important;
 }

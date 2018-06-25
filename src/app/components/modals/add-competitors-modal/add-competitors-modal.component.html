@@ -30,11 +30,9 @@
 
       <div class="row" *ngFor="let competitor of competitorForm.controls['competitors'].controls; let i = index"
            formGroupName="{{i}}">
-        <!--{{ submitted && competitor.controls.firstname.errors!=null }}-->
-        <!--{{ competitor.controls.firstname.errors.required}}-->
         <div class="col-md-3">
           <div class=" form-group">
-            <input type="text" class="input-lg" formControlName="firstname" placeholder="First name"
+            <input type="text" class="form-control input-lg" formControlName="firstname" placeholder="First name"
                    [ngClass]="{ 'is-invalid': submitted && competitor.controls.firstname.errors }">
             <div *ngIf="(submitted && competitor.controls.firstname.errors)" class="text-primary">
               <div *ngIf="competitor.controls.firstname.errors.required" translate
@@ -46,7 +44,7 @@
         </div>
         <div class="col-md-3">
           <div class=" form-group">
-            <input type="text" class="input-lg" formControlName="lastname" placeholder="last name"
+            <input type="text" class="form-control input-lg" formControlName="lastname" placeholder="last name"
                    [ngClass]="{ 'is-invalid': submitted && competitor.controls.lastname.errors }">
             <div *ngIf="submitted && competitor.controls.lastname.errors" class="text-primary">
               <div *ngIf="competitor.controls.lastname.errors.required" translate
@@ -58,7 +56,7 @@
         </div>
         <div class="col-md-3">
           <div class=" form-group">
-            <input type="text" class="input-lg" formControlName="email"
+            <input type="text" class="form-control input-lg" formControlName="email"
                    [ngClass]="{ 'is-invalid': submitted && competitor.controls.email.errors }"
                    placeholder="{{ 'profile.email' | translate }} ( optional )">
             <div *ngIf="submitted && competitor.controls.email.errors" class="text-primary">
@@ -78,7 +76,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button type="submit" class="btn btn-success">
+      <button type="submit" class="btn btn-success" [disabled]="!competitorForm.valid">
         {{ 'common.save' | translate }}
       </button>
     </div>
