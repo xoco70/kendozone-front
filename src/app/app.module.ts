@@ -48,6 +48,8 @@ import {SingleEliminationComponent} from './components/trees/single-elimination/
 import {JwtInterceptor} from './helpers/jwt.interceptor';
 import {AddCompetitorsModalComponent} from './components/modals/add-competitors-modal/add-competitors-modal.component';
 import { FightsComponent } from './components/fights/fights.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -133,7 +135,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         deps: [HttpClient]
       }
     }),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     AuthGuard,
