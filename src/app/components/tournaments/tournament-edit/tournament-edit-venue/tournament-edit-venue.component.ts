@@ -50,7 +50,6 @@ export class TournamentEditVenueComponent implements OnInit {
     this.submitted = true;
 
     // stop here if form is invalid
-
     this.loading = true;
     this.tournament.venue.longitude = this.longitude + '';
     this.tournament.venue.latitude = this.latitude + '';
@@ -66,6 +65,7 @@ export class TournamentEditVenueComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log()
     // set google maps defaults
     this.zoom = 4;
     this.latitude = parseFloat(this.tournament.venue.latitude);

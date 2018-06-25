@@ -1,4 +1,3 @@
-{{ f.dateIni.errors | json }}
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="row">
     <div class="col-md-4">
@@ -6,13 +5,14 @@
         <label for="name" class="font-weight-bold">{{ 'common.name' | translate }}</label>
         <br>
         <input class="form-control input-lg" formControlName="name" [value]="tournament.name" type="text" id="name">
-          <div class="text-primary mt-1" *ngIf="f.name.errors?.required" translate [translateParams]="{attribute: 'name'}">
-            validation.required
-          </div>
-        <div class="mt-1" *ngIf="!f.name.errors?.required">&nbsp;</div>
+        <div class="text-primary mt-1" *ngIf="f.name.errors?.required" translate
+             [translateParams]="{attribute: 'name'}">
+          validation.required
         </div>
+        <div class="mt-1" *ngIf="!f.name.errors?.required">&nbsp;</div>
       </div>
     </div>
+  </div>
   <hr/>
 
   <!--Second row-->
@@ -30,7 +30,8 @@
             </button>
           </div>
         </div>
-        <div class="text-primary mt-1" *ngIf="f.dateIni?.errors?.required" translate [translateParams]="{attribute: 'dateIni'}">
+        <div class="text-primary mt-1" *ngIf="f.dateIni?.errors?.required" translate
+             [translateParams]="{attribute: 'dateIni'}">
           validation.required
         </div>
         <div class="text-primary mt-1" *ngIf="f.dateIni?.invalid && !f.dateIni?.errors?.required"
@@ -57,7 +58,8 @@
             </button>
           </div>
         </div>
-        <div class="text-primary mt-1" *ngIf="f.dateFin?.errors?.required" translate [translateParams]="{attribute: 'dateFin'}">
+        <div class="text-primary mt-1" *ngIf="f.dateFin?.errors?.required" translate
+             [translateParams]="{attribute: 'dateFin'}">
           validation.required
         </div>
         <div class="text-primary mt-1" *ngIf="f.dateFin?.invalid && !f.dateFin?.errors?.required"
@@ -78,7 +80,8 @@
             </button>
           </div>
         </div>
-        <div class="text-primary mt-1" *ngIf="f.registerDateLimit?.errors?.required" translate [translateParams]="{attribute: 'registerDateLimit'}">
+        <div class="text-primary mt-1" *ngIf="f.registerDateLimit?.errors?.required" translate
+             [translateParams]="{attribute: 'registerDateLimit'}">
           validation.required
         </div>
         <div class="text-primary mt-1" *ngIf="f.registerDateLimit?.invalid && !f.registerDateLimit?.errors?.required"

@@ -1,3 +1,4 @@
+{{ form.form.invalid }}
 <form #form="ngForm" (ngSubmit)="onSubmit()">
   <div class="container">
     <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
@@ -8,15 +9,26 @@
     <br/>
     <div class="form-group">
       <label for="venue_name" class="font-weight-bold">{{ 'common.name' | translate }}</label>
-      <input class="form-control input-lg" id="venue_name" name="venue_name" type="text"
-             [(ngModel)]="tournament.venue.venue_name">
+      <input class="form-control input-lg" id="venue_name" name="venue_name" type="text" #venue_name="ngModel"
+             [(ngModel)]="tournament.venue.venue_name" required>
+      <div class="text-primary mt-1" *ngIf="venue_name.errors?.required" translate
+           [translateParams]="{attribute: 'name'}">
+        validation.required
+      </div>
+      <div class="mt-1" *ngIf="tournament.venue.venue_name">&nbsp;</div>
     </div>
 
 
     <div class="form-group">
       <label for="address" class="font-weight-bold">{{ 'tour_edit.address' | translate }}</label>
-      <input id="address" name="address" placeholder="search for location"
+      <input id="address" name="address" placeholder="search for location" required #address="ngModel"
              type="text" class="form-control input-lg" #search [(ngModel)]="tournament.venue.address">
+
+      <div class="text-primary mt-1" *ngIf="address.errors?.required" translate
+           [translateParams]="{attribute: 'address'}">
+        validation.required
+      </div>
+      <div class="mt-1" *ngIf="tournament.venue.address">&nbsp;</div>
     </div>
 
     <div class="form-group">
@@ -35,7 +47,8 @@
     <br>
     <div align="right">
 
-      <button type="submit" class="btn btn-success btn-update-tour mr-20 mt-20 " id="update_venue"><i></i>
+      <button type="submit" class="btn btn-success btn-update-tour mr-20 mt-20 " id="update_venue"
+              [disabled]="form.form.invalid"><i></i>
         {{ 'common.save' | translate }}
       </button>
 
