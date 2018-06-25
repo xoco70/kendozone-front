@@ -6,6 +6,7 @@ import {Observable, of} from 'rxjs';
 import {ToastrService} from 'ngx-toastr';
 import {User} from '../models/user';
 import {JwtHelperService} from '@auth0/angular-jwt';
+import {environment} from '../../environments/environment';
 
 
 const httpOptions = {
@@ -31,7 +32,7 @@ export class AuthenticationService {
   }
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post<any>('https://api.kz-api.test/auth/login', {email: email, password: password}, httpOptions)
+    return this.http.post<any>(environment.apiUrl + 'auth/login', {email: email, password: password}, httpOptions)
       .pipe(
         map((res: any) => {
           if (res && res.token) {

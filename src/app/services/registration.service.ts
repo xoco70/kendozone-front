@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 
 const httpOptions = {
@@ -14,6 +15,6 @@ export class RegistrationService {
   }
 
   register(name: string, email: string, password: string) {
-    return this.http.post<any>('https://api.kz-api.test/register', {name: name, email: email, password: password}, httpOptions);
+    return this.http.post<any>(environment.apiUrl + '/register', {name: name, email: email, password: password}, httpOptions);
   }
 }

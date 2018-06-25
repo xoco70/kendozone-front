@@ -4,6 +4,7 @@ import {catchError, tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {Observable, of} from 'rxjs';
 import {ToastrService} from 'ngx-toastr';
+import {environment} from '../../environments/environment';
 
 
 const httpOptions = {
@@ -22,7 +23,7 @@ export class ForgetPasswordService {
   }
 
   reset(email: string): Observable<any> {
-    return this.http.post<any>('https://api.kz-api.test/password/email', {email: email}, httpOptions)
+    return this.http.post<any>(environment.apiUrl + 'password/email', {email: email}, httpOptions)
       .pipe(
         tap(data => this.toastr.success('success')),
         catchError(this.handleError('login', []))
