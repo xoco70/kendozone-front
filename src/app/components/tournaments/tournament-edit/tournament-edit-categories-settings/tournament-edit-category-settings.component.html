@@ -37,7 +37,7 @@
                         [(ngModel)]="championship.settings.fightDuration">
                   <option *ngFor="let duration of durations"
                           [selected]="championship.settings.fightDuration==duration"
-                          [ngValue]="championship.settings.fightDuration"
+                          [ngValue]="duration"
                   > {{ duration }}
                   </option>
                 </select>

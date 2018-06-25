@@ -47,23 +47,6 @@ export class TournamentEditCategorySettingsComponent implements OnInit {
 
   ngOnInit() {
     const settingsDefault = new ChampionshipSettings();
-    settingsDefault.fightingAreas = 1;
-    settingsDefault.fightDuration = '05:00';
-    settingsDefault.hasPreliminary = true;
-    settingsDefault.preliminaryGroupSize = 3;
-    // settingsDefault.preliminaryDuration = '05:00';
-    // settingsDefault.preliminaryWinner = 1;
-    // settingsDefault.hasEncho = true;
-    // settingsDefault.enchoQty = 1;
-    // settingsDefault.enchoDuration = '02:00';
-    // settingsDefault.hasHantei = false;
-    // settingsDefault.hanteiLimit = 1;
-    // settingsDefault.enchoGoldPoint = 1;
-    // settingsDefault.limitByEntity = 1;
-    // settingsDefault.cost = 1;
-    settingsDefault.treeType = 0;
-    // settingsDefault.seedQuantity = 1;
-
     if (this.championship.settings == null) {
       this.championship.settings = settingsDefault;
     }

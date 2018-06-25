@@ -5,14 +5,14 @@ export class ChampionshipSettings {
   treeType: number;
   fightingAreas: number;
   fightDuration: string;
-  hasPreliminary: boolean;
+  hasPreliminary: number;
   preliminaryGroupSize: number;
   preliminaryDuration: string;
   preliminaryWinner: number;
-  hasEncho: boolean;
+  hasEncho: number;
   enchoQty: number;
   enchoDuration: string;
-  hasHantei: boolean;
+  hasHantei: number;
   cost: number;
   seedQuantity: number;
   hanteiLimit: number;
@@ -22,14 +22,14 @@ export class ChampionshipSettings {
   constructor() {
     this.fightingAreas = 1;
     this.fightDuration = '05:00';
-    this.hasPreliminary = true;
+    this.hasPreliminary = 1;
     this.preliminaryGroupSize = 3;
     this.preliminaryDuration = '05:00';
     this.preliminaryWinner = 1;
-    this.hasEncho = true;
+    this.hasEncho = 1;
     this.enchoQty = 1;
     this.enchoDuration = '0';
-    this.hasHantei = false;
+    this.hasHantei = 0;
     this.hanteiLimit = 0;
     this.enchoGoldPoint = 0;
     this.limitByEntity = 4;

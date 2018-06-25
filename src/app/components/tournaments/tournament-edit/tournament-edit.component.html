@@ -3,6 +3,17 @@
   <div class="row">
     <div class="col-md-10" id="main">
       <ngb-tabset type="pills" class="nav-fill" #tabs [activeId]="selectedTab" >
+        <ngb-tab id="general-data">
+          <ng-template ngbTabTitle>{{ 'tour_edit.general_data' | translate | uppercase }}</ng-template>
+          <ng-template ngbTabContent>
+            <div class="card mt-3">
+              <div class="card-body">
+                <app-tournament-edit-general [tournament]="data.tournament">
+                </app-tournament-edit-general>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-tab>
         <ngb-tab id="venue">
           <ng-template ngbTabTitle>{{ 'model.venue' | translate | uppercase }}</ng-template>
           <ng-template ngbTabContent>
@@ -11,17 +22,6 @@
                 <app-tournament-edit-venue
                   [tournament]="data.tournament"
                 ></app-tournament-edit-venue>
-              </div>
-            </div>
-          </ng-template>
-        </ngb-tab>
-        <ngb-tab id="general-data">
-          <ng-template ngbTabTitle>{{ 'tour_edit.general_data' | translate | uppercase }}</ng-template>
-          <ng-template ngbTabContent>
-            <div class="card mt-3">
-              <div class="card-body">
-                <app-tournament-edit-general [tournament]="data.tournament">
-                </app-tournament-edit-general>
               </div>
             </div>
           </ng-template>
