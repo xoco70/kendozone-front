@@ -1,18 +1,18 @@
-<form [formGroup]="generalForm" (ngSubmit)="onSubmit()">
+{{ f.dateIni.errors | json }}
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="row">
     <div class="col-md-4">
       <div class="form-group">
         <label for="name" class="font-weight-bold">{{ 'common.name' | translate }}</label>
         <br>
         <input class="form-control input-lg" formControlName="name" [value]="tournament.name" type="text" id="name">
-        <div *ngIf="submitted && f.name.errors" class="text-primary">
-          <div *ngIf="f.name.errors.required" translate [translateParams]="{attribute: 'name'}">
+          <div class="text-primary mt-1" *ngIf="f.name.errors?.required" translate [translateParams]="{attribute: 'name'}">
             validation.required
           </div>
+        <div class="mt-1" *ngIf="!f.name.errors?.required">&nbsp;</div>
         </div>
       </div>
     </div>
-  </div>
   <hr/>
 
   <!--Second row-->
@@ -24,11 +24,10 @@
         <div class="input-group">
           <input class="form-control" placeholder="yyyy-mm-dd"
                  id="dateIni" formControlName="dateIni" ngbDatepicker #a="ngbDatepicker">
-          <div *ngIf="submitted && f.dateIni.errors" class="text-primary">
-            <div *ngIf="f.dateIni.errors.required" translate [translateParams]="{attribute: 'dateIni'}">
-              validation.required
-            </div>
+          <div class="text-primary mt-1" *ngIf="f.dateIni?.errors?.required" translate [translateParams]="{attribute: 'dateIni'}">
+            validation.required
           </div>
+          <div class="mt-1" *ngIf="!f.dateIni?.errors?.required">&nbsp;</div>
           <div class="input-group-append">
             <button class="btn btn-outline-secondary" (click)="a.toggle()" type="button">
               <i class="fas fa-calendar-alt calendar"></i>
@@ -95,7 +94,8 @@
     </div>
     <div class="col-md-4">
       <div class="form-group">
-        <label for="technical_assistance" class="font-weight-bold">{{ 'tour_edit.technical_assistance' | translate }}</label>
+        <label for="technical_assistance" class="font-weight-bold">{{ 'tour_edit.technical_assistance' | translate
+          }}</label>
         <input class="form-control input-lg mt-2" formControlName="technical_assistance"
                [value]="tournament.technical_assistance" type="text" id="technical_assistance">
       </div>
@@ -103,7 +103,7 @@
   </div>
 
   <div align="right">
-    <button type="submit" class="btn btn-success mt-2">
+    <button type="submit" class="btn btn-success mt-2" [disabled]="!form.valid">
       {{ 'common.save' | translate }}
     </button>
   </div>

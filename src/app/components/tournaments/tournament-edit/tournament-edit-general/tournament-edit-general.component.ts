@@ -14,7 +14,7 @@ export class TournamentEditGeneralComponent implements OnInit {
   public localTournament: Tournament = <Tournament>{};
   public dateIni: { year: 2017, month: 8, day: 8 }; // TODO should not have a default value
   @Input() registerDateLimit: { year: 2017, month: 8, day: 8 }; // TODO should not have a default value
-  generalForm: FormGroup;
+  form: FormGroup;
   loading = false;
   submitted = false;
   error = '';
@@ -27,14 +27,14 @@ export class TournamentEditGeneralComponent implements OnInit {
   }
 
   get f() {
-    return this.generalForm.controls;
+    return this.form.controls;
   }
 
   onSubmit() {
     this.submitted = true;
 
     // stop here if form is invalid
-    if (this.generalForm.invalid) {
+    if (this.form.invalid) {
       return;
     }
 
@@ -64,7 +64,7 @@ export class TournamentEditGeneralComponent implements OnInit {
 
   ngOnInit() {
 
-    this.generalForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       name: [this.tournament.name, Validators.required],
       dateIni: [{
         'year': parseInt(this.tournament.dateIni.slice(0, 4), 10),
