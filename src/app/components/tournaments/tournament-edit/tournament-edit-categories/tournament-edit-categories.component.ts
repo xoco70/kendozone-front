@@ -20,7 +20,7 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 export class TournamentEditCategoriesComponent implements OnInit, ControlValueAccessor, AfterViewInit {
   @Input() tournament: Tournament;
   @Input() categories;
-  @Input() componentName;
+  // @Input() componentName;
   @Input() disabled: boolean;
 
   loading: boolean;

@@ -1,7 +1,9 @@
+{{ latitude }}
+{{ longitude }}
 <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
   <div class="container">
     <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-      <agm-marker [latitude]="tournament.venue.latitude" [longitude]="tournament.venue.longitude"></agm-marker>
+      <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
     </agm-map>
     <br/>
     <div class="form-group">
@@ -12,8 +14,8 @@
 
     <div class="form-group">
       <label for="address" class="font-weight-bold">{{ 'tour_edit.address' | translate }}</label>
-      <input id="address" name="address" placeholder="search for location" autocorrect="off" autocapitalize="off"
-             spellcheck="off" type="text" class="form-control input-lg" [value]="tournament.venue.address"
+      <input id="address" name="address" placeholder="search for location"
+             type="text" class="form-control input-lg" [value]="tournament.venue.address"
              #search [formControl]="searchControl" formControlName="address">
     </div>
 
