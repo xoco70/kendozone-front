@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Championship} from '../../../models/championship';
 import {FlattenPipe, GroupByPipe} from 'ngx-pipes';
-import {User} from '../../../models/user';
-import {Competitor} from '../../../models/competitor';
-import {Team} from '../../../models/team';
 import {FightersGroup} from '../../../models/fighters.group';
 import {plainToClass} from 'class-transformer';
+import {Team} from '../../../models/team';
+import {Competitor} from '../../../models/competitor';
+import {User} from '../../../models/user';
 
 @Component({
   selector: 'app-single-elimination',
@@ -16,11 +16,13 @@ import {plainToClass} from 'class-transformer';
 export class SingleEliminationComponent implements OnInit {
   @Input() championship: Championship;
   noRounds: number;
+  numFighters: number;
   fighterGroups: FightersGroup[];
   firstRoundGroup: FightersGroup[];
   matches: FightersGroup[];
   private brackets = [] as any[][];
   fighters: any[];
+  private groupWithoutPreliminary: FightersGroup[];
 
   constructor(
     private groupByPipe: GroupByPipe,
@@ -30,95 +32,87 @@ export class SingleEliminationComponent implements OnInit {
 
   ngOnInit() {
     this.fighterGroups = plainToClass(FightersGroup, this.championship.fighters_groups);
-    this.firstRoundGroup = this.fighterGroups.filter(h => h.round >= this.championship.settings.hasPreliminary + 1);
-    console.log(this.firstRoundGroup);
-    const groupByRound = this.groupByPipe.transform(this.firstRoundGroup, 'round'); // Returns: "oof"
-    const brackets = [];
+    this.firstRoundGroup = this.fighterGroups.filter(group => group.round === this.championship.settings.hasPreliminary + 1);
+    this.groupWithoutPreliminary = this.fighterGroups.filter(group => group.round >= this.championship.settings.hasPreliminary + 1);
+    const groupsByRound = this.groupByPipe.transform(this.groupWithoutPreliminary, 'round');
 
-    if (this.firstRoundGroup.length > 0) {
-      this.matches = this.getFirstRoundFighters(groupByRound);
-      console.log(this.matches);
-      this.fighters = this.flattenPipe.transform(this.matches);
-      console.log(this.fighters);
-      // Calculate the size of the first full round -
-      // for example if you have 5 fighters, then the first full round will consist of 4 fighters
+    this.numFighters = this.firstRoundGroup.length * 2;
+    this.noRounds = Math.log2(this.numFighters);
+    // this.matches = this.getFirstRoundFighters(groupsByRound);
+    // this.fighters = this.flattenPipe.transform(this.matches);
 
-      this.noRounds = Math.log(this.fighters.length);
-      let roundNumber = 1;
-      // Group 2 fighters into a match
-      // $matches = array_chunk($fighters, 2); // Use less
-      //
-      // If there's already a match in the match array, then that means the next round is round 2, so increase the round number
-      if (brackets && brackets.length) {
-        roundNumber++;
-      }
+    // console.log(this.fighterGroups);
+    // console.log(this.firstRoundGroup);
+    // console.log(this.groupWithoutPreliminary);
+    // console.log(groupsByRound);
+    // console.log(this.numFighters);
+    // console.log(this.noRounds);
 
-      // Create the first full round of fighters, some may be blank if waiting on the results of a previous round
-      for (let i = 0; i < this.matches.length; i++) {
-        brackets[i + 1] = [];
-        brackets[roundNumber][i + 1] = this.matches[i];
-      }
-      console.log(brackets);
-      // Create the result of the empty rows for this tournament
-      this.assignFightersToBracket(roundNumber, this.championship.settings.hasPreliminary);
-      // $this->assignPositions();
-      //
-      // if ($this->numFighters >= $this->championship->getGroupSize() * 2) {
-      //   $this->brackets[$this->noRounds][2]['matchWrapperTop'] = $this->brackets[$this->noRounds][1]['matchWrapperTop'] + 100;
-      // }
-
+    for (let i = 1; i <= this.noRounds; i++) {
+      // const fightersGroup = groupsByRound[i];
+      this.brackets[i] = groupsByRound[i].map(group => {
+        if (this.championship.category.isTeam) {
+          return new Object({
+            'playerA': group.teams[0] || new Team('Bye'),
+            'playerB': group.teams[1] || new Team('Bye')
+          });
+        }
+        return new Object({
+          'playerA': group.competitors[0] || new Competitor(new User('Bye')),
+          'playerB': group.competitors[1] || new Competitor(new User('Bye'))
+        });
+      });
+      // console.log(groupsByRound[i]);
+      console.log(this.brackets);
     }
   }
 
-  private assignFightersToBracket(numRound: number, hasPreliminary: number) {
-    for (let roundNumber = numRound; roundNumber <= this.noRounds; roundNumber++) {
-      const groupsByRound = this.fighterGroups.filter(h => h.round >= hasPreliminary + roundNumber);
-      console.log(groupsByRound);
-      for (let matchNumber = 1; matchNumber <= this.fighters.length / Math.pow(roundNumber, 2); matchNumber++) {
-        const fight = groupsByRound[matchNumber - 1].fights;
-        console.log(fight);
-        // const fighter1 = fight.fighter1;
-        // const fighter2 = fight.fighter2;
-        // const winnerId = fight.winner_id;
-        // this.brackets[roundNumber][matchNumber] = [fighter1, fighter2, winnerId];
-      }
-    }
 
-    if (this.matches.length > this.championship.settings.preliminaryGroupSize * 2) {
-      const lastRound = this.noRounds;
-      const lastMatch = this;
-    }
+  // private function assignPositions()
+  // {
+  //
+  //   //Variables required for figuring outing the height of the vertical connectors
+  //
+  //   $spaceFactor = 0.5;
+  //   $playerHeightFactor = 1;
+  //   foreach ($this->brackets as $roundNumber => &$round) {
+  //   foreach ($round as $matchNumber => &$match) {
+  //
+  //     //Give teams a nicer index
+  //
+  //     $match['playerA'] = $match[0];
+  //     $match['playerB'] = $match[1];
+  //     $match['winner_id'] = $match[2];
+  //
+  //     unset($match[0]);
+  //     unset($match[1]);
+  //     unset($match[2]);
+  //
+  //     //Figure out the bracket positions
+  //
+  //     $match['matchWrapperTop'] = (((2 * $matchNumber) - 1) * (pow(2, ($roundNumber) - 1)) - 1) * (($this->matchSpacing / 2) + $this->playerWrapperHeight);
+  //     $match['matchWrapperLeft'] = ($roundNumber - 1) * ($this->matchWrapperWidth + $this->roundSpacing - 1);
+  //     $match['vConnectorLeft'] = floor($match['matchWrapperLeft'] + $this->matchWrapperWidth + ($this->roundSpacing / 2) - ($this->borderWidth / 2));
+  //     $match['vConnectorHeight'] = ($spaceFactor * $this->matchSpacing) + ($playerHeightFactor * $this->playerWrapperHeight) + $this->borderWidth;
+  //     $match['vConnectorTop'] = $match['hConnectorTop'] = $match['matchWrapperTop'] + $this->playerWrapperHeight;
+  //     $match['hConnectorLeft'] = ($match['vConnectorLeft'] - ($this->roundSpacing / 2)) + 2;
+  //     $match['hConnector2Left'] = $match['matchWrapperLeft'] + $this->matchWrapperWidth + ($this->roundSpacing / 2);
+  //
+  //     //Adjust the positions depending on the match number
+  //
+  //     if (!($matchNumber % 2)) {
+  //       $match['hConnector2Top'] = $match['vConnectorTop'] -= ($match['vConnectorHeight'] - $this->borderWidth);
+  //     } else {
+  //       $match['hConnector2Top'] = $match['vConnectorTop'] + ($match['vConnectorHeight'] - $this->borderWidth);
+  //     }
+  //   }
+  //
+  //   //Update the spacing variables
+  //
+  //   $spaceFactor *= 2;
+  //   $playerHeightFactor *= 2;
+  // }
+  // }
 
-    // if ($this - > numFighters >= $this - > championship - > getGroupSize() * 2) {
-    //   $lastRound = $this - > noRounds;
-    //   $lastMatch = $this - > numFighters / pow(2, $roundNumber) + 1;
-    //   $groupsByRound = $this - > groupsByRound - > get(intval($this - > noRounds));
-    //   $group = $groupsByRound[$lastMatch];
-    //   $fight = $group - > fights[0];
-    //   $fighter1 = $fight - > fighter1;
-    //   $fighter2 = $fight - > fighter2;
-    //   $winnerId = $fight - > winner_id;
-    //   $this - > brackets[$lastRound][$lastMatch + 1];
-    //   = [$fighter1, $fighter2, $winnerId];
-    // }
-  }
 
-  private getFirstRoundFighters(groupByRound) {
-    let firstRoundName = [] as FightersGroup[];
-    firstRoundName = groupByRound[1].map((group) => {
-      if (group.teams.length > 0) {
-        const team1 = plainToClass(Team, group.teams[0]) || new Team('Bye');
-        const team2 = plainToClass(Team, group.teams[1]) || new Team('Bye');
-        return [team1, team2];
-      }
-
-      if (group.competitors.length > 0) {
-        const comp1 = plainToClass(Competitor, group.competitors[0]) || new Competitor(new User('Bye'));
-        const comp2 = plainToClass(Competitor, group.competitors[1]) || new Competitor(new User('Bye'));
-        return [comp1, comp2];
-      }
-      return null;
-    });
-    return firstRoundName;
-  }
 }
