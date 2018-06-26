@@ -19,14 +19,12 @@ export class SingleEliminationComponent implements OnInit {
   numFighters: number;
   fighterGroups: FightersGroup[];
   firstRoundGroup: FightersGroup[];
-  matches: FightersGroup[];
+  matchWrapperWidth = 150;
   private brackets = [] as any[][];
-  fighters: any[];
   private groupWithoutPreliminary: FightersGroup[];
 
   constructor(
     private groupByPipe: GroupByPipe,
-    private flattenPipe: FlattenPipe,
   ) {
   }
 
@@ -38,8 +36,6 @@ export class SingleEliminationComponent implements OnInit {
 
     this.numFighters = this.firstRoundGroup.length * 2;
     this.noRounds = Math.log2(this.numFighters);
-    // this.matches = this.getFirstRoundFighters(groupsByRound);
-    // this.fighters = this.flattenPipe.transform(this.matches);
 
     // console.log(this.fighterGroups);
     // console.log(this.firstRoundGroup);
@@ -63,56 +59,47 @@ export class SingleEliminationComponent implements OnInit {
         });
       });
       // console.log(groupsByRound[i]);
-      console.log(this.brackets);
     }
+    // console.log(this.brackets);
+    this.assignPositions();
   }
 
+  assignPositions() {
+    let spaceFactor = 0.5;
+    let playerHeightFactor = 1;
+    const playerWrapperHeight = 30;
 
-  // private function assignPositions()
-  // {
-  //
-  //   //Variables required for figuring outing the height of the vertical connectors
-  //
-  //   $spaceFactor = 0.5;
-  //   $playerHeightFactor = 1;
-  //   foreach ($this->brackets as $roundNumber => &$round) {
-  //   foreach ($round as $matchNumber => &$match) {
-  //
-  //     //Give teams a nicer index
-  //
-  //     $match['playerA'] = $match[0];
-  //     $match['playerB'] = $match[1];
-  //     $match['winner_id'] = $match[2];
-  //
-  //     unset($match[0]);
-  //     unset($match[1]);
-  //     unset($match[2]);
-  //
-  //     //Figure out the bracket positions
-  //
-  //     $match['matchWrapperTop'] = (((2 * $matchNumber) - 1) * (pow(2, ($roundNumber) - 1)) - 1) * (($this->matchSpacing / 2) + $this->playerWrapperHeight);
-  //     $match['matchWrapperLeft'] = ($roundNumber - 1) * ($this->matchWrapperWidth + $this->roundSpacing - 1);
-  //     $match['vConnectorLeft'] = floor($match['matchWrapperLeft'] + $this->matchWrapperWidth + ($this->roundSpacing / 2) - ($this->borderWidth / 2));
-  //     $match['vConnectorHeight'] = ($spaceFactor * $this->matchSpacing) + ($playerHeightFactor * $this->playerWrapperHeight) + $this->borderWidth;
-  //     $match['vConnectorTop'] = $match['hConnectorTop'] = $match['matchWrapperTop'] + $this->playerWrapperHeight;
-  //     $match['hConnectorLeft'] = ($match['vConnectorLeft'] - ($this->roundSpacing / 2)) + 2;
-  //     $match['hConnector2Left'] = $match['matchWrapperLeft'] + $this->matchWrapperWidth + ($this->roundSpacing / 2);
-  //
-  //     //Adjust the positions depending on the match number
-  //
-  //     if (!($matchNumber % 2)) {
-  //       $match['hConnector2Top'] = $match['vConnectorTop'] -= ($match['vConnectorHeight'] - $this->borderWidth);
-  //     } else {
-  //       $match['hConnector2Top'] = $match['vConnectorTop'] + ($match['vConnectorHeight'] - $this->borderWidth);
-  //     }
-  //   }
-  //
-  //   //Update the spacing variables
-  //
-  //   $spaceFactor *= 2;
-  //   $playerHeightFactor *= 2;
-  // }
-  // }
+    const roundSpacing = 40;
+    const matchSpacing = 42;
+    const borderWidth = 3;
 
+    this.brackets.forEach((round, roundNumber) => {
+      round.forEach((match, matchNumber) => {
+        // console.log(matchNumber);
+        // console.log(match);
+        // console.log(match[0]);
+        // console.log(match[1]);
+        // console.log(match[2]);
+        // match['winner_id'] = match[2];
+        match['matchWrapperTop'] = (((2 * matchNumber) - 1) * (Math.pow(roundNumber - 1, 2)) - 1) * ((matchSpacing / 2) + playerWrapperHeight);
+        match['matchWrapperLeft'] = (roundNumber - 1) * (this.matchWrapperWidth + roundSpacing - 1);
+        match['vConnectorLeft'] = Math.floor(match['matchWrapperLeft'] + this.matchWrapperWidth + (roundSpacing / 2) - (borderWidth / 2));
+        match['vConnectorHeight'] = (spaceFactor * matchSpacing) + (playerHeightFactor * playerWrapperHeight) + borderWidth;
+        match['vConnectorTop'] = match['hConnectorTop'] = match['matchWrapperTop'] + playerWrapperHeight;
+        match['hConnectorLeft'] = (match['vConnectorLeft'] - (roundSpacing / 2)) + 2;
+        match['hConnector2Left'] = match['matchWrapperLeft'] + this.matchWrapperWidth + (roundSpacing / 2);
 
+        // Adjust the positions depending on the match number
+
+        if (!(matchNumber % 2)) {
+          match['hConnector2Top'] = match['vConnectorTop'] -= (match['vConnectorHeight'] - borderWidth);
+        } else {
+          match['hConnector2Top'] = match['vConnectorTop'] + (match['vConnectorHeight'] - borderWidth);
+        }
+      });
+      spaceFactor *= 2;
+      playerHeightFactor *= 2;
+    });
+    console.log(this.brackets);
+  }
 }
