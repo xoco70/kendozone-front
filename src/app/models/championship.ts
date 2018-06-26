@@ -2,6 +2,8 @@ import {Category} from './category';
 import {Competitor} from './competitor';
 import {ChampionshipSettings} from './championship-settings';
 import {User} from './user';
+import {FightersGroup} from './fighters.group';
+import {Type} from 'class-transformer';
 
 export class Championship {
 
@@ -15,7 +17,8 @@ export class Championship {
   users: User[];
   competitors: Competitor[];
   settings: ChampionshipSettings;
-  fighters_groups: any[];
+  @Type(() => FightersGroup)
+  fighters_groups: FightersGroup[];
 
 
   hasPreliminary() {

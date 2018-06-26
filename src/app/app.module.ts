@@ -51,17 +51,18 @@ import {FightsComponent} from './components/fights/fights.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import * as Raven from 'raven-js';
+import {NgPipesModule} from 'ngx-pipes';
 
 
 Raven
-  .config('https://1a27df946e9742edaa7a4e9a2b41b280@sentry.io/1232263')
+  .config(environment.sentryDns)
   .install();
 
-export class RavenErrorHandler implements ErrorHandler {
-  handleError(err: any): void {
-    Raven.captureException(err);
-  }
-}
+// export class RavenErrorHandler implements ErrorHandler {
+//   handleError(err: any): void {
+//     Raven.captureException(err);
+//   }
+// }
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -124,6 +125,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     AppRoutingModule,
     HttpClientModule,
     DropzoneModule,
+    NgPipesModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDMbCISDkoc5G1AP1mw8K76MsaN0pyF64k',
       libraries: ['places']
@@ -168,7 +170,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
       provide: DROPZONE_CONFIG,
       useValue: DEFAULT_DROPZONE_CONFIG
     },
-    {provide: ErrorHandler, useClass: RavenErrorHandler}
+    // {provide: ErrorHandler, useClass: RavenErrorHandler}
 
     // provider used to create fake backend
     // fakeBackendProvider

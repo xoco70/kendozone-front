@@ -6,4 +6,8 @@ export class Team {
   picture: string;
   entity_type: number;
   entity_id: string;
+
+  constructor(name: string) {
+    this.name = name;
+  }
 }
