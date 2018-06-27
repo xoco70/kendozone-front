@@ -18,6 +18,7 @@ export class SingleEliminationComponent implements OnInit {
   noRounds: number;
   numFighters: number;
   fighterGroups: FightersGroup[];
+  roundSpacing = 40;
   firstRoundGroup: FightersGroup[];
   matchWrapperWidth = 150;
   brackets = [] as any[][];
@@ -45,7 +46,6 @@ export class SingleEliminationComponent implements OnInit {
     // console.log(this.noRounds);
 
     for (let i = 1; i <= this.noRounds; i++) {
-      // const fightersGroup = groupsByRound[i];
       this.brackets[i] = groupsByRound[i].map(group => {
         if (this.championship.category.isTeam) {
           return new Object({
@@ -58,9 +58,7 @@ export class SingleEliminationComponent implements OnInit {
           'playerB': group.competitors[1] || new Competitor(new User('Bye'))
         });
       });
-      // console.log(groupsByRound[i]);
     }
-    // console.log(this.brackets);
     this.assignPositions();
   }
 
@@ -69,7 +67,7 @@ export class SingleEliminationComponent implements OnInit {
     let playerHeightFactor = 1;
     const playerWrapperHeight = 30;
 
-    const roundSpacing = 40;
+
     const matchSpacing = 42;
     const borderWidth = 3;
 
@@ -91,13 +89,13 @@ export class SingleEliminationComponent implements OnInit {
         // console.log(Math.pow( 2,roundNumber - 1));
         // console.log(((matchSpacing / 2) + playerWrapperHeight));
         // console.log('-------');
-        match['matchWrapperTop'] = (((2 * matchNumber) - 1) * (Math.pow( 2,roundNumber - 1)) - 1) * ((matchSpacing / 2) + playerWrapperHeight);
-        match['matchWrapperLeft'] = (roundNumber - 1) * (this.matchWrapperWidth + roundSpacing - 1);
-        match['vConnectorLeft'] = Math.floor(match['matchWrapperLeft'] + this.matchWrapperWidth + (roundSpacing / 2) - (borderWidth / 2));
+        match['matchWrapperTop'] = (((2 * matchNumber) - 1) * (Math.pow(2, roundNumber - 1)) - 1) * ((matchSpacing / 2) + playerWrapperHeight);
+        match['matchWrapperLeft'] = (roundNumber - 1) * (this.matchWrapperWidth + this.roundSpacing - 1);
+        match['vConnectorLeft'] = Math.floor(match['matchWrapperLeft'] + this.matchWrapperWidth + (this.roundSpacing / 2) - (borderWidth / 2));
         match['vConnectorHeight'] = (spaceFactor * matchSpacing) + (playerHeightFactor * playerWrapperHeight) + borderWidth;
         match['vConnectorTop'] = match['hConnectorTop'] = match['matchWrapperTop'] + playerWrapperHeight;
-        match['hConnectorLeft'] = (match['vConnectorLeft'] - (roundSpacing / 2)) + 2;
-        match['hConnector2Left'] = match['matchWrapperLeft'] + this.matchWrapperWidth + (roundSpacing / 2);
+        match['hConnectorLeft'] = (match['vConnectorLeft'] - (this.roundSpacing / 2)) + 2;
+        match['hConnector2Left'] = match['matchWrapperLeft'] + this.matchWrapperWidth + (this.roundSpacing / 2);
         //
         // // Adjust the positions depending on the match number
         //
@@ -112,5 +110,32 @@ export class SingleEliminationComponent implements OnInit {
       return;
     });
     console.log(this.brackets);
+  }
+
+  getRoundTitles() {
+    const semiFinalTitles = ['Semi-Finals', 'Final'];
+    const quarterFinalTitles = ['Quarter-Finals', 'Semi-Finals', 'Final'];
+    const roundTitle = [
+      ['Final'],
+      semiFinalTitles,
+      semiFinalTitles,
+      semiFinalTitles,
+      quarterFinalTitles,
+      quarterFinalTitles,
+      quarterFinalTitles,
+    ];
+    if (this.numFighters > 8) {
+      const roundTitles = ['Quarter-Finals', 'Semi-Finals', 'Final'];
+      const tempRounds = [];
+      let noTeamsInFirstRound = Math.pow(2, Math.ceil(Math.log(this.numFighters) / Math.log(2)));
+      // The minus 3 is to ignore the final, semi final and quarter final rounds
+
+      for (let i = 0; i < this.noRounds - 3; i++) {
+        tempRounds.push('Last ' + noTeamsInFirstRound);
+        noTeamsInFirstRound /= 2;
+      }
+      return roundTitles.concat(tempRounds);
+    }
+    return roundTitle[this.numFighters - 2]; // -2 because roundTitle should begin with an index at 2
   }
 }

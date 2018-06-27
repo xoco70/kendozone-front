@@ -1,62 +1,71 @@
 <div *ngIf="championship.category.isTeam === 0" align="center">
+  <div id="round-titles-wrapper">
+    <div *ngFor="let title of getRoundTitles(); let i=index">
+      <div class="round-title" [style.left.px]="i * (matchWrapperWidth + roundSpacing - 1)">{{ title }}</div>
+    </div>
+  </div>
 
-</div>
+  <div id="brackets-wrapper" [style.padding-bottom.px]="firstRoundGroup.length / 2 * 205">
 
+    <div *ngFor="let round of brackets;let roundNumber=index">
+      <div *ngFor="let match of round">
+        <div class="match-wrapper"
+             [ngStyle]="{'top.px': match['matchWrapperTop'], 'left.px': match['matchWrapperLeft'], 'width.px': matchWrapperWidth}">
+          <!--Player A-->
 
-<div id="brackets-wrapper" [style.padding-bottom.px]="firstRoundGroup.length / 2 * 205">
-  <!--style="padding-bottom: {{ $championship->groupsByRound(1)->count() / 2 * 205) }}px"-->
-  <!-- 205 px x 2 groups of 2-->
-  <!--@foreach ($treeGen->brackets as $roundNumber => $round)-->
-  <!--@foreach ($round as $matchNumber => $match)-->
+          <input type="text" class="score" name="score[]">
+          <select>
+            <option></option>
+            <option *ngFor="let competitor of championship.competitors"
+                    [ngValue]="match['playerA'].id"
+                    [selected]="match['playerA'].id === competitor.id">
+              {{ competitor.user.firstname }} {{ competitor.user.lastname }}
+            </option>
+          </select>
 
-  <div *ngFor="let round of brackets;let roundNumber=index">
-    <div *ngFor="let match of round">
-      <div class="match-wrapper"
-           [ngStyle]="{'top.px': match['matchWrapperTop'], 'left.px': match['matchWrapperLeft'], 'width.px': matchWrapperWidth}">
-        <!--Player A-->
-
-        <input type="text" class="score" name="score[]">
-        <select name="singleElimination_fighters[]" class="singleElimination_select">
-          <option *ngFor="let competitor of championship.competitors" [ngValue]="competitor.id">
-            {{ competitor.user.firstname }} {{ competitor.user.lastname }}
-          </option>
-        </select>
-
-        <div class="match-divider"></div>
-        <!--Player B-->
-        <input type="text" class="score" name="score[]">
-        <select name="singleElimination_fighters[]" class="singleElimination_select">
-          <option *ngFor="let competitor of championship.competitors" [ngValue]="competitor.id">
-            {{ competitor.user.firstname }} {{ competitor.user.lastname }}
-          </option>
-        </select>
-        <!--@include('laravel-tournaments::partials.tree.brackets.playerList',-->
-      </div>
-      <div *ngIf="roundNumber !== noRounds">
-        <div class="vertical-connector"
-             [ngStyle]="{'top.px': match['vConnectorTop'], 'left.px': match['vConnectorLeft'], 'height.px': match['vConnectorHeight']}">
+          <div class="match-divider"></div>
+          <!--Player B-->
+          <input type="text" class="score" name="score[]">
+          <select name="singleElimination_fighters[]" class="singleElimination_select">
+            <option></option>
+            <option *ngFor="let competitor of championship.competitors"
+                    [ngValue]="match['playerB'].id"
+                    [selected]="match['playerB'].id === competitor.id">
+              {{ competitor.user.firstname }} {{ competitor.user.lastname }}
+            </option>
+          </select>
         </div>
-        <div class="horizontal-connector"
-             [ngStyle]="{'top.px': match['hConnectorTop'], 'left.px': match['hConnectorLeft'] }">
-        </div>
-        <div class="horizontal-connector"
-             [ngStyle]="{'top.px': match['hConnector2Top'], 'left.px': match['hConnector2Left'], 'width.px': match['hConnector2Left']}">
+        <div *ngIf="roundNumber !== noRounds">
+          <div class="vertical-connector"
+               [ngStyle]="{'top.px': match['vConnectorTop'], 'left.px': match['vConnectorLeft'], 'height.px': match['vConnectorHeight']}">
+          </div>
+          <div class="horizontal-connector"
+               [ngStyle]="{'top.px': match['hConnectorTop'], 'left.px': match['hConnectorLeft'] }">
+          </div>
+          <div class="horizontal-connector"
+               [ngStyle]="{'top.px': match['hConnector2Top'], 'left.px': match['hConnector2Left'] }">
+          </div>
         </div>
       </div>
     </div>
+    <!--brackets.forEach((round, roundNumber) => {-->
+    <!--round.forEach((match, matchNumber) => {-->
+
+
+    <!--@if ($roundNumber != $treeGen->noRounds)-->
+    <!--<div class="vertical-connector"-->
+    <!--style="top: {{  $match['vConnectorTop']  }}px; left: {{  $match['vConnectorLeft']  }}px; height: {{  $match['vConnectorHeight']  }}px;"></div>-->
+    <!--<div class="horizontal-connector"-->
+    <!--style="top: {{  $match['hConnectorTop']  }}px; left: {{  $match['hConnectorLeft']  }}px;"></div>-->
+    <!--<div class="horizontal-connector"-->
+    <!--style="top: {{  $match['hConnector2Top']  }}px; left: {{  $match['hConnector2Left']  }}px;"></div>-->
+    <!--@endif-->
+    <!--@endforeach-->
+    <!--@endforeach-->
   </div>
-  <!--brackets.forEach((round, roundNumber) => {-->
-  <!--round.forEach((match, matchNumber) => {-->
 
+</div>
 
-  <!--@if ($roundNumber != $treeGen->noRounds)-->
-  <!--<div class="vertical-connector"-->
-  <!--style="top: {{  $match['vConnectorTop']  }}px; left: {{  $match['vConnectorLeft']  }}px; height: {{  $match['vConnectorHeight']  }}px;"></div>-->
-  <!--<div class="horizontal-connector"-->
-  <!--style="top: {{  $match['hConnectorTop']  }}px; left: {{  $match['hConnectorLeft']  }}px;"></div>-->
-  <!--<div class="horizontal-connector"-->
-  <!--style="top: {{  $match['hConnector2Top']  }}px; left: {{  $match['hConnector2Left']  }}px;"></div>-->
-  <!--@endif-->
-  <!--@endforeach-->
-  <!--@endforeach-->
+<div *ngIf="championship.category.isTeam === 1" align="center">
+
 </div>
