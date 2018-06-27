@@ -60,6 +60,12 @@ export class SingleEliminationComponent implements OnInit {
       });
     }
     this.assignPositions();
+    // Third place positionning
+    if (this.numFighters >= this.championship.settings.preliminaryGroupSize * 2) {
+      // console.log(this.brackets[this.noRounds][1]['matchWrapperTop']);
+      // console.log(this.brackets[this.noRounds][0]['matchWrapperTop'] + 100);
+      this.brackets[this.noRounds][1]['matchWrapperTop'] = this.brackets[this.noRounds][0]['matchWrapperTop'] + 100;
+    }
   }
 
   assignPositions() {

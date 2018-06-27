@@ -5,7 +5,7 @@
     </div>
   </div>
 
-  <div id="brackets-wrapper" [style.padding-bottom.px]="firstRoundGroup.length / 2 * 205">
+  <div id="brackets-wrapper" [style.padding-bottom.px]="firstRoundGroup.length / 2 * 225">
 
     <div *ngFor="let round of brackets;let roundNumber=index">
       <div *ngFor="let match of round">
@@ -48,20 +48,6 @@
         </div>
       </div>
     </div>
-    <!--brackets.forEach((round, roundNumber) => {-->
-    <!--round.forEach((match, matchNumber) => {-->
-
-
-    <!--@if ($roundNumber != $treeGen->noRounds)-->
-    <!--<div class="vertical-connector"-->
-    <!--style="top: {{  $match['vConnectorTop']  }}px; left: {{  $match['vConnectorLeft']  }}px; height: {{  $match['vConnectorHeight']  }}px;"></div>-->
-    <!--<div class="horizontal-connector"-->
-    <!--style="top: {{  $match['hConnectorTop']  }}px; left: {{  $match['hConnectorLeft']  }}px;"></div>-->
-    <!--<div class="horizontal-connector"-->
-    <!--style="top: {{  $match['hConnector2Top']  }}px; left: {{  $match['hConnector2Left']  }}px;"></div>-->
-    <!--@endif-->
-    <!--@endforeach-->
-    <!--@endforeach-->
   </div>
 
 </div>
