@@ -20,7 +20,7 @@ export class SingleEliminationComponent implements OnInit {
   fighterGroups: FightersGroup[];
   firstRoundGroup: FightersGroup[];
   matchWrapperWidth = 150;
-  private brackets = [] as any[][];
+  brackets = [] as any[][];
   private groupWithoutPreliminary: FightersGroup[];
 
   constructor(
