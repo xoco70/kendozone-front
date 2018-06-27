@@ -3,32 +3,32 @@
 </div>
 
 
-<div id="brackets-wrapper">
+<div id="brackets-wrapper" [style.padding-bottom.px]="firstRoundGroup.length / 2 * 205">
   <!--style="padding-bottom: {{ $championship->groupsByRound(1)->count() / 2 * 205) }}px"-->
   <!-- 205 px x 2 groups of 2-->
   <!--@foreach ($treeGen->brackets as $roundNumber => $round)-->
   <!--@foreach ($round as $matchNumber => $match)-->
 
   <div *ngFor="let round of brackets;let roundNumber=index">
-    <div *ngFor="let match of round; let matchNumber=index">
-      <div class="match-wrapper" [ngStyle]="{'top.px': match['matchWrapperTop'], 'left.px': match['matchWrapperLeft'], 'width.px': matchWrapperWidth}">
+    <div *ngFor="let match of round">
+      <div class="match-wrapper"
+           [ngStyle]="{'top.px': match['matchWrapperTop'], 'left.px': match['matchWrapperLeft'], 'width.px': matchWrapperWidth}">
         <!--Player A-->
-        <div>
+
         <input type="text" class="score" name="score[]">
         <select name="singleElimination_fighters[]" class="singleElimination_select">
-        <option *ngFor="let competitor of championship.competitors" [ngValue]="competitor.id">
-          {{  competitor.user.firstname }} {{ competitor.user.lastname }}
-        </option>
+          <option *ngFor="let competitor of championship.competitors" [ngValue]="competitor.id">
+            {{ competitor.user.firstname }} {{ competitor.user.lastname }}
+          </option>
         </select>
-        </div>
+
         <div class="match-divider"></div>
-        <input type="text" class="score" name="score[]">
         <!--Player B-->
         <input type="text" class="score" name="score[]">
         <select name="singleElimination_fighters[]" class="singleElimination_select">
-        <option *ngFor="let competitor of championship.competitors" [ngValue]="competitor.id">{{
-        competitor.user.firstname }} {{ competitor.user.lastname }}
-        </option>
+          <option *ngFor="let competitor of championship.competitors" [ngValue]="competitor.id">
+            {{ competitor.user.firstname }} {{ competitor.user.lastname }}
+          </option>
         </select>
         <!--@include('laravel-tournaments::partials.tree.brackets.playerList',-->
       </div>

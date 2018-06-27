@@ -75,22 +75,32 @@ export class SingleEliminationComponent implements OnInit {
 
     this.brackets.forEach((round, roundNumber) => {
       round.forEach((match, matchNumber) => {
+        matchNumber = matchNumber + 1; // matchNumber should begin with 1, not 0
+        // console.log(roundNumber);
         // console.log(matchNumber);
-        // console.log(match);
         // console.log(match[0]);
         // console.log(match[1]);
         // console.log(match[2]);
         // match['winner_id'] = match[2];
-        match['matchWrapperTop'] = (((2 * matchNumber) - 1) * (Math.pow(roundNumber - 1, 2)) - 1) * ((matchSpacing / 2) + playerWrapperHeight);
+
+        // hConnector2Top:-72
+        // hConnectorTop:-21
+        // matchWrapperTop:-51
+        // vConnectorTop:-72
+        // console.log((2 * matchNumber) - 1);
+        // console.log(Math.pow( 2,roundNumber - 1));
+        // console.log(((matchSpacing / 2) + playerWrapperHeight));
+        // console.log('-------');
+        match['matchWrapperTop'] = (((2 * matchNumber) - 1) * (Math.pow( 2,roundNumber - 1)) - 1) * ((matchSpacing / 2) + playerWrapperHeight);
         match['matchWrapperLeft'] = (roundNumber - 1) * (this.matchWrapperWidth + roundSpacing - 1);
         match['vConnectorLeft'] = Math.floor(match['matchWrapperLeft'] + this.matchWrapperWidth + (roundSpacing / 2) - (borderWidth / 2));
         match['vConnectorHeight'] = (spaceFactor * matchSpacing) + (playerHeightFactor * playerWrapperHeight) + borderWidth;
         match['vConnectorTop'] = match['hConnectorTop'] = match['matchWrapperTop'] + playerWrapperHeight;
         match['hConnectorLeft'] = (match['vConnectorLeft'] - (roundSpacing / 2)) + 2;
         match['hConnector2Left'] = match['matchWrapperLeft'] + this.matchWrapperWidth + (roundSpacing / 2);
-
-        // Adjust the positions depending on the match number
-
+        //
+        // // Adjust the positions depending on the match number
+        //
         if (!(matchNumber % 2)) {
           match['hConnector2Top'] = match['vConnectorTop'] -= (match['vConnectorHeight'] - borderWidth);
         } else {
@@ -99,6 +109,7 @@ export class SingleEliminationComponent implements OnInit {
       });
       spaceFactor *= 2;
       playerHeightFactor *= 2;
+      return;
     });
     console.log(this.brackets);
   }
