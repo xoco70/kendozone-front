@@ -56,6 +56,7 @@ export class TournamentService {
 
   update(tournament: Tournament, tab: string): Observable<any> {
     const tournamentUrl = this.tournamentsUrl + tournament.slug + '?tab=' + tab;
+    // console.log(tournament);
     return this.http.put(tournamentUrl, tournament, httpOptions).pipe(
       tap(data => this.toastr.success('model.tournament' + ' ' + 'action.updated_successfully')),
       catchError(this.handleError<any>('updateTournament'))

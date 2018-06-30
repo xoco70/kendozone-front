@@ -65,17 +65,18 @@ export class CompetitorsComponent implements OnInit {
 
   delete(competitor: Competitor, championshipIndex: number): void {
     this.loading = true;
-    // tournament.championships[x].user
-    // this.tournament.competitors = this.tournament.competitors.filter(h => h !== competitor);
-    this.tournament.championships[championshipIndex].competitors = this.tournament.championships[championshipIndex].competitors.filter(h => h !== competitor);
     this.competitorService.delete(this.tournamentSlug, competitor).subscribe();
+    this.tournament.championships[championshipIndex].competitors = this.tournament.championships[championshipIndex].competitors.filter(h => h !== competitor);
+    this.tournament.competitors = this.tournament.competitors.filter(h => h !== competitor);
+    // const localData = JSON.parse(localStorage.getItem('tournament'));
+    // // console.log(localData);
+    // localData.tournament.competitors = this.tournament.competitors;
+    // localStorage.setItem('tournament', JSON.stringify(localData));
     this.loading = false;
   }
 
 
   ngOnInit() {
-
     this.all();
-
   }
 }

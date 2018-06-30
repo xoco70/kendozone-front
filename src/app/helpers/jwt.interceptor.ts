@@ -22,7 +22,7 @@ export class JwtInterceptor implements HttpInterceptor {
         error => {
           if (error instanceof HttpErrorResponse) {
             console.log(error.status);
-            if (error.status === 400) {
+            if (error.status === 400 || error.status === 401) {
               this.auth.collectFailedRequest(request);
               this.router.navigate(['/login']);
             }

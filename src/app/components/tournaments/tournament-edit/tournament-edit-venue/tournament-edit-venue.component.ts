@@ -1,9 +1,11 @@
+declare var google: any;
 import {Component, ElementRef, Input, NgZone, OnInit, ViewChild} from '@angular/core';
 import {MapsAPILoader} from '@agm/core';
 import {Tournament} from '../../../../models/tournament';
 import {TournamentService} from '../../../../services/tournament.service';
 import {first} from 'rxjs/operators';
 import {COUNTRIES} from '../../../../mock/mock-countries';
+import { } from '@types/googlemaps';
 import GeocoderRequest = google.maps.GeocoderRequest;
 
 @Component({
@@ -12,6 +14,7 @@ import GeocoderRequest = google.maps.GeocoderRequest;
   styleUrls: ['./tournament-edit-venue.component.scss']
 })
 export class TournamentEditVenueComponent implements OnInit {
+
   @Input() tournament: Tournament;
   loading = false;
   submitted = false;
@@ -65,7 +68,6 @@ export class TournamentEditVenueComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log()
     // set google maps defaults
     this.zoom = 4;
     this.latitude = parseFloat(this.tournament.venue.latitude);
