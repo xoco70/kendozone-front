@@ -18,7 +18,6 @@ describe('ForgotPasswordComponent', () => {
   let fixture: ComponentFixture<ForgotPasswordComponent>;
 
   beforeEach(async(() => {
-    const mockRouter = new MockRouter();
     TestBed.configureTestingModule({
       imports: [
         ToastrModule.forRoot(),

@@ -20,7 +20,7 @@ describe('LoginComponent', () => {
 
   const fakeActivatedRoute = {
     snapshot: {
-      data: {...},
+      data: {},
       queryParams: {}
     }
   } as ActivatedRoute;

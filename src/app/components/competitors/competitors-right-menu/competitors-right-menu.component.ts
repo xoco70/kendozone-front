@@ -16,9 +16,9 @@ export class CompetitorsRightMenuComponent implements OnInit {
     this.slug = this.route.snapshot.params.slug;
   }
 
-  static onAnchorClick() {
-    return true;
-  }
+  // static onAnchorClick() {
+  //   return true;
+  // }
 
   ngOnInit() {
     this.route.fragment.subscribe(fragment => {
@@ -26,11 +26,11 @@ export class CompetitorsRightMenuComponent implements OnInit {
     });
   }
 
-  ngAfterViewInit(): void {
-    try {
-      document.querySelector('#' + this.fragment).scrollIntoView();
-    } catch (e) {
-    }
-  }
+  // ngAfterViewInit(): void {
+  //   try {
+  //     document.querySelector('#' + this.fragment).scrollIntoView();
+  //   } catch (e) {
+  //   }
+  // }
 
 }
