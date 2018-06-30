@@ -35,11 +35,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
     // reset login status
     this.auth.logout();
-    if (this.route.snapshot.queryParams['welcome']) {
-      setTimeout(() => {
-        this.toastr.success('Register Successful, please login');
-      });
-    }
+    // if (this.route.snapshot.queryParams['welcome']) {
+    //   setTimeout(() => {
+    //     this.toastr.success('Register Successful, please login');
+    //   });
+    // }
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
   }

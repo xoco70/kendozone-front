@@ -17,9 +17,11 @@ class MockRouter {
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
+
   const fakeActivatedRoute = {
     snapshot: {
-      data: {...}
+      data: {...},
+      queryParams: {}
     }
   } as ActivatedRoute;
 
@@ -58,7 +60,7 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });
