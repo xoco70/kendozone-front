@@ -13,17 +13,17 @@ export class AppComponent implements OnInit {
   public loading = false;
   public currentUser: User;
 
-  // constructor(public translate: TranslateService,
-  //             public auth: AuthenticationService) {
-  //
-  //   translate.addLangs(['en']);
-  //   translate.setDefaultLang('en');
-  //
-  //   const browserLang = translate.getBrowserLang();
-  //   translate.use(browserLang.match(/en/) ? browserLang : 'en');
-  // }
+  constructor(public translate: TranslateService,
+              public auth: AuthenticationService) {
+
+    translate.addLangs(['en']);
+    translate.setDefaultLang('en');
+
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match(/en/) ? browserLang : 'en');
+  }
 
   ngOnInit() {
-    // this.currentUser = this.auth.currentUser();
+    this.currentUser = this.auth.currentUser();
   }
 }
