@@ -7,7 +7,6 @@ import {ToastrModule, ToastrService} from 'ngx-toastr';
 import {JwtHelperService, JwtModule} from '@auth0/angular-jwt';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {environment} from '../../environments/environment';
 
 class MockRouter {
   navigate = jasmine.createSpy('navigate');
@@ -55,7 +54,7 @@ describe('TournamentService', () => {
     expect(service).toBeTruthy();
   }));
 
-  describe('#all', () => {
+  fdescribe('#all', () => {
     it('should return an Observable<Tournament[]>', () => {
       const dummyTournaments = {
         data: [
@@ -88,18 +87,32 @@ describe('TournamentService', () => {
       };
 
       tournamentSrv.all().subscribe(tournaments => {
-        // const data = tournaments['data'];
-        // expect(data.length).toBe(2);
-        // expect(tournaments).toEqual(dummyTournaments);
+        const data = tournaments['data'];
+        expect(data.length).toBe(2);
+        expect(tournaments['data'][0].id).toBe(1);
+        expect(tournaments['data'][1].name).toBe('Prof. Sidney Cassin');
       });
 
-      const url1 = `${environment.apiUrl}tournaments`;
-      const url2 = `${tournamentSrv.tournamentsUrl}`;
-      console.log(url1);
-      console.log(url2);
-      // const req = httpMock.expectOne(`${environment.apiUrl}tournaments`);
-      const req = httpMock.expectOne({method: 'GET', url: 'https://api.kz-api.test/tournaments/'});
+      const req = httpMock.expectOne({method: 'GET', url: `${tournamentSrv.tournamentsUrl}`});
       req.flush(dummyTournaments);
     });
+    // TODO should also test ?page= parameter
   });
+
+  // fdescribe('#getTournament', () => {
+  //   it('should return an Observable<Tournament>', () => {
+  //     const slug = 'slug';
+  //     const dummyTournament = {};
+  //
+  //     tournamentSrv.getTournament(slug).subscribe(tournament => {
+  //       // const data = tournaments['data'];
+  //       // expect(data.length).toBe(2);
+  //       // expect(tournaments).toEqual(dummyTournaments);
+  //     });
+  //
+  //     // const req = httpMock.expectOne(`${environment.apiUrl}tournaments`);
+  //     const req = httpMock.expectOne({method: 'GET', url: 'https://api.kz-api.test/tournaments/'});
+  //     req.flush(dummyTournaments);
+  //   });
+  // });
 });
