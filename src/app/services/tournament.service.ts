@@ -17,7 +17,7 @@ const httpOptions = {
 @Injectable({providedIn: 'root'})
 
 export class TournamentService {
-  private tournamentsUrl = environment.apiUrl + 'tournaments/';
+  tournamentsUrl = environment.apiUrl + 'tournaments/';
   private tournamentPresetsUrl = this.tournamentsUrl + 'presets';
 
 

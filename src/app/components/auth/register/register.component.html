@@ -18,8 +18,8 @@
                 <div class="form-group">
                   <input type="text" formControlName="name" class="form-control input-lg"
                          placeholder="{{ 'validation.attributes.name' | translate }}"
-                         [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
-                  <div *ngIf="submitted && f.name.errors" class="text-primary">
+                         [ngClass]="{ 'is-invalid': !f.name.pristine  && f.name.errors }"/>
+                  <div *ngIf="!f.name.pristine && f.name.errors" class="text-primary">
                     <div *ngIf="f.name.errors.required">{{ 'validation.required' | translate:{'attribute':'Name'} }}
                     </div>
                   </div>
@@ -27,8 +27,8 @@
                 <div class="form-group">
                   <input type="text" formControlName="email" class="form-control input-lg"
                          placeholder="{{ 'validation.attributes.email' | translate }}"
-                         [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
-                  <div *ngIf="submitted && f.email.errors" class="text-primary">
+                         [ngClass]="{ 'is-invalid': !f.email.pristine  && f.email.errors }"/>
+                  <div *ngIf="!f.email.pristine  && f.email.errors" class="text-primary">
                     <div *ngIf="f.email.errors.required">{{ 'validation.required' | translate:{'attribute':'Email'} }}
                     </div>
                   </div>
@@ -37,8 +37,8 @@
                   <input type="password" formControlName="password" name="password"
                          id="password" class="form-control input-lg"
                          placeholder="{{ 'validation.attributes.password' | translate }}" required
-                         [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
-                  <div *ngIf="submitted && f.password.errors" class="text-primary">
+                         [ngClass]="{ 'is-invalid': !f.password.pristine  && f.password.errors }">
+                  <div *ngIf="!f.password.pristine  && f.password.errors" class="text-primary">
                     <div *ngIf="f.password.errors.required">{{ 'validation.required' |
                       translate:{'attribute':'Password'} }}
                     </div>
@@ -48,8 +48,8 @@
                   <input type="password" formControlName="password_confirmation"
                          name="password_confirmation" id="password_confirmation" class="form-control input-lg"
                          placeholder="{{ 'validation.attributes.password_confirmation' | translate }}" required
-                         [ngClass]="{ 'is-invalid': submitted && f.password_confirmation.errors }">
-                  <div *ngIf="submitted && f.password_confirmation.errors" class="text-primary">
+                         [ngClass]="{ 'is-invalid': !f.password_confirmation.pristine  && f.password_confirmation.errors }">
+                  <div *ngIf="!f.password_confirmation.pristine  && f.password_confirmation.errors" class="text-primary">
                     <div *ngIf="f.password_confirmation.errors.required">{{ 'validation.required' |
                       translate:{'attribute':'Password confirmation'} }}
                     </div>

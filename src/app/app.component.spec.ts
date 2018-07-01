@@ -9,6 +9,7 @@ import {ToastrModule, ToastrService} from 'ngx-toastr';
 import {AuthenticationService} from './services/authentication.service';
 import {Router} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
+import {RouterLinkDirectiveStub} from '../testing/router-link-directive-stub';
 
 class MockRouter {
   navigate = jasmine.createSpy('navigate');
@@ -31,6 +32,7 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
+        RouterLinkDirectiveStub,
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [

@@ -20,6 +20,7 @@ export class TournamentsComponent implements OnInit {
     this.loading = true;
     this.tournamentService.all(page)
       .subscribe(tournaments => {
+        console.log(tournaments);
         this.tournaments = tournaments;
         this.loading = false;
       }, err => {
