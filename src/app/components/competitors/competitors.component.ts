@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CompetitorService} from '../../services/competitor.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Tournament} from '../../models/tournament';
 import {Competitor} from '../../models/competitor';
 import {first} from 'rxjs/operators';
@@ -22,6 +22,7 @@ export class CompetitorsComponent implements OnInit {
   constructor(private competitorService: CompetitorService,
               public treeService: TreeService,
               private route: ActivatedRoute,
+              private router: Router,
               private modalService: NgbModal,
               private toastr: ToastrService,
   ) {
@@ -56,6 +57,7 @@ export class CompetitorsComponent implements OnInit {
       .subscribe(
         data => {
           this.loading = false;
+          this.router.navigate(['/tournaments', this.tournamentSlug, 'trees']);
         },
         error => {
           this.loading = false;
