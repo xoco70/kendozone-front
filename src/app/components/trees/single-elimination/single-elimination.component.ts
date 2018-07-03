@@ -38,13 +38,6 @@ export class SingleEliminationComponent implements OnInit {
     this.numFighters = this.firstRoundGroup.length * 2;
     this.noRounds = Math.log2(this.numFighters);
 
-    // console.log(this.fighterGroups);
-    // console.log(this.firstRoundGroup);
-    // console.log(this.groupWithoutPreliminary);
-    // console.log(groupsByRound);
-    // console.log(this.numFighters);
-    // console.log(this.noRounds);
-
     for (let i = 1; i <= this.noRounds; i++) {
       this.brackets[i] = groupsByRound[i].map(group => {
         if (this.championship.category.isTeam) {
@@ -62,8 +55,6 @@ export class SingleEliminationComponent implements OnInit {
     this.assignPositions();
     // Third place positionning
     if (this.numFighters >= this.championship.settings.preliminaryGroupSize * 2) {
-      // console.log(this.brackets[this.noRounds][1]['matchWrapperTop']);
-      // console.log(this.brackets[this.noRounds][0]['matchWrapperTop'] + 100);
       this.brackets[this.noRounds][1]['matchWrapperTop'] = this.brackets[this.noRounds][0]['matchWrapperTop'] + 100;
     }
   }
@@ -80,21 +71,6 @@ export class SingleEliminationComponent implements OnInit {
     this.brackets.forEach((round, roundNumber) => {
       round.forEach((match, matchNumber) => {
         matchNumber = matchNumber + 1; // matchNumber should begin with 1, not 0
-        // console.log(roundNumber);
-        // console.log(matchNumber);
-        // console.log(match[0]);
-        // console.log(match[1]);
-        // console.log(match[2]);
-        // match['winner_id'] = match[2];
-
-        // hConnector2Top:-72
-        // hConnectorTop:-21
-        // matchWrapperTop:-51
-        // vConnectorTop:-72
-        // console.log((2 * matchNumber) - 1);
-        // console.log(Math.pow( 2,roundNumber - 1));
-        // console.log(((matchSpacing / 2) + playerWrapperHeight));
-        // console.log('-------');
         match['matchWrapperTop'] = (((2 * matchNumber) - 1) * (Math.pow(2, roundNumber - 1)) - 1) * ((matchSpacing / 2) + playerWrapperHeight);
         match['matchWrapperLeft'] = (roundNumber - 1) * (this.matchWrapperWidth + this.roundSpacing - 1);
         match['vConnectorLeft'] = Math.floor(match['matchWrapperLeft'] + this.matchWrapperWidth + (this.roundSpacing / 2) - (borderWidth / 2));
@@ -115,7 +91,6 @@ export class SingleEliminationComponent implements OnInit {
       playerHeightFactor *= 2;
       return;
     });
-    console.log(this.brackets);
   }
 
   getRoundTitles() {

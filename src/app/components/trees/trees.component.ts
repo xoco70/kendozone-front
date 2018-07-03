@@ -29,9 +29,11 @@ export class TreesComponent implements OnInit {
     this.treeService.store(championship)
       .pipe(first())
       .subscribe(
-        data => {
-          console.log(data);
+        tournament => {
           this.loading = false;
+          console.log(this.tournament);
+          this.tournament = plainToClass(Tournament, tournament);
+          console.log(this.tournament);
         },
         error => {
           this.loading = false;
@@ -43,6 +45,7 @@ export class TreesComponent implements OnInit {
     this.treeService.getTournamentWithTrees(this.slug)
       .pipe(first())
       .subscribe(tournament => {
+        console.log(tournament);
         this.tournament = plainToClass(Tournament, tournament);
         this.loading = false;
       }, err => {
