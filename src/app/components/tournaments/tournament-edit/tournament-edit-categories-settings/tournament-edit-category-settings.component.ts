@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {Championship} from '../../../../models/championship';
 import {ChampionshipSettings} from '../../../../models/championship-settings';
 import {ChampionshipSettingsService} from '../../../../services/championship-settings.service';
@@ -8,14 +8,15 @@ import {ChampionshipSettingsService} from '../../../../services/championship-set
   templateUrl: './tournament-edit-category-settings.component.html',
   styleUrls: ['./tournament-edit-category-settings.component.scss']
 })
-export class TournamentEditCategorySettingsComponent implements OnInit {
+export class TournamentEditCategorySettingsComponent implements OnInit, AfterViewChecked {
   @Input() championship: Championship;
   @Input() i: number;
   durations: string[];
   submitted: boolean;
   loading: boolean;
 
-  constructor(private settingsService: ChampionshipSettingsService) {
+  constructor(private cdRef: ChangeDetectorRef,
+              private settingsService: ChampionshipSettingsService) {
   }
 
   onSubmit() {
@@ -69,6 +70,12 @@ export class TournamentEditCategorySettingsComponent implements OnInit {
       '05:00',
     ];
 
+  }
+
+  ngAfterViewChecked() {
+    console.log('! changement de la date du composant !');
+    console.log(this.championship);
+    this.cdRef.detectChanges();
   }
 
 }

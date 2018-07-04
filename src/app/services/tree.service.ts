@@ -30,7 +30,7 @@ export class TreeService {
   store(championship: Championship): Observable<any> {
     const generateTreeUrl = `${environment.apiUrl}championships/${championship.id}/trees/`;
     return this.http.post<any>(generateTreeUrl, championship, httpOptions).pipe(
-      tap(data => this.toastr.success(data.msg)),
+      tap(data => this.toastr.success('msg.championships_tree_generation_success')),
       catchError(this.handleError<any>(''))
     );
   }

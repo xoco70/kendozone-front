@@ -20,7 +20,6 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 export class TournamentEditCategoriesComponent implements OnInit, ControlValueAccessor, AfterViewInit {
   @Input() tournament: Tournament;
   @Input() categories;
-  // @Input() componentName;
   @Input() disabled: boolean;
 
   loading: boolean;
@@ -70,7 +69,6 @@ export class TournamentEditCategoriesComponent implements OnInit, ControlValueAc
 
   ngAfterViewInit() {
     if (this.tournament.id) {
-      console.log(this.tournament.championships.map(championship => championship.category.id));
       this.tournament.categoriesSelected = this.tournament.championships.map(championship => championship.category.id);
     }
   }
@@ -83,12 +81,6 @@ export class TournamentEditCategoriesComponent implements OnInit, ControlValueAc
 
   // this is the initial value set to the component
   public writeValue(obj: any) {
-    // if (obj) {
-    //   this.tournament.categoriesSelected = obj;
-    //   // // this will format it with 4 character spacing
-    //   // this.jsonString =
-    //   //   JSON.stringify(this.data, undefined, 4);
-    // }
   }
 
   // registers 'fn' that will be fired when changes are made

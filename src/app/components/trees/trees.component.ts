@@ -26,20 +26,20 @@ export class TreesComponent implements OnInit {
   }
 
   generateTree(championship) {
+    this.loading = true;
     this.treeService.store(championship)
       .pipe(first())
       .subscribe(
         tournament => {
           this.loading = false;
-          console.log(this.tournament);
-          this.tournament = plainToClass(Tournament, tournament);
-          console.log(this.tournament);
+          this.tournament = plainToClass(tournament, Tournament);
         },
         error => {
           this.loading = false;
         });
 
   }
+
   getTournamentWithTrees(): Observable<Tournament> {
     this.loading = true;
     this.treeService.getTournamentWithTrees(this.slug)

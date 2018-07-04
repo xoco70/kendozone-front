@@ -27,9 +27,6 @@ export class Tournament {
   venue_id: number;
   venue: Venue;
   level_id: number;
-  created_at: string;
-  updated_at: string;
-  deleted_at: string;
   @Type(() => Championship)
   championships: Championship[];
   competitors_count: number;

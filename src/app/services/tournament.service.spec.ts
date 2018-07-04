@@ -54,7 +54,7 @@ describe('TournamentService', () => {
     expect(service).toBeTruthy();
   }));
 
-  fdescribe('#all', () => {
+  describe('#all', () => {
     it('should return an Observable<Tournament[]>', () => {
       const dummyTournaments = {
         data: [

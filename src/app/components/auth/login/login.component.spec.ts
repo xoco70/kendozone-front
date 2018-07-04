@@ -1,4 +1,4 @@
-import {async, ComponentFixture, getTestBed, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {LoginComponent} from './login.component';
 import {TranslateModule} from '@ngx-translate/core';
@@ -9,7 +9,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {JwtHelperService, JwtModule} from '@auth0/angular-jwt';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 class MockRouter {
   navigate = jasmine.createSpy('navigate');
@@ -65,4 +65,21 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it(`email is mandatory`, async(() => {
+    component.loginForm.controls['email'].setValue('');
+    component.loginForm.controls['password'].setValue('text');
+    expect(component.loginForm.valid).toBeFalsy();
+  }));
+
+  it(`email must have email format`, async(() => {
+    component.loginForm.controls['email'].setValue('notanemail@');
+    expect(component.loginForm.valid).toBeFalsy();
+  }));
+
+  it(`password is mandatory`, async(() => {
+    component.loginForm.controls['email'].setValue('myuser');
+    component.loginForm.controls['password'].setValue('');
+    expect(component.loginForm.valid).toBeFalsy();
+  }));
 });

@@ -1,12 +1,13 @@
-<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-<div class="container-fluid" *ngIf="!loading">
+
+<div class="container-fluid" >
   <div class="row">
     <div class="col-10" id="main">
       <ngb-tabset type="pills" class="nav-fill">
         <ngb-tab *ngFor="let championship of tournament.championships">
           <ng-template ngbTabTitle>{{ championship.category.name | translate | uppercase }}</ng-template>
-          <ng-template ngbTabContent>
-            <div class="card mt-3">
+          <ng-template ngbTabContent >
+            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+            <div class="card mt-3" *ngIf="!loading">
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-8">

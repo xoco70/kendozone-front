@@ -13,7 +13,7 @@ export class TournamentEditGeneralComponent implements OnInit {
   @Input() tournament: Tournament;
   public localTournament: Tournament = <Tournament>{};
   public dateIni: { year: 2017, month: 8, day: 8 }; // TODO should not have a default value
-  @Input() registerDateLimit: { year: 2017, month: 8, day: 8 }; // TODO should not have a default value
+  public registerDateLimit: { year: 2017, month: 8, day: 8 }; // TODO should not have a default value
   form: FormGroup;
   loading = false;
   submitted = false;
