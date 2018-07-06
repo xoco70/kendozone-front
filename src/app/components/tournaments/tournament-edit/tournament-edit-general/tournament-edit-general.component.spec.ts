@@ -14,7 +14,7 @@ import {NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import {Tournament} from '../../../../models/tournament';
 
 describe('TournamentEditGeneralComponent', () => {
-  let component: TournamentEditGeneralComponent;
+  let comp: TournamentEditGeneralComponent;
   let fixture: ComponentFixture<TournamentEditGeneralComponent>;
 
   class MockRouter {
@@ -61,24 +61,65 @@ describe('TournamentEditGeneralComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TournamentEditGeneralComponent);
-    component = fixture.componentInstance;
-    component.tournament = new Tournament();
-    component.tournament.user_id = 1;
-    component.tournament.name = 'My Tournament';
-    component.tournament.dateIni = '2017-08-08';
-    component.tournament.dateFin = '2017-08-08';
-    component.tournament.registerDateLimit = '2017-08-08';
-    component.tournament.user_id = 1;
+    comp = fixture.componentInstance;
+    comp.tournament = new Tournament();
+    comp.tournament.user_id = 1;
+    comp.tournament.name = 'My Tournament';
+    comp.tournament.dateIni = '2017-08-08';
+    comp.tournament.dateFin = '2017-08-08';
+    comp.tournament.registerDateLimit = '2017-08-08';
+    comp.tournament.user_id = 1;
+    comp.tournament.promoter = 'text';
+    comp.tournament.host_organization = 'text';
+    comp.tournament.technical_assistance = 'text';
 
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(comp).toBeTruthy();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(comp).toBeTruthy();
   });
 
+  it(`form should be invalid without name`, async(() => {
+    comp.form.controls['name'].setValue('');
+    expect(comp.form.valid).toBeFalsy();
+  }));
+
+  it(`form should be invalid without dateIni`, async(() => {
+    comp.form.controls['dateIni'].setValue('');
+    expect(comp.form.valid).toBeFalsy();
+  }));
+
+  it(`form should be invalid with bad dateIni`, async(() => {
+    comp.form.controls['dateIni'].setValue('123456');
+    expect(comp.form.valid).toBeFalsy();
+  }));
+
+  it(`form should be invalid without dateFin`, async(() => {
+    comp.form.controls['dateFin'].setValue('');
+    expect(comp.form.valid).toBeFalsy();
+  }));
+
+  it(`form should be invalid with bad dateFin`, async(() => {
+    comp.form.controls['dateFin'].setValue('123456');
+    expect(comp.form.valid).toBeFalsy();
+  }));
+
+  it(`form should be invalid without registerDateLimit`, async(() => {
+    comp.form.controls['registerDateLimit'].setValue('');
+    expect(comp.form.valid).toBeFalsy();
+  }));
+
+  it(`form should be invalid with bad registerDateLimit`, async(() => {
+    comp.form.controls['registerDateLimit'].setValue('123456');
+    expect(comp.form.valid).toBeFalsy();
+  }));
+
+  it(`form should be valid with all params set`, async(() => {
+    expect(comp.form.valid).toBeTruthy();
+  }));
 });
