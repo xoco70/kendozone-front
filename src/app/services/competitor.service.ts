@@ -9,6 +9,7 @@ import {AuthenticationService} from './authentication.service';
 import {ToastrService} from 'ngx-toastr';
 import {Tournament} from '../models/tournament';
 import {Competitor} from '../models/competitor';
+import {LocalStorageService} from './local-storage.service';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -36,9 +37,13 @@ export class CompetitorService {
   }
 
   store(competitors: Competitor[], championshipId: number): Observable<Competitor[]> {
+    console.log(competitors['competitors'].length);
     const competitorsUrl = `${environment.apiUrl}championships/${championshipId}/competitors/`;
     return this.http.post<any>(competitorsUrl, competitors, httpOptions).pipe(
       tap(data => this.toastr.success(data.msg)),
+      tap(() => console.log(competitors)),
+      // tap(() => console.log(competitors.length)),
+      tap(() => LocalStorageService.addCompetitors(competitors['competitors'].length)),
       catchError(this.handleError<any>(''))
     );
   }
@@ -48,6 +53,7 @@ export class CompetitorService {
     return this.http.delete<any>(url, httpOptions)
       .pipe(
         tap(data => this.toastr.success(data)),
+        tap(() => LocalStorageService.removeCompetitor()),
         catchError(this.handleError([]))
       );
   }

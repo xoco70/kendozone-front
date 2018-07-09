@@ -8,6 +8,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {AddCompetitorsModalComponent} from '../modals/add-competitors-modal/add-competitors-modal.component';
 import {TreeService} from '../../services/tree.service';
 import {ToastrService} from 'ngx-toastr';
+import {LocalStorageService} from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-competitors',
@@ -15,7 +16,7 @@ import {ToastrService} from 'ngx-toastr';
   styleUrls: ['./competitors.component.scss']
 })
 export class CompetitorsComponent implements OnInit {
-  tournament: Tournament;
+  public tournament: Tournament;
   public loading = true;
   tournamentSlug: string;
 
@@ -24,7 +25,6 @@ export class CompetitorsComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               private modalService: NgbModal,
-              private toastr: ToastrService,
   ) {
     this.tournamentSlug = this.route.snapshot.params.slug;
 
@@ -45,6 +45,7 @@ export class CompetitorsComponent implements OnInit {
       .pipe(first())
       .subscribe(tournament => {
         this.tournament = tournament;
+        console.log(this.tournament);
         this.loading = false;
       }, err => {
         this.loading = false;
@@ -69,16 +70,13 @@ export class CompetitorsComponent implements OnInit {
     this.loading = true;
     this.competitorService.delete(this.tournamentSlug, competitor).subscribe();
     this.tournament.championships[championshipIndex].competitors = this.tournament.championships[championshipIndex].competitors.filter(h => h !== competitor);
-    this.tournament.competitors = this.tournament.competitors.filter(h => h !== competitor);
-    // const localData = JSON.parse(localStorage.getItem('tournament'));
-    // // console.log(localData);
-    // localData.tournament.competitors = this.tournament.competitors;
-    // localStorage.setItem('tournament', JSON.stringify(localData));
+    LocalStorageService.removeCompetitor();
     this.loading = false;
   }
 
 
   ngOnInit() {
     this.all();
+
   }
 }

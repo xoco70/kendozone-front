@@ -10,7 +10,7 @@ import {TournamentService} from '../../../../services/tournament.service';
 })
 export class TournamentEditRightMenuComponent implements OnInit {
   @Input() tournament: Tournament;
-  competitors_count: number;
+  @Input() competitors_count: number;
   championships_count: number;
   teams_count: number;
   trees_count: number;
@@ -20,15 +20,20 @@ export class TournamentEditRightMenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.competitors_count === undefined) {
-      this.statistics();
-    }
+    // this.competitors_count = LocalStorageService.getCompetitorsCount();
+    // this.championships_count = LocalStorageService.getChampionshipsCount();
+    // this.teams_count = LocalStorageService.getTeamsCount();
+    // this.trees_count = LocalStorageService.getTreesCount();
+    // if (this.competitors_count === null || this.competitors_count === undefined) {
+    //   this.statistics();
+    // }
+    this.statistics();
   }
 
   statistics(): void {
     this.tournamentService.statistics(this.tournament.slug)
       .subscribe(statistics => {
-        console.log(statistics);
+        // console.log(statistics);
         this.competitors_count = statistics.competitors_count;
         this.championships_count = statistics.championships_count;
         this.teams_count = statistics.teams_count;

@@ -10,7 +10,7 @@ export class LocalStorageService {
     return data.tournament.competitors;
   }
 
-  static getTeamCount(): number {
+  static getTeamsCount(): number {
     return JSON.parse(localStorage.getItem('teams_count'));
   }
 
@@ -46,6 +46,30 @@ export class LocalStorageService {
 
   static setCompetitorsCount(competitors_count): void {
     localStorage.setItem('competitors_count', competitors_count);
+  }
+
+
+  static addTeam(): void {
+    // localStorage.setItem('teams_count', teams_count);
+  }
+
+  static removeTeam(): void {
+    // localStorage.setItem('trees_count', trees_count);
+  }
+
+  static addCompetitors(qty: number): number {
+    const num = LocalStorageService.getCompetitorsCount();
+    console.log(num);
+    console.log(qty);
+    localStorage.setItem('competitors_count', (num + qty) + '');
+    console.log(num + qty);
+    return num + qty;
+  }
+
+  static removeCompetitor(): number {
+    const num = LocalStorageService.getCompetitorsCount();
+    localStorage.setItem('competitors_count', (num - 1) + '');
+    return num - 1;
   }
 
 
