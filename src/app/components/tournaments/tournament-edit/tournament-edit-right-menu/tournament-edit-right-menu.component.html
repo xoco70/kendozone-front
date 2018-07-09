@@ -10,23 +10,24 @@
       <li><a routerLink="/tournaments/{{ tournament.slug }}/competitors">
         <i class="fas fa-user-friends"></i>
         {{ 'model.competitors' | translate }}
-        <span class="badge badge-primary text-white" *ngIf="tournament.competitors?.length<4">
-          {{ tournament.competitors?.length }}
+        <span class="badge badge-primary text-white" *ngIf="competitors_count<4">
+          {{ competitors_count }}
         </span>
-        <span class="badge badge-success text-white" *ngIf="tournament.competitors?.length>=4">
-          {{tournament.competitors?.length}}
+        <span class="badge badge-success text-white" *ngIf="competitors_count>=4">
+          {{ competitors_count }}
         </span>
       </a>
       </li>
       <li><a routerLink="/tournaments/{{ tournament.slug }}/teams">
         <i class="fas fa-users"></i>{{ 'model.teams' | translate }}
-        <span class="badge badge-primary" *ngIf="tournament.teams_count<=2">{{ tournament.teams_count }}</span>
-        <span class="badge badge-success" *ngIf="tournament.teams_count>2">{{ tournament.teams_count }}</span>
+        <span class="badge badge-primary" *ngIf="teams_count<=2">{{ teams_count }}</span>
+        <span class="badge badge-success" *ngIf="teams_count>2">{{ teams_count }}</span>
       </a></li>
       <li><a routerLink="/tournaments/{{ tournament.slug }}/trees">
         <i class="fas fa-sitemap"></i>
-        Trees
-        <span class="badge badge-primary ">{{ tournament.trees_count }} / {{ tournament.championships.length }}</span>
+        {{ 'model.trees' | translate }}
+        <span class="badge badge-success text-white " *ngIf="trees_count === championships_count">{{ trees_count }} / {{ championships_count }}</span>
+        <span class="badge badge-primary " *ngIf="trees_count < championships_count">{{ trees_count }} / {{ championships_count }}</span>
 
 
       </a>
@@ -38,7 +39,7 @@
       </li>
       <li><a routerLink="/tournaments/{{ tournament.slug }}/score">
         <i class="fas fa-sitemap"></i>
-        Score Sheets
+        {{ 'model.scoreSheets' | translate }}
 
 
       </a>

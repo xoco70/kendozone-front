@@ -8,6 +8,7 @@ import {environment} from '../../environments/environment';
 import {Tournament} from '../models/tournament';
 import {AuthenticationService} from './authentication.service';
 import {ToastrService} from 'ngx-toastr';
+import {LocalStorageService} from './local-storage.service';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -73,6 +74,17 @@ export class TournamentService {
       );
   }
 
+  statistics(tournamentSlug: string): Observable<any> {
+    const listUrl = `${environment.apiUrl}tournaments/${tournamentSlug}/statistics/`;
+    return this.http.get<any>(listUrl)
+      .pipe(
+        tap(stats => LocalStorageService.setTreesCount(stats.trees_count)),
+        tap(stats => LocalStorageService.setTeamsCount(stats.teams_count)),
+        tap(stats => LocalStorageService.setChampionshipsCount(stats.championships_count)),
+        tap(stats => LocalStorageService.setCompetitorsCount(stats.competitors_count)),
+        catchError(this.handleError([]))
+      );
+  }
 
   /**
    * Handle Http operation that failed.

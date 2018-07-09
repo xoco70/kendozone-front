@@ -36,8 +36,9 @@ export class AuthenticationService {
       .pipe(
         map((res: any) => {
           if (res && res.token) {
+            console.log(res);
             this.setToken(res.token);
-            // this.currentUser();
+            this.currentUser();
             this.toastr.success('login.welcome'); // user->name
           }
         }),
@@ -90,6 +91,7 @@ export class AuthenticationService {
   public currentUser(): User {
     const json = localStorage.getItem(TOKEN);
     const decoded = this.jwtHelper.decodeToken(json);
+    // console.log(decoded);
     if (decoded) {
       return decoded.sub;
     }

@@ -1,3 +1,5 @@
+import {NgForm} from '@angular/forms';
+
 declare var google: any;
 import {Component, ElementRef, Input, NgZone, OnInit, ViewChild} from '@angular/core';
 import {MapsAPILoader} from '@agm/core';
@@ -23,7 +25,7 @@ export class TournamentEditVenueComponent implements OnInit {
   public latitude: number;
   public longitude: number;
   public zoom: number;
-
+  @ViewChild(NgForm) ngForm: NgForm;
   @ViewChild('search')
   public searchElementRef: ElementRef;
 

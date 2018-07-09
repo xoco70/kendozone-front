@@ -20,10 +20,14 @@ describe('TournamentsComponent', () => {
   let fixture: ComponentFixture<TournamentsComponent>;
   let routerLinks: RouterLinkDirectiveStub[];
   let linkDes: DebugElement[];
+  // this.slug = this.route.snapshot.params.slug;
   const fakeActivatedRoute = {
     snapshot: {
       data: {},
-      queryParams: {}
+      queryParams: {},
+      params: {
+        slug: 'fake'
+      }
     }
   } as ActivatedRoute;
   beforeEach(async(() => {

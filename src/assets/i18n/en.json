@@ -18,7 +18,9 @@
     "tree": "Tree",
     "trees": "Trees",
     "fight": "Fight",
-    "fights": "Fights"
+    "fights": "Fights",
+    "scoreSheet": "Score Sheet",
+    "scoreSheets": "Score Sheets"
   },
   "common": {
     "name": "Name",
