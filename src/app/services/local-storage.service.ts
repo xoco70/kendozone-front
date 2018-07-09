@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Competitor} from '../models/competitor';
+import {stringify} from 'querystring';
 
 @Injectable({providedIn: 'root'})
 
@@ -73,4 +74,7 @@ export class LocalStorageService {
   }
 
 
+  static addUser(user: any) {
+    localStorage.setItem('user', JSON.stringify(user));
+  }
 }

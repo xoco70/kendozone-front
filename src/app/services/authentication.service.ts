@@ -4,9 +4,9 @@ import {catchError, map} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {Observable, of} from 'rxjs';
 import {ToastrService} from 'ngx-toastr';
-import {User} from '../models/user';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {environment} from '../../environments/environment';
+import {LocalStorageService} from './local-storage.service';
 
 
 const httpOptions = {
@@ -36,7 +36,8 @@ export class AuthenticationService {
       .pipe(
         map((res: any) => {
           if (res && res.token) {
-            console.log(res);
+            console.log(res.user);
+            LocalStorageService.addUser(res.user);
             this.setToken(res.token);
             this.currentUser();
             this.toastr.success('login.welcome'); // user->name
@@ -88,13 +89,11 @@ export class AuthenticationService {
     // be called after the token is refreshed
   }
 
-  public currentUser(): User {
-    const json = localStorage.getItem(TOKEN);
-    const decoded = this.jwtHelper.decodeToken(json);
-    // console.log(decoded);
-    if (decoded) {
-      return decoded.sub;
+  public currentUser(): void {
+    const json = localStorage.getItem('user');
+    if (json !== null) {
+      return JSON.parse(json);
+
     }
-    return null;
   }
 }
