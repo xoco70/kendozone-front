@@ -38,15 +38,15 @@ export class UserService {
     const listUrl = this.usersUrl + this.auth.currentUser().slug + '/edit';
     return this.http.get<any>(listUrl)
       .pipe(
-        catchError(this.handleError('allUser', []))
+        catchError(this.handleError('getUser', []))
       );
   }
 
   update(user: User): Observable<User> {
     const url = this.usersUrl + user.slug;
     return this.http.put<User>(url, user, httpOptions).pipe(
-      tap(data => this.toastr.success('success')),
-      catchError(this.handleError<User>('addUser'))
+      tap(data => this.toastr.success('msg.profile_edited')),
+      catchError(this.handleError<User>('generalDataProfile'))
     );
   }
 

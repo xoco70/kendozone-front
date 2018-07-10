@@ -7,6 +7,7 @@ import {ToastrService} from 'ngx-toastr';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {environment} from '../../environments/environment';
 import {LocalStorageService} from './local-storage.service';
+import {User} from '../models/user';
 
 
 const httpOptions = {
@@ -89,7 +90,7 @@ export class AuthenticationService {
     // be called after the token is refreshed
   }
 
-  public currentUser(): void {
+  public currentUser(): User {
     const json = localStorage.getItem('user');
     if (json !== null) {
       return JSON.parse(json);

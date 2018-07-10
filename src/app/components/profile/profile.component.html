@@ -1,342 +1,359 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-10 offset-lg-1">
-      <div class="card mb-4">
-        <div class="card-body">
-          <h3 class="text-uppercase">{{ 'tour_create.general_data' | translate }}</h3>
-          <hr>
-          <div class="row">
-            <div class="col-12 col-md-6">
-              <div class="row">
-                <div class="col-10 col-xs-offset-1 col-md-12 col-md-offset-0">
-                  <div class="form-group has-success">
-                    <label for="name" class="font-weight-bold">{{ 'profile.username' | translate }}</label>
-                    <input
-                      name="name" type="text" value="flordcactus@gmail.com"
-                      id="name" class="form-control valid input-lg"
-                      aria-invalid="false"
-                      aria-describedby="name-error">
-                    <span id="name-error" class="help-block error-help-block"></span>
-                    <input name="avatar" type="hidden" class="input-lg"
-                           value="https://lh3.googleusercontent.com/-1IZ2nbY2o40/AAAAAAAAAAI/AAAAAAAAHEY/KrhjLc7m66g/photo.jpg?sz=200">
+    <div class="col-lg-10 offset-lg-1" *ngIf="!loading">
+      <form [formGroup]="generalDataForm" (ngSubmit)="onSubmit()">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h3 class="text-uppercase">{{ 'tour_create.general_data' | translate }}</h3>
+            <hr>
+
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <div class="row">
+                  <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
+                    <div class="form-group has-success">
+                      <label for="name" class="font-weight-bold">{{ 'profile.username' | translate }}</label>
+                      <input class="form-control input-lg" formControlName="name" [value]="user.name" type="text"
+                             id="name">
+                      <div class="text-primary mt-1" *ngIf="f.name.errors?.required" translate
+                           [translateParams]="{attribute: 'name'}">
+                        validation.required
+                      </div>
+                      <div class="mt-1" *ngIf="!f.name.errors?.required">&nbsp;</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
-                  <div class="form-group"><label for="firstname" class="font-weight-bold">First name</label>
-                    <input name="firstname" type="text" value="profile." id="firstname"
-                           class="form-control input-lg"></div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
-                  <div class="form-group"><label for="lastname" class="font-weight-bold">Last name</label>
-                    <input name="lastname"
-                           type="text"
-                           value="Del torro"
-                           id="lastname"
-                           class="form-control valid input-lg"
-                           aria-invalid="false">
+                <div class="row">
+                  <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
+                    <div class="form-group">
+                      <label for="firstname" class="font-weight-bold">{{ 'profile.firstname' | translate }}</label>
+                      <input class="form-control input-lg" formControlName="firstname" [value]="user.firstname"
+                             type="text" id="firstname">
+                    </div>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
+                    <div class="form-group">
+                      <label for="lastname" class="font-weight-bold">{{ 'profile.lastname' | translate }}</label>
+                      <input class="form-control input-lg" formControlName="lastname" [value]="user.lastname"
+                             type="text" id="lastname">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
+                    <div class="form-group">
+                      <label for="grade_id" class="font-weight-bold">Grade</label>
+                      <select name="grade_id" id="grade_id" class="form-control" formControlName="grade_id">
+                        <option *ngFor="let grade of grades" [ngValue]="grade.id"
+                                [selected]="grade.id === user.grade_id">
+                          {{ grade.text | translate }} {{ user.grade_id }} {{ user.grade_id === grade.id }}
+                        </option>
+                      </select>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
+                    <div class="form-group">
+                      <label for="country" class="font-weight-bold">Country</label>
+                      <select name="country" id="country" class="form-control"  formControlName="country_id">
+                        <option *ngFor="let country of countries" [ngValue]="country.id">
+                          {{ country.name | translate }}
+                        </option>
+                      </select>
+
+                    </div>
+                  </div>
+                </div>
+
               </div>
-              <div class="row">
-                <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
-                  <div class="form-group">
-                    <label for="grade" class="font-weight-bold">Grade</label>
-                    <select name="grade" id="grade" class="form-control" [(ngModel)]="grades">
-                      <option *ngFor="let grade of grades" [ngValue]="grade.id">
-                        {{ grade.text | translate }}
-                      </option>
-                    </select>
+              <div class="col-xs-12 col-md-6  ">
+                <div class="form-group">
+
+
+                  <div class="font-weight-bold">Avatar</div>
+                  <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="60%">
+                    <dropzone class="dropzone-container"
+                              [useDropzoneClass]="true"
+                              [config]="config"
+                              [disabled]="disabled" fxLayout="row"
+                              fxLayoutAlign="start strech" fxFlex="auto"
+                              [message]="'Click or drag images here to upload'" (error)="onUploadError($event)"
+                              (success)="onUploadSuccess($event)"></dropzone>
+                    <input name="avatar" type="hidden">
 
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-xs-12 col-md-6  ">
-              <div class="form-group">
-
-
-                <div class="font-weight-bold">Avatar</div>
-                <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="60%">
-                  <dropzone class="dropzone-container"
-                            [useDropzoneClass]="true"
-                            [config]="config"
-                            [disabled]="disabled" fxLayout="row"
-                            fxLayoutAlign="start strech" fxFlex="auto"
-                            [message]="'Click or drag images here to upload'" (error)="onUploadError($event)"
-                            (success)="onUploadSuccess($event)"></dropzone>
-
-                </div>
-              </div>
+            <div align="right">
+              <button type="submit" class="btn btn-success">Save</button>
             </div>
-          </div>
-          <div align="right">
-            <button type="submit" class="btn btn-success">Save</button>
           </div>
         </div>
-      </div>
-      <div class="card mb-4">
-        <div class="card-body">
-          <h3 class="text-uppercase">Where do you train</h3>
-          <hr>
-          <div class="row">
-            <div class="col-lg-8">
-              <div class="form-group">
-                <label for="federation_id" class="font-weight-bold">Federation</label>
-                <select name="federation_id" id="federation_id" class="form-control select-lg">
-                  <option value="0"> -</option>
-                  <option value="4">
-                    All Belgium Kendo Federation
-                  </option>
-                  <option value="33">
-                    All United States Kendo Federation
-                  </option>
-                  <option value="43">
-                    Asociacion Ecuatoriana de Kendo
-                  </option>
-                  <option value="21">
-                    Associacao Portuguesa de Kendo
-                  </option>
-                  <option value="45">
-                    Australian Kendo Renmei Incorporated
-                  </option>
-                  <option value="9">
-                    Austrian Kendo Association
-                  </option>
-                  <option value="37">
-                    Brazilian Kendo Confederation
-                  </option>
-                  <option value="24">
-                    Bulgarian Kendo Federation
-                  </option>
-                  <option value="35">
-                    Canadian Kendo Federation
-                  </option>
-                  <option value="41">
-                    Chilean Kendo Federation
-                  </option>
-                  <option value="2">
-                    Comite National de Kendo/FFJDA
-                  </option>
-                  <option value="13">
-                    Confederazione Italiana Kendo
-                  </option>
-                  <option value="30">
-                    Croatian Kendo Assosiation
-                  </option>
-                  <option value="17">
-                    Czech Kendo Federation
-                  </option>
-                  <option value="11">
-                    Danish Kendo Federation
-                  </option>
-                  <option value="7">
-                    Deutscher Kendobund e. V. (DKenB)
-                  </option>
-                  <option value="23">
-                    Federacio Andorrana de Kendo
-                  </option>
-                  <option value="38">
-                    Federacion Argentina de Kendo
-                  </option>
-                  <option value="39">
-                    Federacion Venezolana de Kendo
-                  </option>
-                  <option value="42">
-                    Federation Dominicana de Kendo
-                  </option>
-                  <option value="12">
-                    Finnish Kendo Association
-                  </option>
-                  <option value="34">
-                    Hawaii Kendo Federation
-                  </option>
-                  <option value="25">
-                    Hellenic Kendo Iaido Naginata Federation
-                  </option>
-                  <option value="14">
-                    Hungarian Kendo, Iaido &amp; Jodo Federation
-                  </option>
-                  <option value="26">
-                    Israel Kendo &amp; Budo Federation
-                  </option>
-                  <option value="40">
-                    Kendo Aruba/Bun Bu Itchi
-                  </option>
-                  <option value="22">
-                    Kendo na h-Eireann
-                  </option>
-                  <option value="3">
-                    Kendo Section, Swedish Budo &amp; Martial Arts Federation
-                  </option>
-                  <option value="31">
-                    Kendo zveza Slovenije/Kendo Federation of Slovenia
-                  </option>
-                  <option value="28">
-                    Latvian Kendo Federation
-                  </option>
-                  <option value="29">
-                    Lithuanian Kendo Association
-                  </option>
-                  <option value="36">
-                    Mexican Kendo Federation
-                  </option>
-                  <option value="27">
-                    Montenagrian Kendo Federation
-                  </option>
-                  <option value="5">
-                    Nederlandse Kendo Renmei
-                  </option>
-                  <option value="46">
-                    New Zealand Kendo Federation
-                  </option>
-                  <option value="10">
-                    Norwegian Kendo Committee -Norweigan Martial Arts Federation
-                  </option>
-                  <option value="15">
-                    Polish Kendo Federation
-                  </option>
-                  <option value="8">
-                    Royal Spanish Judo Federation and Associated Sports
-                  </option>
-                  <option value="20">
-                    Russian Kendo Federation
-                  </option>
-                  <option value="16">
-                    Serbian Kendo Federation
-                  </option>
-                  <option value="19">
-                    Shobukai Kendo Luxembourg
-                  </option>
-                  <option value="44">
-                    South African Kendo Federation
-                  </option>
-                  <option value="6">
-                    Swiss Kendo and Iaido, SJV/FSJ
-                  </option>
-                  <option value="1">
-                    The British Kendo Association
-                  </option>
-                  <option value="18">
-                    The Romanian Kendo Department, Federation of Contact Martial Arts
-                  </option>
-                  <option value="32">
-                    Turkish Kendo Association
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div class="col-lg-4 mt-5"><br>Your federation is not in the list?<br> <a
-              href="mailto:contact@kendozone.com"
-              class="text-semibold text-black">
-              Contact Us</a></div>
-          </div>
-          <div class="row">
-            <div class="col-lg-8">
-              <div class="form-group">
-                <label for="association_id" class="font-weight-bold">Association</label>
-                <select name="association_id" id="association_id" class="form-control">
-                  <option value="0"> No association</option>
-                  <option value="0">
-                    Still not any associations in this federation
-                  </option>
-                </select></div>
-            </div>
-            <div class="col-lg-4 mt-5">
-              <br>Your association is not in the list?<br>
-              <a href="#" data-toggle="modal"
-                 data-target="#create_association"
-                 class="text-semibold text-black">
-                Add a new association</a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-8">
-              <div class="form-group">
-                <label for="club_id" class="font-weight-bold">Club</label>
-                <select name="club_id"
-                        id="club_id"
-                        class="form-control">
-                  <option value="557">
-                    Tanko-Kan
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div class="col-lg-4 mt-5"><br>Your club is not in the list?<br>
-              <a href="#" data-toggle="modal"
-                 data-target="#create_club"
-                 class="text-semibold text-black">
-                Add a new club</a>
-            </div>
-          </div>
-          <div align="right">
-            <button type="submit" class="btn btn-success">Save</button>
-          </div>
-        </div>
-      </div>
+      </form>
+      <!--<div class="card mb-4">-->
+      <!--<div class="card-body">-->
+      <!--<h3 class="text-uppercase">Where do you train</h3>-->
+      <!--<hr>-->
+      <!--<div class="row">-->
+      <!--<div class="col-lg-8">-->
+      <!--<div class="form-group">-->
+      <!--<label for="federation_id" class="font-weight-bold">Federation</label>-->
+      <!--<select name="federation_id" id="federation_id" class="form-control select-lg">-->
+      <!--<option value="0"> -</option>-->
+      <!--<option value="4">-->
+      <!--All Belgium Kendo Federation-->
+      <!--</option>-->
+      <!--<option value="33">-->
+      <!--All United States Kendo Federation-->
+      <!--</option>-->
+      <!--<option value="43">-->
+      <!--Asociacion Ecuatoriana de Kendo-->
+      <!--</option>-->
+      <!--<option value="21">-->
+      <!--Associacao Portuguesa de Kendo-->
+      <!--</option>-->
+      <!--<option value="45">-->
+      <!--Australian Kendo Renmei Incorporated-->
+      <!--</option>-->
+      <!--<option value="9">-->
+      <!--Austrian Kendo Association-->
+      <!--</option>-->
+      <!--<option value="37">-->
+      <!--Brazilian Kendo Confederation-->
+      <!--</option>-->
+      <!--<option value="24">-->
+      <!--Bulgarian Kendo Federation-->
+      <!--</option>-->
+      <!--<option value="35">-->
+      <!--Canadian Kendo Federation-->
+      <!--</option>-->
+      <!--<option value="41">-->
+      <!--Chilean Kendo Federation-->
+      <!--</option>-->
+      <!--<option value="2">-->
+      <!--Comite National de Kendo/FFJDA-->
+      <!--</option>-->
+      <!--<option value="13">-->
+      <!--Confederazione Italiana Kendo-->
+      <!--</option>-->
+      <!--<option value="30">-->
+      <!--Croatian Kendo Assosiation-->
+      <!--</option>-->
+      <!--<option value="17">-->
+      <!--Czech Kendo Federation-->
+      <!--</option>-->
+      <!--<option value="11">-->
+      <!--Danish Kendo Federation-->
+      <!--</option>-->
+      <!--<option value="7">-->
+      <!--Deutscher Kendobund e. V. (DKenB)-->
+      <!--</option>-->
+      <!--<option value="23">-->
+      <!--Federacio Andorrana de Kendo-->
+      <!--</option>-->
+      <!--<option value="38">-->
+      <!--Federacion Argentina de Kendo-->
+      <!--</option>-->
+      <!--<option value="39">-->
+      <!--Federacion Venezolana de Kendo-->
+      <!--</option>-->
+      <!--<option value="42">-->
+      <!--Federation Dominicana de Kendo-->
+      <!--</option>-->
+      <!--<option value="12">-->
+      <!--Finnish Kendo Association-->
+      <!--</option>-->
+      <!--<option value="34">-->
+      <!--Hawaii Kendo Federation-->
+      <!--</option>-->
+      <!--<option value="25">-->
+      <!--Hellenic Kendo Iaido Naginata Federation-->
+      <!--</option>-->
+      <!--<option value="14">-->
+      <!--Hungarian Kendo, Iaido &amp; Jodo Federation-->
+      <!--</option>-->
+      <!--<option value="26">-->
+      <!--Israel Kendo &amp; Budo Federation-->
+      <!--</option>-->
+      <!--<option value="40">-->
+      <!--Kendo Aruba/Bun Bu Itchi-->
+      <!--</option>-->
+      <!--<option value="22">-->
+      <!--Kendo na h-Eireann-->
+      <!--</option>-->
+      <!--<option value="3">-->
+      <!--Kendo Section, Swedish Budo &amp; Martial Arts Federation-->
+      <!--</option>-->
+      <!--<option value="31">-->
+      <!--Kendo zveza Slovenije/Kendo Federation of Slovenia-->
+      <!--</option>-->
+      <!--<option value="28">-->
+      <!--Latvian Kendo Federation-->
+      <!--</option>-->
+      <!--<option value="29">-->
+      <!--Lithuanian Kendo Association-->
+      <!--</option>-->
+      <!--<option value="36">-->
+      <!--Mexican Kendo Federation-->
+      <!--</option>-->
+      <!--<option value="27">-->
+      <!--Montenagrian Kendo Federation-->
+      <!--</option>-->
+      <!--<option value="5">-->
+      <!--Nederlandse Kendo Renmei-->
+      <!--</option>-->
+      <!--<option value="46">-->
+      <!--New Zealand Kendo Federation-->
+      <!--</option>-->
+      <!--<option value="10">-->
+      <!--Norwegian Kendo Committee -Norweigan Martial Arts Federation-->
+      <!--</option>-->
+      <!--<option value="15">-->
+      <!--Polish Kendo Federation-->
+      <!--</option>-->
+      <!--<option value="8">-->
+      <!--Royal Spanish Judo Federation and Associated Sports-->
+      <!--</option>-->
+      <!--<option value="20">-->
+      <!--Russian Kendo Federation-->
+      <!--</option>-->
+      <!--<option value="16">-->
+      <!--Serbian Kendo Federation-->
+      <!--</option>-->
+      <!--<option value="19">-->
+      <!--Shobukai Kendo Luxembourg-->
+      <!--</option>-->
+      <!--<option value="44">-->
+      <!--South African Kendo Federation-->
+      <!--</option>-->
+      <!--<option value="6">-->
+      <!--Swiss Kendo and Iaido, SJV/FSJ-->
+      <!--</option>-->
+      <!--<option value="1">-->
+      <!--The British Kendo Association-->
+      <!--</option>-->
+      <!--<option value="18">-->
+      <!--The Romanian Kendo Department, Federation of Contact Martial Arts-->
+      <!--</option>-->
+      <!--<option value="32">-->
+      <!--Turkish Kendo Association-->
+      <!--</option>-->
+      <!--</select>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div class="col-lg-4 mt-5"><br>Your federation is not in the list?<br> <a-->
+      <!--href="mailto:contact@kendozone.com"-->
+      <!--class="text-semibold text-black">-->
+      <!--Contact Us</a></div>-->
+      <!--</div>-->
+      <!--<div class="row">-->
+      <!--<div class="col-lg-8">-->
+      <!--<div class="form-group">-->
+      <!--<label for="association_id" class="font-weight-bold">Association</label>-->
+      <!--<select name="association_id" id="association_id" class="form-control">-->
+      <!--<option value="0"> No association</option>-->
+      <!--<option value="0">-->
+      <!--Still not any associations in this federation-->
+      <!--</option>-->
+      <!--</select></div>-->
+      <!--</div>-->
+      <!--<div class="col-lg-4 mt-5">-->
+      <!--<br>Your association is not in the list?<br>-->
+      <!--<a href="#" data-toggle="modal"-->
+      <!--data-target="#create_association"-->
+      <!--class="text-semibold text-black">-->
+      <!--Add a new association</a>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div class="row">-->
+      <!--<div class="col-lg-8">-->
+      <!--<div class="form-group">-->
+      <!--<label for="club_id" class="font-weight-bold">Club</label>-->
+      <!--<select name="club_id"-->
+      <!--id="club_id"-->
+      <!--class="form-control">-->
+      <!--<option value="557">-->
+      <!--Tanko-Kan-->
+      <!--</option>-->
+      <!--</select>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div class="col-lg-4 mt-5"><br>Your club is not in the list?<br>-->
+      <!--<a href="#" data-toggle="modal"-->
+      <!--data-target="#create_club"-->
+      <!--class="text-semibold text-black">-->
+      <!--Add a new club</a>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div align="right">-->
+      <!--<button type="submit" class="btn btn-success">Save</button>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
 
-      <div class="card">
-        <div class="card-body">
-          <h3 class="text-uppercase">Account</h3>
-          <hr>
-          <div class="row">
-            <div class="col-12 col-md-6">
-              <div class="row">
-                <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
-                  <div class="form-group">
-                    <label for="email" class="font-weight-bold">Email</label>
-                    <label for="email"
-                           disabled="disabled"
-                           class="form-control input-lg m-0">flordcactus@gmail.com
-                    </label>
-                    <input name="email" type="hidden" value="flordcactus@gmail.com" id="email">
-                    <p>Email linked to your account</p>
-                  </div>
-                </div>
-                <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
-                  <div class="form-group">
-                    <label for="role_id" class="font-weight-bold">Role</label>
-                    <select id="role_id"
-                            name="role_id"
-                            class="form-control">
-                      <option value="1" selected="selected">SuperAdmin</option>
-                      <option value="2">FederationPresident</option>
-                      <option value="3">AssociationPresident</option>
-                      <option value="4">ClubPresident</option>
-                      <option value="5">user</option>
-                    </select></div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="row">
-                <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0 ">
-                  <div class="form-group">
-                    <label for="password" class="font-weight-bold">Password</label>
-                    <input name="password" type="password" value="" id="password" class="form-control input-lg">
-                    <p class="help-block">If you don't want to change password... please leave them empty</p></div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
-                  <div class="form-group">
-                    <label for="password_confirmation" class="font-weight-bold">Password ( Confirmation )</label>
-                    <input name="password_confirmation" type="password" value="" id="password_confirmation"
-                           class="form-control input-lg">
-                    <p class="help-block">If you don't want to change password... please leave them empty</p></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div align="right">
-            <button type="submit" class="btn btn-success">Save</button>
-          </div>
-        </div>
-      </div>
+      <!--<div class="card">-->
+      <!--<div class="card-body">-->
+      <!--<h3 class="text-uppercase">Account</h3>-->
+      <!--<hr>-->
+      <!--<div class="row">-->
+      <!--<div class="col-12 col-md-6">-->
+      <!--<div class="row">-->
+      <!--<div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">-->
+      <!--<div class="form-group">-->
+      <!--<label for="email" class="font-weight-bold">Email</label>-->
+      <!--<label for="email"-->
+      <!--disabled="disabled"-->
+      <!--class="form-control input-lg m-0">flordcactus@gmail.com-->
+      <!--</label>-->
+      <!--<input name="email" type="hidden" value="flordcactus@gmail.com" id="email">-->
+      <!--<p>Email linked to your account</p>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">-->
+      <!--<div class="form-group">-->
+      <!--<label for="role_id" class="font-weight-bold">Role</label>-->
+      <!--<select id="role_id"-->
+      <!--name="role_id"-->
+      <!--class="form-control">-->
+      <!--<option value="1" selected="selected">SuperAdmin</option>-->
+      <!--<option value="2">FederationPresident</option>-->
+      <!--<option value="3">AssociationPresident</option>-->
+      <!--<option value="4">ClubPresident</option>-->
+      <!--<option value="5">user</option>-->
+      <!--</select></div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div class="col-md-6">-->
+      <!--<div class="row">-->
+      <!--<div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0 ">-->
+      <!--<div class="form-group">-->
+      <!--<label for="password" class="font-weight-bold">Password</label>-->
+      <!--<input name="password" type="password" value="" id="password" class="form-control input-lg">-->
+      <!--<p class="help-block">If you don't want to change password... please leave them empty</p></div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div class="row">-->
+      <!--<div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">-->
+      <!--<div class="form-group">-->
+      <!--<label for="password_confirmation" class="font-weight-bold">Password ( Confirmation )</label>-->
+      <!--<input name="password_confirmation" type="password" value="" id="password_confirmation"-->
+      <!--class="form-control input-lg">-->
+      <!--<p class="help-block">If you don't want to change password... please leave them empty</p></div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div align="right">-->
+      <!--<button type="submit" class="btn btn-success">Save</button>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
     </div>
   </div>
 </div>
