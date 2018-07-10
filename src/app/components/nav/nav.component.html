@@ -1,7 +1,10 @@
 <!--if user is logged there is 2 cases-->
 
 <nav class="navbar navbar-expand-md navbar fixed-top">
-  <a class="navbar-brand" href="#"><img src="assets/images/logo_kendozone_beta.png"/></a>
+  <a class="navbar-brand" href="#"><img src="assets/images/logo_kendozone_beta.png" *ngIf="!loading"/></a>
+  <div class="loading" *ngIf="loading">
+    <i class="fa fas-loader"></i>
+  </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
           aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -18,13 +21,19 @@
          class="btn btn-outline-primary form-control mr-sm-2 text-uppercase border-3">
         {{ 'nav.createTournament' | translate }}
       </a>
-      <div class="dropdown">
-        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-          {{auth.currentUser().name }}
-        </button>
+      <div class="dropdown ml-2 mr-3">
+        <a href="#" id="dropdownMenuButton" data-toggle="dropdown">
+          <img src="assets/images/avatar/avatar.png" height="40">
+        </a>
+        <!--<button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"-->
+                <!--aria-haspopup="true" aria-expanded="false">-->
+          <!--{{auth.currentUser().name }}-->
+        <!--</button>-->
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="/profile/{{auth.currentUser().slug}}/edit">{{ 'model.profile' | translate }}</a>
+          <div class="text-center m-1"><strong>{{auth.currentUser().name | uppercase }}</strong></div>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/profile/{{auth.currentUser().slug}}/edit">{{ 'model.profile' | translate
+            }}</a>
           <a class="dropdown-item" routerLink="/tournaments">{{ 'nav.my_tournaments' | translate }}</a>
           <!--<a class="dropdown-item" href="#">{{ 'nav.participations' | translate }}</a>-->
           <!--<a class="dropdown-item" href="#">{{ 'core.invitations' | translate }}</a>-->

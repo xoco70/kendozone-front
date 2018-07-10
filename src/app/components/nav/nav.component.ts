@@ -9,6 +9,7 @@ import {User} from '../../models/user';
 })
 export class NavComponent implements OnInit {
   user: User;
+  loading = false;
 
   constructor(
     public auth: AuthenticationService,
@@ -16,6 +17,7 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.loading = true;
   }
 
   logout(): void {
