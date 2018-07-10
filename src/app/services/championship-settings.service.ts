@@ -29,7 +29,7 @@ export class ChampionshipSettingsService {
     const url = environment.apiUrl + 'championships/' + championshipId + '/settings/';
     return this.http.post<ChampionshipSettings>(url, settings, httpOptions).pipe(
       tap(data => {
-        this.toastr.success(data['msg']);
+        this.toastr.success('msg.settings_create_success');
       }),
       catchError(this.handleError<ChampionshipSettings>('addChampionshipSettings'))
     );
@@ -38,7 +38,7 @@ export class ChampionshipSettingsService {
   update(championshipId: number, settings: ChampionshipSettings): Observable<ChampionshipSettings> {
     const url = environment.apiUrl + 'championships/' + championshipId + '/settings/' + settings.id;
     return this.http.put<ChampionshipSettings>(url, settings, httpOptions).pipe(
-      tap(data => this.toastr.success('success')),
+      tap(data => this.toastr.success('msg.settings_update_success')),
       catchError(this.handleError<ChampionshipSettings>('updateChampionshipSettings'))
     );
   }

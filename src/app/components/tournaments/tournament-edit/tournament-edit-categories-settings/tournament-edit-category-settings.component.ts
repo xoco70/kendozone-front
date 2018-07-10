@@ -27,9 +27,9 @@ export class TournamentEditCategorySettingsComponent implements OnInit, AfterVie
     if (this.championship.settings.id == null) {
       this.settingsService.store(this.championship.id, this.championship.settings)
         .subscribe(
-          data => {
-            // console.log(data.settings.id);
-            this.championship.settings.id = data['settings'].id;
+          settings => {
+            // console.log(settings.settings.id);
+            this.championship.settings.id = settings.id;
             this.loading = false;
           },
           error => {
@@ -73,7 +73,6 @@ export class TournamentEditCategorySettingsComponent implements OnInit, AfterVie
   }
 
   ngAfterViewChecked() {
-    console.log('! changement de la date du composant !');
     console.log(this.championship);
     this.cdRef.detectChanges();
   }

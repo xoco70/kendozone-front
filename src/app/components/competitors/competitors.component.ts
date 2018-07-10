@@ -33,8 +33,8 @@ export class CompetitorsComponent implements OnInit {
   open(championshipId) {
     const modalRef = this.modalService.open(AddCompetitorsModalComponent, {size: 'lg', centered: true});
     modalRef.componentInstance.championshipId = championshipId;
-    modalRef.result.then((data) => {
-      this.tournament.championships.find((championship) => championship.id === championshipId).competitors = data.competitors;
+    modalRef.result.then((competitors) => {
+      this.tournament.championships.find((championship) => championship.id === championshipId).competitors = competitors;
     }, (reason) => {
     });
   }
@@ -45,7 +45,6 @@ export class CompetitorsComponent implements OnInit {
       .pipe(first())
       .subscribe(tournament => {
         this.tournament = tournament;
-        console.log(this.tournament);
         this.loading = false;
       }, err => {
         this.loading = false;

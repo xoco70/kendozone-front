@@ -94,7 +94,7 @@ describe('RegisterComponent', () => {
     expect(comp.registerForm.valid).toBeFalsy();
     // const compiled = fixture.debugElement.nativeElement;
     // expect(compiled.querySelector('div').textContent).toContain('validation.required');
-    // expect(comp.registerForm.valid).toBeFalsy();
+    // expect(comp.generalDataForm.valid).toBeFalsy();
     // validation.required
   }));
 
