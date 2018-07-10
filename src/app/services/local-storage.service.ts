@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Competitor} from '../models/competitor';
-import {stringify} from 'querystring';
 
 @Injectable({providedIn: 'root'})
 
@@ -12,7 +11,9 @@ export class LocalStorageService {
   }
 
   static getTeamsCount(): number {
-    return JSON.parse(localStorage.getItem('teams_count'));
+    const count = localStorage.getItem('teams_count');
+    return (count !== null ? JSON.parse(count) : 0);
+
   }
 
   static getTreesCount(): number {
@@ -24,7 +25,8 @@ export class LocalStorageService {
   }
 
   static getCompetitorsCount(): number {
-    return JSON.parse(localStorage.getItem('competitors_count'));
+    const count = localStorage.getItem('competitors_count');
+    return (count !== null ? JSON.parse(count) : 0);
   }
 
   static setCompetitors(competitors): void {
@@ -60,10 +62,10 @@ export class LocalStorageService {
 
   static addCompetitors(qty: number): number {
     const num = LocalStorageService.getCompetitorsCount();
-    console.log(num);
-    console.log(qty);
+    // console.log(num);
+    // console.log(qty);
     localStorage.setItem('competitors_count', (num + qty) + '');
-    console.log(num + qty);
+    // console.log(num + qty);
     return num + qty;
   }
 
