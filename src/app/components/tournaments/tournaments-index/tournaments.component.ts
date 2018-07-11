@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Tournament} from '../../../models/tournament';
 import {TournamentService} from '../../../services/tournament.service';
+import {NavService} from '../../../services/nav.service';
 
 @Component({
   selector: 'app-tournaments',
@@ -13,6 +14,7 @@ export class TournamentsComponent implements OnInit {
   public loading = true;
 
   constructor(private tournamentService: TournamentService,
+              private navbar: NavService
   ) {
   }
 
@@ -37,8 +39,12 @@ export class TournamentsComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.navbar.setLoading(true);
+    setTimeout(() => {
+      this.navbar.setLoading(false);
+    }, 1000);
     this.all();
+
 
   }
 

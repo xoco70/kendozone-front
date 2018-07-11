@@ -6,6 +6,10 @@ import {User} from '../../models/user';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {first} from 'rxjs/operators';
 import {COUNTRIES} from '../../mock/mock-countries';
+import {environment} from '../../../environments/environment';
+import {AuthenticationService} from '../../services/authentication.service';
+import {LocalStorageService} from '../../services/local-storage.service';
+import {NavService} from '../../services/nav.service';
 
 @Component({
   selector: 'app-profile',
@@ -19,9 +23,13 @@ export class ProfileComponent implements OnInit {
   countries = COUNTRIES;
   public disabled = false;
   user: User;
+  config: any;
+  message: string;
 
   constructor(private userService: UserService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private auth: AuthenticationService,
+              private data: NavService) {
   }
 
   public config: DropzoneConfigInterface = {
@@ -62,7 +70,6 @@ export class ProfileComponent implements OnInit {
       .pipe(first())
       .subscribe(
         user => {
-          console.log(user);
           this.loading = false;
         },
         error => {
@@ -88,6 +95,7 @@ export class ProfileComponent implements OnInit {
       .subscribe(user => {
         // console.log(data);
         this.user = user;
+        this.config.url = environment.apiUrl + 'users/' + this.user.slug + '/avatar';
         this.generalDataForm = this.formBuilder.group({
             name: [this.user.name, Validators.required],
             firstname: [''],
@@ -108,10 +116,15 @@ export class ProfileComponent implements OnInit {
   }
 
   public onUploadSuccess(args: any): void {
-    console.log('onUploadSuccess:', args);
+    const currentUser = this.auth.currentUser();
+    currentUser.avatar = args[1];
+    LocalStorageService.setUser(currentUser);
+    this.user.avatar = args[1];
   }
 
   ngOnInit(): void {
+    this.data.setTitle('Profile');
+    this.data.currentMessage.subscribe(message => this.message = message);
     this.getUser();
   }
 }
