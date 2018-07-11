@@ -37,8 +37,7 @@ export class AuthenticationService {
       .pipe(
         map((res: any) => {
           if (res && res.token) {
-            console.log(res.user);
-            LocalStorageService.addUser(res.user);
+            LocalStorageService.setUser(res.user);
             this.setToken(res.token);
             this.currentUser();
             this.toastr.success('login.welcome'); // user->name

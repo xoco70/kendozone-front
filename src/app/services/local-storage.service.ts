@@ -76,7 +76,7 @@ export class LocalStorageService {
   }
 
 
-  static addUser(user: any) {
+  static setUser(user: any) {
     localStorage.setItem('user', JSON.stringify(user));
   }
 }

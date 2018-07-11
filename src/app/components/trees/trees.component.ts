@@ -32,7 +32,7 @@ export class TreesComponent implements OnInit {
       .subscribe(
         tournament => {
           this.loading = false;
-          this.tournament = plainToClass(tournament, Tournament);
+          this.tournament = plainToClass(Tournament, tournament);
         },
         error => {
           this.loading = false;
