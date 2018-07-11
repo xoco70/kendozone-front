@@ -10,7 +10,6 @@ import 'reflect-metadata';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public loading = false;
   public currentUser: User;
 
   constructor(public translate: TranslateService,

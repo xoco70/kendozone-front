@@ -23,16 +23,17 @@ export class ProfileComponent implements OnInit {
   countries = COUNTRIES;
   public disabled = false;
   user: User;
-  config: any;
   message: string;
 
-  constructor(private userService: UserService,
+  constructor(private navbar: NavService,
+              private userService: UserService,
               private formBuilder: FormBuilder,
               private auth: AuthenticationService,
               private data: NavService) {
   }
 
   public config: DropzoneConfigInterface = {
+    url: environment.apiUrl + 'users/' + this.user.slug + '/avatar',
     clickable: true,
     maxFiles: 1,
     autoReset: null,
@@ -43,7 +44,6 @@ export class ProfileComponent implements OnInit {
   };
   @ViewChild(DropzoneComponent) componentRef?: DropzoneComponent;
   @ViewChild(DropzoneDirective) directiveRef?: DropzoneDirective;
-  private loading = false;
   private federations: any;
   private associations: any;
   private clubs: any;
@@ -57,7 +57,7 @@ export class ProfileComponent implements OnInit {
       return;
     }
 
-    this.loading = true;
+    this.navbar.setLoading(true);
     // I use localTournament not to send the whole object
     // I still don't know if I have a Eloquent like in Angular
     this.user.name = this.f.name.value;
@@ -70,10 +70,10 @@ export class ProfileComponent implements OnInit {
       .pipe(first())
       .subscribe(
         user => {
-          this.loading = false;
+          this.navbar.setLoading(false);
         },
         error => {
-          this.loading = false;
+          this.navbar.setLoading(false);
         });
   }
 
@@ -90,7 +90,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getUser(): User {
-    this.loading = true;
+    this.navbar.setLoading(true);
     this.userService.getUser() // this.slug
       .subscribe(user => {
         // console.log(data);
@@ -104,9 +104,9 @@ export class ProfileComponent implements OnInit {
             country_id: ['']
           },
         );
-        this.loading = false;
+        this.navbar.setLoading(false);
       }, err => {
-        this.loading = false;
+        this.navbar.setLoading(false);
       });
     return null;
   }

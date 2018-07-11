@@ -5,6 +5,7 @@ import {Tournament} from '../../models/tournament';
 import {first} from 'rxjs/operators';
 import {ActivatedRoute} from '@angular/router';
 import {FightService} from '../../services/fight.service';
+import {NavService} from '../../services/nav.service';
 
 @Component({
   selector: 'app-fights',
@@ -12,11 +13,11 @@ import {FightService} from '../../services/fight.service';
   styleUrls: ['./fights.component.scss']
 })
 export class FightsComponent implements OnInit {
-  public loading = false;
   private slug: string;
   private tournament: Tournament;
 
-  constructor(private fightService: FightService,
+  constructor(private navbar: NavService,
+              private fightService: FightService,
               private route: ActivatedRoute,
   ) {
     this.slug = this.route.snapshot.params.slug;
@@ -24,14 +25,14 @@ export class FightsComponent implements OnInit {
   }
 
   getTournamentWithFights(): Observable<Tournament> {
-    this.loading = true;
+    this.navbar.setLoading(true);
     this.fightService.getTournamentWithFights(this.slug)
       .pipe(first())
       .subscribe(tournament => {
         this.tournament = plainToClass(Tournament, tournament);
-        this.loading = false;
+        this.navbar.setLoading(false);
       }, err => {
-        this.loading = false;
+        this.navbar.setLoading(false);
       });
     return null;
   }

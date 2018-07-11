@@ -3,6 +3,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {first} from 'rxjs/operators';
 import {CompetitorService} from '../../../services/competitor.service';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {NavService} from '../../../services/nav.service';
 
 @Component({
   selector: 'app-add-competitors-modal',
@@ -11,14 +12,13 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angul
 })
 export class AddCompetitorsModalComponent implements OnInit {
   public submitted = false;
-  public loading = false;
   private championshipId: number;
   competitorForm: FormGroup;
 
-  constructor(
-    public modal: NgbActiveModal,
-    public competitorService: CompetitorService,
-    private fb: FormBuilder,
+  constructor(private navbar: NavService,
+              public modal: NgbActiveModal,
+              public competitorService: CompetitorService,
+              private fb: FormBuilder,
   ) {
   }
 
@@ -45,11 +45,11 @@ export class AddCompetitorsModalComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.loading = false;
+          this.navbar.setLoading(false);
           this.modal.close(data);
         },
         error => {
-          this.loading = false;
+          this.navbar.setLoading(false);
           this.modal.close('error');
         });
   }
@@ -57,7 +57,6 @@ export class AddCompetitorsModalComponent implements OnInit {
   /**
    * Adds a city FormGroup to the cities <FormArray>FormControl(__cities__)
    * @method addCity
-   * @param void
    * @return void
    */
   addCompetitor(): void {

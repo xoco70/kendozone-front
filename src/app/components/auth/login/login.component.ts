@@ -5,6 +5,7 @@ import {first} from 'rxjs/operators';
 
 import {AuthenticationService} from '../../../services/authentication.service';
 import {ToastrService} from 'ngx-toastr';
+import {NavService} from '../../../services/nav.service';
 
 @Component({
   selector: 'app-login',
@@ -13,12 +14,12 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit, AfterViewInit {
   loginForm: FormGroup;
-  loading = false;
   submitted = false;
   returnUrl: string;
   error = '';
 
   constructor(
+    private navbar: NavService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -57,16 +58,16 @@ export class LoginComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    this.loading = true;
+    this.navbar.setLoading(true);
     this.auth.login(this.f.email.value, this.f.password.value)
       .pipe(first())
       .subscribe(
         data => {
-          this.loading = false;
+          this.navbar.setLoading(false);
           this.router.navigate([this.returnUrl]);
         },
         error => {
-          this.loading = false;
+          this.navbar.setLoading(false);
         });
   }
 

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {first} from 'rxjs/operators';
 import {ForgetPasswordService} from '../../../services/forget-password.service';
+import {NavService} from '../../../services/nav.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -9,27 +10,27 @@ import {ForgetPasswordService} from '../../../services/forget-password.service';
 })
 export class ForgotPasswordComponent implements OnInit {
   submitted = false;
-  loading = true;
   email: string;
 
-  constructor(private forgetPass: ForgetPasswordService) { }
+  constructor(private navbar: NavService,
+              private forgetPass: ForgetPasswordService) { }
 
   onSubmit() {
     this.submitted = true;
-    this.loading = true;
+    this.navbar.setLoading(true);
 
     this.forgetPass.reset(this.email)
       .pipe(first())
       .subscribe(
         data => {
-          this.loading = false;
+          this.navbar.setLoading(false);
         },
         error => {
-          this.loading = false;
+          this.navbar.setLoading(false);
         });
   }
   ngOnInit() {
-    this.loading = false;
+    this.navbar.setLoading(false);
   }
 
 }

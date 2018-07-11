@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {RegistrationService} from '../../../services/registration.service';
 import {ToastrService} from 'ngx-toastr';
 import {PasswordValidation} from '../../../validation/password-validation';
+import {NavService} from '../../../services/nav.service';
 
 @Component({
   selector: 'app-register',
@@ -12,11 +13,11 @@ import {PasswordValidation} from '../../../validation/password-validation';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  loading = false;
   submitted = false;
   error = '';
 
   constructor(
+    private navbar: NavService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -49,19 +50,19 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.loading = true;
+    this.navbar.setLoading(true);
     this.registrationService.register(this.f.name.value, this.f.email.value, this.f.password.value)
       .subscribe(
         data => {
           this.submitted = true;
-          this.loading = false;
+          this.navbar.setLoading(false);
           this.toastr.success('check your mail');
         },
         error => {
           console.log(error.error);
           this.error = error;
           this.submitted = true;
-          this.loading = false;
+          this.navbar.setLoading(false);
           this.toastr.error('error 500');
         });
   }

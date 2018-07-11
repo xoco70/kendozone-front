@@ -5,6 +5,7 @@ import {Category} from '../../../models/category';
 import {Tournament} from '../../../models/tournament';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
+import {NavService} from '../../../services/nav.service';
 
 @Component({
   selector: 'app-tournament-create',
@@ -12,7 +13,6 @@ import {Router} from '@angular/router';
   styleUrls: ['./tournament-create.component.scss']
 })
 export class TournamentCreateComponent implements OnInit {
-  public loading = false;
   categories: Category[];
   tournament: Tournament = <Tournament>{};
   usePresets = 1;
@@ -47,6 +47,7 @@ export class TournamentCreateComponent implements OnInit {
   private submitted = false;
 
   constructor(
+    private navbar: NavService,
     private toastr: ToastrService,
     private tournamentService: TournamentService,
     private categoryService: CategoryService,
@@ -62,28 +63,28 @@ export class TournamentCreateComponent implements OnInit {
       return;
     }
 
-    this.loading = true;
+    this.navbar.setLoading(true);
     // this.tournament.
     this.tournamentService.store(this.tournament)
       .subscribe(
         data => {
-          this.loading = false;
+          this.navbar.setLoading(false);
           this.router.navigate(['tournaments', data.slug, 'edit']);
         },
         error => {
-          this.loading = false;
+          this.navbar.setLoading(false);
         });
 
   }
 
   getCategories(): void {
-    this.loading = true;
+    this.navbar.setLoading(true);
     this.categoryService.all()
       .subscribe(categories => {
         this.categories = categories;
-        this.loading = false;
+        this.navbar.setLoading(false);
       }, () => {
-        this.loading = false;
+        this.navbar.setLoading(false);
       });
   }
 

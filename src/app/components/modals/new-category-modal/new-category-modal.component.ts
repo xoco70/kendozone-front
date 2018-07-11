@@ -5,6 +5,7 @@ import {Category} from '../../../models/category';
 import {TranslateService} from '@ngx-translate/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {GRADES} from '../../../mock/mock-grades';
+import {NavService} from '../../../services/nav.service';
 
 @Component({
   selector: 'app-new-category-modal',
@@ -12,7 +13,6 @@ import {GRADES} from '../../../mock/mock-grades';
   styleUrls: ['./new-category-modal.component.scss']
 })
 export class NewCategoryModalComponent implements OnInit {
-  loading = false;
   submitted = false;
   category: Category = <Category> {};
   error = '';
@@ -42,6 +42,7 @@ export class NewCategoryModalComponent implements OnInit {
   grades = GRADES;
 
   constructor(
+    private navbar: NavService,
     private categoryService: CategoryService,
     private translateService: TranslateService,
     public modal: NgbActiveModal
@@ -50,17 +51,17 @@ export class NewCategoryModalComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    this.loading = true;
+    this.navbar.setLoading(true);
 
     this.categoryService.store(this.category)
       .pipe(first())
       .subscribe(
         data => {
-          this.loading = false;
+          this.navbar.setLoading(false);
           this.modal.close(data);
         },
         error => {
-          this.loading = false;
+          this.navbar.setLoading(false);
           this.modal.close('error');
         });
   }

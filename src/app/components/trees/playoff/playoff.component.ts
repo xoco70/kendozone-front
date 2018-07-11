@@ -8,7 +8,6 @@ import {Championship} from '../../../models/championship';
 })
 export class PlayoffComponent implements OnInit {
   @Input() championship: Championship;
-  loading = false;
 
   constructor() {
   }

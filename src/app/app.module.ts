@@ -34,7 +34,6 @@ import {ForgotPasswordComponent} from './components/auth/forgot-password/forgot-
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {JwtModule} from '@auth0/angular-jwt';
-import {ANIMATION_TYPES, LoadingModule} from 'ngx-loading';
 import {NgbdDatepickerRange} from './components/form/datepicker-range';
 import {NewCategoryModalComponent} from './components/modals/new-category-modal/new-category-modal.component';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
@@ -128,11 +127,6 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDMbCISDkoc5G1AP1mw8K76MsaN0pyF64k',
       libraries: ['places']
-    }),
-    LoadingModule.forRoot({
-      animationType: ANIMATION_TYPES.circleSwish,
-      backdropBackgroundColour: 'rgba(0,0,0,0)',
-      primaryColour: '#8cb2cc',
     }),
     JwtModule.forRoot({
       config: {

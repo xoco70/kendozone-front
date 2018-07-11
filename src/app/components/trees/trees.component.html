@@ -6,7 +6,7 @@
         <ngb-tab *ngFor="let championship of tournament.championships">
           <ng-template ngbTabTitle>{{ championship.category.name | translate | uppercase }}</ng-template>
           <ng-template ngbTabContent >
-            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+
             <div class="card mt-3" *ngIf="!loading">
               <div class="card-body">
                 <div class="row">

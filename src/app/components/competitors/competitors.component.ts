@@ -9,6 +9,7 @@ import {AddCompetitorsModalComponent} from '../modals/add-competitors-modal/add-
 import {TreeService} from '../../services/tree.service';
 import {ToastrService} from 'ngx-toastr';
 import {LocalStorageService} from '../../services/local-storage.service';
+import {NavService} from '../../services/nav.service';
 
 @Component({
   selector: 'app-competitors',
@@ -17,10 +18,10 @@ import {LocalStorageService} from '../../services/local-storage.service';
 })
 export class CompetitorsComponent implements OnInit {
   public tournament: Tournament;
-  public loading = true;
   tournamentSlug: string;
 
-  constructor(private competitorService: CompetitorService,
+  constructor(private navbar: NavService,
+              private competitorService: CompetitorService,
               public treeService: TreeService,
               private route: ActivatedRoute,
               private router: Router,
@@ -40,14 +41,14 @@ export class CompetitorsComponent implements OnInit {
   }
 
   all(): void {
-    this.loading = true;
+    this.navbar.setLoading(true);
     this.competitorService.all(this.tournamentSlug)
       .pipe(first())
       .subscribe(tournament => {
         this.tournament = tournament;
-        this.loading = false;
+        this.navbar.setLoading(false);
       }, err => {
-        this.loading = false;
+        this.navbar.setLoading(false);
       });
   }
 
@@ -56,21 +57,21 @@ export class CompetitorsComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.loading = false;
+          this.navbar.setLoading(false);
           this.router.navigate(['/tournaments', this.tournamentSlug, 'trees']);
         },
         error => {
-          this.loading = false;
+          this.navbar.setLoading(false);
         });
 
   }
 
   delete(competitor: Competitor, championshipIndex: number): void {
-    this.loading = true;
+    this.navbar.setLoading(true);
     this.competitorService.delete(this.tournamentSlug, competitor).subscribe();
     this.tournament.championships[championshipIndex].competitors = this.tournament.championships[championshipIndex].competitors.filter(h => h !== competitor);
     LocalStorageService.removeCompetitor();
-    this.loading = false;
+    this.navbar.setLoading(false);
   }
 
 

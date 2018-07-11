@@ -9,6 +9,7 @@ import {first} from 'rxjs/operators';
 import {COUNTRIES} from '../../../../mock/mock-countries';
 import { } from '@types/googlemaps';
 import GeocoderRequest = google.maps.GeocoderRequest;
+import {NavService} from '../../../../services/nav.service';
 
 @Component({
   selector: 'app-tournament-edit-venue',
@@ -18,7 +19,6 @@ import GeocoderRequest = google.maps.GeocoderRequest;
 export class TournamentEditVenueComponent implements OnInit {
 
   @Input() tournament: Tournament;
-  loading = false;
   submitted = false;
   error = '';
   countries = COUNTRIES;
@@ -30,6 +30,7 @@ export class TournamentEditVenueComponent implements OnInit {
   public searchElementRef: ElementRef;
 
   constructor(
+    private navbar: NavService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private tournamentService: TournamentService
@@ -55,17 +56,17 @@ export class TournamentEditVenueComponent implements OnInit {
     this.submitted = true;
 
     // stop here if form is invalid
-    this.loading = true;
+    this.navbar.setLoading(true);
     this.tournament.venue.longitude = this.longitude + '';
     this.tournament.venue.latitude = this.latitude + '';
     this.tournamentService.update(this.tournament, 'venue')
       .pipe(first())
       .subscribe(
         data => {
-          this.loading = false;
+          this.navbar.setLoading(false);
         },
         error => {
-          this.loading = false;
+          this.navbar.setLoading(false);
         });
   }
 

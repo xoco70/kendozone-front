@@ -3,6 +3,7 @@ import {Tournament} from '../../../../models/tournament';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {first} from 'rxjs/operators';
 import {TournamentService} from '../../../../services/tournament.service';
+import {NavService} from '../../../../services/nav.service';
 
 @Component({
   selector: 'app-tournament-edit-general',
@@ -15,11 +16,11 @@ export class TournamentEditGeneralComponent implements OnInit {
   public dateIni: { year: 2017, month: 8, day: 8 }; // TODO should not have a default value
   public registerDateLimit: { year: 2017, month: 8, day: 8 }; // TODO should not have a default value
   form: FormGroup;
-  loading = false;
   submitted = false;
   error = '';
 
   constructor(
+    private navbar: NavService,
     private formBuilder: FormBuilder,
     private tournamentService: TournamentService
   ) {
@@ -37,8 +38,7 @@ export class TournamentEditGeneralComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-
-    this.loading = true;
+    this.navbar.setLoading(true);
     // I use localTournament not to send the whole object
     // I still don't know if I have a Eloquent like in Angular
 
@@ -55,10 +55,10 @@ export class TournamentEditGeneralComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.loading = false;
+          this.navbar.setLoading(false);
         },
         error => {
-          this.loading = false;
+          this.navbar.setLoading(false);
         });
   }
 

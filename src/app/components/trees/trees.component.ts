@@ -6,6 +6,7 @@ import {first} from 'rxjs/operators';
 import {Championship} from '../../models/championship';
 import {Observable} from 'rxjs';
 import {plainToClass} from 'class-transformer';
+import {NavService} from '../../services/nav.service';
 
 @Component({
   selector: 'app-trees',
@@ -15,10 +16,10 @@ import {plainToClass} from 'class-transformer';
 export class TreesComponent implements OnInit {
   tournament: Tournament;
   championships: Championship[];
-  loading: boolean;
   slug: string;
 
-  constructor(private treeService: TreeService,
+  constructor(private navbar: NavService,
+              private treeService: TreeService,
               private route: ActivatedRoute,
   ) {
     this.slug = this.route.snapshot.params.slug;
@@ -26,30 +27,30 @@ export class TreesComponent implements OnInit {
   }
 
   generateTree(championship) {
-    this.loading = true;
+    this.navbar.setLoading(true);
     this.treeService.store(championship)
       .pipe(first())
       .subscribe(
         tournament => {
-          this.loading = false;
+          this.navbar.setLoading(false);
           this.tournament = plainToClass(Tournament, tournament);
         },
         error => {
-          this.loading = false;
+          this.navbar.setLoading(false);
         });
 
   }
 
   getTournamentWithTrees(): Observable<Tournament> {
-    this.loading = true;
+    this.navbar.setLoading(true);
     this.treeService.getTournamentWithTrees(this.slug)
       .pipe(first())
       .subscribe(tournament => {
         console.log(tournament);
         this.tournament = plainToClass(Tournament, tournament);
-        this.loading = false;
+        this.navbar.setLoading(false);
       }, err => {
-        this.loading = false;
+        this.navbar.setLoading(false);
       });
     return null;
   }

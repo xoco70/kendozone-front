@@ -1,9 +1,9 @@
 import {AfterViewChecked, Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Tournament} from '../../../models/tournament';
 import {TournamentService} from '../../../services/tournament.service';
 import {ToastrService} from 'ngx-toastr';
 import {NgbTabset} from '@ng-bootstrap/ng-bootstrap';
+import {NavService} from '../../../services/nav.service';
 
 @Component({
   selector: 'app-tournament-edit-component',
@@ -12,13 +12,13 @@ import {NgbTabset} from '@ng-bootstrap/ng-bootstrap';
 })
 export class TournamentEditComponent implements OnInit, AfterViewChecked {
   data: any;
-  loading: boolean;
   slug: string;
   submitted = false;
   selectedTab: string;
 
 
-  constructor(private tournamentService: TournamentService,
+  constructor(private navbar: NavService,
+              private tournamentService: TournamentService,
               private route: ActivatedRoute,
               private toastr: ToastrService) {
     this.slug = this.route.snapshot.params.slug;
@@ -30,18 +30,17 @@ export class TournamentEditComponent implements OnInit, AfterViewChecked {
   @ViewChild('tabs')
   private tabs: NgbTabset;
 
-  getTournament(): Tournament {
-    this.loading = true;
+  getTournament() {
+    this.navbar.setLoading(true);
     this.tournamentService.getTournament(this.slug)
       .subscribe(tournament => {
         this.data = tournament;
         localStorage.setItem('tournament', JSON.stringify(tournament));
-        localStorage.setItem('test', 'hola');
-        this.loading = false;
+        this.navbar.setLoading(false);
       }, err => {
-        this.loading = false;
+        this.navbar.setLoading(false);
       });
-    return null;
+    this.navbar.setLoading(false);
   }
 
   ngOnInit() {
@@ -69,17 +68,17 @@ export class TournamentEditComponent implements OnInit, AfterViewChecked {
       return;
     }
 
-    this.loading = true;
+    this.navbar.setLoading(true);
 
     // this.tournament.
     this.tournamentService.update(this.data.tournament, 'categories')
       .subscribe(
         data => {
           this.data.tournament.championships = data.championships;
-          this.loading = false;
+          this.navbar.setLoading(false);
         },
         error => {
-          this.loading = false;
+          this.navbar.setLoading(false);
         });
 
   }

@@ -2,6 +2,7 @@ import {AfterViewChecked, ChangeDetectorRef, Component, Input, OnInit} from '@an
 import {Championship} from '../../../../models/championship';
 import {ChampionshipSettings} from '../../../../models/championship-settings';
 import {ChampionshipSettingsService} from '../../../../services/championship-settings.service';
+import {NavService} from '../../../../services/nav.service';
 
 @Component({
   selector: 'app-tournament-edit-category-settings',
@@ -13,16 +14,16 @@ export class TournamentEditCategorySettingsComponent implements OnInit, AfterVie
   @Input() i: number;
   durations: string[];
   submitted: boolean;
-  loading: boolean;
 
-  constructor(private cdRef: ChangeDetectorRef,
+  constructor(private navbar: NavService,
+              private cdRef: ChangeDetectorRef,
               private settingsService: ChampionshipSettingsService) {
   }
 
   onSubmit() {
     this.submitted = true;
 
-    this.loading = true;
+    this.navbar.setLoading(true);
 
     if (this.championship.settings.id == null) {
       this.settingsService.store(this.championship.id, this.championship.settings)
@@ -30,18 +31,18 @@ export class TournamentEditCategorySettingsComponent implements OnInit, AfterVie
           settings => {
             // console.log(settings.settings.id);
             this.championship.settings.id = settings.id;
-            this.loading = false;
+            this.navbar.setLoading(false);
           },
           error => {
-            this.loading = false;
+            this.navbar.setLoading(false);
           });
     } else {
       this.settingsService.update(this.championship.id, this.championship.settings)
         .subscribe(data => {
-            this.loading = false;
+            this.navbar.setLoading(false);
           },
           error => {
-            this.loading = false;
+            this.navbar.setLoading(false);
           });
     }
   }

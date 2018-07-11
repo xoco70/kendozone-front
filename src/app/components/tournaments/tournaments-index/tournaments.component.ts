@@ -11,7 +11,6 @@ import {NavService} from '../../../services/nav.service';
 export class TournamentsComponent implements OnInit {
   tournaments: Tournament[];
   page = 1;
-  public loading = true;
 
   constructor(private tournamentService: TournamentService,
               private navbar: NavService
@@ -19,33 +18,26 @@ export class TournamentsComponent implements OnInit {
   }
 
   all(page?: number): void {
-    this.loading = true;
+    this.navbar.setLoading(true);
     this.tournamentService.all(page)
       .subscribe(tournaments => {
-        // console.log(tournaments);
         this.tournaments = tournaments;
-        this.loading = false;
+        this.navbar.setLoading(false);
       }, err => {
-        this.loading = false;
+        this.navbar.setLoading(false);
       });
   }
 
   delete(tournament: Tournament): void {
-    this.loading = true;
+    this.navbar.setLoading(true);
     this.tournaments['data'] = this.tournaments['data'].filter(h => h !== tournament);
     this.tournamentService.delete(tournament).subscribe();
-    this.loading = false;
+    this.navbar.setLoading(false);
   }
 
 
   ngOnInit() {
-    this.navbar.setLoading(true);
-    setTimeout(() => {
-      this.navbar.setLoading(false);
-    }, 1000);
     this.all();
-
-
   }
 
   pageChanged(page: number) {
