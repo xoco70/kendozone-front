@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
   public disabled = false;
   user: User;
   message: string;
+  loading = false;
 
   constructor(private navbar: NavService,
               private userService: UserService,
@@ -33,7 +34,6 @@ export class ProfileComponent implements OnInit {
   }
 
   public config: DropzoneConfigInterface = {
-    url: environment.apiUrl + 'users/' + this.user.slug + '/avatar',
     clickable: true,
     maxFiles: 1,
     autoReset: null,
@@ -44,10 +44,11 @@ export class ProfileComponent implements OnInit {
   };
   @ViewChild(DropzoneComponent) componentRef?: DropzoneComponent;
   @ViewChild(DropzoneDirective) directiveRef?: DropzoneDirective;
-  private federations: any;
-  private associations: any;
-  private clubs: any;
+  // private federations: any;
+  // private associations: any;
+  // private clubs: any;
   private submitted = false;
+
 
   onSubmit() {
     this.submitted = true;
@@ -70,6 +71,7 @@ export class ProfileComponent implements OnInit {
       .pipe(first())
       .subscribe(
         user => {
+          this.config.url = environment.apiUrl + 'users/' + this.user.slug + '/avatar';
           this.navbar.setLoading(false);
         },
         error => {
@@ -104,6 +106,7 @@ export class ProfileComponent implements OnInit {
             country_id: ['']
           },
         );
+
         this.navbar.setLoading(false);
       }, err => {
         this.navbar.setLoading(false);
@@ -123,8 +126,18 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.data.setTitle('Profile');
     this.data.currentMessage.subscribe(message => this.message = message);
     this.getUser();
+    this.generalDataForm = this.formBuilder.group({
+        name: ['', Validators.required],
+        firstname: [''],
+        lastname: [''],
+        grade_id: [''],
+        country_id: ['']
+      },
+    );
+    this.loading = false;
   }
 }

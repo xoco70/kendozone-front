@@ -45,12 +45,12 @@
                   <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
                     <div class="form-group">
                       <label for="grade_id" class="font-weight-bold">Grade</label>
-                      <select name="grade_id" id="grade_id" class="form-control" formControlName="grade_id">
-                        <option *ngFor="let grade of grades" [ngValue]="grade.id"
-                                [selected]="grade.id === user.grade_id">
-                          {{ grade.text | translate }} {{ user.grade_id }} {{ user.grade_id === grade.id }}
-                        </option>
-                      </select>
+                      <!--<select name="grade_id" id="grade_id" class="form-control" formControlName="grade_id">-->
+                        <!--<option *ngFor="let grade of grades" [ngValue]="grade.id"-->
+                                <!--[selected]="grade.id === user.grade_id">-->
+                          <!--{{ grade.text | translate }} {{ user.grade_id }} {{ user.grade_id === grade.id }}-->
+                        <!--</option>-->
+                      <!--</select>-->
 
                     </div>
                   </div>
@@ -59,11 +59,11 @@
                   <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
                     <div class="form-group">
                       <label for="country" class="font-weight-bold">{{ 'model.country' | translate }}</label>
-                      <select name="country" id="country" class="form-control"  formControlName="country_id">
-                        <option *ngFor="let country of countries" [ngValue]="country.id">
-                          {{ country.name | translate }}
-                        </option>
-                      </select>
+                      <!--<select name="country" id="country" class="form-control"  formControlName="country_id">-->
+                        <!--<option *ngFor="let country of countries" [ngValue]="country.id">-->
+                          <!--{{ country.name | translate }}-->
+                        <!--</option>-->
+                      <!--</select>-->
 
                     </div>
                   </div>
