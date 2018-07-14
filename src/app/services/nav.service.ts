@@ -7,17 +7,17 @@ import {BehaviorSubject} from 'rxjs';
 export class NavService {
 
 
-  private messageSource = new BehaviorSubject('dashboard');
-  currentMessage = this.messageSource.asObservable();
+  private titleSource = new BehaviorSubject('Kendozone');
+  title = this.titleSource.asObservable();
 
-  private loadingSource = new BehaviorSubject(false);
+  private loadingSource = new BehaviorSubject(true);
   loading = this.loadingSource.asObservable();
 
   constructor() {
   }
 
-  setTitle(message: string) {
-    this.messageSource.next(message);
+  setTitle(title: string) {
+    this.titleSource.next(title);
   }
 
   setLoading(loading: boolean) {

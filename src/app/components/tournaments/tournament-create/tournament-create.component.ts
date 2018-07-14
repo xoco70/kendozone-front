@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {TournamentService} from '../../../services/tournament.service';
 import {CategoryService} from '../../../services/category.service';
 import {Category} from '../../../models/category';
@@ -16,7 +16,6 @@ export class TournamentCreateComponent implements OnInit {
   categories: Category[];
   tournament: Tournament = <Tournament>{};
   usePresets = 1;
-  rule = 0;
   presets = [
     {
       id: 1, name: 'Internation Kendo Federation (IKF)',
@@ -51,7 +50,8 @@ export class TournamentCreateComponent implements OnInit {
     private toastr: ToastrService,
     private tournamentService: TournamentService,
     private categoryService: CategoryService,
-    private router: Router
+    private router: Router,
+    private cdRef: ChangeDetectorRef
   ) {
   }
 
@@ -90,6 +90,7 @@ export class TournamentCreateComponent implements OnInit {
 
 
   ngOnInit() {
+    this.navbar.setLoading(true);
     this.getCategories();
     this.tournament.categoriesSelected = [];
     this.tournament.rule_id = 1;

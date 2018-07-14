@@ -33,7 +33,7 @@ export class TreesComponent implements OnInit {
       .subscribe(
         tournament => {
           this.navbar.setLoading(false);
-          this.tournament = plainToClass(Tournament, tournament);
+          this.tournament = plainToClass(tournament, Tournament);
         },
         error => {
           this.navbar.setLoading(false);
