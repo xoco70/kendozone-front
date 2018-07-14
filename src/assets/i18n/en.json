@@ -87,7 +87,6 @@
     "avatar": "Avatar",
     "newpassword": "New password",
     "conewpassword": "Confirm new password",
-    "without_grade": "No grade",
     "left_password_blank": "If you don't want to change password... please leave them empty"
   },
   "tournaments": {

@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {DropzoneComponent, DropzoneConfigInterface, DropzoneDirective} from 'ngx-dropzone-wrapper';
-import {GRADES} from '../../mock/mock-grades';
+import {GRADES_PROFILE} from '../../mock/mock-grades';
 import {UserService} from '../../services/user.service';
 import {User} from '../../models/user';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -19,7 +19,7 @@ import {NavService} from '../../services/nav.service';
 export class ProfileComponent implements OnInit {
   generalDataForm: FormGroup;
   public type = 'component';
-  grades = GRADES;
+  grades = GRADES_PROFILE;
   countries = COUNTRIES;
   public disabled = false;
   user: User;
@@ -29,8 +29,7 @@ export class ProfileComponent implements OnInit {
   constructor(private navbar: NavService,
               private userService: UserService,
               private formBuilder: FormBuilder,
-              private auth: AuthenticationService,
-              private data: NavService) {
+              private auth: AuthenticationService) {
   }
 
   public config: DropzoneConfigInterface = {
@@ -61,12 +60,13 @@ export class ProfileComponent implements OnInit {
     this.navbar.setLoading(true);
     // I use localTournament not to send the whole object
     // I still don't know if I have a Eloquent like in Angular
+    console.log(this.f);
     this.user.name = this.f.name.value;
     this.user.firstname = this.f.firstname.value;
     this.user.lastname = this.f.lastname.value;
     this.user.country_id = this.f.country_id.value;
     this.user.grade_id = this.f.grade_id.value;
-
+    console.log(this.user);
     this.userService.update(this.user)
       .pipe(first())
       .subscribe(
@@ -100,10 +100,10 @@ export class ProfileComponent implements OnInit {
         this.config.url = environment.apiUrl + 'users/' + this.user.slug + '/avatar';
         this.generalDataForm = this.formBuilder.group({
             name: [this.user.name, Validators.required],
-            firstname: [''],
-            lastname: [''],
-            grade_id: [''],
-            country_id: ['']
+            firstname: [this.user.firstname],
+            lastname: [this.user.lastname],
+            grade_id: [this.user.grade_id],
+            country_id: [this.user.country_id]
           },
         );
 
@@ -127,8 +127,8 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.data.setTitle('Profile');
-    this.data.currentMessage.subscribe(message => this.message = message);
+    this.navbar.setTitle('Profile');
+
     this.getUser();
     this.generalDataForm = this.formBuilder.group({
         name: ['', Validators.required],

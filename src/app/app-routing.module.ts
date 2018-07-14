@@ -26,7 +26,7 @@ const routes: Routes = [
   {path: 'tournaments/create', component: TournamentCreateComponent, canActivate: [AuthGuard]},
   {path: 'tournaments/:slug/edit', component: TournamentEditComponent, canActivate: [AuthGuard]},
   {path: 'tournaments/:slug/competitors', component: CompetitorsComponent, canActivate: [AuthGuard]},
-  {path: 'profile/:id/edit', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'profile/:slug/edit', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'tournaments', component: TournamentsComponent, canActivate: [AuthGuard]},
   {path: 'tournaments/:slug/trees', component: TreesComponent, canActivate: [AuthGuard]},
   {path: 'tournaments/:slug/fights', component: FightsComponent, canActivate: [AuthGuard]},

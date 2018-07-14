@@ -13,7 +13,7 @@
 
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <span class="ml-4"><strong>{{ message | uppercase }}</strong></span>
+        <span class="ml-4"><strong>{{ title | uppercase }}</strong></span>
       </li>
     </ul>
     <div class="form-inline mt-2 mt-md-0">
@@ -25,10 +25,6 @@
         <a href="#" id="dropdownMenuButton" data-toggle="dropdown">
           <img [src]="avatar_src" height="40">
         </a>
-        <!--<button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"-->
-        <!--aria-haspopup="true" aria-expanded="false">-->
-        <!--{{auth.currentUser().name }}-->
-        <!--</button>-->
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
           <div class="text-center m-3"><strong>{{auth.currentUser().name | uppercase }}</strong></div>
           <div class="dropdown-divider"></div>
