@@ -71,7 +71,7 @@ export class ProfileComponent implements OnInit {
       .pipe(first())
       .subscribe(
         user => {
-          this.config.url = environment.apiUrl + 'users/' + this.user.slug + '/avatar';
+          this.config.url = environment.apiUrl + '/users/' + this.user.slug + '/avatar';
           this.navbar.setLoading(false);
         },
         error => {
@@ -97,7 +97,7 @@ export class ProfileComponent implements OnInit {
       .subscribe(user => {
         // console.log(data);
         this.user = user;
-        this.config.url = environment.apiUrl + 'users/' + this.user.slug + '/avatar';
+        this.config.url = environment.apiUrl + '/users/' + this.user.slug + '/avatar';
         this.generalDataForm = this.formBuilder.group({
             name: [this.user.name, Validators.required],
             firstname: [this.user.firstname],

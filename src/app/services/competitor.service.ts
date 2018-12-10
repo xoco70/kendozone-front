@@ -37,7 +37,7 @@ export class CompetitorService {
   }
 
   store(competitors: Competitor[], championshipId: number): Observable<Competitor[]> {
-    const competitorsUrl = `${environment.apiUrl}championships/${championshipId}/competitors/`;
+    const competitorsUrl = `${environment.apiUrl}/championships/${championshipId}/competitors/`;
     return this.http.post<any>(competitorsUrl, competitors, httpOptions).pipe(
       tap(() => this.toastr.success('msg.competitors_added')),
       tap(() => LocalStorageService.addCompetitors(competitors['competitors'].length)),

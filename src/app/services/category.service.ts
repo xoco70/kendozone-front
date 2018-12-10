@@ -16,7 +16,7 @@ const httpOptions = {
 @Injectable({providedIn: 'root'})
 
 export class CategoryService {
-  private categoriesUrl = environment.apiUrl + 'categories';
+  private categoriesUrl = environment.apiUrl + '/categories';
 
 
   constructor(

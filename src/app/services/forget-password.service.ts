@@ -23,7 +23,7 @@ export class ForgetPasswordService {
   }
 
   reset(email: string): Observable<any> {
-    return this.http.post<any>(environment.apiUrl + 'password/email', {email: email}, httpOptions)
+    return this.http.post<any>(environment.apiUrl + '/password/email', {email: email}, httpOptions)
       .pipe(
         tap(data => this.toastr.success('success')),
         catchError(this.handleError('login', []))

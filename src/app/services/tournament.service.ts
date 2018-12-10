@@ -18,7 +18,7 @@ const httpOptions = {
 @Injectable({providedIn: 'root'})
 
 export class TournamentService {
-  tournamentsUrl = environment.apiUrl + 'tournaments/';
+  tournamentsUrl = environment.apiUrl + '/tournaments/';
   private tournamentPresetsUrl = this.tournamentsUrl + 'presets';
 
 
@@ -75,7 +75,7 @@ export class TournamentService {
   }
 
   statistics(tournamentSlug: string): Observable<any> {
-    const listUrl = `${environment.apiUrl}tournaments/${tournamentSlug}/statistics/`;
+    const listUrl = `${environment.apiUrl}/tournaments/${tournamentSlug}/statistics/`;
     return this.http.get<any>(listUrl)
       .pipe(
         tap(stats => LocalStorageService.setTreesCount(stats.trees_count)),

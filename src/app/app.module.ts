@@ -69,7 +69,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
-  url: environment.apiUrl + 'user/avatar',
+  url: environment.apiUrl + '/user/avatar',
   createImageThumbnails: true,
   acceptedFiles: 'image/*'
 };

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api.kz-api.test/',
+  apiUrl: 'https://api.kz-api.test',
   sentryDns: '',
 };
 
