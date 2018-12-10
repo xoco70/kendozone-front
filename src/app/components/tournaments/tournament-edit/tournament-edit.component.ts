@@ -1,4 +1,4 @@
-import {AfterViewChecked, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewChecked, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {TournamentService} from '../../../services/tournament.service';
 import {ToastrService} from 'ngx-toastr';
@@ -15,7 +15,7 @@ export class TournamentEditComponent implements OnInit, AfterViewChecked {
   slug: string;
   submitted = false;
   selectedTab: string;
-
+  @Input() loading;
 
   constructor(private navbar: NavService,
               private tournamentService: TournamentService,

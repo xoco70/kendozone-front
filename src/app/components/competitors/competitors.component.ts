@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CompetitorService} from '../../services/competitor.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Tournament} from '../../models/tournament';
@@ -19,6 +19,7 @@ import {NavService} from '../../services/nav.service';
 export class CompetitorsComponent implements OnInit {
   public tournament: Tournament;
   tournamentSlug: string;
+  @Input() loading;
 
   constructor(private navbar: NavService,
               private competitorService: CompetitorService,

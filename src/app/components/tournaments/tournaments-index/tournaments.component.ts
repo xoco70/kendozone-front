@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Tournament} from '../../../models/tournament';
 import {TournamentService} from '../../../services/tournament.service';
 import {NavService} from '../../../services/nav.service';
@@ -11,6 +11,7 @@ import {NavService} from '../../../services/nav.service';
 export class TournamentsComponent implements OnInit {
   tournaments: Tournament[];
   page = 1;
+  @Input() loading;
 
   constructor(private tournamentService: TournamentService,
               private navbar: NavService

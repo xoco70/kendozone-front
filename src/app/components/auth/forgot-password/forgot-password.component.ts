@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {first} from 'rxjs/operators';
 import {ForgetPasswordService} from '../../../services/forget-password.service';
 import {NavService} from '../../../services/nav.service';
@@ -11,9 +11,11 @@ import {NavService} from '../../../services/nav.service';
 export class ForgotPasswordComponent implements OnInit {
   submitted = false;
   email: string;
+  @Input() loading;
 
   constructor(private navbar: NavService,
-              private forgetPass: ForgetPasswordService) { }
+              private forgetPass: ForgetPasswordService) {
+  }
 
   onSubmit() {
     this.submitted = true;
@@ -29,6 +31,7 @@ export class ForgotPasswordComponent implements OnInit {
           this.navbar.setLoading(false);
         });
   }
+
   ngOnInit() {
     this.navbar.setLoading(false);
   }

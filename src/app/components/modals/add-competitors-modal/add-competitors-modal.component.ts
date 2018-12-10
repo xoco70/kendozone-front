@@ -22,6 +22,10 @@ export class AddCompetitorsModalComponent implements OnInit {
   ) {
   }
 
+  getControls(frmGrp: FormGroup, key: string) {
+    return (<FormArray>frmGrp.controls[key]).controls;
+  }
+
   ngOnInit() {
     const competitors: FormArray = new FormArray([
       new FormGroup({

@@ -1,0 +1,65 @@
+@import "~ngx-toastr/toastr.css";
+
+// Your variable overrides
+$body-bg: #f5f5f5;
+$body-color: #333;
+$navbar-padding-x: 0;
+$navbar-padding-y: 0;
+
+$navbar-brand-height: 56px;
+$navbar-brand-padding-y: 0;
+
+$btn-font-weight: 700;
+$btn-padding-y: 11px;
+
+$font-size-base: 13;
+
+$card-bg: #fcfcfc;
+$card-border-color: #ddd;
+
+$theme-colors: (
+  "primary": #ff5663,
+  "secondary": #273c4a,
+  "dark": #273c4a,
+  "grey": #f5f5f5,
+  "success": #7cd69c,
+  "danger": #ff4136
+);
+
+.btn-success {
+  color: #fff !important;
+}
+
+.calendar {
+  font-size: 16px;
+}
+
+.input-md {
+  padding: 10px 6px !important;
+}
+
+.input-lg {
+  padding: 12px 6px !important;
+}
+
+.select-lg {
+
+}
+select{
+  height: 47px !important;
+  width: 260px;
+}
+
+.loading{
+  background-color: #ff5663 ;
+  width: 56px;
+  height: 60px;
+  padding-top: 9px;
+}
+
+// Bootstrap and its default variables
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+

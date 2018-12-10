@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {plainToClass} from 'class-transformer';
 import {Tournament} from '../../models/tournament';
@@ -15,6 +15,7 @@ import {NavService} from '../../services/nav.service';
 export class FightsComponent implements OnInit {
   private slug: string;
   private tournament: Tournament;
+  @Input() loading;
 
   constructor(private navbar: NavService,
               private fightService: FightService,
