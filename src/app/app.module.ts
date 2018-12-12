@@ -39,7 +39,7 @@ import {NewCategoryModalComponent} from './components/modals/new-category-modal/
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {SlugPipe} from './pipes/slug.pipe';
 import {TreesComponent} from './components/trees/trees.component';
-import {ResetPassword1Component} from './components/auth/reset-password1/reset-password1.component';
+import {ResetPasswordComponent} from './components/auth/reset-password/reset-password.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {PreliminaryComponent} from './components/trees/preliminary/preliminary.component';
 import {PlayoffComponent} from './components/trees/playoff/playoff.component';
@@ -98,7 +98,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     NewCategoryModalComponent,
     SlugPipe,
     TreesComponent,
-    ResetPassword1Component,
+    ResetPasswordComponent,
     FooterComponent,
     PreliminaryComponent,
     PlayoffComponent,

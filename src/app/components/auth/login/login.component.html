@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="form-group">
-                  <input type="text" formControlName="email" class="form-control input-lg" placeholder="Email"
+                  <input type="text" email="true" formControlName="email" class="form-control input-lg" placeholder="Email"
                          [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
                   <div *ngIf="submitted && f.email.errors" class="text-primary">
                     <div *ngIf="f.email.errors.required" translate [translateParams]="{attribute: 'email'}">
@@ -47,7 +47,7 @@
                       </label>
                     </div>
                     <div class="col-6 text-right">
-                      <a translate routerLink="/password/reset">{{ 'login.lost_password' | translate }} </a>
+                      <a translate routerLink="/password/sendEmailForReset">{{ 'login.lost_password' | translate }} </a>
                     </div>
                   </div>
                 </div>

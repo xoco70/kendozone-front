@@ -14,12 +14,14 @@ import {AuthGuard} from './guards/auth.guard';
 import {ForgotPasswordComponent} from './components/auth/forgot-password/forgot-password.component';
 import {TreesComponent} from './components/trees/trees.component';
 import {FightsComponent} from './components/fights/fights.component';
+import {ResetPasswordComponent} from './components/auth/reset-password/reset-password.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'password/reset', component: ForgotPasswordComponent},
+  {path: 'password/sendEmailForReset', component: ForgotPasswordComponent},
+  {path: 'password/reset/:token', component: ResetPasswordComponent},
   // With Auth
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'tournaments', component: TournamentsComponent, canActivate: [AuthGuard]},

@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
     // stop here if form is invalid
     if (this.loginForm.invalid) {
+      this.submitted = false;
       return;
     }
 

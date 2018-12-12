@@ -2,6 +2,10 @@ import {Component, Input, OnInit} from '@angular/core';
 import {first} from 'rxjs/operators';
 import {ForgetPasswordService} from '../../../services/forget-password.service';
 import {NavService} from '../../../services/nav.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthenticationService} from '../../../services/authentication.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-forgot-password',
@@ -9,17 +13,27 @@ import {NavService} from '../../../services/nav.service';
   styleUrls: ['./forgot-password.component.scss']
 })
 export class ForgotPasswordComponent implements OnInit {
+  sendPasswordForm: FormGroup;
   submitted = false;
   email: string;
   @Input() loading;
 
   constructor(private navbar: NavService,
+              private formBuilder: FormBuilder,
+              private toastr: ToastrService,
               private forgetPass: ForgetPasswordService) {
   }
-
+  get f() {
+    return this.sendPasswordForm.controls;
+  }
   onSubmit() {
     this.submitted = true;
-    this.navbar.setLoading(true);
+    if (this.sendPasswordForm.invalid) {
+      this.navbar.setLoading(false);
+      return;
+    }
+
+
 
     this.forgetPass.reset(this.email)
       .pipe(first())
@@ -34,6 +48,9 @@ export class ForgotPasswordComponent implements OnInit {
 
   ngOnInit() {
     this.navbar.setLoading(false);
+    this.sendPasswordForm = this.formBuilder.group({
+      email: ['', Validators.required],
+    });
   }
 
 }
