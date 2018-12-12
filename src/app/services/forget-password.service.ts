@@ -25,7 +25,7 @@ export class ForgetPasswordService {
   reset(email: string): Observable<any> {
     return this.http.post<any>(environment.apiUrl + '/password/email', {email: email}, httpOptions)
       .pipe(
-        tap(data => this.toastr.success('success')),
+        tap(data => this.toastr.success('auth.check_your_email')),
         catchError(this.handleError('login', []))
       );
   }
@@ -38,9 +38,12 @@ export class ForgetPasswordService {
    */
   private handleError<T>(operation = 'operation', result?: T) {
     return (data: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      this.toastr.error(data.error.error);
+      if (data.error.error) {
+        this.toastr.error(data.error.error);
+      }
+      if (data.error.message) {
+        this.toastr.error(data.error.message);
+      }
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

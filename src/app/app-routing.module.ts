@@ -20,7 +20,8 @@ const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'password/sendEmailForReset', component: ForgotPasswordComponent},
+  {path: 'password/forgot', component: ForgotPasswordComponent},
+  // {path: 'password/email', component: ForgotPasswordComponent},
   {path: 'password/reset/:token', component: ResetPasswordComponent},
   // With Auth
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},

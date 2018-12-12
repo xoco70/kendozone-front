@@ -23,19 +23,18 @@ export class ForgotPasswordComponent implements OnInit {
               private toastr: ToastrService,
               private forgetPass: ForgetPasswordService) {
   }
+
   get f() {
     return this.sendPasswordForm.controls;
   }
+
   onSubmit() {
     this.submitted = true;
     if (this.sendPasswordForm.invalid) {
       this.navbar.setLoading(false);
       return;
     }
-
-
-
-    this.forgetPass.reset(this.email)
+    this.forgetPass.reset(this.f.email.value)
       .pipe(first())
       .subscribe(
         data => {
