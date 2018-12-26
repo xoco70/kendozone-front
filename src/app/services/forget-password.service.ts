@@ -22,11 +22,19 @@ export class ForgetPasswordService {
   ) {
   }
 
-  reset(email: string): Observable<any> {
+  sendEmail(email: string): Observable<any> {
     return this.http.post<any>(environment.apiUrl + '/password/email', {email: email}, httpOptions)
       .pipe(
         tap(data => this.toastr.success('auth.check_your_email')),
         catchError(this.handleError('login', []))
+      );
+  }
+
+  reset(email: string, newPassword: string, token: string): Observable<any> {
+    return this.http.post<any>(environment.apiUrl + '/password/reset', {email: email, password: newPassword, token: token}, httpOptions)
+      .pipe(
+        tap(data => this.toastr.success('auth.password_has_been_resetted')),
+        catchError(this.handleError('resetPasswd', []))
       );
   }
 

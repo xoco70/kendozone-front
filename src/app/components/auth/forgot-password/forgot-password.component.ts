@@ -34,7 +34,7 @@ export class ForgotPasswordComponent implements OnInit {
       this.navbar.setLoading(false);
       return;
     }
-    this.forgetPass.reset(this.f.email.value)
+    this.forgetPass.sendEmail(this.f.email.value)
       .pipe(first())
       .subscribe(
         data => {

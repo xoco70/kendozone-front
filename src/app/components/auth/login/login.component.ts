@@ -28,13 +28,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
 
-    // reset login status
+    // sendEmail login status
     this.auth.logout();
     // if (this.route.snapshot.queryParams['welcome']) {
     //   setTimeout(() => {

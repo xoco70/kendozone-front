@@ -22,7 +22,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'password/forgot', component: ForgotPasswordComponent},
   // {path: 'password/email', component: ForgotPasswordComponent},
-  {path: 'password/reset/:token', component: ResetPasswordComponent},
+  {path: 'password/reset', component: ResetPasswordComponent},
   // With Auth
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'tournaments', component: TournamentsComponent, canActivate: [AuthGuard]},
