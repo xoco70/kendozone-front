@@ -1,8 +1,7 @@
-
 <div class="container-fluid" *ngIf="!loading">
   <div class="row">
     <div class="col-md-10" id="main">
-      <ngb-tabset type="pills" class="nav-fill" #tabs [activeId]="selectedTab" >
+      <ngb-tabset type="pills" class="nav-fill" #tabs [activeId]="selectedTab">
         <ngb-tab id="general-data">
           <ng-template ngbTabTitle>{{ 'tour_edit.general_data' | translate | uppercase }}</ng-template>
           <ng-template ngbTabContent>
@@ -55,7 +54,7 @@
               <div class="card-body">
                 <!--TODO When clicked, must refresh the page, as it could be changed with edit categories page-->
                 <app-tournament-edit-category-settings
-                  *ngFor="let championship of data.tournament.championships; index as i"
+                  *ngFor="let championship of data.tournament.championships; let i = index"
                   [championship]="championship"
                   [i]="i"
                 >

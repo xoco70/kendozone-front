@@ -9,11 +9,11 @@
       "urls": [
         "https://v2.kendozone.com/favicon.ico",
         "https://v2.kendozone.com/index.html",
-        "https://v2.kendozone.com/main.510eeebe35885317f63c.js",
+        "https://v2.kendozone.com/main.f4b7d7a9b355cd08c58a.js",
         "https://v2.kendozone.com/polyfills.08a5d13869ea9f7c7aaf.js",
         "https://v2.kendozone.com/runtime.a66f828dca56eeb90e02.js",
         "https://v2.kendozone.com/scripts.385b291e179030219400.js",
-        "https://v2.kendozone.com/styles.616f2b90ecf54c4f5fbb.css"
+        "https://v2.kendozone.com/styles.e9eb66f7ad231339c35a.css"
       ],
       "patterns": []
     },
@@ -299,7 +299,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "https://v2.kendozone.com/assets/i18n/en.json": "7ecc86d58a904b3750ae2741d9aebb5dcd524ab7",
+    "https://v2.kendozone.com/assets/i18n/en.json": "80f51e0266499acf2e5c5f877a0fedec47c0b3c4",
     "https://v2.kendozone.com/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
     "https://v2.kendozone.com/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
     "https://v2.kendozone.com/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
@@ -569,14 +569,14 @@
     "https://v2.kendozone.com/assets/images/logored.png": "fcbd94ceb454f92b7d7eb37e431916ae72ab02bd",
     "https://v2.kendozone.com/assets/images/seamless.png": "ba5223e46bfd45025382d62f2a80c57c13ffc675",
     "https://v2.kendozone.com/assets/images/twitter.png": "3c56e8f8fc0856c154a75f739efd2f78f4a3da88",
-    "https://v2.kendozone.com/assets/scss/main.scss": "9b2aa719bf771be7b9a61fd650109421d1ddcdec",
+    "https://v2.kendozone.com/assets/scss/main.scss": "aa8fdd8b75735cbd255528dc23bd8e84b5d78acc",
     "https://v2.kendozone.com/favicon.ico": "8a63c290261b16010be63bd568fae906a0b2a34d",
-    "https://v2.kendozone.com/index.html": "8f3fa8ae8fae431d700c2e6b97943f46a4968562",
-    "https://v2.kendozone.com/main.510eeebe35885317f63c.js": "441af6bd9bdab08ce492dbbd8a1b72b7ef415176",
+    "https://v2.kendozone.com/index.html": "96c953d9755fcfba69a30990c518535837754abe",
+    "https://v2.kendozone.com/main.f4b7d7a9b355cd08c58a.js": "8bf13db63092951ee20f08080ab926f9b8fd0c84",
     "https://v2.kendozone.com/polyfills.08a5d13869ea9f7c7aaf.js": "9f0b8341c0a0caec1581da2f255eb5dbb8e12303",
     "https://v2.kendozone.com/runtime.a66f828dca56eeb90e02.js": "078e320cc6fdaf355836c3b1c52b059cdd33fc7e",
     "https://v2.kendozone.com/scripts.385b291e179030219400.js": "93b30a219abf42ed47df6bf810c86251026b2ce9",
-    "https://v2.kendozone.com/styles.616f2b90ecf54c4f5fbb.css": "72436fdd337c6c78e52bed3dd112ae3f7aaa0c8b"
+    "https://v2.kendozone.com/styles.e9eb66f7ad231339c35a.css": "806867053fc1dbad3b8c2cc5c3076c44354b0312"
   },
   "navigationUrls": [
     {

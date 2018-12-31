@@ -69,8 +69,8 @@ export class CompetitorsComponent implements OnInit {
 
   delete(competitor: Competitor, championshipIndex: number): void {
     this.navbar.setLoading(true);
-    this.competitorService.delete(this.tournamentSlug, competitor).subscribe();
     this.tournament.championships[championshipIndex].competitors = this.tournament.championships[championshipIndex].competitors.filter(h => h !== competitor);
+    this.competitorService.delete(this.tournamentSlug, competitor).subscribe();
     LocalStorageService.removeCompetitor();
     this.navbar.setLoading(false);
   }

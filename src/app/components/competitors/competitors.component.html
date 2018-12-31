@@ -1,8 +1,7 @@
-
 <div class="container-fluid" *ngIf="!loading">
   <div class="row">
     <div class="col-md-10" id="main">
-      <div *ngFor="let championship of tournament.championships; let i = index" class="card mb-4">
+      <div *ngFor="let championship of tournament.championships; let i =index" class="card mb-4">
         <div class="card-body">
           <a name="{{ championship.category.name | translate | slug }}">
             <div class="row">
@@ -34,25 +33,24 @@
                   <th scope="col">{{ 'competitors.avatar' | translate }}</th>
                   <th scope="col">{{ 'model.user' | translate }}</th>
                   <th scope="col">{{ 'profile.email' | translate }}</th>
-                  <!--<th scope="col">{{ 'categories.category' | translate }}</th>-->
-                  <!--<th scope="col">{{ 'competitors.paid' | translate }}Paid</th>-->
+                  <th scope="col">{{ 'categories.category' | translate }}</th>
+                  <!--<th scope="col">{{ 'competitors.paid' | translate }}</th>-->
                   <!--<th scope="col">{{ 'profile.country' | translate }}</th>-->
                   <th scope="col">{{ 'common.action' | translate }}</th>
                 </tr>
-                <tr *ngFor="let competitor of championship.competitors">
+                <tr *ngFor="let competitor of championship.competitors; let j = index">
                   <!--TODO get Avatar-->
-                  <td  align="center">
+                  <td align="center">
                     <img class="avatar_icon" [src]="competitor.user.avatar ? competitor.user.avatar : 'assets/images/avatar/avatar.png'">
                   </td>
                   <td align="center" class="valign-middle">{{competitor.user.name}}</td>
                   <!--TODO get first / lastname -->
                   <td align="center" class="valign-middle">{{competitor.user.email.endsWith('@kendozone.com') ? '-' : competitor.user.email }}</td>
-                  <!--<td>{{championship.category.name}}</td>-->
-                  <!--<td>{{user.paid}}</td>-->
+                  <td align="center" class="valign-middle">{{championship.category.name}}</td>
+                  <!--<td>{{competitor.user.paid}}</td>-->
                   <!--<td>{{competitor.user.country}} {{ i }}</td>-->
                   <td>
-
-                    <button class="btn icon-list valign-middle" (click)="delete(competitor, i)" >
+                    <button class="btn icon-list valign-middle" (click)="delete(competitor, i)">
                       <i class="far fa-trash-alt text-primary"></i>
                     </button>
                   </td>

@@ -74,7 +74,11 @@
     "reset_password": "Reset Password",
     "check_your_email": "We sent you an email with an activation link",
     "account_already_exists": "We already have a strong user registered with this email",
-    "account_not_activated": "Account is not activated. Please check your email"
+    "account_not_activated": "Account is not activated. Please check your email",
+    "password_dont_match": "Password don't match",
+    "enter_new_password": "Enter new password",
+    "password": "Password",
+    "password_confirmation": "Password confirmation"
   },
   "dashboard": {
   },
