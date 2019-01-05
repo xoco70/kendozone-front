@@ -21,8 +21,6 @@ export class TournamentEditCategoriesComponent implements OnInit, ControlValueAc
   @Input() tournament: Tournament;
   @Input() categories;
   @Input() disabled: boolean;
-
-  loading: boolean;
   categoriesSelected = [];
   submitted: boolean;
   category;

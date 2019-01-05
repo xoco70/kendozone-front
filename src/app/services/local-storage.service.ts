@@ -71,6 +71,7 @@ export class LocalStorageService {
 
   static removeCompetitor(): number {
     const num = LocalStorageService.getCompetitorsCount();
+    console.log(num);
     localStorage.setItem('competitors_count', (num - 1) + '');
     return num - 1;
   }

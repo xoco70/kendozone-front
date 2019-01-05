@@ -10,24 +10,30 @@
       <li><a routerLink="/tournaments/{{ tournament.slug }}/competitors">
         <i class="fas fa-user-friends"></i>
         {{ 'model.competitors' | translate }}
-        <span class="badge badge-primary text-white" *ngIf="competitors_count<4">
-          {{ competitors_count }}
+        <span class="badge badge-primary text-white" *ngIf="LocalStorageService.getCompetitorsCount()<4">
+          {{ LocalStorageService.getCompetitorsCount()}}
         </span>
-        <span class="badge badge-success text-white" *ngIf="competitors_count>=4">
-          {{ competitors_count }}
+        <span class="badge badge-success text-white" *ngIf="LocalStorageService.getCompetitorsCount()>=4">
+          {{ LocalStorageService.getCompetitorsCount() }}
         </span>
       </a>
       </li>
       <li><a routerLink="/tournaments/{{ tournament.slug }}/teams">
         <i class="fas fa-users"></i>{{ 'model.teams' | translate }}
-        <span class="badge badge-primary" *ngIf="teams_count<=2">{{ teams_count }}</span>
-        <span class="badge badge-success" *ngIf="teams_count>2">{{ teams_count }}</span>
+        <span class="badge badge-primary" *ngIf="LocalStorageService.getTeamsCount()<=2">
+          {{ LocalStorageService.getTeamsCount() }}</span>
+        <span class="badge badge-success" *ngIf="LocalStorageService.getTeamsCount()>2">
+          {{ LocalStorageService.getTeamsCount() }}</span>
       </a></li>
       <li><a routerLink="/tournaments/{{ tournament.slug }}/trees">
         <i class="fas fa-sitemap"></i>
         {{ 'model.trees' | translate }}
-        <span class="badge badge-success text-white " *ngIf="trees_count === championships_count">{{ trees_count }} / {{ championships_count }}</span>
-        <span class="badge badge-primary " *ngIf="trees_count < championships_count">{{ trees_count }} / {{ championships_count }}</span>
+        <span class="badge badge-success text-white " *ngIf="trees_count === championships_count">{{ trees_count }}
+          / {{ championships_count }}</span>
+        <span class="badge badge-primary "
+              *ngIf="LocalStorageService.getTreesCount() < LocalStorageService.getChampionshipsCount()">
+          {{ LocalStorageService.getTreesCount() }}
+          / {{ LocalStorageService.getChampionshipsCount() }}</span>
 
 
       </a>

@@ -18,7 +18,6 @@ export class ResetPasswordComponent implements OnInit {
   returnUrl: string;
   error = '';
   token: string;
-  loading: false;
 
   constructor(
     private navbar: NavService,

@@ -57,7 +57,8 @@ export class TreesComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getTournamentWithTrees();
+    setTimeout(() => {
+      this.getTournamentWithTrees();
+    });
   }
-
 }

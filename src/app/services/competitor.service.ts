@@ -50,7 +50,6 @@ export class CompetitorService {
     return this.http.delete<any>(url, httpOptions)
       .pipe(
         tap(data => this.toastr.success(data)),
-        tap(() => LocalStorageService.removeCompetitor()),
         catchError(this.handleError([]))
       );
   }

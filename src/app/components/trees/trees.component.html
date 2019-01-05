@@ -1,5 +1,4 @@
-
-<div class="container-fluid" >
+<div class="container-fluid" *ngIf="tournament">
   <div class="row">
     <div class="col-10" id="main">
       <ngb-tabset type="pills" class="nav-fill">
@@ -7,7 +6,7 @@
           <ng-template ngbTabTitle>{{ championship.category.name | translate | uppercase }}</ng-template>
           <ng-template ngbTabContent >
 
-            <div class="card mt-3" *ngIf="!loading">
+            <div class="card mt-3">
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-8">

@@ -19,7 +19,6 @@ const httpOptions = {
 
 export class TournamentService {
   tournamentsUrl = environment.apiUrl + '/tournaments/';
-  private tournamentPresetsUrl = this.tournamentsUrl + 'presets';
 
 
   constructor(

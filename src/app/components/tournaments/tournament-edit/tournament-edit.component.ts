@@ -47,7 +47,10 @@ export class TournamentEditComponent implements OnInit, AfterViewChecked {
     //     this.prospectId = +params['prospectid'];
     //   }
     // );
-    this.getTournament();
+    setTimeout(() => {
+      this.getTournament();
+    });
+
   }
 
   ngAfterViewChecked(): void {

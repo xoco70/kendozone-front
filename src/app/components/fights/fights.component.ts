@@ -14,8 +14,7 @@ import {NavService} from '../../services/nav.service';
 })
 export class FightsComponent implements OnInit {
   private slug: string;
-  private tournament: Tournament;
-  @Input() loading;
+  public tournament: Tournament;
 
   constructor(private navbar: NavService,
               private fightService: FightService,
@@ -39,6 +38,8 @@ export class FightsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getTournamentWithFights();
+    setTimeout(() => {
+      this.getTournamentWithFights();
+    });
   }
 }

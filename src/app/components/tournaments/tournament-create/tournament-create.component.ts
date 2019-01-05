@@ -46,13 +46,33 @@ export class TournamentCreateComponent implements OnInit {
   private submitted = false;
 
   constructor(
-    private navbar: NavService,
+    public navbar: NavService,
     private toastr: ToastrService,
     private tournamentService: TournamentService,
     private categoryService: CategoryService,
-    private router: Router,
-    private cdRef: ChangeDetectorRef
+    private router: Router
   ) {
+  }
+
+
+  getCategories(): void {
+    this.navbar.setLoading(true);
+    this.categoryService.all()
+      .subscribe(categories => {
+        this.categories = categories;
+        this.navbar.setLoading(false);
+      }, () => {
+        this.navbar.setLoading(false);
+      });
+  }
+
+
+  ngOnInit() {
+    setTimeout(() => {
+      this.getCategories();
+      this.tournament.categoriesSelected = [];
+      this.tournament.rule_id = 1;
+    });
   }
 
   onSubmit() {
@@ -75,25 +95,6 @@ export class TournamentCreateComponent implements OnInit {
           this.navbar.setLoading(false);
         });
 
-  }
-
-  getCategories(): void {
-    this.navbar.setLoading(true);
-    this.categoryService.all()
-      .subscribe(categories => {
-        this.categories = categories;
-        this.navbar.setLoading(false);
-      }, () => {
-        this.navbar.setLoading(false);
-      });
-  }
-
-
-  ngOnInit() {
-    this.navbar.setLoading(true);
-    this.getCategories();
-    this.tournament.categoriesSelected = [];
-    this.tournament.rule_id = 1;
   }
 
 }

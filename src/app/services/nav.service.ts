@@ -10,7 +10,7 @@ export class NavService {
   private titleSource = new BehaviorSubject('Kendozone');
   title = this.titleSource.asObservable();
 
-  private loadingSource = new BehaviorSubject(true);
+  private loadingSource = new BehaviorSubject(false);
   loading = this.loadingSource.asObservable();
 
   constructor() {

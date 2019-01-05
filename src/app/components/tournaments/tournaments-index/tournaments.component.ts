@@ -11,7 +11,6 @@ import {NavService} from '../../../services/nav.service';
 export class TournamentsComponent implements OnInit {
   tournaments: Tournament[];
   page = 1;
-  @Input() loading;
 
   constructor(private tournamentService: TournamentService,
               private navbar: NavService
@@ -38,7 +37,10 @@ export class TournamentsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.all();
+    setTimeout(() => {
+      this.all();
+    });
+
   }
 
   pageChanged(page: number) {

@@ -1,7 +1,7 @@
 <!--if user is logged there is 2 cases-->
 
 <nav class="navbar navbar-expand-md navbar fixed-top">
-  <a class="navbar-brand" href="#"><img src="assets/images/logo_kendozone_beta.png" *ngIf="!loading"/></a>
+  <a class="navbar-brand" routerLink="/"><img src="assets/images/logo_kendozone_beta.png" *ngIf="!loading"/></a>
   <div class="loading" *ngIf="loading" align="center">
     <i class="fas fa-circle-notch fa-spin fa-fw text-white f-38"></i>
   </div>
@@ -28,13 +28,13 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
           <div class="text-center m-3"><strong>{{auth.currentUser().name | uppercase }}</strong></div>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/profile/{{auth.currentUser().slug}}/edit">{{ 'model.profile' | translate
+          <a class="dropdown-item" routerLink="/profile/{{auth.currentUser().slug}}/edit">{{ 'model.profile' | translate
             }}</a>
           <a class="dropdown-item" routerLink="/tournaments">{{ 'nav.my_tournaments' | translate }}</a>
           <!--<a class="dropdown-item" href="#">{{ 'nav.participations' | translate }}</a>-->
           <!--<a class="dropdown-item" href="#">{{ 'core.invitations' | translate }}</a>-->
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#" (click)="logout()">{{ 'nav.logout' | translate }}</a>
+          <a class="dropdown-item" routerLink="#" (click)="logout()">{{ 'nav.logout' | translate }}</a>
         </div>
       </div>
     </div>

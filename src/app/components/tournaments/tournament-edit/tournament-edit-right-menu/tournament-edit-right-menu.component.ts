@@ -9,6 +9,7 @@ import {TournamentService} from '../../../../services/tournament.service';
   styleUrls: ['./tournament-edit-right-menu.component.scss']
 })
 export class TournamentEditRightMenuComponent implements OnInit {
+  public LocalStorageService = LocalStorageService;
   @Input() tournament: Tournament;
   @Input() competitors_count: number;
   championships_count: number;

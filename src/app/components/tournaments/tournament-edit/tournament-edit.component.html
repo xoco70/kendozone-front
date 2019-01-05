@@ -1,5 +1,5 @@
-<div class="container-fluid" *ngIf="!navbar.isLoading()">
-  <div class="row">
+<div class="container-fluid">
+  <div class="row" *ngIf="data">
     <div class="col-md-10" id="main">
       <ngb-tabset type="pills" class="nav-fill" #tabs [activeId]="selectedTab">
         <ngb-tab id="general-data">

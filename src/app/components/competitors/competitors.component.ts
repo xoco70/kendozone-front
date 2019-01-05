@@ -19,7 +19,6 @@ import {NavService} from '../../services/nav.service';
 export class CompetitorsComponent implements OnInit {
   public tournament: Tournament;
   tournamentSlug: string;
-  @Input() loading;
 
   constructor(private navbar: NavService,
               private competitorService: CompetitorService,
@@ -77,7 +76,8 @@ export class CompetitorsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.all();
-
+    setTimeout(() => {
+      this.all();
+    });
   }
 }

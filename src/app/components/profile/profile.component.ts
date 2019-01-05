@@ -21,10 +21,9 @@ export class ProfileComponent implements OnInit {
   public type = 'component';
   grades = GRADES_PROFILE;
   countries = COUNTRIES;
-  public disabled = false;
+  public disabled = false; // Check if necesary
   user: User;
   message: string;
-  loading = false;
 
   constructor(private navbar: NavService,
               private userService: UserService,
@@ -91,11 +90,10 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  getUser(): User {
+  getUser(): void {
     this.navbar.setLoading(true);
     this.userService.getUser() // this.slug
       .subscribe(user => {
-        // console.log(data);
         this.user = user;
         this.config.url = environment.apiUrl + '/users/' + this.user.slug + '/avatar';
         this.generalDataForm = this.formBuilder.group({
@@ -106,12 +104,10 @@ export class ProfileComponent implements OnInit {
             country_id: [this.user.country_id]
           },
         );
-
         this.navbar.setLoading(false);
       }, err => {
         this.navbar.setLoading(false);
       });
-    return null;
   }
 
   public onUploadError(args: any): void {
@@ -126,10 +122,12 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loading = true;
+    setTimeout(() => {
+      this.getUser();
+    });
     this.navbar.setTitle('Profile');
 
-    this.getUser();
+
     this.generalDataForm = this.formBuilder.group({
         name: ['', Validators.required],
         firstname: [''],
@@ -138,6 +136,5 @@ export class ProfileComponent implements OnInit {
         country_id: ['']
       },
     );
-    this.loading = false;
   }
 }
