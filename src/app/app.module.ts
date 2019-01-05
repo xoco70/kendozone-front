@@ -18,7 +18,6 @@ import {TournamentEditCategorySettingsComponent} from './components/tournaments/
 import {TournamentEditRightMenuComponent} from './components/tournaments/tournament-edit/tournament-edit-right-menu/tournament-edit-right-menu.component';
 import {AgmCoreModule} from '@agm/core';
 import {CompetitorsComponent} from './components/competitors/competitors.component';
-import {CompetitorsRightMenuComponent} from './components/competitors/competitors-right-menu/competitors-right-menu.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {DROPZONE_CONFIG, DropzoneConfigInterface, DropzoneModule} from 'ngx-dropzone-wrapper';
 import {HomeComponent} from './components/home/home.component';
@@ -88,7 +87,6 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     TournamentEditCategorySettingsComponent,
     TournamentEditRightMenuComponent,
     CompetitorsComponent,
-    CompetitorsRightMenuComponent,
     ProfileComponent,
     HomeComponent,
     LoginComponent,

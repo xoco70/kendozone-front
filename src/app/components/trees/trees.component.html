@@ -4,7 +4,7 @@
       <ngb-tabset type="pills" class="nav-fill">
         <ngb-tab *ngFor="let championship of tournament.championships">
           <ng-template ngbTabTitle>{{ championship.category.name | translate | uppercase }}</ng-template>
-          <ng-template ngbTabContent >
+          <ng-template ngbTabContent>
 
             <div class="card mt-3">
               <div class="card-body">
@@ -44,10 +44,6 @@
                     [championship]="championship"
                   ></app-single-elimination>
                 </div>
-
-                <!--<app-tournament-edit-general-->
-                <!--[tournament]="tournament">-->
-                <!--</app-tournament-edit-general>-->
               </div>
             </div>
           </ng-template>
