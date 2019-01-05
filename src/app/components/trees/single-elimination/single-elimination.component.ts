@@ -37,7 +37,6 @@ export class SingleEliminationComponent implements OnInit {
 
     this.numFighters = this.firstRoundGroup.length * 2;
     this.noRounds = Math.log2(this.numFighters);
-
     for (let i = 1; i <= this.noRounds; i++) {
       this.brackets[i] = groupsByRound[i].map(group => {
         if (this.championship.category.isTeam) {

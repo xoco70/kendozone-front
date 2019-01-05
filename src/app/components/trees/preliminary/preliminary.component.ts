@@ -1,9 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Championship} from '../../../models/championship';
 import {ChampionshipSettings} from '../../../models/championship-settings';
-
-class FighterGroup {
-}
+import {FightersGroup} from '../../../models/fighters.group';
 
 @Component({
   selector: 'app-preliminary',
@@ -13,9 +11,8 @@ class FighterGroup {
 export class PreliminaryComponent implements OnInit {
   @Input() championship: Championship;
   numFighters: number[];
-  letter = 'a';
   settings: ChampionshipSettings;
-  roundOneGroups: FighterGroup[];
+  roundOneGroups: FightersGroup[];
 
   constructor() {
   }

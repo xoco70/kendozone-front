@@ -39,7 +39,7 @@
                     [championship]="championship"
                   ></app-playoff>
                 </div>
-                <div *ngIf="championship.isSingleEliminationType()">
+                <div *ngIf="championship.isSingleEliminationType() && !championship.hasPreliminary()">
                   <app-single-elimination
                     [championship]="championship"
                   ></app-single-elimination>
