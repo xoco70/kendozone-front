@@ -56,9 +56,12 @@ export class TreeService {
    */
   private handleError<T>(result?: T) {
     return (data: any): Observable<T> => {
-      // console.log(data);
       // TODO: send the error to remote logging infrastructure
-      this.toastr.error(data.error.msg);
+      if (data.error.msg === undefined) {
+        this.toastr.error(data.error);
+      } else {
+        this.toastr.error(data.error.msg);
+      }
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
