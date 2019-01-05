@@ -9,7 +9,7 @@
       "urls": [
         "https://v2.kendozone.com/favicon.ico",
         "https://v2.kendozone.com/index.html",
-        "https://v2.kendozone.com/main.f4b7d7a9b355cd08c58a.js",
+        "https://v2.kendozone.com/main.99b1cf058c420c1e5ad1.js",
         "https://v2.kendozone.com/polyfills.08a5d13869ea9f7c7aaf.js",
         "https://v2.kendozone.com/runtime.a66f828dca56eeb90e02.js",
         "https://v2.kendozone.com/scripts.385b291e179030219400.js",
@@ -299,7 +299,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "https://v2.kendozone.com/assets/i18n/en.json": "80f51e0266499acf2e5c5f877a0fedec47c0b3c4",
+    "https://v2.kendozone.com/assets/i18n/en.json": "b4cbc6b6fd103f14c14139fa163423d91097c680",
     "https://v2.kendozone.com/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
     "https://v2.kendozone.com/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
     "https://v2.kendozone.com/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
@@ -571,8 +571,8 @@
     "https://v2.kendozone.com/assets/images/twitter.png": "3c56e8f8fc0856c154a75f739efd2f78f4a3da88",
     "https://v2.kendozone.com/assets/scss/main.scss": "aa8fdd8b75735cbd255528dc23bd8e84b5d78acc",
     "https://v2.kendozone.com/favicon.ico": "8a63c290261b16010be63bd568fae906a0b2a34d",
-    "https://v2.kendozone.com/index.html": "96c953d9755fcfba69a30990c518535837754abe",
-    "https://v2.kendozone.com/main.f4b7d7a9b355cd08c58a.js": "8bf13db63092951ee20f08080ab926f9b8fd0c84",
+    "https://v2.kendozone.com/index.html": "9d4f2e309b50b247e668df75608c0d2f6174b9c2",
+    "https://v2.kendozone.com/main.99b1cf058c420c1e5ad1.js": "b883b4186dbdc67982599fd8694316dbede6af4b",
     "https://v2.kendozone.com/polyfills.08a5d13869ea9f7c7aaf.js": "9f0b8341c0a0caec1581da2f255eb5dbb8e12303",
     "https://v2.kendozone.com/runtime.a66f828dca56eeb90e02.js": "078e320cc6fdaf355836c3b1c52b059cdd33fc7e",
     "https://v2.kendozone.com/scripts.385b291e179030219400.js": "93b30a219abf42ed47df6bf810c86251026b2ce9",

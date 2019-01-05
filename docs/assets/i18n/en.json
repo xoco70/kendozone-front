@@ -236,6 +236,7 @@
     "fb_is_not_sharing_email": "You are not sharing you email in Facebook. Share your email in Facebook settings or click SIGN UP"
   },
   "categories": {
+    "category": "Category",
     "junior": "Junior",
     "junior_team": "Junior Team",
     "man_first_force": "Men 1+ Dan",

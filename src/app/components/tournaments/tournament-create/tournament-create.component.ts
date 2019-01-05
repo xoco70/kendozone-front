@@ -46,7 +46,7 @@ export class TournamentCreateComponent implements OnInit {
   private submitted = false;
 
   constructor(
-    public navbar: NavService,
+    private navbar: NavService,
     private toastr: ToastrService,
     private tournamentService: TournamentService,
     private categoryService: CategoryService,

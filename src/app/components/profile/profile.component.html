@@ -1,4 +1,4 @@
-<div class="container" *ngIf="!navbar.isLoading()">
+<div class="container" *ngIf="user">
   <div class="row">
     <div class="col-lg-10 offset-lg-1" >
       <form [formGroup]="generalDataForm" (ngSubmit)="onSubmit()">
@@ -13,7 +13,7 @@
                   <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
                     <div class="form-group has-success">
                       <label for="name" class="font-weight-bold">{{ 'profile.username' | translate }}</label>
-                      <input class="form-control input-lg" formControlName="name" [value]="user?.name" type="text"
+                      <input class="form-control input-lg" formControlName="name" [value]="user.name" type="text"
                              id="name">
                       <div class="text-primary mt-1" *ngIf="!f.name.pristine && f.name.errors?.required" translate
                            [translateParams]="{attribute: 'name'}">
@@ -27,7 +27,7 @@
                   <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
                     <div class="form-group">
                       <label for="firstname" class="font-weight-bold">{{ 'profile.firstname' | translate }}</label>
-                      <input class="form-control input-lg" formControlName="firstname" [value]="user?.firstname"
+                      <input class="form-control input-lg" formControlName="firstname" [value]="user.firstname"
                              type="text" id="firstname">
                     </div>
                   </div>
@@ -36,7 +36,7 @@
                   <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
                     <div class="form-group">
                       <label for="lastname" class="font-weight-bold">{{ 'profile.lastname' | translate }}</label>
-                      <input class="form-control input-lg" formControlName="lastname" [value]="user?.lastname"
+                      <input class="form-control input-lg" formControlName="lastname" [value]="user.lastname"
                              type="text" id="lastname">
                     </div>
                   </div>
@@ -47,7 +47,7 @@
                       <label for="grade_id" class="font-weight-bold">Grade</label>
                       <select name="grade_id" id="grade_id" class="form-control" formControlName="grade_id">
                         <option *ngFor="let grade of grades" [ngValue]="grade.id"
-                                [selected]="grade.id === user?.grade_id">
+                                [selected]="grade.id === user.grade_id">
                           {{ grade.text | translate }}
                         </option>
                       </select>
@@ -61,7 +61,7 @@
                       <label for="country" class="font-weight-bold">{{ 'model.country' | translate }}</label>
                       <select name="country" id="country" class="form-control"  formControlName="country_id">
                         <option *ngFor="let country of countries" [ngValue]="country.id"
-                                [selected]="country.id === user?.country_id">
+                                [selected]="country.id === user.country_id">
                           {{ country.name | translate }}
                         </option>
                       </select>
