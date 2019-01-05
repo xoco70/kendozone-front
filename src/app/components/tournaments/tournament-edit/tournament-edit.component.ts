@@ -15,7 +15,6 @@ export class TournamentEditComponent implements OnInit, AfterViewChecked {
   slug: string;
   submitted = false;
   selectedTab: string;
-  @Input() loading;
 
   constructor(private navbar: NavService,
               private tournamentService: TournamentService,
@@ -40,7 +39,6 @@ export class TournamentEditComponent implements OnInit, AfterViewChecked {
       }, err => {
         this.navbar.setLoading(false);
       });
-    this.navbar.setLoading(false);
   }
 
   ngOnInit() {
@@ -60,7 +58,7 @@ export class TournamentEditComponent implements OnInit, AfterViewChecked {
 
   onSubmitCategories() {
     this.selectedTab = 'categories';
-    console.log(this.data.tournament.categoriesSelected);
+    // console.log(this.data.tournament.categoriesSelected);
     this.submitted = true;
 
     if (this.data.tournament.categoriesSelected.length === 0) {

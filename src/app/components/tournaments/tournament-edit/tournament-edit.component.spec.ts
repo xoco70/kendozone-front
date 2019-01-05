@@ -16,14 +16,14 @@ class MockRouter {
   navigate = jasmine.createSpy('navigate');
 }
 
-const fakeActivatedRoute = {
-  snapshot: {
-    data: {},
-    queryParams: {
-      slug: 'fake-tournoi'
-    }
-  }
-} as ActivatedRoute;
+// const fakeActivatedRoute = {
+//   snapshot: {
+//     data: {},
+//     queryParams: {
+//       slug: 'fake-tournoi'
+//     }
+//   }
+// } as ActivatedRoute;
 
 describe('TournamentEditComponent', () => {
   let component: TournamentEditComponent;

@@ -20,13 +20,13 @@ export class TournamentEditRightMenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.competitors_count = LocalStorageService.getCompetitorsCount();
-    // this.championships_count = LocalStorageService.getChampionshipsCount();
-    // this.teams_count = LocalStorageService.getTeamsCount();
-    // this.trees_count = LocalStorageService.getTreesCount();
-    // if (this.competitors_count === null || this.competitors_count === undefined) {
-    //   this.statistics();
-    // }
+    this.competitors_count = LocalStorageService.getCompetitorsCount();
+    this.championships_count = LocalStorageService.getChampionshipsCount();
+    this.teams_count = LocalStorageService.getTeamsCount();
+    this.trees_count = LocalStorageService.getTreesCount();
+    if (this.competitors_count === null || this.competitors_count === undefined) {
+      this.statistics();
+    }
     this.statistics();
   }
 

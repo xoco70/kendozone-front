@@ -7,9 +7,10 @@ import {Tournament} from '../../../../models/tournament';
 import {TournamentService} from '../../../../services/tournament.service';
 import {first} from 'rxjs/operators';
 import {COUNTRIES} from '../../../../mock/mock-countries';
-import { } from '@types/googlemaps';
+import {} from '@types/googlemaps';
 import GeocoderRequest = google.maps.GeocoderRequest;
 import {NavService} from '../../../../services/nav.service';
+import {Venue} from '../../../../models/venue';
 
 @Component({
   selector: 'app-tournament-edit-venue',
@@ -72,9 +73,14 @@ export class TournamentEditVenueComponent implements OnInit {
 
   ngOnInit() {
     // set google maps defaults
-    this.zoom = 4;
-    this.latitude = parseFloat(this.tournament.venue.latitude);
-    this.longitude = parseFloat(this.tournament.venue.longitude);
+    this.zoom = 14;
+    if (this.tournament !== null && this.tournament.venue !== null) {
+      this.latitude = parseFloat(this.tournament.venue.latitude);
+      this.longitude = parseFloat(this.tournament.venue.longitude);
+    } else {
+      this.tournament.venue = new Venue('Eiffel Tower Dojo', 250);
+    }
+
     // create search FormControl
     // set current position
     this.setCurrentPosition();
