@@ -46,7 +46,6 @@ export class TreesComponent implements OnInit {
     this.treeService.getTournamentWithTrees(this.slug)
       .pipe(first())
       .subscribe(tournament => {
-        console.log(tournament);
         this.tournament = plainToClass(Tournament, tournament);
         this.navbar.setLoading(false);
       }, err => {

@@ -12,8 +12,12 @@
     </tr>
     <tr *ngFor="let group of roundOneGroups">
       <td class="p-10 text-center">{{ group.area}}</td>
-      <ng-container *ngFor="let numFighter of numFighters">
-        <td>a</td>
+      <ng-container *ngFor="let numFighter of numFighters;let i = index">
+        <td>
+          {{ i % 3 === 0 ? 'a' : ''}}
+          {{ i % 3 === 1 ? 'b' : ''}}
+          {{ i % 3 === 2 ? 'c' : ''}}
+        </td>
         <td>{{ group.competitors[numFighter]?.user.firstname }} {{ group.competitors[numFighter]?.user.lastname }}</td>
       </ng-container>
     </tr>

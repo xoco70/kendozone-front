@@ -74,7 +74,6 @@ export class TournamentEditCategorySettingsComponent implements OnInit, AfterVie
   }
 
   ngAfterViewChecked() {
-    console.log(this.championship);
     this.cdRef.detectChanges();
   }
 
