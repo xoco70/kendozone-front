@@ -27,18 +27,19 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'tournaments', component: TournamentsComponent, canActivate: [AuthGuard]},
   {path: 'tournaments/create', component: TournamentCreateComponent, canActivate: [AuthGuard]},
-  {path: 'tournaments/:slug/edit', component: TournamentEditComponent, canActivate: [AuthGuard]},
+  {path: 'tournaments/:slug/edit', component: TournamentEditComponent, canActivate: [AuthGuard], runGuardsAndResolvers: 'always'},
   {path: 'tournaments/:slug/competitors', component: CompetitorsComponent, canActivate: [AuthGuard]},
   {path: 'profile/:slug/edit', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'tournaments', component: TournamentsComponent, canActivate: [AuthGuard]},
-  {path: 'tournaments/:slug/trees', component: TreesComponent, canActivate: [AuthGuard]},
+  {path: 'tournaments/:slug/trees', component: TreesComponent, canActivate: [AuthGuard], runGuardsAndResolvers: 'always'},
   {path: 'tournaments/:slug/fights', component: FightsComponent, canActivate: [AuthGuard]},
   // { path: '**', redirectTo: '' } // otherwise redirect to dashboard
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
+  exports: [RouterModule],
 })
+
 export class AppRoutingModule {
 }
