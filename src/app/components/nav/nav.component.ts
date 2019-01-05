@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../../services/authentication.service';
 import {User} from '../../models/user';
 import {NavService} from '../../services/nav.service';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-nav',
@@ -25,8 +26,7 @@ export class NavComponent implements OnInit {
     setTimeout(() => {
       this.nav.title.subscribe(title => this.title = title);
       this.nav.loading.subscribe(loading => this.loading = loading);
-      // TODO externalise it
-      const S3_BASE_URL = 'https://s3.amazonaws.com/kz-kendozone-v2/avatar/';
+      const S3_URL_BASE = environment.s3UrlBase + '/avatar/';
       this.user = this.auth.currentUser();
       const avatar = this.user.avatar;
       if (avatar === null || avatar === undefined) {
@@ -36,7 +36,7 @@ export class NavComponent implements OnInit {
         this.avatar_src = avatar;
         return;
       }
-      this.avatar_src = S3_BASE_URL + avatar;
+      this.avatar_src = S3_URL_BASE + avatar;
     });
   }
 

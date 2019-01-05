@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'https://api.kz-api.test',
+  s3UrlBase: 'https://s3.amazonaws.com/kz-kendozone-v2',
   sentryDns: '',
 };
 
