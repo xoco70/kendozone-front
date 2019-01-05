@@ -50,6 +50,18 @@ export class UserService {
     );
   }
 
+  getAvatarUrl(user: User): string {
+    const S3_URL_BASE = environment.s3UrlBase + '/avatar/';
+    const avatar = user.avatar;
+    if (avatar === null || avatar === undefined) {
+      return;
+    }
+    if (avatar.startsWith('http')) {
+      return avatar;
+    }
+    return S3_URL_BASE + avatar;
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

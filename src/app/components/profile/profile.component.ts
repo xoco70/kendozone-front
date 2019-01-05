@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {DropzoneComponent, DropzoneConfigInterface, DropzoneDirective} from 'ngx-dropzone-wrapper';
 import {GRADES_PROFILE} from '../../mock/mock-grades';
 import {UserService} from '../../services/user.service';
@@ -16,14 +16,15 @@ import {NavService} from '../../services/nav.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, AfterViewInit {
   generalDataForm: FormGroup;
-  public type = 'component';
   grades = GRADES_PROFILE;
   countries = COUNTRIES;
   public disabled = false; // Check if necesary
   user: User;
   message: string;
+  dropzone: any;
+  private thumbnailUrl: string;
 
   constructor(private navbar: NavService,
               private userService: UserService,
@@ -40,8 +41,8 @@ export class ProfileComponent implements OnInit {
     createImageThumbnails: true,
     addRemoveLinks: true
   };
-  @ViewChild(DropzoneComponent) componentRef?: DropzoneComponent;
-  @ViewChild(DropzoneDirective) directiveRef?: DropzoneDirective;
+  @ViewChild(DropzoneComponent) componentRef: DropzoneComponent;
+  @ViewChild(DropzoneDirective) directiveRef: DropzoneDirective;
   // private federations: any;
   // private associations: any;
   // private clubs: any;
@@ -59,13 +60,13 @@ export class ProfileComponent implements OnInit {
     this.navbar.setLoading(true);
     // I use localTournament not to send the whole object
     // I still don't know if I have a Eloquent like in Angular
-    console.log(this.f);
+
     this.user.name = this.f.name.value;
     this.user.firstname = this.f.firstname.value;
     this.user.lastname = this.f.lastname.value;
     this.user.country_id = this.f.country_id.value;
     this.user.grade_id = this.f.grade_id.value;
-    console.log(this.user);
+
     this.userService.update(this.user)
       .pipe(first())
       .subscribe(
@@ -80,14 +81,6 @@ export class ProfileComponent implements OnInit {
 
   get f() {
     return this.generalDataForm.controls;
-  }
-
-  public resetDropzoneUploads(): void {
-    if (this.type === 'directive' && this.directiveRef) {
-      this.directiveRef.reset();
-    } else if (this.type === 'component' && this.componentRef && this.componentRef.directiveRef) {
-      this.componentRef.directiveRef.reset();
-    }
   }
 
   getUser(): void {
@@ -124,7 +117,20 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       this.getUser();
+      const S3_URL_BASE = environment.s3UrlBase + '/avatar/';
+      this.user = this.auth.currentUser();
+      const avatar = this.user.avatar;
+      if (avatar === null || avatar === undefined) {
+        return;
+      }
+      if (avatar.startsWith('http')) {
+        this.thumbnailUrl = avatar;
+        return;
+      }
+      this.thumbnailUrl = S3_URL_BASE + avatar;
     });
+
+    // this.dropzone();
     this.navbar.setTitle('Profile');
 
 
@@ -136,5 +142,32 @@ export class ProfileComponent implements OnInit {
         country_id: ['']
       },
     );
+  }
+
+  ngAfterViewInit() {
+    this.dropzone = this;
+
+    // TODO Hacky, timeout 1sec because I don't know when it is ready.
+    // also put get avatar url with a shared service
+    setTimeout(() => {
+      this.thumbnailUrl = this.userService.getAvatarUrl(this.user);
+
+      console.log(this.thumbnailUrl);
+      const mockFile = {
+        name: this.user.avatar,
+        accepted: true,
+        dataURL: this.thumbnailUrl
+      };
+
+      const dropzoneInstance = this.componentRef.directiveRef.dropzone();
+      dropzoneInstance.emit('addedfile', mockFile);
+      dropzoneInstance.createThumbnailFromUrl(mockFile, 200, null, 'contain', true, function (thumbnail) {
+          dropzoneInstance.emit('thumbnail', mockFile, thumbnail);
+        },
+        'Anonymous'
+      );
+      dropzoneInstance.emit('complete', mockFile);
+
+    }, 1000);
   }
 }
