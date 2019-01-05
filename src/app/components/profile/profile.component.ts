@@ -154,9 +154,10 @@ export class ProfileComponent implements OnInit, AfterViewInit {
 
       console.log(this.thumbnailUrl);
       const mockFile = {
-        name: this.user.avatar,
+        name: 'avatar',
         accepted: true,
-        dataURL: this.thumbnailUrl
+        dataURL: this.thumbnailUrl,
+        size: 12345,
       };
 
       const dropzoneInstance = this.componentRef.directiveRef.dropzone();
