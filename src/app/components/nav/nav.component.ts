@@ -22,20 +22,22 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.nav.title.subscribe(title => this.title = title);
-    this.nav.loading.subscribe(loading => this.loading = loading);
-    // TODO externalise it
-    const S3_BASE_URL = 'https://s3.amazonaws.com/kz-kendozone-v2/avatar/';
-    this.user = this.auth.currentUser();
-    const avatar = this.user.avatar;
-    if (avatar === null || avatar === undefined) {
-      return;
-    }
-    if (avatar.startsWith('http')) {
-      this.avatar_src = avatar;
-      return;
-    }
-    this.avatar_src = S3_BASE_URL + avatar;
+    setTimeout(() => {
+      this.nav.title.subscribe(title => this.title = title);
+      this.nav.loading.subscribe(loading => this.loading = loading);
+      // TODO externalise it
+      const S3_BASE_URL = 'https://s3.amazonaws.com/kz-kendozone-v2/avatar/';
+      this.user = this.auth.currentUser();
+      const avatar = this.user.avatar;
+      if (avatar === null || avatar === undefined) {
+        return;
+      }
+      if (avatar.startsWith('http')) {
+        this.avatar_src = avatar;
+        return;
+      }
+      this.avatar_src = S3_BASE_URL + avatar;
+    });
   }
 
   logout(): void {

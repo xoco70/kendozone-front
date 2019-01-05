@@ -1,4 +1,4 @@
-<div class="container-fluid" *ngIf="!loading">
+<div class="container-fluid" *ngIf="!navbar.isLoading()">
   <div class="row">
     <div class="col-md-10" id="main">
       <ngb-tabset type="pills" class="nav-fill" #tabs [activeId]="selectedTab">
@@ -13,7 +13,7 @@
             </div>
           </ng-template>
         </ngb-tab>
-        <ngb-tab id="venue">
+        <ngb-tab id="venue" >
           <ng-template ngbTabTitle>{{ 'model.venue' | translate | uppercase }}</ng-template>
           <ng-template ngbTabContent>
             <div class="card mt-3">

@@ -24,4 +24,12 @@ export class NavService {
     this.loadingSource.next(loading);
   }
 
+  public getTitle(): string {
+    return this.titleSource.getValue();
+  }
+
+  public isLoading(): boolean {
+    return this.loadingSource.getValue();
+  }
+
 }
