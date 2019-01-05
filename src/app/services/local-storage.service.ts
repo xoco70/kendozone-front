@@ -53,27 +53,21 @@ export class LocalStorageService {
 
 
   static addTeam(): void {
-    // localStorage.setItem('teams_count', teams_count);
+    localStorage.setItem('team_count', (LocalStorageService.getTeamsCount() + 1) + '');
   }
 
   static removeTeam(): void {
-    // localStorage.setItem('trees_count', trees_count);
+    localStorage.setItem('team_count', (LocalStorageService.getTeamsCount() - 1) + '');
   }
 
-  static addCompetitors(qty: number): number {
+  static addCompetitors(qty: number): void {
     const num = LocalStorageService.getCompetitorsCount();
-    // console.log(num);
-    // console.log(qty);
     localStorage.setItem('competitors_count', (num + qty) + '');
-    // console.log(num + qty);
-    return num + qty;
   }
 
-  static removeCompetitor(): number {
+  static removeCompetitor(): void {
     const num = LocalStorageService.getCompetitorsCount();
-    console.log(num);
     localStorage.setItem('competitors_count', (num - 1) + '');
-    return num - 1;
   }
 
 
