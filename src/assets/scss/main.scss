@@ -45,13 +45,14 @@ $theme-colors: (
 .select-lg {
 
 }
-select{
+
+select {
   height: 47px !important;
   width: 260px;
 }
 
-.loading{
-  background-color: #ff5663 ;
+.loading {
+  background-color: #ff5663;
   width: 56px;
   height: 60px;
   padding-top: 9px;
@@ -65,6 +66,23 @@ select{
   border-style: solid;
   padding: 20px;
   display: inline-block;
+}
+
+.btn-flat {
+  border-width: 2px;
+  background-color: transparent;
+}
+
+.btn-rounded {
+  border-radius: 100px;
+}
+
+.text-facebook {
+  color: #3b5998;
+}
+
+.btn-facebook {
+  background-color: #3b5998;;
 }
 
 // Bootstrap and its default variables

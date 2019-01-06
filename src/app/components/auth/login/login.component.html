@@ -1,4 +1,3 @@
-
 <!-- Page container -->
 <div class="page-container">
   <!-- Page content -->
@@ -17,7 +16,8 @@
                 </div>
 
                 <div class="form-group">
-                  <input type="text" email="true" formControlName="email" class="form-control input-lg" placeholder="Email"
+                  <input type="text" email="true" formControlName="email" class="form-control input-lg"
+                         placeholder="Email"
                          [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
                   <div *ngIf="submitted && f.email.errors" class="text-primary">
                     <div *ngIf="f.email.errors.required" translate [translateParams]="{attribute: 'email'}">
@@ -62,18 +62,19 @@
                 <!--<div *ngIf="error" class="alert alert-danger">{{error}}</div>-->
 
 
-                <!--<div class="content-divider text-muted form-group"><span>Or signin with</span></div>-->
-                <!--<ul class="list-inline form-group text-center">-->
-                <!--<li>-->
-                <!--<a href="https://laravel.test/login/facebook"-->
-                <!--class="btn border-indigo text-indigo btn-flat btn-icon btn-rounded" id="fb">-->
-                <!--<i class="icon-facebook"></i></a></li>-->
-                <!--<li><a href="https://laravel.test/login/google"-->
-                <!--class="btn border-danger text-danger btn-flat btn-icon btn-rounded" id="google"><i-->
-                <!--class="icon-google"></i></a></li>-->
-                <!--</ul>-->
+                <div class="content-divider text-muted form-group"><span>Or signin with</span></div>
+                <div class="badge center social_icons">
+                  <button class="btn text-white btn-facebook" (click)="fbLogin();">
+                    <b> <i class="fab fa-facebook-f"></i></b>
+                  </button>
+                  &nbsp;
+                  <button class="btn text-white btn-danger" (click)="googleLogin();">
+                    <b> <i class="fab fa-google"></i></b>
+                  </button>
+                </div>
 
-                <div class="content-divider text-muted form-group mt-2 mb-2"><span translate>{{ 'login.no_account' | translate }}</span>
+                <div class="content-divider text-muted form-group mt-2 mb-2"><span
+                  translate>{{ 'login.no_account' | translate }}</span>
                 </div>
 
                 <div class="mt-5">
