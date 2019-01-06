@@ -15,6 +15,7 @@ import {ForgotPasswordComponent} from './components/auth/forgot-password/forgot-
 import {TreesComponent} from './components/trees/trees.component';
 import {FightsComponent} from './components/fights/fights.component';
 import {ResetPasswordComponent} from './components/auth/reset-password/reset-password.component';
+import {TeamsComponent} from './components/teams/teams.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -31,6 +32,7 @@ const routes: Routes = [
   {path: 'tournaments/:slug/competitors', component: CompetitorsComponent, canActivate: [AuthGuard]},
   {path: 'profile/:slug/edit', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'tournaments', component: TournamentsComponent, canActivate: [AuthGuard]},
+  {path: 'tournaments/:slug/teams', component: TeamsComponent, canActivate: [AuthGuard]},
   {path: 'tournaments/:slug/trees', component: TreesComponent, canActivate: [AuthGuard], runGuardsAndResolvers: 'always'},
   {path: 'tournaments/:slug/fights', component: FightsComponent, canActivate: [AuthGuard]},
   // { path: '**', redirectTo: '' } // otherwise redirect to dashboard

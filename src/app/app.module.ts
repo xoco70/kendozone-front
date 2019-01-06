@@ -56,6 +56,7 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider, LinkedInLoginProvider,
 } from 'angularx-social-login';
+import { TeamsComponent } from './components/teams/teams.component';
 
 Raven
   .config(environment.sentryDns)
@@ -125,7 +126,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     PlayoffComponent,
     SingleEliminationComponent,
     AddCompetitorsModalComponent,
-    FightsComponent
+    FightsComponent,
+    TeamsComponent
   ],
   entryComponents: [NewCategoryModalComponent, AddCompetitorsModalComponent],
   imports: [

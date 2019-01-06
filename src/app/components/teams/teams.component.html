@@ -1,0 +1,85 @@
+<div class="container-fluid" *ngIf="data">
+  <div class="row">
+    <div class="col-10" id="main">
+      <ngb-tabset type="pills" class="nav-fill">
+        <ngb-tab *ngFor="let championship of data.tournament.championships">
+          <ng-template ngbTabTitle>{{ championship?.category?.name | translate | uppercase }}</ng-template>
+          <ng-template ngbTabContent>
+            <div class="row mt-4">
+              <div class="col-md-8">
+                <h1>{{ championship.category.name | translate }}
+                  <span class="small ml-4">{{  'help.drag_competitors_name_into_team' | translate }}</span>
+                </h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="row">
+                  <div class="col-md-4" id="teams" *ngFor="let number of [0,1,2,3,4,5]">
+                    <div class="card mt-3">
+                      <div class="card-header">Header {{ number }}</div>
+                      <div class="card-body">Body {{ number }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--ADD TEAM-->
+              <div class="col-xs-12 col-md-4 mt-3">
+                <div class="card">
+                  <h2 align="center">ADD TEAM</h2>
+                  <form class="form-horizontal">
+                    <div class="form-group">
+                      <div class="form-inline" align="center">
+                        <input class="form-control" placeholder="team name">
+                        <button type="submit" class="btn" id="save">ADD</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="card mt-3">
+                  <h2 align="center">{{ 'model.competitors' | translate}}</h2>
+                </div>
+              </div>
+              <!--COMPETITORS-->
+
+            </div>
+
+
+            <!--&lt;!&ndash;{!! Form::hidden('championship_id', $championship->id) !!}>&ndash;&gt;-->
+            <!--&lt;!&ndash;<input type="hidden" id="activeTab" name="activeTab" value="{{ $championship->id }}"/>&ndash;&gt;-->
+            <!--</div>-->
+
+            <!--</form>-->
+            <!--&lt;!&ndash;{!! Form::close() !!}&ndash;&gt;-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-xs-12 col-md-4 panel panel-body">-->
+            <!--<h2 align="center">{{ 'models.competitors' | translate}}</h2>-->
+            <!--<div class="row">-->
+
+            <!--<div class="wrapper-dragula">-->
+            <!--<div class="container-dragula" v-dragula="competitorsArea" bag="third-bag">-->
+            <!--&lt;!&ndash;<div v-cloak&ndash;&gt;-->
+            <!--&lt;!&ndash;v-for="(competitor, index) in championships.find((elem) => elem.championship == {{ $championship->id }}).freeCompetitors"&ndash;&gt;-->
+            <!--&lt;!&ndash;:id="competitor.id"&ndash;&gt;-->
+            <!--&lt;!&ndash;:index="index"&ndash;&gt;-->
+            <!--&lt;!&ndash;:key="competitor.id"&ndash;&gt;-->
+            <!--&lt;!&ndash;:championship-id={{ $championship->id }}&ndash;&gt;-->
+            <!--&lt;!&ndash;&gt;@{{competitor.user.name}}</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+
+
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </div>
+    <div class="col-2">
+      <app-tournament-edit-right-menu [tournament]="data.tournament"></app-tournament-edit-right-menu>
+    </div>
+  </div>
+</div>
