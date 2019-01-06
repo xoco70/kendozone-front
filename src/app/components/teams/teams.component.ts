@@ -39,6 +39,7 @@ export class TeamsComponent implements OnInit {
       .pipe(first())
       .subscribe(data => {
         this.data = data;
+        console.log(data);
         this.navbar.setLoading(false);
       }, err => {
         this.navbar.setLoading(false);

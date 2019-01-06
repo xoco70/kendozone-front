@@ -9,8 +9,8 @@
       "urls": [
         "https://v2.kendozone.com/favicon.ico",
         "https://v2.kendozone.com/index.html",
-        "https://v2.kendozone.com/main.0eaf5c0ae60198f9f412.js",
-        "https://v2.kendozone.com/polyfills.08a5d13869ea9f7c7aaf.js",
+        "https://v2.kendozone.com/main.ad0771b171d9f32ee002.js",
+        "https://v2.kendozone.com/polyfills.5843f6fc3906d141f59e.js",
         "https://v2.kendozone.com/runtime.a66f828dca56eeb90e02.js",
         "https://v2.kendozone.com/scripts.385b291e179030219400.js",
         "https://v2.kendozone.com/styles.1fa18024c40aaac00144.css"
@@ -299,7 +299,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "https://v2.kendozone.com/assets/i18n/en.json": "b4cbc6b6fd103f14c14139fa163423d91097c680",
+    "https://v2.kendozone.com/assets/i18n/en.json": "118201263bf24e570d1d9018f729b42c1627d475",
     "https://v2.kendozone.com/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
     "https://v2.kendozone.com/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
     "https://v2.kendozone.com/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
@@ -571,9 +571,9 @@
     "https://v2.kendozone.com/assets/images/twitter.png": "3c56e8f8fc0856c154a75f739efd2f78f4a3da88",
     "https://v2.kendozone.com/assets/scss/main.scss": "5ef1ba4c7cbb0d98471e96346a0d3845590bb267",
     "https://v2.kendozone.com/favicon.ico": "8a63c290261b16010be63bd568fae906a0b2a34d",
-    "https://v2.kendozone.com/index.html": "a382147dd470f1ef242919b6ec63f7f7a21fa6d1",
-    "https://v2.kendozone.com/main.0eaf5c0ae60198f9f412.js": "61281570e4bc7e32a3a8b3d554692b644baf540c",
-    "https://v2.kendozone.com/polyfills.08a5d13869ea9f7c7aaf.js": "9f0b8341c0a0caec1581da2f255eb5dbb8e12303",
+    "https://v2.kendozone.com/index.html": "59839b06d2b675af3210f1df831d7a4e873620c2",
+    "https://v2.kendozone.com/main.ad0771b171d9f32ee002.js": "edc28ff5c053a56ef194d975104b820efd971225",
+    "https://v2.kendozone.com/polyfills.5843f6fc3906d141f59e.js": "86ea77783386f5fee95c9b65638dd182c35b6fce",
     "https://v2.kendozone.com/runtime.a66f828dca56eeb90e02.js": "078e320cc6fdaf355836c3b1c52b059cdd33fc7e",
     "https://v2.kendozone.com/scripts.385b291e179030219400.js": "93b30a219abf42ed47df6bf810c86251026b2ce9",
     "https://v2.kendozone.com/styles.1fa18024c40aaac00144.css": "dcce0360a2642574710300431942e2d4dec58bea"

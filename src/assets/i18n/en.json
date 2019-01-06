@@ -27,6 +27,7 @@
   "common": {
     "name": "Name",
     "date": "Date",
+    "add": "Add",
     "action": "Action",
     "save": "Save",
     "from": "From",
@@ -210,6 +211,12 @@
     "add_more_competitors": "Add more competitors"
   },
   "trees": {
+  },
+  "teams": {
+    "still_no_team": "Still no team registered in this tournament",
+    "add_new_team": "Add team",
+    "registered_team": "Teams registered",
+    "team_name": "Team Name"
   },
   "auth": {
     "register": "Register",
@@ -396,12 +403,6 @@
     "new_value": "New Value",
     "impersonate": "Impersonate User",
     "leave_impersonation": "Leave impersonation",
-    "team": "Team",
-    "teams": "Teams",
-    "still_no_team": "Still no team registered in this tournament",
-    "add_new_team": "Add team",
-    "registered_team": "Teams registered",
-    "team_name": "Team Name",
     "import_excel": "Import data from Excel",
     "upload_file_to_csv_format": "File must be in .csv format.",
     "how_to_save_to_csv": "With Excel, you can save it with: File > Save as. Then, in  \"File Format\", select \".csv",

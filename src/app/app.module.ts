@@ -54,9 +54,10 @@ import {
   SocialLoginModule,
   AuthServiceConfig,
   GoogleLoginProvider,
-  FacebookLoginProvider, LinkedInLoginProvider,
+  FacebookLoginProvider,
 } from 'angularx-social-login';
 import { TeamsComponent } from './components/teams/teams.component';
+import { DragulaModule } from 'ng2-dragula';
 
 Raven
   .config(environment.sentryDns)
@@ -131,6 +132,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   ],
   entryComponents: [NewCategoryModalComponent, AddCompetitorsModalComponent],
   imports: [
+    DragulaModule.forRoot(),
     SocialLoginModule,
     BrowserModule,
     BrowserAnimationsModule,
