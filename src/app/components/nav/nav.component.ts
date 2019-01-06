@@ -4,6 +4,7 @@ import {User} from '../../models/user';
 import {NavService} from '../../services/nav.service';
 import {environment} from '../../../environments/environment';
 import {UserService} from '../../services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -21,6 +22,7 @@ export class NavComponent implements OnInit {
     public auth: AuthenticationService,
     private nav: NavService,
     private userService: UserService,
+    private router: Router,
   ) {
   }
 
@@ -35,5 +37,6 @@ export class NavComponent implements OnInit {
 
   logout(): void {
     this.auth.logout();
+    this.router.navigate(['/login']);
   }
 }
