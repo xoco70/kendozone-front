@@ -7,8 +7,12 @@
             <div class="row">
               <div class="col-md-9">
                 <!-- TODO alias if exists-->
-                <span
-                  class="text-semibold text-uppercase font-weight-bold">{{ championship.category.name | translate }}</span>
+                <span class="text-uppercase font-italic font-weight-bold">
+                  {{ championship.category.name | translate }} -
+                  <span class="font-weight-normal text-lowercase">
+                    {{championship.competitors.length}} {{ "model.competitors" | translate }}
+                  </span>
+                </span>
               </div>
               <div class="col-md-3">
                 <div class="badge btnAction">
@@ -41,11 +45,13 @@
                 <tr *ngFor="let competitor of championship.competitors; let j = index">
                   <!--TODO get Avatar-->
                   <td align="center">
-                    <img class="avatar_icon" [src]="competitor.user.avatar ? competitor.user.avatar : 'assets/images/avatar/avatar.png'">
+                    <img class="avatar_icon"
+                         [src]="competitor.user.avatar ? competitor.user.avatar : 'assets/images/avatar/avatar.png'">
                   </td>
                   <td align="center" class="valign-middle">{{competitor.user.name}}</td>
                   <!--TODO get first / lastname -->
-                  <td align="center" class="valign-middle">{{competitor.user.email.endsWith('@kendozone.com') ? '-' : competitor.user.email }}</td>
+                  <td align="center"
+                      class="valign-middle">{{competitor.user.email.endsWith('@kendozone.com') ? '-' : competitor.user.email }}</td>
                   <td align="center" class="valign-middle">{{championship.category.name}}</td>
                   <!--<td>{{competitor.user.paid}}</td>-->
                   <!--<td>{{competitor.user.country}} {{ i }}</td>-->
