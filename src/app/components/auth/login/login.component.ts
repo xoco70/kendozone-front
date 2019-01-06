@@ -6,6 +6,11 @@ import {first} from 'rxjs/operators';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {ToastrService} from 'ngx-toastr';
 import {NavService} from '../../../services/nav.service';
+import {
+  AuthService,
+  FacebookLoginProvider,
+  GoogleLoginProvider, LinkedInLoginProvider
+} from 'angularx-social-login';
 
 declare var FB: any;
 
@@ -26,7 +31,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private router: Router,
     private auth: AuthenticationService,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private socialAuthService: AuthService) {
   }
 
   ngOnInit() {
@@ -35,36 +41,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
       password: ['', Validators.required]
     });
 
-    // sendEmail login status
     this.auth.logout();
-    // if (this.route.snapshot.queryParams['welcome']) {
-    //   setTimeout(() => {
-    //     this.toastr.success('Register Successful, please login');
-    //   });
-    // }
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
-
-    (window as any).fbAsyncInit = function () {
-      FB.init({
-        appId: '797477373695958',
-        cookie: true,
-        xfbml: true,
-        version: 'v3.1'
-      });
-      FB.AppEvents.logPageView();
-    };
-
-    (function (d, s, id) {
-      let js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      js = d.createElement(s);
-      js.id = id;
-      js.src = 'https://connect.facebook.net/en_US/sdk.js';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   // convenience getter for easy access to form fields
@@ -100,30 +79,25 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }
   }
 
-  fbLogin() {
-    FB.login((response) => {
-      if (response.authResponse) {
-        this.getUserInfo(response.authResponse.userID, response.authResponse.accessToken);
+  public socialSignIn(socialPlatform: string) {
+    let socialPlatformProvider;
+    if (socialPlatform === 'facebook') {
+      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+    } else if (socialPlatform === 'google') {
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    }
+    // else if (socialPlatform === 'linkedin') {
+    //   socialPlatformProvider = LinkedinLoginProvider.PROVIDER_ID;
+    // }
+    this.navbar.setLoading(true);
+    this.socialAuthService.signIn(socialPlatformProvider).then(
+      (userData) => {
+        this.auth.socialLogin(userData).subscribe((data) => {
+          this.navbar.setLoading(false);
+          this.router.navigate([this.returnUrl]);
+        });
 
-      } else {
-        this.toastr.error('Could not login with facebook');
-        console.log(response.message);
       }
-    });
+    );
   }
-
-  getUserInfo(userId, accessToken) {
-    FB.api(
-      '/' + userId + '?fields=id,name,first_name,email,picture',
-      (result) => {
-        console.log('result===', result);
-        if (result && !result.error) {
-        }
-      });
-  }
-
-  googleLogin() {
-
-  }
-
 }

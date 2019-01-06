@@ -50,7 +50,12 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import * as Raven from 'raven-js';
 import {NgPipesModule} from 'ngx-pipes';
-
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider, LinkedInLoginProvider,
+} from 'angularx-social-login';
 
 Raven
   .config(environment.sentryDns)
@@ -65,6 +70,24 @@ Raven
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
+}
+
+export function getAuthServiceConfigs() {
+  return new AuthServiceConfig(
+    [
+      {
+        id: FacebookLoginProvider.PROVIDER_ID,
+        provider: new FacebookLoginProvider(environment.fbAppId)
+      },
+      {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider(environment.googleAppId)
+      },
+      // {
+      //   id: LinkedinLoginProvider.PROVIDER_ID,
+      //   provider: new LinkedInLoginProvider("LinkedIn-client-Id", false, 'en_US')
+      // },
+    ]);
 }
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -106,6 +129,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   ],
   entryComponents: [NewCategoryModalComponent, AddCompetitorsModalComponent],
   imports: [
+    SocialLoginModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -161,6 +185,10 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
       provide: DROPZONE_CONFIG,
       useValue: DEFAULT_DROPZONE_CONFIG
     },
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    }
     // {provide: ErrorHandler, useClass: RavenErrorHandler}
 
     // provider used to create fake backend

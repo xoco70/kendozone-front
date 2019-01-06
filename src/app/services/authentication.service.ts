@@ -47,6 +47,31 @@ export class AuthenticationService {
       );
   }
 
+
+  socialLogin(userData) {
+    const user = new User(userData.name);
+    user.email = userData.email;
+    user.firstname = userData.firstName;
+    user.lastname = userData.lastName;
+    user.avatar = userData.photoUrl;
+    user.provider = userData.provider;
+    user.token = userData.authToken;
+
+    return this.http.post<any>(environment.apiUrl + '/auth/socialLogin', user, httpOptions)
+      .pipe(
+        map((res: any) => {
+          if (res && res.token) {
+            LocalStorageService.setUser(res.user);
+            this.setToken(res.token);
+            this.currentUser();
+            this.toastr.success('login.welcome'); // user->name
+          }
+
+        }),
+        catchError(this.handleError('login', []))
+      );
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
@@ -55,11 +80,7 @@ export class AuthenticationService {
    */
   private handleError<T>(operation = 'operation', result?: T) {
     return (data: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
       this.toastr.error(data.error);
-
-      // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }

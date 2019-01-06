@@ -64,11 +64,11 @@
 
                 <div class="content-divider text-muted form-group"><span>Or signin with</span></div>
                 <div class="badge center social_icons">
-                  <button class="btn text-white btn-facebook" (click)="fbLogin();">
+                  <button class="btn text-white btn-facebook" (click)="socialSignIn('facebook');">
                     <b> <i class="fab fa-facebook-f"></i></b>
                   </button>
                   &nbsp;
-                  <button class="btn text-white btn-danger" (click)="googleLogin();">
+                  <button class="btn text-white btn-danger" (click)="socialSignIn('google');">
                     <b> <i class="fab fa-google"></i></b>
                   </button>
                 </div>
@@ -83,8 +83,6 @@
                 </div>
               </div>
             </div>
-
-
           </form>
         </div>
         <!-- /footer -->

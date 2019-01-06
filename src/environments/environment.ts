@@ -7,6 +7,8 @@ export const environment = {
   apiUrl: 'https://api.kz-api.test',
   s3UrlBase: 'https://s3.amazonaws.com/kz-kendozone-v2',
   sentryDns: '',
+  fbAppId: '797477373695958',
+  googleAppId: '636695559094-i4qkfanfl406fuh2cikn89km0ljsq30b.apps.googleusercontent.com'
 };
 
 /*

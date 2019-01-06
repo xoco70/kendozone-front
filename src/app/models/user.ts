@@ -17,4 +17,6 @@ export class User {
   grade_id: number;
   gender: number;
   avatar: string;
+  token: string;
+  provider: string;
 }
