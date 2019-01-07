@@ -77,12 +77,12 @@ export class TeamsComponent implements OnInit {
         });
   }
 
-  delete(team: Team) {
+  delete(team: Team, championshipId: number) {
     this.teamService.delete(team)
       .subscribe(
         data => {
           if (data !== '') { // Query worked
-            this.data.championships.find(x => x.championship == team.championship_id).teams.pop(team);
+            this.data.championships.find(x => x.championship === championshipId).teams.pop(team);
           }
           this.navbar.setLoading(false);
         },

@@ -19,7 +19,7 @@
                     <div class="card mt-3">
                       <div class="card-header valign-middle">
                         {{ team.name}}
-                        <button class="btn border-0 icon-list float-right" (click)="delete(team)">
+                        <button class="btn border-0 icon-list float-right" (click)="delete(team, championship.id)">
                           <i class="fa fa-times "></i>
                         </button>
                       </div>
@@ -39,7 +39,7 @@
                   <form class="form-horizontal" (ngSubmit)="onSubmit(championship)" #form="ngForm">
                     <div class="form-group">
                       <div class="form-inline">
-                        <input type="text" class="form-control pt-2 pb-2"  name="name" id="name"
+                        <input type="text" class="form-control pt-2 pb-2" name="name" id="name"
                                required [(ngModel)]="name" placeholder="{{ 'teams.team_name' | translate}}">
                         <button type="submit" class="btn text-white bg-success border-success ml-1 p-2 rounded"
                                 id="save">{{ 'common.add' | translate }}</button>
