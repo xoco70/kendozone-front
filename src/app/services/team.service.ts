@@ -10,6 +10,7 @@ import {ToastrService} from 'ngx-toastr';
 import {Tournament} from '../models/tournament';
 import {Championship} from '../models/championship';
 import {Team} from '../models/team';
+import {Competitor} from '../models/competitor';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -31,15 +32,40 @@ export class TeamService {
   store(championshipId: number, team: Team): Observable<any> {
     const generateTreeUrl = `${environment.apiUrl}/championships/${championshipId}/teams/`;
     return this.http.post<any>(generateTreeUrl, team, httpOptions).pipe(
-      tap(() => this.toastr.success('msg.championships_team_generation_success')),
+      tap(() => this.toastr.success('success')),
       catchError(this.handleError<any>(''))
     );
   }
 
+  addCompetitorToTeam(competitor: Competitor, team: Team) {
+    const generateTreeUrl = `${environment.apiUrl}/teams/${team.id}/competitors/${competitor.id}/add`;
+    return this.http.post<any>(generateTreeUrl, null, httpOptions).pipe(
+      tap(() => this.toastr.success('success')),
+      catchError(this.handleError<any>(''))
+    );
+  }
+
+  removeCompetitorFromTeam(competitor: Competitor, team: Team) {
+    const generateTreeUrl = `${environment.apiUrl}/teams/${team.id}/competitors/${competitor.id}/remove`;
+    return this.http.post<any>(generateTreeUrl, null, httpOptions).pipe(
+      tap(() => this.toastr.success('success')),
+      catchError(this.handleError<any>(''))
+    );
+  }
+
+  moveCompetitorFromTeam1toTeam2(competitor: Competitor, team1: Team, team2: Team) {
+    const generateTreeUrl = `${environment.apiUrl}/teams/${team1.id}/${team2.id}/competitors/${competitor.id}/move`;
+    return this.http.post<any>(generateTreeUrl, null, httpOptions).pipe(
+      tap(() => this.toastr.success('success')),
+      catchError(this.handleError<any>(''))
+    );
+  }
+
+
   delete(team: Team) {
     const generateTreeUrl = `${environment.apiUrl}/championships/${team.championship_id}/teams/${team.id}`;
     return this.http.delete<any>(generateTreeUrl, httpOptions).pipe(
-      tap(() => this.toastr.success('msg.championships_team_generation_success')),
+      tap(() => this.toastr.success('success')),
       catchError(this.handleError<any>(''))
     );
   }
@@ -76,6 +102,4 @@ export class TeamService {
       return of(result as T);
     };
   }
-
-
 }

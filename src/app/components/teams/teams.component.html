@@ -25,7 +25,7 @@
                       </div>
                       <div class="card-body container" dragula="DRAGULA_EVENTS">
                         <div *ngFor="let competitor of team.competitors">
-                          <div class="pt-3 pb-3 mt-1 mb-1 border rounded text-center">Body {{ competitor.id }}</div>
+                          <div class="pt-3 pb-3 mt-1 mb-1 border rounded text-center">{{ competitor.user.name }}</div>
                         </div>
                       </div>
                     </div>
