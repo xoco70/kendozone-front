@@ -8,6 +8,7 @@ import {TeamService} from '../../services/team.service';
 import {Championship} from '../../models/championship';
 import {ToastrService} from 'ngx-toastr';
 import {Team} from '../../models/team';
+import * as vm from 'vm';
 
 @Component({
   selector: 'app-teams',
@@ -67,6 +68,21 @@ export class TeamsComponent implements OnInit {
           addedTeam = data;
           if (data !== '') { // Query worked
             this.data.championships.find(x => x.championship === championship.id).teams.push(addedTeam);
+          }
+          this.navbar.setLoading(false);
+        },
+        error => {
+          console.log(error);
+          this.navbar.setLoading(false);
+        });
+  }
+
+  delete(team: Team) {
+    this.teamService.delete(team)
+      .subscribe(
+        data => {
+          if (data !== '') { // Query worked
+            this.data.championships.find(x => x.championship == team.championship_id).teams.pop(team);
           }
           this.navbar.setLoading(false);
         },

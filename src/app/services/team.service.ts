@@ -36,6 +36,14 @@ export class TeamService {
     );
   }
 
+  delete(team: Team) {
+    const generateTreeUrl = `${environment.apiUrl}/championships/${team.championship_id}/teams/${team.id}`;
+    return this.http.delete<any>(generateTreeUrl, httpOptions).pipe(
+      tap(() => this.toastr.success('msg.championships_team_generation_success')),
+      catchError(this.handleError<any>(''))
+    );
+  }
+
   getTournamentWithTeams(tournamentSlug: string): Observable<Tournament> {
     const listUrl = `${environment.apiUrl}/tournaments/${tournamentSlug}/teams/`;
     return this.http.get<any>(listUrl)
@@ -68,4 +76,6 @@ export class TeamService {
       return of(result as T);
     };
   }
+
+
 }
