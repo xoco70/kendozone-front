@@ -6,6 +6,8 @@ import {NavService} from '../../services/nav.service';
 import {ActivatedRoute} from '@angular/router';
 import {TeamService} from '../../services/team.service';
 import {Championship} from '../../models/championship';
+import {ToastrService} from 'ngx-toastr';
+import {Team} from '../../models/team';
 
 @Component({
   selector: 'app-teams',
@@ -14,6 +16,7 @@ import {Championship} from '../../models/championship';
 })
 export class TeamsComponent implements OnInit {
   data: any;
+  name: string;
   tournament: Tournament;
   championships: Championship[];
   slug: string;
@@ -21,6 +24,7 @@ export class TeamsComponent implements OnInit {
   constructor(private navbar: NavService,
               private teamService: TeamService,
               private route: ActivatedRoute,
+              private toastr: ToastrService,
   ) {
     this.slug = this.route.snapshot.params.slug;
 
@@ -39,11 +43,37 @@ export class TeamsComponent implements OnInit {
       .pipe(first())
       .subscribe(data => {
         this.data = data;
-        console.log(data);
+        // console.log(data);
         this.navbar.setLoading(false);
       }, err => {
         this.navbar.setLoading(false);
       });
     return null;
+  }
+
+  onSubmit(championship) {
+    let addedTeam: Team;
+
+    if (this.name === undefined || this.name.length === 0) {
+      this.toastr.error('Team cannot have empty name'); // TODO translate
+      return;
+    }
+
+    this.navbar.setLoading(true);
+
+    this.teamService.store(championship.id, new Team(this.name))
+      .subscribe(
+        data => {
+          addedTeam = data;
+          if (data !== '') { // Query worked
+            this.data.championships.find(x => x.championship === championship.id).teams.push(addedTeam);
+          }
+          this.navbar.setLoading(false);
+        },
+        error => {
+          console.log(error);
+          this.navbar.setLoading(false);
+        });
+
   }
 }

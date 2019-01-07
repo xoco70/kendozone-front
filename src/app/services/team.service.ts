@@ -9,6 +9,7 @@ import {AuthenticationService} from './authentication.service';
 import {ToastrService} from 'ngx-toastr';
 import {Tournament} from '../models/tournament';
 import {Championship} from '../models/championship';
+import {Team} from '../models/team';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -27,10 +28,10 @@ export class TeamService {
   ) {
   }
 
-  store(championship: Championship): Observable<any> {
-    const generateTreeUrl = `${environment.apiUrl}/championships/${championship.id}/trees/`;
-    return this.http.post<any>(generateTreeUrl, championship, httpOptions).pipe(
-      tap(() => this.toastr.success('msg.championships_tree_generation_success')),
+  store(championshipId: number, team: Team): Observable<any> {
+    const generateTreeUrl = `${environment.apiUrl}/championships/${championshipId}/teams/`;
+    return this.http.post<any>(generateTreeUrl, team, httpOptions).pipe(
+      tap(() => this.toastr.success('msg.championships_team_generation_success')),
       catchError(this.handleError<any>(''))
     );
   }
