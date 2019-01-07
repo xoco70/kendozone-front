@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-10" id="main">
       <ngb-tabset type="pills" class="nav-fill">
-        <ngb-tab *ngFor="let championship of data.tournament.championships">
+        <ngb-tab *ngFor="let championship of data.tournament.championships; let numChampionship=index">
           <ng-template ngbTabTitle>{{ championship?.category?.name | translate | uppercase }}</ng-template>
           <ng-template ngbTabContent>
             <div class="row mt-4">
@@ -15,12 +15,12 @@
             <div class="row">
               <div class="col-md-9">
                 <div class="row">
-                  <div class="col-md-4" *ngFor="let number of [0,1,2,3,4,5]">
+                  <div class="col-md-4" *ngFor="let team of data.championships[numChampionship].teams">
                     <div class="card mt-3">
-                      <div class="card-header text-center">Header {{ number }}</div>
+                      <div class="card-header text-center">{{ team.name}}</div>
                       <div class="card-body container" dragula="DRAGULA_EVENTS">
-                        <div *ngFor="let number2 of [0,1,2]">
-                          <div class="pt-3 pb-3 mt-1 mb-1 border rounded text-center">Body {{ number2 }}</div>
+                        <div *ngFor="let competitor of team.competitors">
+                          <div class="pt-3 pb-3 mt-1 mb-1 border rounded text-center">Body {{ competitor.id }}</div>
                         </div>
                       </div>
                     </div>
@@ -43,9 +43,8 @@
                 <!--COMPETITORS-->
                 <div class="card mt-3 pt-3 pb-3 container " dragula="DRAGULA_EVENTS">
                   <h2 align="center">{{ 'model.competitors' | translate}}</h2>
-                  <div class="pt-3 pb-3 mt-1 mb-1 border rounded text-center">Competitor 1</div>
-                  <div class="pt-3 pb-3 mt-1 mb-1 border rounded text-center">Competitor 2</div>
-                  <div class="pt-3 pb-3 mt-1 mb-1 border rounded text-center">Competitor 3</div>
+                  <div *ngFor="let competitor of data.championships[numChampionship].freeCompetitors"
+                       class="pt-3 pb-3 mt-1 mb-1 border rounded text-center" >{{ competitor.user.name  }}</div>
                 </div>
               </div>
             </div>
