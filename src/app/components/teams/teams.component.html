@@ -8,7 +8,7 @@
             <div class="row mt-4">
               <div class="col-md-8">
                 <h1>{{ championship.category.name | translate }}
-                  <span class="small ml-4">{{  'help.drag_competitors_name_into_team' | translate }}</span>
+                  <span class="small ml-4" [style.font-size.px]=12>{{  'help.drag_competitors_name_into_team' | translate }}</span>
                 </h1>
               </div>
             </div>
@@ -17,11 +17,14 @@
                 <div class="row">
                   <div class="col-md-4" *ngFor="let team of data.championships[numChampionship].teams">
                     <div class="card mt-3">
-                      <div class="card-header valign-middle">
-                        {{ team.name}}
-                        <button class="btn border-0 icon-list float-right" (click)="delete(team, championship.id)">
-                          <i class="fa fa-times "></i>
-                        </button>
+                      <div class="card-header text-center">
+                        <div class="d-flex align-items-center">
+                          <div>{{ team.name | uppercase }}</div>
+                          <button class="btn border-0 icon-list float-right ml-auto"
+                                  (click)="delete(team, championship.id)">
+                            <i class="fa fa-times "></i>
+                          </button>
+                        </div>
                       </div>
                       <div class="card-body container" dragula="COMPETITORS" [id]="team | json"
                            [(dragulaModel)]="team.competitors">
@@ -53,11 +56,13 @@
                   </form>
                 </div>
                 <!--COMPETITORS-->
-                <div class="card mt-3 pt-3 pb-3 container " >
+                <div class="card mt-3 pt-3 pb-3">
                   <h2 align="center">{{ 'model.competitors' | translate}}</h2>
-                  <div dragula="COMPETITORS" [(dragulaModel)]="data.championships[numChampionship].freeCompetitors" id=0>
+                  <div dragula="COMPETITORS" [(dragulaModel)]="data.championships[numChampionship].freeCompetitors"
+                       id=0 [style.height.px]=73*data.championships[numChampionship].competitors.length
+                       class="container">
                     <div *ngFor="let competitor of data.championships[numChampionship].freeCompetitors"
-                         class="pt-3 pb-3 mt-1 mb-1 border rounded text-center">{{ competitor.user.name  }}</div>
+                         class="pt-3 pb-3 mt-1 mb-1 border rounded text-center handle">{{ competitor.user.name  }}</div>
                   </div>
                 </div>
               </div>

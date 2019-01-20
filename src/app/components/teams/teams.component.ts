@@ -119,7 +119,10 @@ export class TeamsComponent implements OnInit, OnDestroy {
       .subscribe(
         data => {
           if (data !== '') { // Query worked
-            this.data.championships.find(x => x.championship === championshipId).teams.pop(team);
+            const teams = this.data.championships
+              .find(x => x.championship === championshipId).teams
+              .filter(obj => obj.id !== team.id);
+            this.data.championships.find(x => x.championship === championshipId).teams = teams;
           }
           this.navbar.setLoading(false);
         },
