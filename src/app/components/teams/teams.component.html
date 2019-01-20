@@ -59,10 +59,9 @@
                 <div class="card mt-3 pt-3 pb-3">
                   <h2 align="center">{{ 'model.competitors' | translate}}</h2>
                   <div dragula="COMPETITORS" [(dragulaModel)]="data.championships[numChampionship].freeCompetitors"
-                       id=0 [style.height.px]=73*data.championships[numChampionship].competitors.length
-                       class="container">
+                       id=0  class="container pt-2 pb-2">
                     <div *ngFor="let competitor of data.championships[numChampionship].freeCompetitors"
-                         class="pt-3 pb-3 mt-1 mb-1 border rounded text-center handle">{{ competitor.user.name  }}</div>
+                         class="pt-3 pb-3 mt-1 mb-1 border rounded text-center">{{ competitor.user.name  }}</div>
                   </div>
                 </div>
               </div>

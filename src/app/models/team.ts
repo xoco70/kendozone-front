@@ -12,5 +12,6 @@ export class Team {
 
   constructor(name: string) {
     this.name = name;
+    this.competitors = [];
   }
 }

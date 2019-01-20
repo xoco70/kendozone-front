@@ -10,6 +10,7 @@ import {Team} from '../../models/team';
 import {Subscription} from 'rxjs';
 import {DragulaService} from 'ng2-dragula';
 import {Competitor} from '../../models/competitor';
+import add from '@angular/cli/commands/add';
 
 @Component({
   selector: 'app-teams',
@@ -35,13 +36,12 @@ export class TeamsComponent implements OnInit, OnDestroy {
 
     this.subs.add(dragulaService.dropModel(this.BAG)
       .subscribe(({item, source, target}) => {
+        // console.log(item, source, target);
         const t1 = source.getAttributeNode('id').value;
         const t2 = target.getAttributeNode('id').value;
-
         const team1: Team = JSON.parse(t1);
+
         const team2: Team = JSON.parse(t2);
-
-
         if (t1 === t2) { // Update competitor's order in team
           // this.updateCompetitorInTeam(item, team2);
           // Do nothing, later we will update the order of fighter in team
@@ -101,6 +101,8 @@ export class TeamsComponent implements OnInit, OnDestroy {
       .subscribe(
         data => {
           addedTeam = data;
+          addedTeam.competitors = [];
+          // console.log(addedTeam);
           if (data !== '') { // Query worked
             this.data.championships.find(x => x.championship === championship.id).teams.push(addedTeam);
           }
