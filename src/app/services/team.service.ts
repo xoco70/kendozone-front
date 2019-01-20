@@ -30,32 +30,32 @@ export class TeamService {
   }
 
   store(championshipId: number, team: Team): Observable<any> {
-    const generateTreeUrl = `${environment.apiUrl}/championships/${championshipId}/teams/`;
-    return this.http.post<any>(generateTreeUrl, team, httpOptions).pipe(
+    const teamsUrl = `${environment.apiUrl}/championships/${championshipId}/teams/`;
+    return this.http.post<any>(teamsUrl, team, httpOptions).pipe(
       tap(() => this.toastr.success('success')),
       catchError(this.handleError<any>(''))
     );
   }
 
   addCompetitorToTeam(competitor: Competitor, team: Team) {
-    const generateTreeUrl = `${environment.apiUrl}/teams/${team.id}/competitors/${competitor.id}/add`;
-    return this.http.post<any>(generateTreeUrl, null, httpOptions).pipe(
+    const teamsUrl = `${environment.apiUrl}/teams/${team.id}/competitors/${competitor.id}/add`;
+    return this.http.post<any>(teamsUrl, null, httpOptions).pipe(
       tap(() => this.toastr.success('success')),
       catchError(this.handleError<any>(''))
     );
   }
 
   removeCompetitorFromTeam(competitor: Competitor, team: Team) {
-    const generateTreeUrl = `${environment.apiUrl}/teams/${team.id}/competitors/${competitor.id}/remove`;
-    return this.http.post<any>(generateTreeUrl, null, httpOptions).pipe(
+    const teamsUrl = `${environment.apiUrl}/teams/${team.id}/competitors/${competitor.id}/remove`;
+    return this.http.post<any>(teamsUrl, null, httpOptions).pipe(
       tap(() => this.toastr.success('success')),
       catchError(this.handleError<any>(''))
     );
   }
 
   moveCompetitorFromTeam1toTeam2(competitor: Competitor, team1: Team, team2: Team) {
-    const generateTreeUrl = `${environment.apiUrl}/teams/${team1.id}/${team2.id}/competitors/${competitor.id}/move`;
-    return this.http.post<any>(generateTreeUrl, null, httpOptions).pipe(
+    const teamsUrl = `${environment.apiUrl}/teams/${team1.id}/${team2.id}/competitors/${competitor.id}/move`;
+    return this.http.post<any>(teamsUrl, null, httpOptions).pipe(
       tap(() => this.toastr.success('success')),
       catchError(this.handleError<any>(''))
     );
@@ -63,8 +63,16 @@ export class TeamService {
 
 
   delete(team: Team) {
-    const generateTreeUrl = `${environment.apiUrl}/championships/${team.championship_id}/teams/${team.id}`;
-    return this.http.delete<any>(generateTreeUrl, httpOptions).pipe(
+    const teamsUrl = `${environment.apiUrl}/championships/${team.championship_id}/teams/${team.id}`;
+    return this.http.delete<any>(teamsUrl, httpOptions).pipe(
+      tap(() => this.toastr.success('success')),
+      catchError(this.handleError<any>(''))
+    );
+  }
+
+  updateCompetitorInTeam(competitor: Competitor, team: Team) {
+    const teamsUrl = `${environment.apiUrl}/teams/${team.id}/competitors/${competitor.id}`;
+    return this.http.put<any>(teamsUrl, httpOptions).pipe(
       tap(() => this.toastr.success('success')),
       catchError(this.handleError<any>(''))
     );
@@ -102,4 +110,6 @@ export class TeamService {
       return of(result as T);
     };
   }
+
+
 }

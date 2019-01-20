@@ -10,7 +10,7 @@ import {ToastrService} from 'ngx-toastr';
 import {Team} from '../../models/team';
 import * as vm from 'vm';
 import {Subscription} from 'rxjs';
-import {DragulaService} from 'ng2-dragula';
+import {DragulaOptions, DragulaService} from 'ng2-dragula';
 import {Competitor} from '../../models/competitor';
 
 @Component({
@@ -24,7 +24,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
   tournament: Tournament;
   championships: Championship[];
   slug: string;
-  BAG = 'DRAGULA_EVENTS';
+  BAG = 'COMPETITORS';
   subs = new Subscription();
 
   constructor(private navbar: NavService,
@@ -34,9 +34,36 @@ export class TeamsComponent implements OnInit, OnDestroy {
               private dragulaService: DragulaService,
   ) {
     this.slug = this.route.snapshot.params.slug;
-    this.subs.add(dragulaService.drop(this.BAG)
-      .subscribe(({el}) => {
-        console.log(el);
+
+    this.subs.add(dragulaService.dropModel(this.BAG)
+      .subscribe(({item, source, target}) => {
+        const t1 = source.getAttributeNode('id').value;
+        const t2 = target.getAttributeNode('id').value;
+
+        const team1: Team = JSON.parse(t1);
+        const team2: Team = JSON.parse(t2);
+
+
+        if (t1 === t2) { // Update competitor's order in team
+          // this.updateCompetitorInTeam(item, team2);
+          // Do nothing, later we will update the order of fighter in team
+          // TODO We need to manage competitor order in team
+          return;
+        }
+        console.log(team1, team2, team1 === team2);
+
+        if (Number(team1) === 0) { // Add competitor to team
+          this.addCompetitorToTeam(item, team2);
+          return;
+        }
+        if (Number(team2) === 0) { // Remove competitor to team
+          this.removeCompetitorFromTeam(item, team1);
+          return;
+        }
+
+
+        this.moveCompetitorFromTeam1toTeam2(item, team1, team2);
+
       })
     );
   }
@@ -106,7 +133,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
     this.teamService.addCompetitorToTeam(competitor, team)
       .subscribe(
         data => {
-          console.log(data);
+          console.log('addCompetitorToTeam');
           this.navbar.setLoading(false);
         },
         error => {
@@ -119,7 +146,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
     this.teamService.removeCompetitorFromTeam(competitor, team)
       .subscribe(
         data => {
-          console.log(data);
+          console.log('removeCompetitorFromTeam');
           this.navbar.setLoading(false);
         },
         error => {
@@ -132,7 +159,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
     this.teamService.moveCompetitorFromTeam1toTeam2(competitor, team1, team2)
       .subscribe(
         data => {
-          console.log(data);
+          console.log('moveCompetitorFromTeam1toTeam2');
           this.navbar.setLoading(false);
         },
         error => {
@@ -141,6 +168,18 @@ export class TeamsComponent implements OnInit, OnDestroy {
         });
   }
 
+  // updateCompetitorInTeam(competitor: Competitor, team: Team) {
+  //   this.teamService.updateCompetitorInTeam(competitor, team)
+  //     .subscribe(
+  //       data => {
+  //         console.log(data);
+  //         this.navbar.setLoading(false);
+  //       },
+  //       error => {
+  //         console.log(error);
+  //         this.navbar.setLoading(false);
+  //       });
+  // }
   ngOnDestroy() {
     this.subs.unsubscribe();
   }

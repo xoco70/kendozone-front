@@ -23,9 +23,12 @@
                           <i class="fa fa-times "></i>
                         </button>
                       </div>
-                      <div class="card-body container" dragula="DRAGULA_EVENTS">
+                      <div class="card-body container" dragula="COMPETITORS" [id]="team | json"
+                           [(dragulaModel)]="team.competitors">
                         <div *ngFor="let competitor of team.competitors">
-                          <div class="pt-3 pb-3 mt-1 mb-1 border rounded text-center">{{ competitor.user.name }}</div>
+                          <div class="pt-3 pb-3 mt-1 mb-1 border rounded text-center handle">
+                            {{ competitor.user.name }}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -33,7 +36,8 @@
                 </div>
               </div>
               <!--ADD TEAM-->
-              <div class="col-xs-12 col-md-3 mt-3">
+              <div class=" col-xs-12 col-md-3 mt-3
+                          ">
                 <div class="card align-items-center">
                   <h2 class="text-center pt-3">{{ 'teams.add_new_team' | translate }}</h2>
                   <form class="form-horizontal" (ngSubmit)="onSubmit(championship)" #form="ngForm">
@@ -41,17 +45,20 @@
                       <div class="form-inline">
                         <input type="text" class="form-control pt-2 pb-2" name="name" id="name"
                                required [(ngModel)]="name" placeholder="{{ 'teams.team_name' | translate}}">
-                        <button type="submit" class="btn text-white bg-success border-success ml-1 p-2 rounded"
+                        <button type="submit"
+                                class="btn text-white bg-success border-success ml-1 p-2 rounded"
                                 id="save">{{ 'common.add' | translate }}</button>
                       </div>
                     </div>
                   </form>
                 </div>
                 <!--COMPETITORS-->
-                <div class="card mt-3 pt-3 pb-3 container " dragula="DRAGULA_EVENTS">
+                <div class="card mt-3 pt-3 pb-3 container " >
                   <h2 align="center">{{ 'model.competitors' | translate}}</h2>
-                  <div *ngFor="let competitor of data.championships[numChampionship].freeCompetitors"
-                       class="pt-3 pb-3 mt-1 mb-1 border rounded text-center">{{ competitor.user.name  }}</div>
+                  <div dragula="COMPETITORS" [(dragulaModel)]="data.championships[numChampionship].freeCompetitors" id=0>
+                    <div *ngFor="let competitor of data.championships[numChampionship].freeCompetitors"
+                         class="pt-3 pb-3 mt-1 mb-1 border rounded text-center">{{ competitor.user.name  }}</div>
+                  </div>
                 </div>
               </div>
             </div>
