@@ -1,5 +1,5 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {BrowserModule, enableDebugTools} from '@angular/platform-browser';
+import {ApplicationRef, NgModule} from '@angular/core';
 import {NgbActiveModal, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 
@@ -56,8 +56,8 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider,
 } from 'angularx-social-login';
-import { TeamsComponent } from './components/teams/teams.component';
-import { DragulaModule } from 'ng2-dragula';
+import {TeamsComponent} from './components/teams/teams.component';
+import {DragulaModule} from 'ng2-dragula';
 
 Raven
   .config(environment.sentryDns)
@@ -97,6 +97,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   createImageThumbnails: true,
   acceptedFiles: 'image/*'
 };
+
 
 @NgModule({
   declarations: [
