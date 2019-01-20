@@ -4,6 +4,7 @@ import {ChampionshipSettings} from './championship-settings';
 import {User} from './user';
 import {FightersGroup} from './fighters.group';
 import {Type} from 'class-transformer';
+import {Team} from './team';
 
 export class Championship {
 
@@ -16,6 +17,7 @@ export class Championship {
   deleted_at: string;
   users: User[];
   competitors: Competitor[];
+  teams: Team[];
   settings: ChampionshipSettings;
   @Type(() => FightersGroup)
   fighters_groups: FightersGroup[];

@@ -13,7 +13,14 @@
                     <!-- TODO alias if exists-->
                     <span class="text-uppercase font-weight-bold">
                       {{ championship.category.name | translate }}
-                    </span>
+                      <!--{{championship | json }}-->
+                      </span>
+                    <!--<div *ngIf="championship.category.isTeam">-->
+                    <!--{{ championship.teams.length}}-->
+                    <!--</div>-->
+                    <span [style.font-size.px]="11">({{ championship.competitors.length}}  {{ 'model.competitors' | translate }})</span>
+
+
                   </div>
                   <div class="col-md-4">
                     <div class="badge btnAction">
