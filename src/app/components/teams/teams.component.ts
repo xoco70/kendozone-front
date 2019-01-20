@@ -48,7 +48,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
           // TODO We need to manage competitor order in team
           return;
         }
-        console.log(team1, team2, team1 === team2);
+        // console.log(team1, team2, team1 === team2);
 
         if (Number(team1) === 0) { // Add competitor to team
           this.addCompetitorToTeam(item, team2);
@@ -120,8 +120,8 @@ export class TeamsComponent implements OnInit, OnDestroy {
             const championship = this.data.championships.find(x => x.championship === championshipId);
             championship.teams = championship.teams.filter(obj => obj.id !== team.id); // update teams for display
             // Send all competitors from deleted team to freeCompetitors
-            console.log('team.competitors', team.competitors);
-            console.log('championship.freeCompetitors', championship.freeCompetitors);
+            // console.log('team.competitors', team.competitors);
+            // console.log('championship.freeCompetitors', championship.freeCompetitors);
             // championship.freeCompetitors.unshift(team.competitors);
             championship.freeCompetitors = championship.freeCompetitors.concat(team.competitors);
             // console.log('championship.freeCompetitors', championship.freeCompetitors);
@@ -138,7 +138,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
     this.teamService.addCompetitorToTeam(competitor, team)
       .subscribe(
         data => {
-          console.log('addCompetitorToTeam');
+          // console.log('addCompetitorToTeam');
           this.navbar.setLoading(false);
         },
         error => {
@@ -151,7 +151,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
     this.teamService.removeCompetitorFromTeam(competitor, team)
       .subscribe(
         data => {
-          console.log('removeCompetitorFromTeam');
+          // console.log('removeCompetitorFromTeam');
           this.navbar.setLoading(false);
         },
         error => {
@@ -164,7 +164,7 @@ export class TeamsComponent implements OnInit, OnDestroy {
     this.teamService.moveCompetitorFromTeam1toTeam2(competitor, team1, team2)
       .subscribe(
         data => {
-          console.log('moveCompetitorFromTeam1toTeam2');
+          // console.log('moveCompetitorFromTeam1toTeam2');
           this.navbar.setLoading(false);
         },
         error => {
