@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {first} from 'rxjs/operators';
-import {plainToClass} from 'class-transformer';
 import {Tournament} from '../../models/tournament';
 import {NavService} from '../../services/nav.service';
 import {ActivatedRoute} from '@angular/router';
@@ -8,9 +7,8 @@ import {TeamService} from '../../services/team.service';
 import {Championship} from '../../models/championship';
 import {ToastrService} from 'ngx-toastr';
 import {Team} from '../../models/team';
-import * as vm from 'vm';
 import {Subscription} from 'rxjs';
-import {DragulaOptions, DragulaService} from 'ng2-dragula';
+import {DragulaService} from 'ng2-dragula';
 import {Competitor} from '../../models/competitor';
 
 @Component({
@@ -119,10 +117,14 @@ export class TeamsComponent implements OnInit, OnDestroy {
       .subscribe(
         data => {
           if (data !== '') { // Query worked
-            const teams = this.data.championships
-              .find(x => x.championship === championshipId).teams
-              .filter(obj => obj.id !== team.id);
-            this.data.championships.find(x => x.championship === championshipId).teams = teams;
+            const championship = this.data.championships.find(x => x.championship === championshipId);
+            championship.teams = championship.teams.filter(obj => obj.id !== team.id); // update teams for display
+            // Send all competitors from deleted team to freeCompetitors
+            console.log('team.competitors', team.competitors);
+            console.log('championship.freeCompetitors', championship.freeCompetitors);
+            // championship.freeCompetitors.unshift(team.competitors);
+            championship.freeCompetitors = championship.freeCompetitors.concat(team.competitors);
+            // console.log('championship.freeCompetitors', championship.freeCompetitors);
           }
           this.navbar.setLoading(false);
         },
