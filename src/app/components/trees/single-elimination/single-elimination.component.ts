@@ -41,8 +41,8 @@ export class SingleEliminationComponent implements OnInit {
       this.brackets[i] = groupsByRound[i].map(group => {
         if (this.championship.category.isTeam) {
           return new Object({
-            'playerA': group.teams[0] || new Team('Bye'),
-            'playerB': group.teams[1] || new Team('Bye')
+            'playerA': group.teams[0] || new Team('Bye', this.championship.id),
+            'playerB': group.teams[1] || new Team('Bye', this.championship.id)
           });
         }
         return new Object({

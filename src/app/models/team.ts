@@ -10,8 +10,9 @@ export class Team {
   entity_type: number;
   entity_id: string;
 
-  constructor(name: string) {
+  constructor(name: string, championship_id: number) {
     this.name = name;
     this.competitors = [];
+    this.championship_id = championship_id;
   }
 }

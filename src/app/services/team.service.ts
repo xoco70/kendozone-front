@@ -29,8 +29,8 @@ export class TeamService {
   ) {
   }
 
-  store(championshipId: number, team: Team): Observable<any> {
-    const teamsUrl = `${environment.apiUrl}/championships/${championshipId}/teams/`;
+  store(team: Team): Observable<any> {
+    const teamsUrl = `${environment.apiUrl}/teams/`;
     return this.http.post<any>(teamsUrl, team, httpOptions).pipe(
       tap(() => this.toastr.success('success')),
       catchError(this.handleError<any>(''))
@@ -63,7 +63,7 @@ export class TeamService {
 
 
   delete(team: Team) {
-    const teamsUrl = `${environment.apiUrl}/championships/${team.championship_id}/teams/${team.id}`;
+    const teamsUrl = `${environment.apiUrl}/teams/${team.id}`;
     return this.http.delete<any>(teamsUrl, httpOptions).pipe(
       tap(() => this.toastr.success('success')),
       catchError(this.handleError<any>(''))

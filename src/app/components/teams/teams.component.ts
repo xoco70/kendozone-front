@@ -10,7 +10,6 @@ import {Team} from '../../models/team';
 import {Subscription} from 'rxjs';
 import {DragulaService} from 'ng2-dragula';
 import {Competitor} from '../../models/competitor';
-import add from '@angular/cli/commands/add';
 
 @Component({
   selector: 'app-teams',
@@ -97,14 +96,14 @@ export class TeamsComponent implements OnInit, OnDestroy {
 
     this.navbar.setLoading(true);
 
-    this.teamService.store(championship.id, new Team(this.name))
+    this.teamService.store(new Team(this.name, championship.id))
       .subscribe(
         data => {
           addedTeam = data;
           addedTeam.competitors = [];
           // console.log(addedTeam);
           if (data !== '') { // Query worked
-            this.data.championships.find(x => x.championship === championship.id).teams.push(addedTeam);
+            this.data.championships.find(x => x.id === championship.id).teams.push(addedTeam);
           }
           this.navbar.setLoading(false);
         },
@@ -114,12 +113,12 @@ export class TeamsComponent implements OnInit, OnDestroy {
         });
   }
 
-  delete(team: Team, championshipId: number) {
+  delete(team: Team) {
     this.teamService.delete(team)
       .subscribe(
         data => {
           if (data !== '') { // Query worked
-            const championship = this.data.championships.find(x => x.championship === championshipId);
+            const championship = this.data.championships.find(x => x.id === team.championship_id);
             championship.teams = championship.teams.filter(obj => obj.id !== team.id); // update teams for display
             // Send all competitors from deleted team to freeCompetitors
             // console.log('team.competitors', team.competitors);
