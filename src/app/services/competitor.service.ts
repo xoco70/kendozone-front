@@ -45,8 +45,8 @@ export class CompetitorService {
     );
   }
 
-  delete(tournamentSlug: string, competitor: Competitor): Observable<Competitor> {
-    const url = `${environment.apiUrl}/tournaments/${tournamentSlug}/competitors/${competitor.id}`;
+  delete(competitor: Competitor): Observable<Competitor> {
+    const url = `${environment.apiUrl}/competitors/${competitor.id}`;
     return this.http.delete<any>(url, httpOptions)
       .pipe(
         tap(data => this.toastr.success(data)),
