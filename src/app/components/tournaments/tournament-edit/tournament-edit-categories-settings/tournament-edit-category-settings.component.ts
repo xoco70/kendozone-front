@@ -26,10 +26,11 @@ export class TournamentEditCategorySettingsComponent implements OnInit, AfterVie
     this.navbar.setLoading(true);
 
     if (this.championship.settings.id == null) {
-      this.settingsService.store(this.championship.id, this.championship.settings)
+      this.championship.settings.championship_id = this.championship.id;
+      console.log(JSON.stringify(this.championship.settings));
+      this.settingsService.store(this.championship.settings)
         .subscribe(
           settings => {
-            // console.log(settings.settings.id);
             this.championship.settings.id = settings.id;
             this.navbar.setLoading(false);
           },

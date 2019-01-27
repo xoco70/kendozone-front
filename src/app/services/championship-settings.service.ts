@@ -25,8 +25,8 @@ export class ChampionshipSettingsService {
   ) {
   }
 
-  store(championshipId: number, settings: ChampionshipSettings): Observable<ChampionshipSettings> {
-    const url = environment.apiUrl + '/championships/' + championshipId + '/settings/';
+  store(settings: ChampionshipSettings): Observable<ChampionshipSettings> {
+    const url = environment.apiUrl + '/championships/' + settings.championship_id + '/settings/';
     return this.http.post<ChampionshipSettings>(url, settings, httpOptions).pipe(
       tap(data => {
         this.toastr.success('msg.settings_create_success');

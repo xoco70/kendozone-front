@@ -1,7 +1,7 @@
 export class ChampionshipSettings {
   id: number;
   alias: string;
-  championshipId: number;
+  championship_id: number;
   treeType: number;
   fightingAreas: number;
   fightDuration: string;
