@@ -14,7 +14,7 @@ import {Router} from '@angular/router';
 export class NavComponent implements OnInit {
   user: User;
   loading = false;
-  avatar_src = 'assets/images/avatar/avatar.png';
+  avatar_src: string;
   title: string;
 
 
@@ -31,7 +31,7 @@ export class NavComponent implements OnInit {
       this.nav.title.subscribe(title => this.title = title);
       this.nav.loading.subscribe(loading => this.loading = loading);
     });
-    this.avatar_src = this.userService.getAvatarUrl(this.auth.currentUser());
+    this.avatar_src = UserService.getAvatarUrl(this.auth.currentUser());
   }
 
 

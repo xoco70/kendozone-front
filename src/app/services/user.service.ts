@@ -26,6 +26,18 @@ export class UserService {
   ) {
   }
 
+  static getAvatarUrl(user: User): string {
+    const S3_URL_BASE = environment.s3UrlBase + '/avatar/';
+    const avatar = user.avatar;
+    if (avatar === null || avatar === undefined) {
+      return 'assets/images/avatar/avatar.png';
+    }
+    if (avatar.startsWith('http')) {
+      return avatar;
+    }
+    return S3_URL_BASE + avatar;
+  }
+
   all(): Observable<User[]> {
     const listUrl = this.usersUrl;
     return this.http.get<User[]>(listUrl)
@@ -42,24 +54,13 @@ export class UserService {
       );
   }
 
+
   update(user: User): Observable<User> {
     const url = this.usersUrl + user.slug;
     return this.http.put<User>(url, user, httpOptions).pipe(
       tap(data => this.toastr.success('msg.profile_edited')),
       catchError(this.handleError<User>('generalDataProfile'))
     );
-  }
-
-  getAvatarUrl(user: User): string {
-    const S3_URL_BASE = environment.s3UrlBase + '/avatar/';
-    const avatar = user.avatar;
-    if (avatar === null || avatar === undefined) {
-      return;
-    }
-    if (avatar.startsWith('http')) {
-      return avatar;
-    }
-    return S3_URL_BASE + avatar;
   }
 
   /**
@@ -76,4 +77,5 @@ export class UserService {
       return of(result as T);
     };
   }
+
 }

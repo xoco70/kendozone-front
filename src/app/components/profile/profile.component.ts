@@ -150,7 +150,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     // TODO Hacky, timeout 1sec because I don't know when it is ready.
     // also put get avatar url with a shared service
     setTimeout(() => {
-      this.thumbnailUrl = this.userService.getAvatarUrl(this.user);
+      this.thumbnailUrl = UserService.getAvatarUrl(this.user);
 
       console.log(this.thumbnailUrl);
       const mockFile = {
